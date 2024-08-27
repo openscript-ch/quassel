@@ -1,0 +1,1 @@
+import{B as t}from"./ui.mjs";class e extends t{constructor(){super()}init(t){return this.el=t,this.el.style.setProperty("--counter-start",this.el.getAttribute("start")),this}}function r(){return new e}export{r as default};

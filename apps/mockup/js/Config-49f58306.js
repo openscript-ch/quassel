@@ -1,0 +1,1 @@
+import{b as r}from"./_rollupPluginBabelHelpers-56fbbc65.js";var t=r({},{root:location.href.substr(0,location.href.lastIndexOf("/")+1)},window.app_config||{}),o={get(r){var o=t;try{for(var e=r.split("."),a=0,l=e.length;a<l;a++)o=o[e[a]]}catch(r){return}return o},set:(r,o)=>(t[r]=o,o)};export{o as C};

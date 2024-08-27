@@ -1,0 +1,1 @@
+import{B as e}from"./ui.mjs";var s=["INPUT","SELECT","TEXTAREA"];class t extends e{constructor(){super()}init(e){return this.el=e,requestAnimationFrame((()=>{if(s.includes(this.el.tagName))this.el.focus();else{var e=this.el.querySelector(s.join(","));e?e.focus():this.el.focus()}})),this}}export{t as default};

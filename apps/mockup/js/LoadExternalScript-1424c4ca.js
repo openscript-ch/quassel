@@ -1,0 +1,1 @@
+import{c}from"./ui.mjs";function o(o){var t=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];document.querySelector('[src="'.concat(o,'"]'))||c('<script src="'.concat(o,'"').concat(t?" async":"","><\/script>")).appendTo(document.body)}export{o as l};
