@@ -140,119 +140,298 @@
     </header>
     <!-- /component: Header -->
     <main>
-      <!-- component: HeroSlideshow -->
-      <!-- // Only when this is the first element and there is no other title: put page title here (for accessibility)-->
-      <h1 class="visuallyhidden">Corporate Home</h1>
-      <!-- Put generic title for HeroSlideshow for here (for accessibility)-->
-      <h2 class="visuallyhidden">Highlights</h2>
-      <!-- component: Slider -->
-      <div
-        class="Slider HeroSlideshow"
-        data-js-slider='{"autoplay":{"delay":10000}}'
-        data-js-heroslideshow=""
-      >
-        <div class="js-Slider--slider Slider--slider HeroSlideshow--slider">
-          <ul class="js-Slider--wrapper Slider--wrapper HeroSlideshow--wrapper">
-            <li class="js-Slider--slide">
-              <!-- component: HeroSlideshowSlide -->
-              <div class="HeroSlideshowSlide">
-                <div class="HeroSlideshowSlide--inner">
-                  <div class="HeroSlideshowSlide--media">
-                    <div
-                      class="HeroSlideshowSlide--media--inner"
-                      data-swiper-parallax-x="50%"
-                    >
-                      <!-- component: Image -->
-                      <div
-                        class="Image"
-                        style="--image_width: 400; --image_height: 300"
-                      >
-                        <div class="Image--wrapper">
-                          <img
-                            class="Image--img"
-                            src="https://flximg.com/600x450/uzh/KOL-Lichthof-17.jpg"
-                            srcset="
-                              data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-                            "
-                            data-sizes="auto"
-                            data-srcset="https://flximg.com/600x450/uzh/KOL-Lichthof-17.jpg 600w 450h, https://flximg.com/1200x900/uzh/KOL-Lichthof-17.jpg 1200w 900h, https://flximg.com/1800x1350/uzh/KOL-Lichthof-17.jpg 1800w 1350h, https://flximg.com/2400x1800/uzh/KOL-Lichthof-17.jpg 2400w 1800h"
-                            alt=""
-                          />
-                        </div>
+      <section class="ContentArea">
+        <table
+          class="calendar"
+          style="width: 90%; margin-top: 1rem; margin-inline: auto"
+        >
+          <thead>
+            <tr>
+              <th></th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
+              <th>Sunday</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>08:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>09:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>10:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>11:00</th>
+              <td></td>
+              <td style="position: relative">
+                <div
+                  style="
+                    position: absolute;
+                    background-color: white;
+                    padding: 1rem;
+                    box-shadow: 1px 1px 5px gray;
+                    width: 350px;
+                    z-index: 2;
+                  "
+                >
+                  <h3>New Entry</h3>
+                  <form
+                    id="form-uid-3"
+                    method="post"
+                    action="calendar-entry-added.html"
+                    enctype="multipart/form-data"
+                  >
+                    <div class="FormInput">
+                      <!-- component: FormLabel -->
+                      <label class="FormLabel" for="input-1">
+                        Person
+                        <span title="Pflichtfeld">*</span>
+                      </label>
+                      <!-- /component: FormLabel -->
+                      <!-- component: Input -->
+                      <select class="Select" id="person-select" name="input-1">
+                        <option value="Blue">Parent</option>
+                        <option value="Red">Grandparent</option>
+                        <option value="Yellow">Caregivers</option>
+                        <option value="custom">Custom</option>
+                      </select>
+
+                      <input
+                        class="Input"
+                        style="margin-top: 0.5rem; display: none"
+                        autocomplete="off"
+                        placeholder="Custom person description"
+                        id="custom-person-field"
+                        name="input-1"
+                        type="text"
+                      />
+                    </div>
+                    <!-- component: FormInput -->
+                    <div class="FormInput">
+                      <!-- component: FormLabel -->
+                      <label class="FormLabel" for="input-1">
+                        Dialect
+                        <span title="Pflichtfeld">*</span>
+                      </label>
+                      <!-- /component: FormLabel -->
+                      <div style="display: flex; gap: 1rem">
+                        <input
+                          style="width: 5.5rem"
+                          class="Input"
+                          autocomplete="off"
+                          id="input-1"
+                          name="input-1"
+                          type="number"
+                          value="100"
+                        />
+                        <!-- component: Input -->
+                        <select
+                          class="Select"
+                          id="period-select"
+                          name="input-1"
+                        >
+                          <option value="Blue">Hochdeutsch</option>
+                          <option value="Red">English UK</option>
+                          <option value="Yellow">
+                            Schweizerdeutsch Zürich
+                          </option>
+                          <option value="custom">Schweizerdeutsch Bern</option>
+                        </select>
+                        <!-- /component: Input -->
                       </div>
-                      <!-- /component: Image -->
+
+                      <button
+                        style="margin-top: 1rem"
+                        class="Button"
+                        type="button"
+                      >
+                        + Add dialect
+                      </button>
                     </div>
-                  </div>
-                  <div class="HeroSlideshowSlide--content">
-                    <div class="HeroSlideshowSlide--content--inner">
-                      <h3 class="HeroSlideshowSlide--title">
-                        Language Exposure
-                      </h3>
-                      <p class="HeroSlideshowSlide--text">
-                        You have been invited to fill out the survey for the
-                        period from <strong>01.01.2024</strong> until
-                        <strong>01.06.2024</strong>.
-                      </p>
-                      <!-- component: Link --><a
-                        class="Link layout-standalone"
-                        href="./start-survey.html"
-                        >Fill out the survey<span class="Link--icon">
-                          <!-- component: Icon --><span
-                            class="Icon"
-                            data-name="16--link-internal"
-                            ><svg>
-                              <use
-                                xlink:href="#16--link-internal"
-                              ></use></svg></span
-                          ><!-- /component: Icon -->
-                        </span></a
-                      ><!-- /component: Link -->
+
+                    <div class="FormInput">
+                      <label class="FormLabel" for="input-1">
+                        Time
+                        <span title="Pflichtfeld">*</span>
+                      </label>
+                      <div style="display: flex; gap: 1rem">
+                        <input
+                          class="Input"
+                          id="from-date-picker"
+                          type="date"
+                        />
+                        <input class="Input" type="time" value="11:00" />
+                      </div>
+
+                      <div style="display: flex; gap: 1rem; margin-top: 0.5rem">
+                        <input class="Input" id="to-date-picker" type="date" />
+                        <input class="Input" type="time" value="12:00" />
+                      </div>
                     </div>
-                  </div>
+
+                    <!-- component: FormButtons -->
+                    <div class="FormButtons">
+                      <!-- component: Button -->
+                      <button
+                        class="Button color-primary size-large"
+                        type="submit"
+                      >
+                        <span class="Button--inner">Add</span>
+                      </button>
+                      <!-- /component: Button -->
+                    </div>
+                    <!-- /component: FormButtons -->
+                  </form>
                 </div>
-              </div>
-              <!-- /component: HeroSlideshowSlide -->
-            </li>
-          </ul>
-          <div class="Slider--controls HeroSlideshow--controls">
-            <button
-              class="js-Slider--prev Slider--button HeroSlideshow--button"
-              aria-hidden="true"
-              type="button"
-            >
-              <!-- component: Icon --><span
-                class="Icon"
-                data-name="16--link-internal"
-                ><svg>
-                  <use xlink:href="#16--link-internal"></use></svg></span
-              ><!-- /component: Icon --><span class="visuallyhidden"
-                >Next Slide</span
-              ></button
-            ><button
-              class="js-Slider--next Slider--button HeroSlideshow--button"
-              aria-hidden="true"
-              type="button"
-            >
-              <!-- component: Icon --><span
-                class="Icon"
-                data-name="16--link-internal"
-                ><svg>
-                  <use xlink:href="#16--link-internal"></use></svg></span
-              ><!-- /component: Icon --><span class="visuallyhidden"
-                >Previous Slide</span
-              >
-            </button>
-          </div>
-          <div
-            class="js-Slider--pagination Slider--pagination HeroSlideshow--pagination"
-          ></div>
-        </div>
-      </div>
-      <!-- /component: Slider -->
-      <!-- /component: HeroSlideshow -->
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>12:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>13:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>14:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>15:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>16:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>17:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>18:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>19:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>20:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>21:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <th>22:00</th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
       <!-- component: ContentArea -->
-      <section class="ContentArea"></section>
-      <!-- /component: ContentArea -->
     </main>
     <!-- component: Footer -->
     <footer class="Footer">
@@ -791,7 +970,24 @@
       <!-- /component: MainNavSubItem -->
     </template>
     <script>
-      (function (url, revision) {
+      document.getElementById("from-date-picker").value = new Date()
+        .toISOString()
+        .substring(0, 10);
+      document.getElementById("to-date-picker").value = new Date()
+        .toISOString()
+        .substring(0, 10);
+
+      document
+        .getElementById("person-select")
+        .addEventListener("change", (event) => {
+          if (event.target.value === "custom") {
+            document.getElementById("custom-person-field").style.display =
+              "block";
+          } else {
+            document.getElementById("custom-person-field").style.display =
+              "none";
+          }
+        })(function (url, revision) {
         function init(delayed) {
           var svgEl = document.getElementById("svgsprite");
           svgEl && svgEl.parentNode.removeChild(svgEl);

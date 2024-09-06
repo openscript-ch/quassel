@@ -140,119 +140,87 @@
     </header>
     <!-- /component: Header -->
     <main>
-      <!-- component: HeroSlideshow -->
-      <!-- // Only when this is the first element and there is no other title: put page title here (for accessibility)-->
-      <h1 class="visuallyhidden">Corporate Home</h1>
-      <!-- Put generic title for HeroSlideshow for here (for accessibility)-->
-      <h2 class="visuallyhidden">Highlights</h2>
-      <!-- component: Slider -->
-      <div
-        class="Slider HeroSlideshow"
-        data-js-slider='{"autoplay":{"delay":10000}}'
-        data-js-heroslideshow=""
-      >
-        <div class="js-Slider--slider Slider--slider HeroSlideshow--slider">
-          <ul class="js-Slider--wrapper Slider--wrapper HeroSlideshow--wrapper">
-            <li class="js-Slider--slide">
-              <!-- component: HeroSlideshowSlide -->
-              <div class="HeroSlideshowSlide">
-                <div class="HeroSlideshowSlide--inner">
-                  <div class="HeroSlideshowSlide--media">
-                    <div
-                      class="HeroSlideshowSlide--media--inner"
-                      data-swiper-parallax-x="50%"
-                    >
-                      <!-- component: Image -->
-                      <div
-                        class="Image"
-                        style="--image_width: 400; --image_height: 300"
-                      >
-                        <div class="Image--wrapper">
-                          <img
-                            class="Image--img"
-                            src="https://flximg.com/600x450/uzh/KOL-Lichthof-17.jpg"
-                            srcset="
-                              data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-                            "
-                            data-sizes="auto"
-                            data-srcset="https://flximg.com/600x450/uzh/KOL-Lichthof-17.jpg 600w 450h, https://flximg.com/1200x900/uzh/KOL-Lichthof-17.jpg 1200w 900h, https://flximg.com/1800x1350/uzh/KOL-Lichthof-17.jpg 1800w 1350h, https://flximg.com/2400x1800/uzh/KOL-Lichthof-17.jpg 2400w 1800h"
-                            alt=""
-                          />
-                        </div>
-                      </div>
-                      <!-- /component: Image -->
-                    </div>
-                  </div>
-                  <div class="HeroSlideshowSlide--content">
-                    <div class="HeroSlideshowSlide--content--inner">
-                      <h3 class="HeroSlideshowSlide--title">
-                        Language Exposure
-                      </h3>
-                      <p class="HeroSlideshowSlide--text">
-                        You have been invited to fill out the survey for the
-                        period from <strong>01.01.2024</strong> until
-                        <strong>01.06.2024</strong>.
-                      </p>
-                      <!-- component: Link --><a
-                        class="Link layout-standalone"
-                        href="./start-survey.html"
-                        >Fill out the survey<span class="Link--icon">
-                          <!-- component: Icon --><span
-                            class="Icon"
-                            data-name="16--link-internal"
-                            ><svg>
-                              <use
-                                xlink:href="#16--link-internal"
-                              ></use></svg></span
-                          ><!-- /component: Icon -->
-                        </span></a
-                      ><!-- /component: Link -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- /component: HeroSlideshowSlide -->
-            </li>
-          </ul>
-          <div class="Slider--controls HeroSlideshow--controls">
-            <button
-              class="js-Slider--prev Slider--button HeroSlideshow--button"
-              aria-hidden="true"
-              type="button"
-            >
-              <!-- component: Icon --><span
-                class="Icon"
-                data-name="16--link-internal"
-                ><svg>
-                  <use xlink:href="#16--link-internal"></use></svg></span
-              ><!-- /component: Icon --><span class="visuallyhidden"
-                >Next Slide</span
-              ></button
-            ><button
-              class="js-Slider--next Slider--button HeroSlideshow--button"
-              aria-hidden="true"
-              type="button"
-            >
-              <!-- component: Icon --><span
-                class="Icon"
-                data-name="16--link-internal"
-                ><svg>
-                  <use xlink:href="#16--link-internal"></use></svg></span
-              ><!-- /component: Icon --><span class="visuallyhidden"
-                >Previous Slide</span
-              >
-            </button>
+      <section class="ContentArea">
+        <form
+          class="Form js-Form"
+          id="form-uid-3"
+          method="post"
+          action="calendar.html"
+          enctype="multipart/form-data"
+        >
+          <div class="Form--header">
+            <h2 class="Form--title">New period of life</h2>
           </div>
-          <div
-            class="js-Slider--pagination Slider--pagination HeroSlideshow--pagination"
-          ></div>
-        </div>
-      </div>
-      <!-- /component: Slider -->
-      <!-- /component: HeroSlideshow -->
+          <div class="Form--body">
+            <div class="FormInput">
+              <!-- component: FormLabel -->
+              <label class="FormLabel" for="input-1">Period of life</label>
+              <!-- /component: FormLabel -->
+              <!-- component: Select -->
+              <select class="Select" id="period-select" name="input-1">
+                <option value="Blue">Baby</option>
+                <option value="Red">Teenager</option>
+                <option value="Yellow">Young adult</option>
+                <option value="custom">Custom</option>
+              </select>
+              <!-- /component: Select -->
+            </div>
+            <!-- component: FormInput -->
+            <div
+              class="FormInput"
+              id="custom-period-name-field"
+              style="display: none"
+            >
+              <!-- component: FormLabel -->
+              <label class="FormLabel" for="input-1">
+                Custom period name
+              </label>
+              <!-- /component: FormLabel -->
+              <!-- component: Input -->
+              <input
+                class="Input"
+                autocomplete="off"
+                id="input-1"
+                name="input-1"
+                type="text"
+              />
+              <!-- /component: Input -->
+            </div>
+            <!-- component: FormInput -->
+            <div class="FormInput">
+              <!-- component: FormLabel -->
+              <label class="FormLabel" for="input-1"> Starting from </label>
+              <!-- /component: FormLabel -->
+              <!-- component: Input -->
+              <input
+                class="Input"
+                autocomplete="off"
+                id="starting-from-picker"
+                name="input-1"
+                type="date"
+              />
+              <!-- /component: Input -->
+            </div>
+            <!-- component: FormInput -->
+            <div class="FormInput">
+              <!-- component: FormLabel -->
+              <label class="FormLabel" for="input-1">Remarks</label>
+              <!-- /component: FormLabel -->
+              <textarea class="Input"></textarea>
+            </div>
+            <!-- component: FormButtons -->
+            <div class="FormButtons">
+              <!-- component: Button -->
+              <button class="Button color-primary size-large" type="submit">
+                <span class="Button--inner">Continue</span>
+              </button>
+              <!-- /component: Button -->
+            </div>
+            <!-- /component: FormButtons -->
+          </div>
+        </form>
+      </section>
       <!-- component: ContentArea -->
-      <section class="ContentArea"></section>
-      <!-- /component: ContentArea -->
     </main>
     <!-- component: Footer -->
     <footer class="Footer">
@@ -791,7 +759,22 @@
       <!-- /component: MainNavSubItem -->
     </template>
     <script>
-      (function (url, revision) {
+      document.getElementById("starting-from-picker").value = new Date()
+        .toISOString()
+        .substring(0, 10);
+
+      document
+        .getElementById("period-select")
+        .addEventListener("change", (event) => {
+          console.log(event.target.value);
+          if (event.target.value === "custom") {
+            document.getElementById("custom-period-name-field").style.display =
+              "block";
+          } else {
+            document.getElementById("custom-period-name-field").style.display =
+              "none";
+          }
+        })(function (url, revision) {
         function init(delayed) {
           var svgEl = document.getElementById("svgsprite");
           svgEl && svgEl.parentNode.removeChild(svgEl);
