@@ -157,13 +157,69 @@
           <tbody>
             <tr>
               <th>01:00</th>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 720%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 720%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 720%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 820%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 720%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 930%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 930%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
             </tr>
             <tr>
               <th>02:00</th>
@@ -227,11 +283,50 @@
             </tr>
             <tr>
               <th>08:00</th>
+              <td>
+                <div class="calendar-entry" style="height: 410%">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>07:00-11:00</p>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    background-color: rgb(from lightgreen r g b / 0.7);
+                    height: 305%;
+                  "
+                >
+                  <h3>Grandparent</h3>
+                  <p>Swiss german</p>
+                  <p>07:00-10:00</p>
+                </div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="height: 510%; width: 50%; left: 50%"
+                >
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>07:00-12:00</p>
+                </div>
+              </td>
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    background-color: rgb(from lightgreen r g b / 0.7);
+                    height: 510%;
+                  "
+                >
+                  <h3>Grandparent</h3>
+                  <p>Swiss german</p>
+                  <p>07:00-12:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
             </tr>
@@ -239,8 +334,27 @@
               <th>09:00</th>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    background-color: rgb(from orange r g b / 0.7);
+                    height: 1300%;
+                    width: 50%;
+                  "
+                >
+                  <h3>Parent</h3>
+                  <p>Swiss german</p>
+                  <p>08:00-20:30</p>
+                </div>
+              </td>
+              <td>
+                <div class="calendar-entry" style="height: 1250%">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>08:00-20:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -252,131 +366,35 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    background-color: rgb(from orange r g b / 0.7);
+                    height: 1340%;
+                  "
+                >
+                  <h3>Parent</h3>
+                  <p>Swiss german</p>
+                  <p>09:00-22:00</p>
+                </div>
+              </td>
+              <td>
+                <div class="calendar-entry" style="height: 1340%">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>09:00-22:00</p>
+                </div>
+              </td>
             </tr>
             <tr>
               <th>11:00</th>
               <td></td>
-              <td style="position: relative">
-                <div
-                  style="
-                    position: absolute;
-                    background-color: white;
-                    padding: 1rem;
-                    box-shadow: 1px 1px 5px gray;
-                    width: 350px;
-                    z-index: 2;
-                  "
-                >
-                  <h3>New Entry</h3>
-                  <form
-                    id="form-uid-3"
-                    method="post"
-                    action="calendar-entry-added.html"
-                    enctype="multipart/form-data"
-                  >
-                    <div class="FormInput">
-                      <!-- component: FormLabel -->
-                      <label class="FormLabel" for="input-1">
-                        Person
-                        <span title="Pflichtfeld">*</span>
-                      </label>
-                      <!-- /component: FormLabel -->
-                      <!-- component: Input -->
-                      <select class="Select" id="person-select" name="input-1">
-                        <option value="Blue">Parent</option>
-                        <option value="Red">Grandparent</option>
-                        <option value="Yellow">Caregivers</option>
-                        <option value="custom">Custom</option>
-                      </select>
-
-                      <input
-                        class="Input"
-                        style="margin-top: 0.5rem; display: none"
-                        autocomplete="off"
-                        placeholder="Custom person description"
-                        id="custom-person-field"
-                        name="input-1"
-                        type="text"
-                      />
-                    </div>
-                    <!-- component: FormInput -->
-                    <div class="FormInput">
-                      <!-- component: FormLabel -->
-                      <label class="FormLabel" for="input-1">
-                        Dialect
-                        <span title="Pflichtfeld">*</span>
-                      </label>
-                      <!-- /component: FormLabel -->
-                      <div style="display: flex; gap: 1rem">
-                        <input
-                          style="width: 5.5rem"
-                          class="Input"
-                          autocomplete="off"
-                          id="input-1"
-                          name="input-1"
-                          type="number"
-                          value="100"
-                        />
-                        <!-- component: Input -->
-                        <select
-                          class="Select"
-                          id="period-select"
-                          name="input-1"
-                        >
-                          <option value="Blue">Hochdeutsch</option>
-                          <option value="Red">English UK</option>
-                          <option value="Yellow">
-                            Schweizerdeutsch Zürich
-                          </option>
-                          <option value="custom">Schweizerdeutsch Bern</option>
-                        </select>
-                        <!-- /component: Input -->
-                      </div>
-
-                      <button
-                        style="margin-top: 1rem"
-                        class="Button"
-                        type="button"
-                      >
-                        + Add dialect
-                      </button>
-                    </div>
-
-                    <div class="FormInput">
-                      <label class="FormLabel" for="input-1">
-                        Time
-                        <span title="Pflichtfeld">*</span>
-                      </label>
-                      <div style="display: flex; gap: 1rem">
-                        <input
-                          class="Input"
-                          id="from-date-picker"
-                          type="date"
-                        />
-                        <input class="Input" type="time" value="11:00" />
-                      </div>
-
-                      <div style="display: flex; gap: 1rem; margin-top: 0.5rem">
-                        <input class="Input" id="to-date-picker" type="date" />
-                        <input class="Input" type="time" value="12:00" />
-                      </div>
-                    </div>
-
-                    <!-- component: FormButtons -->
-                    <div class="FormButtons">
-                      <!-- component: Button -->
-                      <button
-                        class="Button color-primary size-large"
-                        type="submit"
-                      >
-                        <span class="Button--inner">Add</span>
-                      </button>
-                      <!-- /component: Button -->
-                    </div>
-                    <!-- /component: FormButtons -->
-                  </form>
+              <td>
+                <div class="calendar-entry">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>10:00-12:00</p>
                 </div>
               </td>
               <td></td>
@@ -387,7 +405,19 @@
             </tr>
             <tr>
               <th>12:00</th>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    background-color: rgb(from orange r g b / 0.7);
+                    height: 305%;
+                  "
+                >
+                  <h3>Parent</h3>
+                  <p>Swiss german</p>
+                  <p>11:00-14:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -398,10 +428,28 @@
             <tr>
               <th>13:00</th>
               <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 820%;
+                    background-color: rgb(from aquamarine r g b / 0.7);
+                  "
+                >
+                  <h3>Gotti</h3>
+                  <p>German, italian</p>
+                  <p>12:00-20:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div class="calendar-entry" style="height: 835%">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>12:00-20:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
             </tr>
@@ -427,7 +475,13 @@
             </tr>
             <tr>
               <th>16:00</th>
-              <td></td>
+              <td>
+                <div class="calendar-entry" style="height: 615%">
+                  <h3>Parent</h3>
+                  <p>German, italian</p>
+                  <p>15:00-21:00</p>
+                </div>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -478,16 +532,57 @@
             <tr>
               <th>21:00</th>
               <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 410%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 360%;
+                    top: 1rem;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 410%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 410%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
               <td></td>
               <td></td>
             </tr>
             <tr>
               <th>22:00</th>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 310%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
               <td></td>
               <td></td>
               <td></td>
@@ -502,8 +597,24 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
-              <td></td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 200%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
+              <td>
+                <div
+                  class="calendar-entry"
+                  style="
+                    height: 200%;
+                    background-color: rgb(from lightgray r g b / 0.5);
+                  "
+                ></div>
+              </td>
             </tr>
             <tr>
               <th>00:00</th>
@@ -517,7 +628,6 @@
             </tr>
           </tbody>
         </table>
-
         <div class="button-bar">
           <a class="Button size-large" href="./new-period-of-life.html">Back</a>
           <a class="Button color-primary size-large" href="./add-remarks.html"
@@ -527,26 +637,5 @@
       </section>
       <!-- component: ContentArea -->
     </main>
-
-    <script>
-      document.getElementById("from-date-picker").value = new Date()
-        .toISOString()
-        .substring(0, 10);
-      document.getElementById("to-date-picker").value = new Date()
-        .toISOString()
-        .substring(0, 10);
-
-      document
-        .getElementById("person-select")
-        .addEventListener("change", (event) => {
-          if (event.target.value === "custom") {
-            document.getElementById("custom-person-field").style.display =
-              "block";
-          } else {
-            document.getElementById("custom-person-field").style.display =
-              "none";
-          }
-        });
-    </script>
   </body>
 </html>
