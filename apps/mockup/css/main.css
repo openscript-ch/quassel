@@ -12829,7 +12829,16 @@ html[lang="en"] .ArticleQuote--text::after {
   }
 }
 
-
 table.calendar td {
-    border: 1px solid lightgray;
+  border: 1px solid lightgray;
+  width: calc(100% / 7);
+}
+
+table.calendar th {
+  padding-right: 0.5rem;
+  transform: translateY(0.8rem);
+}
+
+table.calendar th + th {
+  transform: none;
 }
