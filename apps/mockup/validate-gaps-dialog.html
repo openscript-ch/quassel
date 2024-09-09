@@ -70,6 +70,31 @@
   ><!-- Set template class here, e.g. template-s02-->
 
   <body class="template-all">
+    <dialog
+      style="top: 10rem; margin-inline: auto; z-index: 10; border: none"
+      open
+    >
+      <div style="background-color: white; padding: 2rem">
+        <h2 class="Intro--title">There are gaps in the Calendar</h2>
+        <br />
+        <p>
+          Please fill out all gaps before you continue with the questionnaire.
+        </p>
+        <br />
+        <div style="display: flex; justify-content: flex-end; gap: 1rem">
+          <a
+            class="Button size-large color-border-white"
+            href="./add-remarks.html"
+            >Continue anyway</a
+          >
+          <a
+            class="Button color-primary size-large"
+            href="./hightlight-gaps.html"
+            >Highlight gaps</a
+          >
+        </div>
+      </div>
+    </dialog>
     <!-- component: Header -->
     <header class="Header js-Header">
       <p class="visuallyhidden" aria-level="1" role="heading">
@@ -630,9 +655,7 @@
         </table>
         <div class="button-bar">
           <a class="Button size-large" href="./new-period-of-life.html">Back</a>
-          <a
-            class="Button color-primary size-large"
-            href="./validate-gaps-dialog.html"
+          <a class="Button color-primary size-large" href="./add-remarks.html"
             >Continue</a
           >
         </div>
