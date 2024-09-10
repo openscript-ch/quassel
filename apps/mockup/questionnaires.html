@@ -40,7 +40,7 @@
       <p class="visuallyhidden" aria-level="1" role="heading">Navigation auf uzh.ch</p>
       <div class="Header--top">
         <div class="Header--logo">
-          <!-- component: Logo --><a class="Logo" href="../.."><img src="./uzh_logo.svg" alt="Universität Zürich"
+          <!-- component: Logo --><a class="Logo" href="index.html"><img src="./uzh_logo.svg" alt="Universität Zürich"
               width="208" height="92" /></a><!-- /component: Logo -->
         </div>
         <div class="Header--mobileButtons"><a class="Header--search"
@@ -74,7 +74,7 @@
               </span></a>
           </li><!-- /component: MainNav--item -->
           <!-- component: MainNav--item -->
-          <li class="MainNav--list--item js-MainNav--item is-active">
+          <li class="MainNav--list--item js-MainNav--item">
             <!-- Button if there are subitems, link if there aren't--><a href="./participants.html" class="MainNav--link js-MainNav--link"
               type="button" aria-controls="main-nav_overlay_uid-10" aria-expanded="false">Participants<span
                 class="MainNav--icon">
@@ -104,7 +104,7 @@
               </span></a>
           </li><!-- /component: MainNav--item -->
           <!-- component: MainNav--item -->
-          <li class="MainNav--list--item js-MainNav--item">
+          <li class="MainNav--list--item js-MainNav--item  is-active">
             <!-- Button if there are subitems, link if there aren't--><a href="./questionnaires.html" class="MainNav--link js-MainNav--link"
               type="button" aria-controls="main-nav_overlay_uid-12" aria-expanded="false">Questionnaires<span
                 class="MainNav--icon">
@@ -173,33 +173,39 @@
         <section class="Intro">
           <div class="Intro--inner">
             <div class="Intro--top">
-              <h1 class="Intro--title">Participants</h1>
+              <h1 class="Intro--title">Questionnaires</h1>
             </div>
           </div>
           <table style="width: 100%; margin-top: 1rem">
             <thead>
               <tr>
-                <th>Child ID</th>
-                <th>Email</th>
-                <th>Descriptive identifier</th>
-                <th>Birthdate</th>
+                <th>ID</th>
+                <th>Child</th>
+                <th>Study</th>
+                <th>Period</th>
+                <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1001</td>
-                <td>hans.kanns@example.com</td>
-                <td>Aaron</td>
-                <td>01.05.2022</td>
+                <td>4001</td>
+                <td>Aaron (1001)</td>
+                <td>ABC (3001)</td>
+                <td>Period (2020-09-10 - 2022-09-26)</td>
+                <td>Started</td>
                 <td>View Edit</td>
               </tr>
               <tr>
-                <td>1002</td>
-                <td>franz.kanns@example.com</td>
-                <td>-</td>
-                <td>01.06.2022</td>
-                <td>View Edit</td>
+                <td>4002</td>
+                <td>Aaron (1001)</td>
+                <td>XYZ (3002)</td>
+                <td>Period (2022-09-26 - 2024-09-26)</td>
+                <td>Finished</td>
+                <td>     
+                    View <a  class="Button" href="full-calendar.html">
+              <span class="Button--inner">Edit</span>
+          </a></td>
               </tr>
             </tbody>
           </table>

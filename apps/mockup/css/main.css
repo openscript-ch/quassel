@@ -12829,6 +12829,10 @@ html[lang="en"] .ArticleQuote--text::after {
   }
 }
 
+table th {
+  font-weight: bold;
+}
+
 table.calendar {
   width: calc(100% - 80px);
   margin-inline: auto;
