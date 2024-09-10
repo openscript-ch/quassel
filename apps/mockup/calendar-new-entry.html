@@ -364,6 +364,30 @@
                       </div>
                     </div>
 
+                    <br />
+
+                    <div class="Options js-OptionInput" id="input-1">
+                      <div class="OptionInput">
+                        <input
+                          id="input-1-field-0"
+                          type="checkbox"
+                          name="uid-2-group"
+                        />
+                        <label for="input-1-field-0">Add recurring rule</label>
+                      </div>
+                    </div>
+                    <label id="recurring-rule-input" style="display: none">
+                      Only occurs every
+                      <input
+                        type="number"
+                        style="width: 5rem; margin-inline: 0.5rem"
+                        class="Input"
+                        min="2"
+                        value="2"
+                      />
+                      weeks.
+                    </label>
+
                     <!-- component: FormButtons -->
                     <div class="FormButtons">
                       <!-- component: Button -->
@@ -529,6 +553,18 @@
     </main>
 
     <script>
+      document
+        .getElementById("input-1-field-0")
+        .addEventListener("change", (event) => {
+          if (event.target.checked) {
+            document.getElementById("recurring-rule-input").style.display =
+              "block";
+          } else {
+            document.getElementById("recurring-rule-input").style.display =
+              "none";
+          }
+        });
+
       document.getElementById("from-date-picker").value = new Date()
         .toISOString()
         .substring(0, 10);
