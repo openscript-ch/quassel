@@ -145,7 +145,7 @@
         <section class="Intro">
           <div class="Intro--inner">
             <div class="Intro--top">
-              <h1 class="Intro--title">Welcome!</h1>
+              <h1 class="Intro--title">Sign in</h1>
             </div>
           </div>
         </section>
@@ -155,22 +155,51 @@
           class="Form js-Form"
           id="form-uid-28"
           method="get"
-          action="./login.html"
+          action="./dashboard.html"
           enctype="multipart/form-data"
         >
           <div class="Form--body">
+            <!-- component: FormInput -->
+            <div class="FormInput">
+              <!-- component: FormLabel --><label
+                class="FormLabel"
+                for="input-1"
+                >Email<span title="Pflichtfeld">*</span></label
+              ><!-- /component: FormLabel -->
+              <!-- component: Input --><input
+                class="Input"
+                autocomplete="off"
+                id="input-1"
+                name="input-1"
+                type="text"
+                required="required"
+              /><!-- /component: Input -->
+            </div>
+            <!-- /component: FormInput -->
+            <!-- component: FormInput -->
+            <div class="FormInput">
+              <!-- component: FormLabel --><label
+                class="FormLabel"
+                for="input-1"
+                >Password<span title="Pflichtfeld">*</span></label
+              ><!-- /component: FormLabel -->
+              <!-- component: Input --><input
+                class="Input"
+                autocomplete="off"
+                id="input-1"
+                name="input-1"
+                type="password"
+                required="required"
+              /><!-- /component: Input -->
+            </div>
+            <!-- /component: FormInput -->
+            <!-- component: FormButtons -->
             <div class="FormButtons">
               <!-- component: Button --><button
                 class="Button color-primary size-large"
                 type="submit"
               >
-                <span class="Button--inner">Admin</span></button
-              ><!-- /component: Button -->
-              <!-- component: Button --><a
-                class="Button color-primary size-large"
-                href="start-questionnaire.html"
-              >
-                <span class="Button--inner">Questionnaire</span></a
+                <span class="Button--inner">Sign in</span></button
               ><!-- /component: Button -->
             </div>
             <!-- /component: FormButtons -->
