@@ -145,61 +145,33 @@
           class="Form js-Form"
           id="form-uid-3"
           method="post"
-          action="calendar.html"
+          action="./new-period-of-life.html"
           enctype="multipart/form-data"
         >
-          <div class="Form--header">
-            <h2 class="Form--title">New period of life</h2>
-          </div>
           <div class="Form--body">
-            <!-- component: FormInput -->
+            <table style="width: 20rem">
+              <tr>
+                <th style="font-weight: bold">Child</th>
+                <td>3212 (identifier missing)</td>
+              </tr>
+              <tr>
+                <th style="font-weight: bold">Study</th>
+                <td>Study XYZ</td>
+              </tr>
+            </table>
             <div class="FormInput">
-              <!-- component: FormLabel -->
-              <label class="FormLabel" for="input-1"> Starting from </label>
-              <!-- /component: FormLabel -->
-              <!-- component: Input -->
-              <input
-                class="Input"
-                autocomplete="off"
-                id="starting-from-picker"
-                name="input-1"
-                type="date"
-              />
-              <!-- /component: Input -->
+              <label class="FormLabel"
+                >Child descriptive identifier
+                <span title="Pflichtfeld">*</span></label
+              >
+              <input class="Input" required type="text" />
             </div>
-            <div class="FormInput">
-              <!-- component: FormLabel -->
-              <label class="FormLabel" for="input-1">To </label>
-              <!-- /component: FormLabel -->
-              <!-- component: Input -->
-              <input
-                class="Input"
-                autocomplete="off"
-                id="to-picker"
-                name="input-1"
-                type="date"
-              />
-              <!-- /component: Input -->
-            </div>
-
-            <div class="FormInput">
-              <!-- component: FormLabel -->
-              <label class="FormLabel" for="input-1">Description</label>
-              <!-- /component: FormLabel -->
-              <input
-                class="Input"
-                autocomplete="off"
-                id="description-input"
-                name="input-1"
-              />
-              <!-- /component: Select -->
-            </div>
-
             <!-- component: FormButtons -->
             <div class="FormButtons">
               <!-- component: Button -->
+
               <button class="Button color-primary size-large" type="submit">
-                <span class="Button--inner">Continue</span>
+                <span class="Button--inner">Start questionnaire</span>
               </button>
               <!-- /component: Button -->
             </div>
@@ -209,17 +181,5 @@
       </section>
       <!-- component: ContentArea -->
     </main>
-    <script>
-      const descriptionField = document.getElementById("description-input");
-      const fromPicker = document.getElementById("starting-from-picker");
-
-      fromPicker.value = new Date().toISOString().substring(0, 10);
-
-      document
-        .getElementById("to-picker")
-        .addEventListener("change", (event) => {
-          descriptionField.value = `Period (${fromPicker.value} - ${event.target.value})`;
-        });
-    </script>
   </body>
 </html>
