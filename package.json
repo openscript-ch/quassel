@@ -9,5 +9,9 @@
   },
   "keywords": [],
   "author": "openscript GmbH",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nx": "19.7.3"
+  },
+  "nx": {}
 }
