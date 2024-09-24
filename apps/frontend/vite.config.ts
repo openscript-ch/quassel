@@ -6,9 +6,6 @@ export default defineConfig({
   server: {
     port: 3001
   },
-  build: {
-    outDir: "../../dist/apps/frontend",
-  },
   clearScreen: false,
   plugins: [react()],
 })

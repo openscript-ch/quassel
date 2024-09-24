@@ -30,5 +30,3 @@ All parts of the project live inside this monorepo.
   - [`mockup`](./apps/mockup/)
 - Libs
   - [`ui`](./libs/ui/): Common UI components are represented inside this package.
-
-Projects need be configured to output into the workspace `dist` folder.

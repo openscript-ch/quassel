@@ -9,7 +9,7 @@
     "build": {
       "dependsOn": ["^build"],
       "cache": true,
-      "outputs": ["{workspaceRoot}/dist/{projectName}"]
+      "outputs": ["{projectRoot}/dist"]
     },
     "dev": {
       "dependsOn": ["^build"]
