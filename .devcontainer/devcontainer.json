@@ -1,6 +1,6 @@
 {
   "name": "leq-devcontainer",
-  "dockerComposeFile": "docker-compose.yml",
+  "dockerComposeFile": "docker-compose.yaml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
 }
