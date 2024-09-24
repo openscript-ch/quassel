@@ -28,5 +28,7 @@ All parts of the project live inside this monorepo.
   - [`backend`](./apps/backend/)
   - [`frontend`](./apps/frontend/)
   - [`mockup`](./apps/mockup/)
-- Packages
-  - [`ui`](./packages/ui/): Common UI components are represented inside this package.
+- Libs
+  - [`ui`](./libs/ui/): Common UI components are represented inside this package.
+
+Projects need be configured to output into the workspace `dist` folder.
