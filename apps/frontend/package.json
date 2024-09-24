@@ -34,6 +34,8 @@
           "build"
         ],
         "options": {
+          "context": "{projectRoot}",
+          "dockerfile": "{projectRoot}/Dockerfile",
           "engine": "docker",
           "metadata": {
             "images": [
