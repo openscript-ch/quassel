@@ -11,6 +11,30 @@
       "cache": true,
       "outputs": ["{projectRoot}/dist"]
     },
+    "container": {
+      "executor": "@nx-tools/nx-container:build",
+      "dependsOn": [
+        "build"
+      ],
+      "options": {
+        "context": "{projectRoot}",
+        "dockerfile": "{projectRoot}/Dockerfile",
+        "engine": "docker",
+        "metadata": {
+          "images": [
+            "{projectName}"
+          ],
+          "push": true,
+          "tags": [
+            "type=schedule",
+            "type=ref,event=branch",
+            "type=ref,event=tag",
+            "type=ref,event=pr",
+            "type=sha,prefix=sha-"
+          ]
+        }
+      }
+    },
     "dev": {
       "dependsOn": ["^build"]
     }

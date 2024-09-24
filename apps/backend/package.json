@@ -66,33 +66,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  },
-  "nx": {
-    "targets": {
-      "container": {
-        "executor": "@nx-tools/nx-container:build",
-        "dependsOn": [
-          "build"
-        ],
-        "options": {
-          "context": "{projectRoot}",
-          "dockerfile": "{projectRoot}/Dockerfile",
-          "engine": "docker",
-          "metadata": {
-            "images": [
-              "backend"
-            ],
-            "load": true,
-            "tags": [
-              "type=schedule",
-              "type=ref,event=branch",
-              "type=ref,event=tag",
-              "type=ref,event=pr",
-              "type=sha,prefix=sha-"
-            ]
-          }
-        }
-      }
-    }
   }
 }
