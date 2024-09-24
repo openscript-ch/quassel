@@ -1,0 +1,8 @@
+{
+  "name": "frontend",
+  "targets": {
+    "container": {
+      "executor": "@nx-tools/nx-container:build"
+    }
+  }
+}

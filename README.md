@@ -19,6 +19,7 @@ As a **developer** get started as follows:
 1. Open the project in the Dev Container and run `pnpm dev`
 1. Lint the code with `pnpm check:types`, `pnpm check:format` and `pnpm check:lint`.
 1. Run tests with `pnpm test`
+1. Further steps are outlined in the [developer guide](./docs/developer.md).
 
 ## Structure
 

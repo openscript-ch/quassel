@@ -19,7 +19,7 @@
     "@nestjs/cli": "^10.0.0",
     "@nx-tools/container-metadata": "^6.0.2",
     "@nx-tools/nx-container": "^6.0.2",
-    "nx": "19.7.3"
+    "nx": "19.8.0"
   },
   "engines": {
     "node": ">=20.0.0"

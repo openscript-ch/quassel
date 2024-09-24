@@ -3,26 +3,27 @@ name: Deploy to registries
 on:
   workflow_call:
     inputs:
-      ref:
+      publishedPackages:
         required: true
         type: string
   workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(inputs.publishedPackages) }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ matrix.package.name }}@${{ matrix.package.version }}
           fetch-depth: 0
 
       - name: Set up Docker Buildx
@@ -49,9 +50,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v3
+      - name: Generate tags
+        id: set-tags
+        run: |
+          VERSION=${{ matrix.package.version }}
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          echo "MAJOR=$MAJOR" >> $GITHUB_OUTPUT
+          echo "MINOR=$MINOR" >> $GITHUB_OUTPUT
 
-      - name: 'Build images'
-        run: INPUT_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} pnpm nx affected --base=$NX_BASE --head=$NX_HEAD --target=container --parallel=2
-
+      - name: Build and deploy images
+        env:
+          PACKAGE_NAME: ${{ matrix.package.name }}
+          PACKAGE_VERSION: ${{ matrix.package.version }}
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAGS: "latest\n${{ github.sha }}\n${{ matrix.package.version }}\n${{steps.set-tags.outputs.MAJOR}}\n${{steps.set-tags.outputs.MAJOR}}.${{steps.set-tags.outputs.MINOR}}"
+        run: |
+          if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
+            echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
+            pnpm nx run ${{ env.PACKAGE_NAME }}:container
+          else
+            echo "Skipping ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} as it does not have a container target"
+          fi
