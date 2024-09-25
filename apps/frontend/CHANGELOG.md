@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.3
+
+### Patch Changes
+
+- a1bdce1: Fix container target
+
 ## 0.0.2
 
 ### Patch Changes
