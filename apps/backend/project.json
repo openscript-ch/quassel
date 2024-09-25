@@ -1,0 +1,8 @@
+{
+  "name": "backend",
+  "targets": {
+    "container": {
+      "executor": "@nx-tools/nx-container:build"
+    }
+  }
+}
