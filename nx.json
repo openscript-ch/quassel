@@ -20,11 +20,11 @@
         "context": "{projectRoot}",
         "dockerfile": "{projectRoot}/Dockerfile",
         "engine": "docker",
+        "push": true,
         "metadata": {
           "images": [
             "{projectName}"
           ],
-          "push": true,
           "tags": [
             "type=schedule",
             "type=ref,event=branch",
