@@ -23,7 +23,7 @@
         "push": true,
         "metadata": {
           "images": [
-            "ghcr.io/openscript-ch/leq"
+            "ghcr.io/openscript-ch/leq-{projectName}"
           ],
           "tags": [
             "type=schedule",
