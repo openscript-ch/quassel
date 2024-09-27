@@ -56,7 +56,7 @@ jobs:
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
           PATCH=$(echo $VERSION | cut -d. -f3)
-          echo "INPUT_TAGS=latest\n${{ github.sha }}\n$MAJOR\n$MAJOR.$MINOR\n$VERSION" >> $GITHUB_OUTPUT
+          echo -e "INPUT_TAGS=latest\n${{ github.sha }}\n$MAJOR\n$MAJOR.$MINOR\n$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build and deploy images
         env:
