@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.6
+
+### Patch Changes
+
+- 71a36e0: Fix nx config
+
 ## 0.0.5
 
 ### Patch Changes
