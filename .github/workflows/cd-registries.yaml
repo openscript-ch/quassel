@@ -3,9 +3,6 @@ name: Deploy to registries
 on:
   workflow_call:
     inputs:
-      ref:
-        required: true
-        type: string
       publishedPackages:
         required: true
         type: string
