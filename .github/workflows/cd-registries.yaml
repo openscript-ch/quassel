@@ -53,15 +53,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
+      - name: Generate tags
+        id: set-tags
+        run: |
+          VERSION=${{ matrix.package.version }}
+          MAJOR=$(echo $VERSION | cut -d. -f1)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+          echo "INPUT_TAGS=latest,${{ github.sha }},$MAJOR,$MAJOR.$MINOR,$VERSION" >> $GITHUB_OUTPUT
 
       - name: Build and deploy images
         env:
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_TAGS: "latest\n${{ github.sha }}\n${{ matrix.package.name }}@${{ matrix.package.version }}"
+          INPUT_TAGS: ${{ steps.set-tags.outputs.INPUT_TAGS }}
         run: |
           if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
             echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
