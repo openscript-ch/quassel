@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.15
+
+### Patch Changes
+
+- c2cc6f0: Enhance image tagging
+
 ## 0.0.14
 
 ### Patch Changes
