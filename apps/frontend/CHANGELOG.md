@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.12
+
+### Patch Changes
+
+- 949b05b: Set fallback globally
+
 ## 0.0.11
 
 ### Patch Changes
