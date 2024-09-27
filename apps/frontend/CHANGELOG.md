@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.18
+
+### Patch Changes
+
+- 21680db: Fix versioning tags
+
 ## 0.0.17
 
 ### Patch Changes
