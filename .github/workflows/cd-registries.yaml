@@ -6,6 +6,9 @@ on:
       ref:
         required: true
         type: string
+      publishedPackages:
+        required: true
+        type: string
   workflow_dispatch:
 
 env:
@@ -52,6 +55,15 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
 
-      - name: 'Build images'
-        run: INPUT_GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} pnpm nx affected --base=$NX_BASE --head=$NX_HEAD --target=container --parallel=2
+      - name: Build images
+        env:
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for package in ${{ inputs.publishedPackages }}; do
+            NAME=$(echo $package | jq -r '.name')
+            VERSION=$(echo $package | jq -r '.version')
 
+            if pnpm nx show projects -t container | grep -q $NAME; then
+              pnpm nx run $NAME:container
+            fi
+          done

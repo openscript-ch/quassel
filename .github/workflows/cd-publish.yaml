@@ -44,6 +44,7 @@ jobs:
     outputs:
       ref: ${{ github.ref }}
       published: ${{ steps.changesets.outputs.published }}
+      publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
 
   deploy-to-registries:
     name: Deploy to registries
@@ -51,5 +52,6 @@ jobs:
     needs: publish
     with:
       ref: ${{ needs.publish.outputs.ref }}
+      publishedPackages: ${{ needs.publish.outputs.publishedPackages }}
     secrets: inherit
     if: ${{ needs.publish.outputs.published }}

@@ -26,11 +26,9 @@
             "ghcr.io/openscript-ch/leq-{projectName}"
           ],
           "tags": [
-            "type=schedule",
-            "type=ref,event=branch",
-            "type=ref,event=tag",
-            "type=ref,event=pr",
-            "type=sha,prefix=sha-"
+            "type=sha",
+            "version=latest",
+            "${VERSION}"
           ]
         }
       }
