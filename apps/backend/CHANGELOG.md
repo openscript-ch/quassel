@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.5
+
+### Patch Changes
+
+- f47b7bc: Fix iterate published packages
+
 ## 0.0.4
 
 ### Patch Changes
