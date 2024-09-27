@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.17
+
+### Patch Changes
+
+- 48c7ca1: Evaluate control characters
+
 ## 0.0.16
 
 ### Patch Changes
