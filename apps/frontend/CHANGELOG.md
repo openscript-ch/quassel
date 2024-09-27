@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.13
+
+### Patch Changes
+
+- 21d46af: Add input tags
+
 ## 0.0.12
 
 ### Patch Changes
