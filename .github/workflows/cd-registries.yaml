@@ -12,20 +12,21 @@ on:
   workflow_dispatch:
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-deploy:
     name: Build and deploy
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJson(inputs.publishedPackages) }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ matrix.package.name }}@${{ matrix.package.version }}
           fetch-depth: 0
 
       - name: Set up Docker Buildx
@@ -55,16 +56,14 @@ jobs:
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v4
 
-      - name: Build images
+      - name: Build and deploy images
         env:
-          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PACKAGE_NAME: ${{ matrix.package.name }}
+          PACKAGE_VERSION: ${{ matrix.package.version }}
         run: |
-          for package in $(echo '${{ inputs.publishedPackages }}' | jq -c '.[]'); do
-            name=$(echo $package | jq -r '.name')
-            version=$(echo $package | jq -r '.version')
-
-            if pnpm nx show projects -t container | grep -q $name; then
-              export version=$version
-              pnpm nx run $name:container
-            fi
-          done
+          if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
+            echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
+            pnpm nx run ${{ env.PACKAGE_NAME }}:container
+          else
+            echo "Skipping ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} as it does not have a container target"
+          fi
