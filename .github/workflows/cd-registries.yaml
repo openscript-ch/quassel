@@ -14,7 +14,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  CI_CONTEXT_FALLBACK_TO_LOCAL: true
 
 jobs:
   build-and-deploy:
@@ -62,6 +61,7 @@ jobs:
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_TAGS: "latest\n${{ github.sha }}\n${{ matrix.package.name }}@${{ matrix.package.version }}"
         run: |
           if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
             echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
