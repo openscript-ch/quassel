@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.11
+
+### Patch Changes
+
+- 82b36b3: Fallback to local
+
 ## 0.0.10
 
 ### Patch Changes
