@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.9
+
+### Patch Changes
+
+- 74e8066: Add github token
+
 ## 0.0.8
 
 ### Patch Changes
