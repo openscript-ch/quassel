@@ -1,5 +1,5 @@
 {
-  "name": "leq-devcontainer",
+  "name": "quassel-dev",
   "dockerComposeFile": "docker-compose.yaml",
   "service": "app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"

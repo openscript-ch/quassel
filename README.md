@@ -1,6 +1,6 @@
-# LEQ
+# Quassel
 
-Language Exposure Questionnaire (LEQ) is a web-based application designed to aid researchers in collecting and analyzing data on children's language exposure. This software will streamline the process of recording when and to which languages children are exposed, capturing details such as who was involved (e.g., grandparents) and for how long. It offers a calendar-like interface for data entry, recurring event functionality, and tools for identifying gaps in exposure. Additionally, the software provides administrators with features to manage users, export data in various formats, and review collected questionnaires. Ultimately, this software aims to provide valuable insights into language development within the university's research or educational context.
+Quassel (previously Language Exposure Questionnaire) is a web-based application designed to aid researchers in collecting and analyzing data on children's language exposure. This software will streamline the process of recording when and to which languages children are exposed, capturing details such as who was involved (e.g., grandparents) and for how long. It offers a calendar-like interface for data entry, recurring event functionality, and tools for identifying gaps in exposure. Additionally, the software provides administrators with features to manage users, export data in various formats, and review collected questionnaires. Ultimately, this software aims to provide valuable insights into language development within the university's research or educational context.
 
 ## Contribute
 
