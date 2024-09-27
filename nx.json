@@ -28,7 +28,7 @@
           "tags": [
             "type=sha",
             "latest",
-            "${VERSION}"
+            "env=version"
           ]
         }
       }
