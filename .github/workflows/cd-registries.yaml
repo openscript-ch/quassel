@@ -61,7 +61,7 @@ jobs:
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CI: 'false'
+          CI_CONTEXT_FALLBACK_TO_LOCAL: true
         run: |
           if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
             echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
