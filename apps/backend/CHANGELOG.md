@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.8
+
+### Patch Changes
+
+- 1e64cbe: Use matrix strategy to build images
+
 ## 0.0.7
 
 ### Patch Changes
