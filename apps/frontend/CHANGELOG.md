@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.7
+
+### Patch Changes
+
+- 81a6e75: Export version number
+
 ## 0.0.6
 
 ### Patch Changes
