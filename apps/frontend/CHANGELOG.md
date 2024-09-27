@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.10
+
+### Patch Changes
+
+- 3e8f372: Fix image tags
+
 ## 0.0.9
 
 ### Patch Changes
