@@ -59,7 +59,7 @@ jobs:
         env:
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for package in ${{ inputs.publishedPackages }}; do
+          for package in $(echo '${{ inputs.publishedPackages }}' | jq -c '.[]'); do
             NAME=$(echo $package | jq -r '.name')
             VERSION=$(echo $package | jq -r '.version')
 
