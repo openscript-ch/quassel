@@ -3,9 +3,13 @@ name: Deploy to registries
 on:
   workflow_call:
     inputs:
+      ref:
+        required: true
+        type: string
       publishedPackages:
         required: true
         type: string
+  workflow_dispatch:
 
 env:
   REGISTRY: ghcr.io
@@ -55,15 +59,15 @@ jobs:
           VERSION=${{ matrix.package.version }}
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
-          PATCH=$(echo $VERSION | cut -d. -f3)
-          echo -e "INPUT_TAGS=latest\n${{ github.sha }}\n$MAJOR\n$MAJOR.$MINOR\n$VERSION" >> $GITHUB_OUTPUT
+          echo "MAJOR=$MAJOR" >> $GITHUB_OUTPUT
+          echo "MINOR=$MINOR" >> $GITHUB_OUTPUT
 
       - name: Build and deploy images
         env:
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_TAGS: ${{ steps.set-tags.outputs.INPUT_TAGS }}
+          INPUT_TAGS: "latest\n${{ github.sha }}\n${{ matrix.package.version }}\n${{steps.set-tags.outputs.MAJOR}}\n${{steps.set-tags.outputs.MAJOR}}.${{steps.set-tags.outputs.MINOR}}"
         run: |
           if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
             echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
