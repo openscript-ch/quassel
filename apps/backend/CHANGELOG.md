@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.16
+
+### Patch Changes
+
+- c4488cc: Fix publish workflow
+
 ## 0.0.15
 
 ### Patch Changes
