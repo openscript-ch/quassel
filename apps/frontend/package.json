@@ -1,8 +1,12 @@
 {
-  "name": "frontend",
+  "name": "@quassel/frontend",
   "private": true,
   "version": "0.0.20",
   "type": "module",
+  "keywords": [],
+  "description": "",
+  "author": "openscript GmbH",
+  "license": "MIT",
   "scripts": {
     "dev": "vite --host",
     "build": "tsc && vite build",
