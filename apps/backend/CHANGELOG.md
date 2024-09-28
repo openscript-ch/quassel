@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.25
+
+### Patch Changes
+
+- 76b9b63: Enhance registries workflow
+
 ## 0.0.24
 
 ### Patch Changes
