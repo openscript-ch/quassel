@@ -1,9 +1,10 @@
 {
-  "name": "backend",
+  "name": "@quassel/backend",
   "version": "0.0.19",
-  "description": "",
-  "author": "",
   "private": true,
+  "keywords": [],
+  "description": "",
+  "author": "openscript GmbH",
   "license": "MIT",
   "scripts": {
     "build": "nest build",
