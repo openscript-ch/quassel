@@ -1,5 +1,13 @@
 # frontend
 
+## 0.0.20
+
+### Patch Changes
+
+- 4b87614: Add quassel ui
+- Updated dependencies [4b87614]
+  - @quassel/ui@0.0.20
+
 ## 0.0.19
 
 ### Patch Changes
