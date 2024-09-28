@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.25
+
+### Patch Changes
+
+- 281b166: Set image base name
+
 ## 0.0.24
 
 ### Patch Changes
