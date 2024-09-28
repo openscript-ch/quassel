@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.24
+
+### Patch Changes
+
+- ecffc6f: Fix publish workflow
+
 ## 0.0.23
 
 ### Patch Changes
