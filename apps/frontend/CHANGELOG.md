@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.26
+
+### Patch Changes
+
+- 76b9b63: Enhance registries workflow
+
 ## 0.0.25
 
 ### Patch Changes
