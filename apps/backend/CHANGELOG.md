@@ -1,5 +1,11 @@
 # backend
 
+## 0.0.20
+
+### Patch Changes
+
+- bc67f4b: Rename images
+
 ## 0.0.19
 
 ### Patch Changes

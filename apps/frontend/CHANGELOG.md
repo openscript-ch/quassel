@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.21
+
+### Patch Changes
+
+- bc67f4b: Rename images
+
 ## 0.0.20
 
 ### Patch Changes
