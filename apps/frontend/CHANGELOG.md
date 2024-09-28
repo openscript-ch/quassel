@@ -1,5 +1,11 @@
 # frontend
 
+## 0.0.23
+
+### Patch Changes
+
+- cc594cd: Fix publish workflow
+
 ## 0.0.22
 
 ### Patch Changes
