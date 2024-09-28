@@ -1,0 +1,16 @@
+{
+  "eslint.useFlatConfig": true,
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": null,
+  "javascript.format.enable": false,
+  "typescript.format.enable": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}
