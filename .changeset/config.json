@@ -5,7 +5,7 @@
   "fixed": [],
   "linked": [
     [
-      "frontend",
+      "@quassel/frontend",
       "@quassel/ui"
     ]
   ],
