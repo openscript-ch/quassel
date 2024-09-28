@@ -20,15 +20,7 @@
         "context": "{projectRoot}",
         "dockerfile": "{projectRoot}/Dockerfile",
         "engine": "docker",
-        "push": true,
-        "metadata": {
-          "images": [
-            "ghcr.io/openscript-ch/{projectName}"
-          ],
-          "tags": [
-            "type=sha"
-          ]
-        }
+        "push": true
       }
     },
     "dev": {

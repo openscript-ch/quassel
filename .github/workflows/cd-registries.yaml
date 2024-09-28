@@ -57,17 +57,25 @@ jobs:
         id: set-tags
         run: |
           VERSION=${{ matrix.package.version }}
+          NAME=${{ matrix.package.name }}
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
+          SHORTNAME=$(echo $name | cut -d/ -f2)
           echo "MAJOR=$MAJOR" >> $GITHUB_OUTPUT
           echo "MINOR=$MINOR" >> $GITHUB_OUTPUT
+          echo "BASENAME=ghcr.io/openscript-ch/quassel-$SHORTNAME" >> $GITHUB_OUTPUT
 
       - name: Build and deploy images
         env:
           PACKAGE_NAME: ${{ matrix.package.name }}
           PACKAGE_VERSION: ${{ matrix.package.version }}
           INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          INPUT_TAGS: "latest\n${{ github.sha }}\n${{ matrix.package.version }}\n${{steps.set-tags.outputs.MAJOR}}\n${{steps.set-tags.outputs.MAJOR}}.${{steps.set-tags.outputs.MINOR}}"
+          INPUT_TAGS: |
+            ${{ steps.set-tags.outputs.BASENAME }}:latest
+            ${{ steps.set-tags.outputs.BASENAME }}:${{ github.sha }}
+            ${{ steps.set-tags.outputs.BASENAME }}:${{ matrix.package.version }}
+            ${{ steps.set-tags.outputs.BASENAME }}:${{steps.set-tags.outputs.MAJOR}}
+            ${{ steps.set-tags.outputs.BASENAME }}:${{steps.set-tags.outputs.MAJOR}}.${{steps.set-tags.outputs.MINOR}}
         run: |
           if pnpm nx show projects -t container | grep -q ${{ env.PACKAGE_NAME }}; then
             echo "Running container target for ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }}"
