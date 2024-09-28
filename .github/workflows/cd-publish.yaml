@@ -41,9 +41,19 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Plan container images to publish
+        id: containers
+        run: |
+          possible_targets=$(pnpm nx show projects -t container --json)
+          published_packages='${{ steps.changesets.outputs.publishedPackages }}'
+          targets=$(echo $published_packages | jq --argjson possible_targets "$possible_targets" 'map(select(.name == $possible_targets[]))')
+          echo "containers=$targets" >> $GITHUB_OUTPUT
+
     outputs:
       published: ${{ steps.changesets.outputs.published }}
       publishedPackages: ${{ steps.changesets.outputs.publishedPackages }}
+      containers: ${{ steps.containers.outputs.containers }}
 
   deploy-to-registries:
     name: Deploy to registries
@@ -51,5 +61,6 @@ jobs:
     needs: publish
     with:
       publishedPackages: ${{ needs.publish.outputs.publishedPackages }}
+      containers: ${{ needs.publish.outputs.containers }}
     secrets: inherit
     if: ${{ needs.publish.outputs.published }}

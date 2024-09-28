@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@quassel/backend",
   "targets": {
     "container": {
       "executor": "@nx-tools/nx-container:build"

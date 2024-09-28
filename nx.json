@@ -23,7 +23,7 @@
         "push": true,
         "metadata": {
           "images": [
-            "ghcr.io/openscript-ch/quassel-{projectName}"
+            "ghcr.io/openscript-ch/{projectName}"
           ],
           "tags": [
             "type=sha"

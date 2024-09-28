@@ -6,6 +6,9 @@ on:
       publishedPackages:
         required: true
         type: string
+      containers:
+        required: true
+        type: string
   workflow_dispatch:
 
 env:
@@ -13,12 +16,12 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build-and-deploy:
-    name: Build and deploy
+  build-and-deploy-images:
+    name: Build and deploy images
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        package: ${{ fromJson(inputs.publishedPackages) }}
+        package: ${{ fromJson(inputs.containers) }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
