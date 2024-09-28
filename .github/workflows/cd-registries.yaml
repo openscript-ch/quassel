@@ -60,7 +60,7 @@ jobs:
           NAME=${{ matrix.package.name }}
           MAJOR=$(echo $VERSION | cut -d. -f1)
           MINOR=$(echo $VERSION | cut -d. -f2)
-          SHORTNAME=$(echo $name | cut -d/ -f2)
+          SHORTNAME=$(echo $NAME | cut -d/ -f2)
           echo "MAJOR=$MAJOR" >> $GITHUB_OUTPUT
           echo "MINOR=$MINOR" >> $GITHUB_OUTPUT
           echo "BASENAME=ghcr.io/openscript-ch/quassel-$SHORTNAME" >> $GITHUB_OUTPUT
