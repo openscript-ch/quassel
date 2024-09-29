@@ -10,7 +10,7 @@ Quassel (previously Language Exposure Questionnaire) is a web-based application 
 
 ## Usage
 
-As a **user** open your organizations installation in a web browser.
+As an **user** open your organizations installation in a web browser.
 
 As a **developer** get started as follows:
 
@@ -20,6 +20,8 @@ As a **developer** get started as follows:
 1. Lint the code with `pnpm check:types`, `pnpm check:format` and `pnpm check:lint`.
 1. Run tests with `pnpm test`
 1. Further steps are outlined in the [developer guide](./docs/developer.md).
+
+As an **administrator** have a look at the [setup guide](./docs/setup.md).
 
 ## Structure
 

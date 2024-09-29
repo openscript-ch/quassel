@@ -1,0 +1,76 @@
+version: '3'
+
+services:
+  quassel-proxy:
+    image: traefik:2.7
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml
+      - letsencrypt:/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.constraint-label=proxy"
+      - "traefik.http.middlewares.auth.basicauth.users=harold.finch:$$2y$$05$$eSfwvKJnawY0Ac2Rdsm2A.iQwvEEL0VcOp.y0aOh0BqTmGacAgmm2"
+      - "traefik.http.middlewares.dashboard-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.dashboard-https-redirect.redirectscheme.permanent=true"
+      - "traefik.http.routers.dashboard-https.rule=Host(`proxy.test.example.com`) && (PathPrefix(`/api`) || PathPrefix(`/dashboard`))"
+      - "traefik.http.routers.dashboard-https.entrypoints=https"
+      - "traefik.http.routers.dashboard-https.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.dashboard-https.service=api@internal"
+      - "traefik.http.routers.dashboard-https.middlewares=auth"
+      - "traefik.http.routers.dashboard-http.rule=Host(`proxy.test.example.com`)"
+      - "traefik.http.routers.dashboard-http.entrypoints=http"
+      - "traefik.http.routers.dashboard-http.middlewares=https_redirect"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=80"
+
+  quassel-backend:
+    image: ghcr.io/openscript-ch/quassel-backend:latest
+    volumes:
+      - storage:/app/storage
+    depends_on:
+      - quassel-database
+    environment:
+      LANG: C.UTF-8
+      DATABASE_URL: "postgresql://postgres:secret@quassel-database/quassel_production"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.backend-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.backend-http.middlewares=backend-redirect-https"
+      - "traefik.http.routers.backend-http.rule=Host(`api.test.example.com`)"
+      - "traefik.http.routers.backend-http.entrypoints=http"
+      - "traefik.http.routers.backend-https.rule=Host(`api.test.example.com`)"
+      - "traefik.http.routers.backend-https.entrypoints=https"
+      - "traefik.http.routers.backend-https.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.backend-https-service=backend-http-service"
+      - "traefik.http.services.backend-http-service.loadbalancer.server.port=80"
+
+  quassel-database:
+    image: postgres:14.3-alpine
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "secret"
+
+  quassel-frontend:
+    image: ghcr.io/openscript-ch/quassel-frontend:latest
+    environment:
+      API: api.example.com
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.frontend-http.middlewares=frontend-redirect-https"
+      - "traefik.http.routers.frontend-http.rule=Host(`test.example.com`)"
+      - "traefik.http.routers.frontend-http.entrypoints=http"
+      - "traefik.http.routers.frontend-https.rule=Host(`test.example.com`)"
+      - "traefik.http.routers.frontend-https.entrypoints=https"
+      - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.frontend-https-service=frontend-http-service"
+      - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
+
+volumes:
+  storage:
+  database:
+  letsencrypt:
