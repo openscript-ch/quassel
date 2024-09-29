@@ -1,4 +1,7 @@
-version: '3'
+volumes:
+  storage:
+  database:
+  letsencrypt:
 
 services:
   quassel-proxy:
@@ -45,7 +48,7 @@ services:
       - "traefik.http.routers.backend-https.entrypoints=https"
       - "traefik.http.routers.backend-https.tls.certresolver=defaultResolver"
       - "traefik.http.routers.backend-https-service=backend-http-service"
-      - "traefik.http.services.backend-http-service.loadbalancer.server.port=80"
+      - "traefik.http.services.backend-http-service.loadbalancer.server.port=3000"
 
   quassel-database:
     image: postgres:14.3-alpine
@@ -69,8 +72,3 @@ services:
       - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
       - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
-
-volumes:
-  storage:
-  database:
-  letsencrypt:
