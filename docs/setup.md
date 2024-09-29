@@ -89,27 +89,23 @@ The following sources were used:
 
 ### Application system
 
-1. Install git
-
-   ```bash
-   apt install git
-   ```
-
 1. Clone this repository
 
    ```bash
-   cd /srv && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/docker-compose.yaml
+   cd /srv \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/docker-compose.yaml \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/traefik.yaml
    ```
 
 1. Make sure that the DNS is routing all subdomains to the host where the individual services run on.
 1. Replace all `example.com` with the domain where the application runs on.
 
    ```bash
-   sed -i "s/example.com/example.ch/g" docker-compose.yml
+   sed -i "s/example.com/example.ch/g" docker-compose.yaml
    ```
 
-1. Change contact email for SSL certificates in `traefik.yml`
-1. Configure the following environment variables in `docker-compose.yml`:
+1. Change contact email for SSL certificates in `traefik.yaml`
+1. Configure the following environment variables in `docker-compose.yaml`:
    - **todo**
 1. Run application system
 

@@ -5,7 +5,7 @@ services:
     image: traefik:2.7
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik.yml:/traefik.yml
+      - ./traefik.yaml:/traefik.yml
       - letsencrypt:/letsencrypt
     ports:
       - "80:80"
@@ -57,7 +57,7 @@ services:
   quassel-frontend:
     image: ghcr.io/openscript-ch/quassel-frontend:latest
     environment:
-      API: api.example.com
+      API: api.test.example.com
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
