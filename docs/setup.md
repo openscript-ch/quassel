@@ -110,7 +110,7 @@ The following sources were used:
 1. Run application system
 
    ```bash
-   docker compose -f docker-compose.yml up -d
+   docker compose -f docker-compose.yaml up -d
    ```
 
 ### Release a new version
@@ -122,13 +122,13 @@ The following sources were used:
 1. Pull new images
 
    ```bash
-   docker compose -f docker-compose.yml pull
+   docker compose -f docker-compose.yaml pull
    ```
 
 1. Recreate containers
 
    ```bash
-   docker compose -f docker-compose.yml up -d
+   docker compose -f docker-compose.yaml up -d
    ```
 
 1. Migrate database
