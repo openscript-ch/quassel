@@ -1,10 +1,12 @@
+name: "quassel"
+
 volumes:
   storage:
   database:
   letsencrypt:
 
 services:
-  quassel-proxy:
+  proxy:
     image: traefik:3.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -29,16 +31,17 @@ services:
       - "traefik.http.routers.dashboard-http.middlewares=https_redirect"
       - "traefik.http.services.dashboard.loadbalancer.server.port=80"
 
-  quassel-backend:
+  backend:
     image: ghcr.io/openscript-ch/quassel-backend:latest
     volumes:
       - storage:/app/storage
     depends_on:
-      - quassel-database
+      - database
     environment:
       LANG: C.UTF-8
-      DATABASE_URL: "postgresql://postgres:secret@quassel-database/quassel_production"
+      DATABASE_URL: "postgresql://postgres:secret@database/quassel_production"
     labels:
+      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.middlewares.backend-redirect-https.redirectscheme.scheme=https"
       - "traefik.http.routers.backend-http.middlewares=backend-redirect-https"
@@ -50,18 +53,19 @@ services:
       - "traefik.http.routers.backend-https-service=backend-http-service"
       - "traefik.http.services.backend-http-service.loadbalancer.server.port=3000"
 
-  quassel-database:
+  database:
     image: postgres:17.0-alpine
     volumes:
       - database:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: "secret"
 
-  quassel-frontend:
+  frontend:
     image: ghcr.io/openscript-ch/quassel-frontend:latest
     environment:
       API: api.test.example.com
     labels:
+      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
       - "traefik.http.routers.frontend-http.middlewares=frontend-redirect-https"
@@ -73,9 +77,10 @@ services:
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
       - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
 
-  quassel-mockup:
+  mockup:
     image: ghcr.io/openscript-ch/quassel-mockup:latest
     labels:
+      - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
       - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
       - "traefik.http.routers.frontend-http.middlewares=frontend-redirect-https"
@@ -87,7 +92,7 @@ services:
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
       - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
 
-  quassel-watchtower:
+  watchtower:
     image: containrrr/watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
