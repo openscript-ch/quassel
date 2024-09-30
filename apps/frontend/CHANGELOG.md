@@ -1,4 +1,4 @@
-# frontend
+# @quassel/frontend
 
 ## 0.0.27
 

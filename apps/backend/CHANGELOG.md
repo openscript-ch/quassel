@@ -1,4 +1,4 @@
-# backend
+# @quassel/backend
 
 ## 0.0.25
 

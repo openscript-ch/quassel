@@ -1,4 +1,4 @@
-# mockup
+# @quassel/mockup
 
 ## 0.0.1
 
