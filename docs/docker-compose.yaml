@@ -5,7 +5,7 @@ volumes:
 
 services:
   quassel-proxy:
-    image: traefik:2.7
+    image: traefik:3.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yaml:/traefik.yml
@@ -51,7 +51,7 @@ services:
       - "traefik.http.services.backend-http-service.loadbalancer.server.port=3000"
 
   quassel-database:
-    image: postgres:14.3-alpine
+    image: postgres:17.0-alpine
     volumes:
       - database:/var/lib/postgresql/data
     environment:
@@ -68,6 +68,20 @@ services:
       - "traefik.http.routers.frontend-http.rule=Host(`test.example.com`)"
       - "traefik.http.routers.frontend-http.entrypoints=http"
       - "traefik.http.routers.frontend-https.rule=Host(`test.example.com`)"
+      - "traefik.http.routers.frontend-https.entrypoints=https"
+      - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.frontend-https-service=frontend-http-service"
+      - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
+
+  quassel-mockup:
+    image: ghcr.io/openscript-ch/quassel-mockup:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.frontend-http.middlewares=frontend-redirect-https"
+      - "traefik.http.routers.frontend-http.rule=Host(`mockup.test.example.com`)"
+      - "traefik.http.routers.frontend-http.entrypoints=http"
+      - "traefik.http.routers.frontend-https.rule=Host(`mockup.test.example.com`)"
       - "traefik.http.routers.frontend-https.entrypoints=https"
       - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
