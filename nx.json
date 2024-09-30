@@ -24,7 +24,7 @@
       }
     },
     "dev": {
-      "dependsOn": ["^build"]
+      "cache": true
     }
   },
   "useDaemonProcess": false
