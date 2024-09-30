@@ -3,7 +3,7 @@ import { Button } from "@quassel/ui";
 function App() {
   return (
     <>
-      <Button variant="filled">Hello World</Button>
+      <Button variant="filled">Hallo Welt</Button>
     </>
   );
 }
