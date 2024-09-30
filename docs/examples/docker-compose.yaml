@@ -28,7 +28,7 @@ services:
       - "traefik.http.routers.dashboard-https.middlewares=auth"
       - "traefik.http.routers.dashboard-http.rule=Host(`proxy.test.example.com`)"
       - "traefik.http.routers.dashboard-http.entrypoints=http"
-      - "traefik.http.routers.dashboard-http.middlewares=https-redirect"
+      - "traefik.http.routers.dashboard-http.middlewares=dashboard-https-redirect"
       - "traefik.http.services.dashboard.loadbalancer.server.port=80"
 
   backend:
