@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 0.0.28
+
+### Patch Changes
+
+- 6a25f49: Test auto deployment
+
 ## 0.0.27
 
 ### Patch Changes
