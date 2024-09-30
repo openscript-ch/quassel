@@ -83,3 +83,12 @@ jobs:
           else
             echo "Skipping ${{ env.PACKAGE_NAME }}:${{ env.PACKAGE_VERSION }} as it does not have a container target"
           fi
+
+  notify-about-new-images:
+    needs: build-and-deploy-images
+    name: Notify about new images
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger watchtower
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.WATCHTOWER_TOKEN }}" http://test.quassel.ch:8080/v1/update

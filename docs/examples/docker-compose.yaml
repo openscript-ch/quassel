@@ -86,3 +86,15 @@ services:
       - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
       - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
+
+  quassel-watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --http-api-update
+    environment:
+      - WATCHTOWER_HTTP_API_TOKEN=${WATCHTOWER_HTTP_API_TOKEN}
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    ports:
+      - 8080:8080

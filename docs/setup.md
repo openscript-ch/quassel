@@ -93,10 +93,12 @@ The following sources were used:
 
    ```bash
    cd /srv \
-   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/docker-compose.yaml \
-   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/traefik.yaml
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/docker-compose.yaml \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/traefik.yaml \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/.env.example
    ```
 
+1. Rename environment file and fill out the gaps `mv .env.example .env`
 1. Make sure that the DNS is routing all subdomains to the host where the individual services run on.
 1. Replace all `example.com` with the domain where the application runs on.
 
