@@ -82,15 +82,15 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
-      - "traefik.http.middlewares.frontend-redirect-https.redirectscheme.scheme=https"
-      - "traefik.http.routers.frontend-http.middlewares=frontend-redirect-https"
-      - "traefik.http.routers.frontend-http.rule=Host(`mockup.test.example.com`)"
-      - "traefik.http.routers.frontend-http.entrypoints=http"
-      - "traefik.http.routers.frontend-https.rule=Host(`mockup.test.example.com`)"
-      - "traefik.http.routers.frontend-https.entrypoints=https"
-      - "traefik.http.routers.frontend-https.tls.certresolver=defaultResolver"
-      - "traefik.http.routers.frontend-https-service=frontend-http-service"
-      - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.mockup-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.mockup-http.middlewares=mockup-redirect-https"
+      - "traefik.http.routers.mockup-http.rule=Host(`mockup.test.example.com`)"
+      - "traefik.http.routers.mockup-http.entrypoints=http"
+      - "traefik.http.routers.mockup-https.rule=Host(`mockup.test.example.com`)"
+      - "traefik.http.routers.mockup-https.entrypoints=https"
+      - "traefik.http.routers.mockup-https.tls.certresolver=defaultResolver"
+      - "traefik.http.routers.mockup-https-service=mockup-http-service"
+      - "traefik.http.services.mockup-http-service.loadbalancer.server.port=80"
 
   watchtower:
     image: containrrr/watchtower
