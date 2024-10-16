@@ -6,8 +6,6 @@ import { ApiProvider } from "./provider/ApiProvider.tsx";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen.ts";
 
-import './main.css';
-
 const router = createRouter({ routeTree });
 
 declare module "@tanstack/react-router" {

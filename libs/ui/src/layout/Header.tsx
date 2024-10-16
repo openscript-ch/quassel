@@ -1,5 +1,6 @@
 import { cloneElement, ReactElement } from "react";
 import logoUrl from '../../public/uzh_logo.svg';
+import './Header.css';
 
 type HeaderProps = {
   navigtationItems?: ReactElement[];
