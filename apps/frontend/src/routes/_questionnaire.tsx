@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_questionnaire")({
 function QuestionnarieLayout() {
   return (
     <>
-      <Header title="Quasserl" />
+      <Header title="Quassel" />
       <Outlet />
     </>
   );
