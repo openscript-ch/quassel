@@ -1,5 +1,6 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import logoUrl from '../../public/uzh_logo.svg';
 
 export const Route = createRootRoute({
   component: () => (
@@ -8,7 +9,7 @@ export const Route = createRootRoute({
         <div className="Header--top">
           <div className="Header--logo">
             <a className="Logo" href="/">
-              <img src="./uzh_logo.svg" alt="Universität Zürich" width="208" height="92" />
+              <img src={logoUrl} alt="Universität Zürich" width="208" height="92" />
             </a>
           </div>
           <h2 className="Header--department">Quassel</h2>
