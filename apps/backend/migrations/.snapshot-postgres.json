@@ -15,6 +15,477 @@
           "nullable": false,
           "mappedType": "integer"
         },
+        "start": {
+          "name": "start",
+          "type": "time",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "time"
+        },
+        "end": {
+          "name": "end",
+          "type": "time",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "time"
+        },
+        "weekday": {
+          "name": "weekday",
+          "type": "Weekday",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "nativeEnumName": "Weekday",
+          "enumItems": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ],
+          "mappedType": "enum"
+        },
+        "recurring_rule": {
+          "name": "recurring_rule",
+          "type": "RecurringRule",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "nativeEnumName": "RecurringRule",
+          "enumItems": [
+            "every-2-weeks"
+          ],
+          "mappedType": "enum"
+        }
+      },
+      "name": "exposure_entry",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "exposure_entry_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        }
+      },
+      "name": "language_value",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "language_value_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "participant",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "participant_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        }
+      },
+      "name": "person_value",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "person_value_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        }
+      },
+      "name": "study",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "study_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "start_date": {
+          "name": "start_date",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "end_date": {
+          "name": "end_date",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "remark": {
+          "name": "remark",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "study_id": {
+          "name": "study_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "participant_id": {
+          "name": "participant_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        }
+      },
+      "name": "questionnaire",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "questionnaire_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "questionnaire_study_id_foreign": {
+          "constraintName": "questionnaire_study_id_foreign",
+          "columnNames": [
+            "study_id"
+          ],
+          "localTableName": "public.questionnaire",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.study",
+          "updateRule": "cascade"
+        },
+        "questionnaire_participant_id_foreign": {
+          "constraintName": "questionnaire_participant_id_foreign",
+          "columnNames": [
+            "participant_id"
+          ],
+          "localTableName": "public.questionnaire",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.participant",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "mappedType": "integer"
+        },
         "email": {
           "name": "email",
           "type": "varchar(255)",
@@ -52,8 +523,50 @@
       ],
       "checks": [],
       "foreignKeys": {},
-      "nativeEnums": {}
+      "nativeEnums": {
+        "Weekday": {
+          "name": "Weekday",
+          "schema": "public",
+          "items": [
+            "monday",
+            "tueseday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ]
+        },
+        "RecurringRule": {
+          "name": "RecurringRule",
+          "schema": "public",
+          "items": [
+            "every-2-weeks"
+          ]
+        }
+      }
     }
   ],
-  "nativeEnums": {}
+  "nativeEnums": {
+    "Weekday": {
+      "name": "Weekday",
+      "schema": "public",
+      "items": [
+        "monday",
+        "tueseday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday"
+      ]
+    },
+    "RecurringRule": {
+      "name": "RecurringRule",
+      "schema": "public",
+      "items": [
+        "every-2-weeks"
+      ]
+    }
+  }
 }

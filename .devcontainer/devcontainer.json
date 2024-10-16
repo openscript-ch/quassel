@@ -7,7 +7,8 @@
     "vscode": {
       "extensions": [
         "dbaeumer.vscode-eslint",
-        "mk12.better-git-line-blame"
+        "mk12.better-git-line-blame",
+        "bierner.markdown-mermaid"
       ]
     }
   }

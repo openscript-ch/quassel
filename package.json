@@ -22,6 +22,7 @@
     "@nx-tools/container-metadata": "^6.0.2",
     "@nx-tools/nx-container": "^6.0.2",
     "eslint": "^9.11.1",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.0",
     "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
@@ -33,5 +34,5 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "pnpm@9.10.0"
+  "packageManager": "pnpm@9.12.1"
 }
