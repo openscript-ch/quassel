@@ -8,7 +8,7 @@ export const Route = createFileRoute("/admin")({
 function AdminLayout() {
   return (
     <>
-      <Header navigtationItems={[<Link to="/admin">Dashboard</Link>]} />
+      <Header title="Quassel Admin" navigtationItems={[<Link to="/admin">Dashboard</Link>]} />
       <Outlet />
     </>
   );

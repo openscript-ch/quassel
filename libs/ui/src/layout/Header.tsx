@@ -1,12 +1,13 @@
-import { cloneElement, ReactElement } from "react";
+import { cloneElement, ReactElement, ReactNode } from "react";
 import logoUrl from '../../public/uzh_logo.svg';
 import './Header.css';
 
 type HeaderProps = {
   navigtationItems?: ReactElement[];
+  title: ReactNode;
 };
 
-export function Header({ navigtationItems }: HeaderProps) {
+export function Header({ navigtationItems, title }: HeaderProps) {
   return (
     <header className="Header">
       <div className="Header--top">
@@ -15,7 +16,7 @@ export function Header({ navigtationItems }: HeaderProps) {
             <img src={logoUrl} alt="Universität Zürich" width="208" height="92" />
           </a>
         </div>
-        <h2 className="Header--department">Quassel</h2>
+        <h2 className="Header--department">{title}</h2>
       </div>
 
       {navigtationItems && (
