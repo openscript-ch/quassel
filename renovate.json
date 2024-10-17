@@ -6,7 +6,7 @@
   "packageRules": [
     {
       "automerge": true,
-      "groupName": "likely non breaking updates",
+      "groupName": "likely non breaking dependencies",
       "matchCurrentVersion": ">= 1.0.0",
       "matchUpdateTypes": [
         "minor",
