@@ -28,11 +28,11 @@
     "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
-    "nx": "19.8.2",
+    "nx": "19.8.5",
     "typescript-eslint": "^8.7.0"
   },
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "pnpm@9.12.1"
+  "packageManager": "pnpm@9.12.2"
 }
