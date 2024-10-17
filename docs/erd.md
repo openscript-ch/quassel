@@ -1,72 +1,76 @@
+Remarks:
+
+- `weekday` is a number representing each day of a week. Like in Javascript sunday is 0, monday is 1 and so on.
+- `Carer` and `Language` have a nullable relation with `Participant`. If a `Participant` is referenced then it's an individual `Carer` or `Language`.
+
 ```mermaid
 erDiagram
 User {
-    number id PK
-    enum role "{ASSISTANT; ADMINISTRATOR}"
-    string email
-    string password
+    SERIAL id PK
+    ENUM role "ASSISTANT, ADMINISTRATOR NOT NULL DEFAULT ASSISTANT"
+    VARCHAR(200) email "NOT NULL"
+    VARCHAR(60) password "NOT NULL"
 }
 
-
 Participant {
-    number id PK
-    date birthdate "nullable"
+    SERIAL id PK
+    DATE birthdate
 }
 
 Participant ||--o{ Questionnaire : participates
 
 Study {
-    number id PK
-    string title
+    SERIAL id PK
+    VARCHAR(200) title "NOT NULL"
 }
 
 Study ||--o{ Questionnaire : belongs
 
 Questionnaire {
-    number id PK
-    number study_id FK
-    number participant_id FK
-    string title "not null"
-    date started_at
-    date ended_at
-    string remarks "nullable"
+    SERIAL id PK
+    SERIAL study_id FK "NOT NULL"
+    SERIAL participant_id FK "NOT NULL"
+    VARCHAR(200) title "NOT NULL"
+    DATE started_at "NOT NULL"
+    DATE ended_at "NOT NULL"
+    TEXT remarks
 }
 
 Questionnaire ||--o{ Entry : consists
 
 Entry {
-    number id PK
-    number questionnaire_id FK
-    number person_id FK
-    time started_at
-    time ended_at
-    number(1) weekday "Sunday is 0 (like in JavaScript)"
-    number(1) weeklyRecurring "default 1 (every week)"
+    SERIAL id PK
+    SERIAL questionnaire_id FK "NOT NULL"
+    SERIAL carer_id FK "NOT NULL"
+    TIME started_at "NOT NULL"
+    TIME ended_at "NOT NULL"
+    SMALLINT weekday "NOT NULL CHECK (weekday >= 0 AND weekday <= 6)"
+    SMALLINT weeklyRecurring "NOT NULL DEFAULT 1 CHECK (weeklyRecurring >= 1)"
 }
 
 EntryLanguage {
-    number id PK
-    number language_id FK
-    number ratio "percent 0 to 1"
+    SERIAL id PK
+    SERIAL language_id FK "NOT NULL"
+    SMALLINT ratio "NOT NULL CHECK (ratio >= 0 AND ratio <= 100)"
 }
 
 Entry ||--|{ EntryLanguage : has
 
 
-Person {
-    number id PK
-    number participant_id FK "nullable (if this is an individually created person)"
-    string name "not null"
+Carer {
+    SERIAL id PK
+    SERIAL participant_id FK
+    VARCHAR(200) name "NOT NULL"
 }
 
-Person ||--o{ Entry : has
-Participant |o--o{ Person : has
+Carer ||--o{ Entry : has
+Participant |o--o{ Carer : has
 
 Language {
-    number id PK
-    number participant_id FK "nullable (if this is an individually created language)"
-    string name "not null"
-    string iso693 "nullable"
+    SERIAL id PK
+    SERIAL participant_id FK
+    VARCHAR(200) name "NOT NULL"
+    VARCHAR(50) ietf_bcp_47
 }
 
 Language ||--o{ EntryLanguage : has
