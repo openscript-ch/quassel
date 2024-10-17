@@ -1,0 +1,16 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "groupName": "likely non breaking dependencies",
+      "matchCurrentVersion": ">= 1.0.0",
+      "matchUpdateTypes": [
+        "patch"
+      ]
+    }
+  ]
+}
