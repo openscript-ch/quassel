@@ -13,47 +13,53 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as QuestionnaireImport } from './routes/questionnaire'
 import { Route as AdminImport } from './routes/admin'
-import { Route as QuestionnaireImport } from './routes/_questionnaire'
 
 // Create Virtual Routes
 
+const IndexLazyImport = createFileRoute('/')()
+const QuestionnaireIndexLazyImport = createFileRoute('/questionnaire/')()
 const AdminIndexLazyImport = createFileRoute('/admin/')()
-const QuestionnaireIndexLazyImport = createFileRoute('/_questionnaire/')()
 
 // Create/Update Routes
+
+const QuestionnaireRoute = QuestionnaireImport.update({
+  path: '/questionnaire',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AdminRoute = AdminImport.update({
   path: '/admin',
   getParentRoute: () => rootRoute,
 } as any)
 
-const QuestionnaireRoute = QuestionnaireImport.update({
-  id: '/_questionnaire',
+const IndexLazyRoute = IndexLazyImport.update({
+  path: '/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const QuestionnaireIndexLazyRoute = QuestionnaireIndexLazyImport.update({
+  path: '/',
+  getParentRoute: () => QuestionnaireRoute,
+} as any).lazy(() =>
+  import('./routes/questionnaire/index.lazy').then((d) => d.Route),
+)
 
 const AdminIndexLazyRoute = AdminIndexLazyImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any).lazy(() => import('./routes/admin/index.lazy').then((d) => d.Route))
 
-const QuestionnaireIndexLazyRoute = QuestionnaireIndexLazyImport.update({
-  path: '/',
-  getParentRoute: () => QuestionnaireRoute,
-} as any).lazy(() =>
-  import('./routes/_questionnaire/index.lazy').then((d) => d.Route),
-)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/_questionnaire': {
-      id: '/_questionnaire'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof QuestionnaireImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/admin': {
@@ -63,12 +69,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminImport
       parentRoute: typeof rootRoute
     }
-    '/_questionnaire/': {
-      id: '/_questionnaire/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof QuestionnaireIndexLazyImport
-      parentRoute: typeof QuestionnaireImport
+    '/questionnaire': {
+      id: '/questionnaire'
+      path: '/questionnaire'
+      fullPath: '/questionnaire'
+      preLoaderRoute: typeof QuestionnaireImport
+      parentRoute: typeof rootRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -77,10 +83,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexLazyImport
       parentRoute: typeof AdminImport
     }
+    '/questionnaire/': {
+      id: '/questionnaire/'
+      path: '/'
+      fullPath: '/questionnaire/'
+      preLoaderRoute: typeof QuestionnaireIndexLazyImport
+      parentRoute: typeof QuestionnaireImport
+    }
   }
 }
 
 // Create and export the route tree
+
+interface AdminRouteChildren {
+  AdminIndexLazyRoute: typeof AdminIndexLazyRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexLazyRoute: AdminIndexLazyRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface QuestionnaireRouteChildren {
   QuestionnaireIndexLazyRoute: typeof QuestionnaireIndexLazyRoute
@@ -94,53 +117,54 @@ const QuestionnaireRouteWithChildren = QuestionnaireRoute._addFileChildren(
   QuestionnaireRouteChildren,
 )
 
-interface AdminRouteChildren {
-  AdminIndexLazyRoute: typeof AdminIndexLazyRoute
-}
-
-const AdminRouteChildren: AdminRouteChildren = {
-  AdminIndexLazyRoute: AdminIndexLazyRoute,
-}
-
-const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
-
 export interface FileRoutesByFullPath {
-  '': typeof QuestionnaireRouteWithChildren
+  '/': typeof IndexLazyRoute
   '/admin': typeof AdminRouteWithChildren
-  '/': typeof QuestionnaireIndexLazyRoute
+  '/questionnaire': typeof QuestionnaireRouteWithChildren
   '/admin/': typeof AdminIndexLazyRoute
+  '/questionnaire/': typeof QuestionnaireIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof QuestionnaireIndexLazyRoute
+  '/': typeof IndexLazyRoute
   '/admin': typeof AdminIndexLazyRoute
+  '/questionnaire': typeof QuestionnaireIndexLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/_questionnaire': typeof QuestionnaireRouteWithChildren
+  '/': typeof IndexLazyRoute
   '/admin': typeof AdminRouteWithChildren
-  '/_questionnaire/': typeof QuestionnaireIndexLazyRoute
+  '/questionnaire': typeof QuestionnaireRouteWithChildren
   '/admin/': typeof AdminIndexLazyRoute
+  '/questionnaire/': typeof QuestionnaireIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/admin' | '/' | '/admin/'
+  fullPaths: '/' | '/admin' | '/questionnaire' | '/admin/' | '/questionnaire/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin'
-  id: '__root__' | '/_questionnaire' | '/admin' | '/_questionnaire/' | '/admin/'
+  to: '/' | '/admin' | '/questionnaire'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/questionnaire'
+    | '/admin/'
+    | '/questionnaire/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  QuestionnaireRoute: typeof QuestionnaireRouteWithChildren
+  IndexLazyRoute: typeof IndexLazyRoute
   AdminRoute: typeof AdminRouteWithChildren
+  QuestionnaireRoute: typeof QuestionnaireRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  QuestionnaireRoute: QuestionnaireRouteWithChildren,
+  IndexLazyRoute: IndexLazyRoute,
   AdminRoute: AdminRouteWithChildren,
+  QuestionnaireRoute: QuestionnaireRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -155,15 +179,13 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/_questionnaire",
-        "/admin"
+        "/",
+        "/admin",
+        "/questionnaire"
       ]
     },
-    "/_questionnaire": {
-      "filePath": "_questionnaire.tsx",
-      "children": [
-        "/_questionnaire/"
-      ]
+    "/": {
+      "filePath": "index.lazy.tsx"
     },
     "/admin": {
       "filePath": "admin.tsx",
@@ -171,13 +193,19 @@ export const routeTree = rootRoute
         "/admin/"
       ]
     },
-    "/_questionnaire/": {
-      "filePath": "_questionnaire/index.lazy.tsx",
-      "parent": "/_questionnaire"
+    "/questionnaire": {
+      "filePath": "questionnaire.tsx",
+      "children": [
+        "/questionnaire/"
+      ]
     },
     "/admin/": {
       "filePath": "admin/index.lazy.tsx",
       "parent": "/admin"
+    },
+    "/questionnaire/": {
+      "filePath": "questionnaire/index.lazy.tsx",
+      "parent": "/questionnaire"
     }
   }
 }

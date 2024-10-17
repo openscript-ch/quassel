@@ -1,11 +1,9 @@
-import { createLazyFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from "@tanstack/react-router";
 
-export const Route = createLazyFileRoute('/admin/')({
+export const Route = createLazyFileRoute("/admin/")({
   component: Index,
-})
+});
 
 function Index() {
-  return (
-      <h3>Admin</h3>
-  )
+  return <h3>Admin</h3>;
 }
