@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "build": "pnpm exec nx run-many --nx-bail --target=build --parallel --output-style stream",
+    "changeset": "changeset",
     "clean": "git clean -fdx",
+    "coverage": "pnpm exec nx run-many --nx-bail --target=coverage --parallel --output-style stream",
     "dev": "pnpm exec nx run-many --nx-bail --target=dev --parallel --output-style stream",
     "lint": "eslint . --max-warnings=0",
-    "changeset": "changeset",
-    "version": "changeset version",
     "release": "changeset publish",
-    "tag": "changeset tag"
+    "tag": "changeset tag",
+    "test": "pnpm exec nx run-many --nx-bail --target=test --parallel --output-style stream",
+    "version": "changeset version"
   },
   "keywords": [],
   "author": "openscript GmbH",
