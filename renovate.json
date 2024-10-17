@@ -6,6 +6,7 @@
   "packageRules": [
     {
       "automerge": true,
+      "automergeSchedule": ["after 3 days"],
       "groupName": "likely non breaking dependencies",
       "matchCurrentVersion": ">= 1.0.0",
       "matchUpdateTypes": [
