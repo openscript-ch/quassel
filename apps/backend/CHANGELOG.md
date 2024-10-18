@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.0.26
+
+### Patch Changes
+
+- 28f3ce0: Initialize model
+
 ## 0.0.25
 
 ### Patch Changes
