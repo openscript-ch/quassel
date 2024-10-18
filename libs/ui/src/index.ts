@@ -5,4 +5,18 @@ export { ThemeProvider } from "./theme/ThemeProvider";
 export { Brand } from "./components/Brand";
 
 // external components
-export { AppShell, Button, Title, UnstyledButton, useMantineTheme } from "@mantine/core";
+export {
+  Anchor,
+  AppShell,
+  Button,
+  Checkbox,
+  Container,
+  Group,
+  Paper,
+  PasswordInput,
+  Text,
+  TextInput,
+  Title,
+  UnstyledButton,
+  useMantineTheme,
+} from "@mantine/core";

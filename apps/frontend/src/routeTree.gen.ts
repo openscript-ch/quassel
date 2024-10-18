@@ -13,22 +13,22 @@ import { createFileRoute } from "@tanstack/react-router";
 // Import Routes
 
 import { Route as rootRoute } from "./routes/__root";
+import { Route as SessionImport } from "./routes/session";
 import { Route as QuestionnaireImport } from "./routes/questionnaire";
 import { Route as AdminImport } from "./routes/admin";
 import { Route as IndexImport } from "./routes/index";
 
 // Create Virtual Routes
 
-const SessionLazyImport = createFileRoute("/session")();
 const QuestionnaireIndexLazyImport = createFileRoute("/questionnaire/")();
 const AdminIndexLazyImport = createFileRoute("/admin/")();
 
 // Create/Update Routes
 
-const SessionLazyRoute = SessionLazyImport.update({
+const SessionRoute = SessionImport.update({
   path: "/session",
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import("./routes/session.lazy").then((d) => d.Route));
+} as any);
 
 const QuestionnaireRoute = QuestionnaireImport.update({
   path: "/questionnaire",
@@ -86,7 +86,7 @@ declare module "@tanstack/react-router" {
       id: "/session";
       path: "/session";
       fullPath: "/session";
-      preLoaderRoute: typeof SessionLazyImport;
+      preLoaderRoute: typeof SessionImport;
       parentRoute: typeof rootRoute;
     };
     "/admin/": {
@@ -134,14 +134,14 @@ export interface FileRoutesByFullPath {
   "/": typeof IndexRoute;
   "/admin": typeof AdminRouteWithChildren;
   "/questionnaire": typeof QuestionnaireRouteWithChildren;
-  "/session": typeof SessionLazyRoute;
+  "/session": typeof SessionRoute;
   "/admin/": typeof AdminIndexLazyRoute;
   "/questionnaire/": typeof QuestionnaireIndexLazyRoute;
 }
 
 export interface FileRoutesByTo {
   "/": typeof IndexRoute;
-  "/session": typeof SessionLazyRoute;
+  "/session": typeof SessionRoute;
   "/admin": typeof AdminIndexLazyRoute;
   "/questionnaire": typeof QuestionnaireIndexLazyRoute;
 }
@@ -151,7 +151,7 @@ export interface FileRoutesById {
   "/": typeof IndexRoute;
   "/admin": typeof AdminRouteWithChildren;
   "/questionnaire": typeof QuestionnaireRouteWithChildren;
-  "/session": typeof SessionLazyRoute;
+  "/session": typeof SessionRoute;
   "/admin/": typeof AdminIndexLazyRoute;
   "/questionnaire/": typeof QuestionnaireIndexLazyRoute;
 }
@@ -182,14 +182,14 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   AdminRoute: typeof AdminRouteWithChildren;
   QuestionnaireRoute: typeof QuestionnaireRouteWithChildren;
-  SessionLazyRoute: typeof SessionLazyRoute;
+  SessionRoute: typeof SessionRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
   QuestionnaireRoute: QuestionnaireRouteWithChildren,
-  SessionLazyRoute: SessionLazyRoute,
+  SessionRoute: SessionRoute,
 };
 
 export const routeTree = rootRoute
@@ -226,7 +226,7 @@ export const routeTree = rootRoute
       ]
     },
     "/session": {
-      "filePath": "session.lazy.tsx"
+      "filePath": "session.tsx"
     },
     "/admin/": {
       "filePath": "admin/index.lazy.tsx",

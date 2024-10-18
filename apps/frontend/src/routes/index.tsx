@@ -3,7 +3,7 @@ import { $session } from "../stores/sessionStore";
 
 export const Route = createFileRoute("/")({
   loader: () => {
-    if ($session.get().token) {
+    if (!$session.get().token) {
       throw redirect({ to: "/session" });
     }
   },
