@@ -1,4 +1,7 @@
 export const configuration = () => ({
+  auth: {
+    jwtSecret: process.env.JWT_SECRET ?? "local-secret",
+  },
   database: {
     host: process.env.DATABASE_HOST ?? "db",
     port: parseInt(process.env.DATABASE_PORT) ?? 5432,

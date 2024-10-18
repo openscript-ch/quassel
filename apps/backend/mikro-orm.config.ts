@@ -10,7 +10,7 @@ export default defineConfig({
   port: configuration().database.port,
   dbName: configuration().database.name,
   user: configuration().database.user,
-  password: configuration().database.host,
+  password: configuration().database.password,
   driver: PostgreSqlDriver,
   metadataProvider: TsMorphMetadataProvider,
   extensions: [Migrator],
