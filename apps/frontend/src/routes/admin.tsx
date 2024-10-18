@@ -7,6 +7,7 @@ export const Route = createFileRoute("/admin")({
 function AdminLayout() {
   return (
     <>
+      <h2>Admin</h2>
       <Outlet />
     </>
   );
