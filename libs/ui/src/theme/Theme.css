@@ -1,0 +1,14 @@
+:root {
+  --quassel-padding-x: 20%;
+}
+
+
+.mantine-AppShell-header {
+  padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
+  border: none;
+  box-shadow: var(--mantine-shadow-sm);
+}
+
+#stage {
+  padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
+}
