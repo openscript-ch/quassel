@@ -1,0 +1,32 @@
+import { Collection, Entity, ManyToOne, OneToMany, Opt, Property } from "@mikro-orm/core";
+import { BaseEntity } from "./base.entity";
+import { EntryLanguage } from "./entryLanguage.entity";
+import { Carer } from "./carer.entity";
+import { Questionnaire } from "./questionnaire.entity";
+
+@Entity()
+export class Entry extends BaseEntity {
+  @Property({ columnType: "time" })
+  startedAt!: string;
+
+  @Property({ columnType: "time" })
+  endedAt!: string;
+
+  /**
+   * Sunday is 0 (like in JS)
+   */
+  @Property()
+  weekday!: number;
+
+  @Property({ default: 1 })
+  weeklyRecurring!: number & Opt;
+
+  @ManyToOne()
+  questionnarie!: Questionnaire;
+
+  @ManyToOne()
+  carer!: Carer;
+
+  @OneToMany(() => EntryLanguage, (entryLanguage) => entryLanguage.entry)
+  entryLanguages = new Collection<EntryLanguage>(this);
+}
