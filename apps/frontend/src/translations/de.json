@@ -1,0 +1,10 @@
+{
+  "sessionRoute": {
+    "title": "Anmelden",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "franziska.tobler@example.ch",
+    "passwordLabel": "Passwort",
+    "passwordPlaceholder": "Ein sicheres Passwort",
+    "formAction": "Anmelden"
+  }
+}

@@ -16,6 +16,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@nanostores/i18n": "^0.12.2",
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/react": "^0.8.0",
     "@quassel/ui": "workspace:*",

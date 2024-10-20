@@ -1,5 +1,5 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
-import { $session } from "../stores/sessionStore";
+import { $session } from "../stores/session";
 
 export const Route = createFileRoute("/")({
   loader: () => {

@@ -141,6 +141,9 @@ importers:
 
   apps/frontend:
     dependencies:
+      '@nanostores/i18n':
+        specifier: ^0.12.2
+        version: 0.12.2(nanostores@0.11.3)
       '@nanostores/persistent':
         specifier: ^0.10.2
         version: 0.10.2(nanostores@0.11.3)
@@ -1125,6 +1128,12 @@ packages:
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@mikro-orm/core': ^6.0.0
+
+  '@nanostores/i18n@0.12.2':
+    resolution: {integrity: sha512-BZNDNB83qwfU8YGYEI5zwstBZGPRUfifhZcw0SqaiGLqUBe4onpQ/NCr4cRg0khlsvPtJ37MQ/XZaT7dN+/RvA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0
 
   '@nanostores/persistent@0.10.2':
     resolution: {integrity: sha512-BEndnLhRC+yP7gXTESepBbSj8XNl8OXK9hu4xAgKC7MWJHKXnEqJMqY47LUyHxK6vYgFnisyHmqq+vq8AUFyIg==}
@@ -6705,6 +6714,10 @@ snapshots:
       '@mikro-orm/core': 6.3.13
       globby: 11.1.0
       ts-morph: 23.0.0
+
+  '@nanostores/i18n@0.12.2(nanostores@0.11.3)':
+    dependencies:
+      nanostores: 0.11.3
 
   '@nanostores/persistent@0.10.2(nanostores@0.11.3)':
     dependencies:
