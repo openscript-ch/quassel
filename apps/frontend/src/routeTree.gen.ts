@@ -13,7 +13,7 @@
 import { Route as rootRoute } from "./routes/__root";
 import { Route as SessionImport } from "./routes/session";
 import { Route as AuthImport } from "./routes/_auth";
-import { Route as IndexImport } from "./routes/index";
+import { Route as AuthIndexImport } from "./routes/_auth/index";
 import { Route as AuthQuestionnaireImport } from "./routes/_auth/questionnaire";
 import { Route as AuthAdministrationImport } from "./routes/_auth/administration";
 import { Route as AuthQuestionnaireIndexImport } from "./routes/_auth/questionnaire/index";
@@ -31,9 +31,9 @@ const AuthRoute = AuthImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const IndexRoute = IndexImport.update({
+const AuthIndexRoute = AuthIndexImport.update({
   path: "/",
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => AuthRoute,
 } as any);
 
 const AuthQuestionnaireRoute = AuthQuestionnaireImport.update({
@@ -60,13 +60,6 @@ const AuthAdministrationIndexRoute = AuthAdministrationIndexImport.update({
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
     "/_auth": {
       id: "/_auth";
       path: "";
@@ -93,6 +86,13 @@ declare module "@tanstack/react-router" {
       path: "/questionnaire";
       fullPath: "/questionnaire";
       preLoaderRoute: typeof AuthQuestionnaireImport;
+      parentRoute: typeof AuthImport;
+    };
+    "/_auth/": {
+      id: "/_auth/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof AuthIndexImport;
       parentRoute: typeof AuthImport;
     };
     "/_auth/administration/": {
@@ -139,40 +139,41 @@ const AuthQuestionnaireRouteWithChildren =
 interface AuthRouteChildren {
   AuthAdministrationRoute: typeof AuthAdministrationRouteWithChildren;
   AuthQuestionnaireRoute: typeof AuthQuestionnaireRouteWithChildren;
+  AuthIndexRoute: typeof AuthIndexRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthAdministrationRoute: AuthAdministrationRouteWithChildren,
   AuthQuestionnaireRoute: AuthQuestionnaireRouteWithChildren,
+  AuthIndexRoute: AuthIndexRoute,
 };
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
   "": typeof AuthRouteWithChildren;
   "/session": typeof SessionRoute;
   "/administration": typeof AuthAdministrationRouteWithChildren;
   "/questionnaire": typeof AuthQuestionnaireRouteWithChildren;
+  "/": typeof AuthIndexRoute;
   "/administration/": typeof AuthAdministrationIndexRoute;
   "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "": typeof AuthRouteWithChildren;
   "/session": typeof SessionRoute;
+  "/": typeof AuthIndexRoute;
   "/administration": typeof AuthAdministrationIndexRoute;
   "/questionnaire": typeof AuthQuestionnaireIndexRoute;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
   "/_auth": typeof AuthRouteWithChildren;
   "/session": typeof SessionRoute;
   "/_auth/administration": typeof AuthAdministrationRouteWithChildren;
   "/_auth/questionnaire": typeof AuthQuestionnaireRouteWithChildren;
+  "/_auth/": typeof AuthIndexRoute;
   "/_auth/administration/": typeof AuthAdministrationIndexRoute;
   "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
 }
@@ -180,35 +181,33 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | "/"
     | ""
     | "/session"
     | "/administration"
     | "/questionnaire"
+    | "/"
     | "/administration/"
     | "/questionnaire/";
   fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "" | "/session" | "/administration" | "/questionnaire";
+  to: "/session" | "/" | "/administration" | "/questionnaire";
   id:
     | "__root__"
-    | "/"
     | "/_auth"
     | "/session"
     | "/_auth/administration"
     | "/_auth/questionnaire"
+    | "/_auth/"
     | "/_auth/administration/"
     | "/_auth/questionnaire/";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
   AuthRoute: typeof AuthRouteWithChildren;
   SessionRoute: typeof SessionRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AuthRoute: AuthRouteWithChildren,
   SessionRoute: SessionRoute,
 };
@@ -225,19 +224,16 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
         "/_auth",
         "/session"
       ]
-    },
-    "/": {
-      "filePath": "index.tsx"
     },
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
         "/_auth/administration",
-        "/_auth/questionnaire"
+        "/_auth/questionnaire",
+        "/_auth/"
       ]
     },
     "/session": {
@@ -256,6 +252,10 @@ export const routeTree = rootRoute
       "children": [
         "/_auth/questionnaire/"
       ]
+    },
+    "/_auth/": {
+      "filePath": "_auth/index.tsx",
+      "parent": "/_auth"
     },
     "/_auth/administration/": {
       "filePath": "_auth/administration/index.tsx",

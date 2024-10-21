@@ -1,5 +1,5 @@
 import { Button, Container, Paper, PasswordInput, TextInput, Title } from "@quassel/ui";
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, redirect, useLocation, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useForm } from "@mantine/form";
@@ -21,6 +21,7 @@ type FormValues = {
 
 function Session() {
   const n = useNavigate();
+  const l = useLocation();
   const t = useStore(messages);
   const f = useForm<FormValues>({
     mode: "uncontrolled",
@@ -32,7 +33,7 @@ function Session() {
 
   const handleSubmit = (values: FormValues) => {
     $session.set({ email: values.email, token: values.password });
-    n({ to: "/" });
+    n({ to: l.search.redirect || "/" });
   };
 
   return (
@@ -66,7 +67,16 @@ function Session() {
   );
 }
 
+type RouteSearch = {
+  redirect?: string;
+};
+
 export const Route = createFileRoute("/session")({
+  validateSearch: (search: Record<string, unknown>): RouteSearch => {
+    return {
+      redirect: typeof search.redirect === "string" ? search.redirect : undefined,
+    };
+  },
   loader: () => {
     if ($session.get().token) {
       throw redirect({ to: "/" });
