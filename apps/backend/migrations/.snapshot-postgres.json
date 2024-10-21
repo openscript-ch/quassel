@@ -418,8 +418,8 @@
           "default": "1",
           "mappedType": "integer"
         },
-        "questionnarie_id": {
-          "name": "questionnarie_id",
+        "questionnaire_id": {
+          "name": "questionnaire_id",
           "type": "int",
           "unsigned": false,
           "autoincrement": false,
@@ -451,12 +451,19 @@
           "unique": true
         }
       ],
-      "checks": [],
+      "checks": [
+        {
+          "name": "entry_weekday_check",
+          "expression": "weekday >= 0 AND weekday < 7",
+          "definition": "check ((weekday >= 0 AND weekday < 7))",
+          "columnName": "weekday"
+        }
+      ],
       "foreignKeys": {
-        "entry_questionnarie_id_foreign": {
-          "constraintName": "entry_questionnarie_id_foreign",
+        "entry_questionnaire_id_foreign": {
+          "constraintName": "entry_questionnaire_id_foreign",
           "columnNames": [
-            "questionnarie_id"
+            "questionnaire_id"
           ],
           "localTableName": "public.entry",
           "referencedColumnNames": [
@@ -500,8 +507,8 @@
           "nullable": false,
           "mappedType": "integer"
         },
-        "ration": {
-          "name": "ration",
+        "ratio": {
+          "name": "ratio",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
