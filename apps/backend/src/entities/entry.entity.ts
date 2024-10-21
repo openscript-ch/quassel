@@ -1,4 +1,4 @@
-import { Collection, Entity, ManyToOne, OneToMany, Opt, Property } from "@mikro-orm/core";
+import { Check, Collection, Entity, ManyToOne, OneToMany, Opt, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./base.entity";
 import { EntryLanguage } from "./entryLanguage.entity";
 import { Carer } from "./carer.entity";
@@ -16,6 +16,7 @@ export class Entry extends BaseEntity {
    * Sunday is 0 (like in JS)
    */
   @Property()
+  @Check<Entry>({ expression: (columns) => `${columns.weekday} >= 0 AND ${columns.weekday} < 7` })
   weekday!: number;
 
   @Property({ default: 1 })
