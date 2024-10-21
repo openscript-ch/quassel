@@ -13,6 +13,7 @@ export {
   Container,
   Divider,
   Group,
+  NavLink,
   Paper,
   PasswordInput,
   Text,
@@ -22,4 +23,14 @@ export {
   useMantineTheme,
 } from "@mantine/core";
 
-export { IconLogout } from "@tabler/icons-react";
+export {
+  IconLogout,
+  IconUsers,
+  IconDashboard,
+  IconDatabaseExport,
+  IconFriends,
+  IconLanguage,
+  IconLego,
+  IconCalendarWeek,
+  IconMapSearch,
+} from "@tabler/icons-react";

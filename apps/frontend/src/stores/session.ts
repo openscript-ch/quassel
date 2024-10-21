@@ -1,6 +1,6 @@
 import { persistentMap } from "@nanostores/persistent";
 
-export type Session = {
+type Session = {
   id?: string;
   email?: string;
   token?: string;
