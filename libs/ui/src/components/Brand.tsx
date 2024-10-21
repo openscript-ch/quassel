@@ -1,5 +1,5 @@
 import { Divider, Group, Text } from "@mantine/core";
-import Logo from "../theme/Logo.svg?react";
+import Logo from "./Logo.svg?react";
 
 export function Brand() {
   return (

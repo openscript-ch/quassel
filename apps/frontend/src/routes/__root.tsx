@@ -1,4 +1,4 @@
-import { AppShell, Brand, Button, IconLogout, Group } from "@quassel/ui";
+import { AppShell, Brand, Button, IconLogout, Group, Text } from "@quassel/ui";
 import { createRootRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { version } from "../../package.json";
@@ -26,9 +26,12 @@ function Root() {
               <Brand />
             </Link>
             {sessionStore.token && (
-              <Button leftSection={<IconLogout />} onClick={handleSignOut}>
-                Sign out
-              </Button>
+              <Group>
+                <Text>{sessionStore.email}</Text>
+                <Button leftSection={<IconLogout />} onClick={handleSignOut}>
+                  Sign out
+                </Button>
+              </Group>
             )}
           </Group>
         </AppShell.Header>

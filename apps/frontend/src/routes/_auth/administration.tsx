@@ -1,10 +1,10 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/admin")({
-  component: AdminLayout,
+export const Route = createFileRoute("/_auth/administration")({
+  component: AdministrationLayout,
 });
 
-function AdminLayout() {
+function AdministrationLayout() {
   return (
     <>
       <h2>Admin</h2>
