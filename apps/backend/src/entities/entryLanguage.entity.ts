@@ -6,7 +6,7 @@ import { Language } from "./language.entity";
 @Entity()
 export class EntryLanguage extends BaseEntity {
   @Property()
-  ration!: string;
+  ratio!: string;
 
   @ManyToOne()
   language!: Language;

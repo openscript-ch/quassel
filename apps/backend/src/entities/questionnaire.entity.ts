@@ -24,6 +24,6 @@ export class Questionnaire extends BaseEntity {
   @ManyToOne()
   participant!: Participant;
 
-  @OneToMany(() => Entry, (entry) => entry.questionnarie)
+  @OneToMany(() => Entry, (entry) => entry.questionnaire)
   entries = new Collection<Entry>(this);
 }

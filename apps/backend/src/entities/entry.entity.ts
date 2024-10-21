@@ -22,7 +22,7 @@ export class Entry extends BaseEntity {
   weeklyRecurring!: number & Opt;
 
   @ManyToOne()
-  questionnarie!: Questionnaire;
+  questionnaire!: Questionnaire;
 
   @ManyToOne()
   carer!: Carer;
