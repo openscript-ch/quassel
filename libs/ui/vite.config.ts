@@ -24,5 +24,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [dts({ entryRoot: "src" }), react(), svgr({ svgrOptions: { ref: true }, include: "**/*.svg?react" })],
+  plugins: [dts({ entryRoot: "src", tsconfigPath: "tsconfig.json" }), react(), svgr({ svgrOptions: { ref: true }, include: "**/*.svg?react" })],
 });

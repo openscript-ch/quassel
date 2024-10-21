@@ -11,6 +11,7 @@ export {
   Button,
   Checkbox,
   Container,
+  Divider,
   Group,
   Paper,
   PasswordInput,
@@ -20,3 +21,5 @@ export {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
+
+export { IconLogout } from "@tabler/icons-react";
