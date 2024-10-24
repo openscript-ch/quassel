@@ -5,8 +5,8 @@ import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 export default defineConfig({
   entities: ["./dist/src/entities"],
   entitiesTs: ["./src/entities"],
-  dbName: "postgres",
   host: "db",
+  dbName: "postgres",
   password: "postgres",
   user: "postgres",
   driver: PostgreSqlDriver,
