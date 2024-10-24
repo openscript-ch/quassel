@@ -32,4 +32,4 @@ All parts of the project live inside this monorepo.
   - [`frontend`](./apps/frontend/)
   - [`mockup`](./apps/mockup/)
 - Libs
-  - [`ui`](./libs/ui/): Common UI components are represented inside this package.
+  - [`ui`](./libs/ui/)

@@ -1,20 +1,21 @@
-import { Entity, ManyToOne, Property } from "@mikro-orm/core";
+import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./base.entity";
 import { Study } from "./study.entity";
 import { Participant } from "./participant.entity";
+import { Entry } from "./entry.entity";
 
 @Entity()
 export class Questionnaire extends BaseEntity {
   @Property()
-  startDate!: Date;
+  startedAt!: Date;
 
   @Property()
-  endDate!: Date;
+  endedAt!: Date;
 
   @Property()
-  description!: string;
+  title!: string;
 
-  @Property()
+  @Property({ columnType: "text" })
   remark?: string;
 
   @ManyToOne()
@@ -22,4 +23,7 @@ export class Questionnaire extends BaseEntity {
 
   @ManyToOne()
   participant!: Participant;
+
+  @OneToMany(() => Entry, (entry) => entry.questionnaire)
+  entries = new Collection<Entry>(this);
 }
