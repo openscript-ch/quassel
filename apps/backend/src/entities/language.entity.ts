@@ -8,8 +8,8 @@ export class Language extends BaseEntity {
   @Property()
   name!: string;
 
-  @Property()
-  iso693?: string;
+  @Property({ length: 50 })
+  ietfBcp47?: string;
 
   @ManyToOne()
   participant?: Participant;

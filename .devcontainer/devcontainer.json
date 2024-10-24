@@ -9,7 +9,8 @@
         "dbaeumer.vscode-eslint",
         "mk12.better-git-line-blame",
         "bierner.markdown-mermaid",
-        "GitHub.vscode-pull-request-github"
+        "GitHub.vscode-pull-request-github",
+        "DavidAnson.vscode-markdownlint"
       ]
     }
   }

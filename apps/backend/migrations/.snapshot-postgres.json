@@ -14,6 +14,16 @@
           "primary": true,
           "nullable": false,
           "mappedType": "integer"
+        },
+        "birthday": {
+          "name": "birthday",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
         }
       },
       "name": "participant",
@@ -64,14 +74,14 @@
           "length": 255,
           "mappedType": "string"
         },
-        "iso693": {
-          "name": "iso693",
-          "type": "varchar(255)",
+        "ietf_bcp47": {
+          "name": "ietf_bcp47",
+          "type": "varchar(50)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 255,
+          "length": 50,
           "mappedType": "string"
         },
         "participant_id": {
@@ -277,8 +287,8 @@
           "length": 6,
           "mappedType": "datetime"
         },
-        "description": {
-          "name": "description",
+        "title": {
+          "name": "title",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -289,13 +299,12 @@
         },
         "remark": {
           "name": "remark",
-          "type": "varchar(255)",
+          "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 255,
-          "mappedType": "string"
+          "mappedType": "text"
         },
         "study_id": {
           "name": "study_id",
@@ -401,22 +410,22 @@
         },
         "weekday": {
           "name": "weekday",
-          "type": "int",
+          "type": "smallint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "integer"
+          "mappedType": "smallint"
         },
         "weekly_recurring": {
           "name": "weekly_recurring",
-          "type": "int",
+          "type": "smallint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
           "default": "1",
-          "mappedType": "integer"
+          "mappedType": "smallint"
         },
         "questionnaire_id": {
           "name": "questionnaire_id",
@@ -457,6 +466,12 @@
           "expression": "weekday >= 0 AND weekday < 7",
           "definition": "check ((weekday >= 0 AND weekday < 7))",
           "columnName": "weekday"
+        },
+        {
+          "name": "entry_weekly_recurring_check",
+          "expression": "weekday >= 1",
+          "definition": "check ((weekday >= 1))",
+          "columnName": "weekly_recurring"
         }
       ],
       "foreignKeys": {
@@ -509,13 +524,12 @@
         },
         "ratio": {
           "name": "ratio",
-          "type": "varchar(255)",
+          "type": "smallint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 255,
-          "mappedType": "string"
+          "mappedType": "smallint"
         },
         "language_id": {
           "name": "language_id",
@@ -550,7 +564,14 @@
           "unique": true
         }
       ],
-      "checks": [],
+      "checks": [
+        {
+          "name": "entry_language_ratio_check",
+          "expression": "ratio > 0 AND ratio <= 100",
+          "definition": "check ((ratio > 0 AND ratio <= 100))",
+          "columnName": "ratio"
+        }
+      ],
       "foreignKeys": {
         "entry_language_language_id_foreign": {
           "constraintName": "entry_language_language_id_foreign",

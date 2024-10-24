@@ -13,9 +13,9 @@ export class Questionnaire extends BaseEntity {
   endedAt!: Date;
 
   @Property()
-  description!: string;
+  title!: string;
 
-  @Property()
+  @Property({ columnType: "text" })
   remark?: string;
 
   @ManyToOne()

@@ -15,11 +15,12 @@ export class Entry extends BaseEntity {
   /**
    * Sunday is 0 (like in JS)
    */
-  @Property()
+  @Property({ columnType: "smallint" })
   @Check<Entry>({ expression: (columns) => `${columns.weekday} >= 0 AND ${columns.weekday} < 7` })
   weekday!: number;
 
-  @Property({ default: 1 })
+  @Property({ default: 1, columnType: "smallint" })
+  @Check<Entry>({ expression: (columns) => `${columns.weekday} >= 1` })
   weeklyRecurring!: number & Opt;
 
   @ManyToOne()
