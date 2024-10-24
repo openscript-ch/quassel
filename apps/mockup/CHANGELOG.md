@@ -1,5 +1,11 @@
 # @quassel/mockup
 
+## 0.0.3
+
+### Patch Changes
+
+- f3427c6: Add authentication user interface
+
 ## 0.0.2
 
 ### Patch Changes
