@@ -16,9 +16,14 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@mantine/form": "^7.13.3",
+    "@nanostores/i18n": "^0.12.2",
+    "@nanostores/persistent": "^0.10.2",
+    "@nanostores/react": "^0.8.0",
     "@quassel/ui": "workspace:*",
     "@tanstack/react-query": "^5.56.2",
     "@tanstack/react-router": "^1.58.15",
+    "nanostores": "^0.11.3",
     "openapi-fetch": "^0.12.2",
     "openapi-react-query": "^0.2.0",
     "react": "^18.3.1",

@@ -25,7 +25,8 @@
     "types": []
   },
   "include": [
-    "src"
+    "src",
+    "test"
   ],
   "references": [
     {

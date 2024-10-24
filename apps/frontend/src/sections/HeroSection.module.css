@@ -1,0 +1,29 @@
+.inner {
+  display: flex;
+  justify-content: space-between;
+  padding-top: calc(var(--mantine-spacing-xl) * 4);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 4);
+}
+
+.content {
+  max-width: rem(480px);
+  margin-right: calc(var(--mantine-spacing-xl) * 3);
+}
+
+.title {
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-size: rem(44px);
+  line-height: 1.2;
+  font-weight: 900;
+
+}
+
+.control {
+}
+
+.highlight {
+  position: relative;
+  background-color: var(--mantine-color-blue-light);
+  border-radius: var(--mantine-radius-sm);
+  padding: rem(4px) rem(12px);
+}
