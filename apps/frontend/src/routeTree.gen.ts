@@ -29,6 +29,7 @@ import { Route as AuthAdministrationCarersImport } from "./routes/_auth/administ
 // Create/Update Routes
 
 const SessionRoute = SessionImport.update({
+  id: "/session",
   path: "/session",
   getParentRoute: () => rootRoute,
 } as any);
@@ -39,64 +40,76 @@ const AuthRoute = AuthImport.update({
 } as any);
 
 const AuthIndexRoute = AuthIndexImport.update({
+  id: "/",
   path: "/",
   getParentRoute: () => AuthRoute,
 } as any);
 
 const AuthQuestionnaireRoute = AuthQuestionnaireImport.update({
+  id: "/questionnaire",
   path: "/questionnaire",
   getParentRoute: () => AuthRoute,
 } as any);
 
 const AuthAdministrationRoute = AuthAdministrationImport.update({
+  id: "/administration",
   path: "/administration",
   getParentRoute: () => AuthRoute,
 } as any);
 
 const AuthQuestionnaireIndexRoute = AuthQuestionnaireIndexImport.update({
+  id: "/",
   path: "/",
   getParentRoute: () => AuthQuestionnaireRoute,
 } as any);
 
 const AuthAdministrationIndexRoute = AuthAdministrationIndexImport.update({
+  id: "/",
   path: "/",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
 const AuthAdministrationUsersRoute = AuthAdministrationUsersImport.update({
+  id: "/users",
   path: "/users",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
 const AuthAdministrationStudiesRoute = AuthAdministrationStudiesImport.update({
+  id: "/studies",
   path: "/studies",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
 const AuthAdministrationQuestionnairesRoute =
   AuthAdministrationQuestionnairesImport.update({
+    id: "/questionnaires",
     path: "/questionnaires",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
 
 const AuthAdministrationParticipantsRoute =
   AuthAdministrationParticipantsImport.update({
+    id: "/participants",
     path: "/participants",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
 
 const AuthAdministrationLanguagesRoute =
   AuthAdministrationLanguagesImport.update({
+    id: "/languages",
     path: "/languages",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
 
 const AuthAdministrationExportRoute = AuthAdministrationExportImport.update({
+  id: "/export",
   path: "/export",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
 const AuthAdministrationCarersRoute = AuthAdministrationCarersImport.update({
+  id: "/carers",
   path: "/carers",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
