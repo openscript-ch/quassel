@@ -1,3 +1,5 @@
+# ERD
+
 Remarks:
 
 - `weekday` is a number representing each day of a week. Like in Javascript sunday is 0, monday is 1 and so on.

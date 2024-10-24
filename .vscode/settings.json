@@ -12,5 +12,8 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

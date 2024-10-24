@@ -6,7 +6,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     unstubEnvs: true,
-    setupFiles: ["./src/vitest.setup.ts"],
+    setupFiles: ["./test/vitest.setup.ts"],
     coverage: {
       exclude: ["src/routeTree.gen.ts", ...coverageConfigDefaults.exclude],
     },

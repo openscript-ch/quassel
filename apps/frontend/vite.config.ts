@@ -8,5 +8,5 @@ export default defineConfig({
     port: 3001,
   },
   clearScreen: false,
-  plugins: [react(), TanStackRouterVite()],
+  plugins: [react(), TanStackRouterVite({ quoteStyle: "double", semicolons: true })],
 });

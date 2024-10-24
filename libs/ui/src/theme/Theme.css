@@ -1,0 +1,24 @@
+:root {
+  --quassel-padding-x: 20%;
+  --quassel-color-light-gray: #fafafa;
+}
+
+/* Page layout */
+
+.mantine-AppShell-header, .mantine-AppShell-footer, #stage {
+  padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
+}
+
+/* Components overrides */
+
+.mantine-AppShell-header {
+  border: none;
+  box-shadow: var(--mantine-shadow-sm);
+}
+.mantine-AppShell-header a {
+  text-decoration: none;
+}
+
+.mantine-AppShell-footer {
+  background-color: var(--quassel-color-light-gray);
+}
