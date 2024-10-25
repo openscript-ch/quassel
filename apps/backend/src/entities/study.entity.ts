@@ -1,5 +1,5 @@
 import { Collection, Entity, OneToMany, Property } from "@mikro-orm/core";
-import { BaseEntity } from "./base.entity";
+import { BaseEntity } from "../base.entity";
 import { Questionnaire } from "./questionnaire.entity";
 
 @Entity()

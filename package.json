@@ -2,6 +2,7 @@
   "name": "quassel",
   "version": "0.0.0",
   "private": true,
+  "description": "Quassel: Gather language exposure data ",
   "scripts": {
     "build": "pnpm exec nx run-many --nx-bail --target=build --parallel --output-style stream",
     "changeset": "changeset",

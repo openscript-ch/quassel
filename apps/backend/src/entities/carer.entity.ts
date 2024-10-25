@@ -1,5 +1,5 @@
 import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
-import { BaseEntity } from "./base.entity";
+import { BaseEntity } from "../base.entity";
 import { Participant } from "./participant.entity";
 import { Entry } from "./entry.entity";
 

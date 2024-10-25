@@ -1,11 +1,11 @@
 import { defineConfig, PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Migrator } from "@mikro-orm/migrations";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
-import { configuration } from "src/config/configuration";
+import { configuration } from "./src/config/configuration";
 
 export default defineConfig({
-  entities: ["./dist/src/entities"],
-  entitiesTs: ["./src/entities"],
+  entities: ["./dist/src/**/*.entity.js"],
+  entitiesTs: ["./src/**/*.entity.ts"],
   host: configuration().database.host,
   port: configuration().database.port,
   dbName: configuration().database.name,

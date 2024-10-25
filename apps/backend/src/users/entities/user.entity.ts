@@ -1,14 +1,14 @@
 import { Entity, Enum, Opt, Property } from "@mikro-orm/core";
-import { BaseEntity } from "./base.entity";
+import { BaseEntity } from "../../base.entity";
 
-enum UserRole {
+export enum UserRole {
   ASSISTANT = "ASSISTANT",
   ADMIN = "ADMIN",
 }
 
 @Entity()
 export class User extends BaseEntity {
-  @Property()
+  @Property({ unique: true })
   email!: string;
 
   @Property()
