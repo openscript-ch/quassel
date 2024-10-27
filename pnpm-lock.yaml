@@ -117,6 +117,9 @@ importers:
       '@mikro-orm/migrations':
         specifier: ^6.3.11
         version: 6.3.13(@mikro-orm/core@6.3.13)(@types/node@20.17.0)(pg@8.13.0)
+      '@mikro-orm/seeder':
+        specifier: ^6.3.13
+        version: 6.3.13(@mikro-orm/core@6.3.13)
       '@nestjs/cli':
         specifier: ^10.0.0
         version: 10.4.5
@@ -1245,6 +1248,12 @@ packages:
 
   '@mikro-orm/reflection@6.3.13':
     resolution: {integrity: sha512-fNsMnQRoSMg5IoQjAgZqFm8ewnXrD9/BvdHoyDP62TzbbaNd5wm0M9UL4hBjFYiy706m0iLPlC7ZAgrTOzbSCA==}
+    engines: {node: '>= 18.12.0'}
+    peerDependencies:
+      '@mikro-orm/core': ^6.0.0
+
+  '@mikro-orm/seeder@6.3.13':
+    resolution: {integrity: sha512-J7WQhcM/y9+rmuQMPsero20TS/1oLh/gwtb00ykiLeze0AnA82+eXuOtCYa23N+LuV963XD1EgKWRn8yDQAYpw==}
     engines: {node: '>= 18.12.0'}
     peerDependencies:
       '@mikro-orm/core': ^6.0.0
@@ -7057,6 +7066,12 @@ snapshots:
       '@mikro-orm/core': 6.3.13
       globby: 11.1.0
       ts-morph: 23.0.0
+
+  '@mikro-orm/seeder@6.3.13(@mikro-orm/core@6.3.13)':
+    dependencies:
+      '@mikro-orm/core': 6.3.13
+      fs-extra: 11.2.0
+      globby: 11.1.0
 
   '@nanostores/i18n@0.12.2(nanostores@0.11.3)':
     dependencies:

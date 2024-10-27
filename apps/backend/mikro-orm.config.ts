@@ -2,6 +2,7 @@ import { defineConfig, PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Migrator } from "@mikro-orm/migrations";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { configuration } from "./src/config/configuration";
+import { SeedManager } from "@mikro-orm/seeder";
 
 export default defineConfig({
   entities: ["./dist/src/**/*.entity.js"],
@@ -13,8 +14,11 @@ export default defineConfig({
   password: configuration().database.password,
   driver: PostgreSqlDriver,
   metadataProvider: TsMorphMetadataProvider,
-  extensions: [Migrator],
+  extensions: [Migrator, SeedManager],
   migrations: {
-    pathTs: "./migrations",
+    pathTs: "./db/migrations",
+  },
+  seeder: {
+    pathTs: "./db/seeds",
   },
 });
