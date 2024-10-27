@@ -3,7 +3,7 @@ import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { User } from "./entities/user.entity";
-import { EntityManager, EntityRepository, wrap } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, FilterQuery, wrap } from "@mikro-orm/core";
 import { bcrypt } from "hash-wasm";
 
 @Injectable()
@@ -31,6 +31,10 @@ export class UsersService {
 
   findOne(id: number) {
     return this.userRepository.findOneOrFail(id);
+  }
+
+  findBy(filter: FilterQuery<User>) {
+    return this.userRepository.findOneOrFail(filter);
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
