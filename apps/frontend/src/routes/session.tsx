@@ -4,6 +4,7 @@ import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useForm } from "@mantine/form";
 import { $session } from "../stores/session";
+import { $api } from "../provider/ApiProvider";
 
 const messages = i18n("sessionRoute", {
   title: "Sign in",
@@ -31,9 +32,14 @@ function Session() {
     },
   });
 
+  const createSessionMutation = $api.useMutation("post", "/session", {
+    onSuccess: (data) => {
+      $session.set({ email: data.email, role: data.role });
+      n({ to: l.search.redirect || "/" });
+    },
+  });
   const handleSubmit = (values: FormValues) => {
-    $session.set({ email: values.email, token: values.password });
-    n({ to: l.search.redirect || "/" });
+    createSessionMutation.mutate({ body: values });
   };
 
   return (
@@ -58,7 +64,7 @@ function Session() {
             key={f.key("password")}
             {...f.getInputProps("password")}
           />
-          <Button type="submit" fullWidth mt="xl">
+          <Button type="submit" fullWidth mt="xl" loading={createSessionMutation.isPending}>
             {t.formAction}
           </Button>
         </Paper>
@@ -78,7 +84,7 @@ export const Route = createFileRoute("/session")({
     };
   },
   loader: () => {
-    if ($session.get().token) {
+    if ($session.get().email) {
       throw redirect({ to: "/" });
     }
   },

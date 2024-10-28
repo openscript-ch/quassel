@@ -4,51 +4,326 @@
  */
 
 export interface paths {
-  "/": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all users */
+        get: operations["UsersController_index"];
+        put?: never;
+        /** Create a user */
+        post: operations["UsersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["AppController_getHello"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
+    "/users/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a user by ID */
+        get: operations["UsersController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a user by ID */
+        delete: operations["UsersController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a user by ID */
+        patch: operations["UsersController_update"];
+        trace?: never;
+    };
+    "/session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get the current session (who am I, ..) */
+        get: operations["SessionController_get"];
+        put?: never;
+        /** Create a session (sign in, log in, ..) */
+        post: operations["SessionController_create"];
+        /** Delete a session (sign out, log out, ..) */
+        delete: operations["SessionController_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: never;
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    schemas: {
+        CreateUserDto: {
+            /**
+             * @description The email of the user
+             * @example bart.simpson@example.ch
+             */
+            email: string;
+            /**
+             * @description The password of the user
+             * @example bart*macht*keine*Hausaufgaben
+             */
+            password: string;
+            /**
+             * @description The password confirmation of the user
+             * @example bart*macht*keine*Hausaufgaben
+             */
+            passwordConfirmation: string;
+        };
+        User: {
+            email: string;
+            password: string;
+            /** @enum {string} */
+            role: "ASSISTANT" | "ADMIN";
+            id: number;
+        };
+        UpdateUserDto: {
+            /**
+             * @description The email of the user
+             * @example bart.simpson@example.ch
+             */
+            email?: string;
+            /**
+             * @description The password of the user
+             * @example bart*macht*keine*Hausaufgaben
+             */
+            password?: string;
+            /**
+             * @description The password confirmation of the user
+             * @example bart*macht*keine*Hausaufgaben
+             */
+            passwordConfirmation?: string;
+        };
+        CreateSessionDto: {
+            /**
+             * @description The email of the user
+             * @example administrator@example.ch
+             */
+            email: string;
+            /**
+             * @description The password of the user
+             * @example quassel*1234
+             */
+            password: string;
+        };
+        OmitTypeClass: {
+            id: number;
+            email: string;
+            /** @enum {string} */
+            role: "ASSISTANT" | "ADMIN";
+        };
+    };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  AppController_getHello: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      200: {
-        headers: {
-          [name: string]: unknown;
+    UsersController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": string;
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>[];
+                };
+            };
         };
-      };
     };
-  };
+    UsersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateUserDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["User"];
+                };
+            };
+        };
+    };
+    UsersController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    UsersController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    UsersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateUserDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>;
+                };
+            };
+        };
+    };
+    SessionController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Current session */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SessionController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateSessionDto"];
+            };
+        };
+        responses: {
+            /** @description Successful sign in */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OmitTypeClass"];
+                };
+            };
+            /** @description Invalid credentials */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    SessionController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Successful sign out */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unauthorized */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
 }

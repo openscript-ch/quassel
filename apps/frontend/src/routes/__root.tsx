@@ -44,7 +44,7 @@ function Root() {
             <Link to="/">
               <Brand />
             </Link>
-            {sessionStore.token && (
+            {sessionStore.email && (
               <Group>
                 <Text>{sessionStore.email}</Text>
                 <Button leftSection={<IconLogout />} onClick={handleSignOut}>

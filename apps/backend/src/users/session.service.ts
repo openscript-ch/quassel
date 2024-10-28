@@ -16,9 +16,9 @@ export class SessionService {
         session.set("userId", user.id);
         return user;
       }
-      return new UnauthorizedException();
+      throw new UnauthorizedException();
     } catch {
-      return new UnauthorizedException();
+      throw new UnauthorizedException();
     }
   }
 
@@ -26,7 +26,7 @@ export class SessionService {
     try {
       return await this.usersService.findOne(userId);
     } catch {
-      return new UnauthorizedException();
+      throw new UnauthorizedException();
     }
   }
 }
