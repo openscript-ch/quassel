@@ -1,5 +1,5 @@
 import { Entity, Enum, Opt, Property } from "@mikro-orm/core";
-import { BaseEntity } from "../../base.entity";
+import { BaseEntity } from "../../common/entities/base.entity";
 import { Exclude } from "class-transformer";
 
 export enum UserRole {

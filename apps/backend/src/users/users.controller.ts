@@ -3,6 +3,8 @@ import { UsersService } from "./users.service";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { Roles } from "./decorators/roles.decorator";
+import { UserRole } from "./entities/user.entity";
 
 @ApiTags("Users")
 @Controller("users")
@@ -17,13 +19,13 @@ export class UsersController {
 
   @Get()
   @ApiOperation({ summary: "Get all users" })
-  findAll() {
+  index() {
     return this.usersService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a user by ID" })
-  findOne(@Param("id") id: string) {
+  get(@Param("id") id: string) {
     return this.usersService.findOne(+id);
   }
 
@@ -35,7 +37,8 @@ export class UsersController {
 
   @Delete(":id")
   @ApiOperation({ summary: "Delete a user by ID" })
-  remove(@Param("id") id: string) {
+  @Roles(UserRole.ADMIN)
+  delete(@Param("id") id: string) {
     return this.usersService.remove(+id);
   }
 }
