@@ -1,28 +1,32 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { bcryptVerify } from "hash-wasm";
-import { JwtService } from "@nestjs/jwt";
-import { User } from "./entities/user.entity";
+import { CreateSessionDto } from "./dto/create-session.dto";
+import { Session as FastifySession } from "@fastify/secure-session";
 
 @Injectable()
 export class SessionService {
-  constructor(
-    private usersService: UsersService,
-    private jwtService: JwtService
-  ) {}
+  constructor(private usersService: UsersService) {}
 
-  async validateUser(email: string, password: string) {
-    const user = await this.usersService.findBy({ email });
+  async signIn({ email, password }: CreateSessionDto, session: FastifySession) {
+    try {
+      const user = await this.usersService.findBy({ email });
 
-    if (!user && (await bcryptVerify({ password, hash: user.password }))) return user;
-
-    return null;
+      if (await bcryptVerify({ password, hash: user.password })) {
+        session.set("userId", user.id);
+        return user;
+      }
+      return new UnauthorizedException();
+    } catch {
+      return new UnauthorizedException();
+    }
   }
 
-  signIn(user: User) {
-    const payload = { email: user.email, sub: user.id };
-    return {
-      access_token: this.jwtService.sign(payload),
-    };
+  async whoAmI(userId: number) {
+    try {
+      return await this.usersService.findOne(userId);
+    } catch {
+      return new UnauthorizedException();
+    }
   }
 }

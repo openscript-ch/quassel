@@ -11,8 +11,8 @@ export class UsersController {
 
   @Post()
   @ApiOperation({ summary: "Create a user" })
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  create(@Body() user: CreateUserDto) {
+    return this.usersService.create(user);
   }
 
   @Get()
@@ -29,8 +29,8 @@ export class UsersController {
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a user by ID" })
-  update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  update(@Param("id") id: string, @Body() user: UpdateUserDto) {
+    return this.usersService.update(+id, user);
   }
 
   @Delete(":id")

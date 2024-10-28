@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { ClassSerializerInterceptor, Injectable, UseInterceptors } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { InjectRepository } from "@mikro-orm/nestjs";
@@ -6,6 +6,7 @@ import { User } from "./entities/user.entity";
 import { EntityManager, EntityRepository, FilterQuery, wrap } from "@mikro-orm/core";
 import { bcrypt } from "hash-wasm";
 
+@UseInterceptors(ClassSerializerInterceptor)
 @Injectable()
 export class UsersService {
   constructor(

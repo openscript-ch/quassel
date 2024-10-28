@@ -1,6 +1,7 @@
 export const configuration = () => ({
-  auth: {
-    jwtSecret: process.env.JWT_SECRET || "local-secret",
+  session: {
+    secret: process.env.SESSION_SECRET || "2722badd029fa3bbe29f7ebeee0dcaeb82a91c1088d348354c6e7172996368fd",
+    salt: process.env.SESSION_SALT || "332535f60da28f8f",
   },
   database: {
     host: process.env.DATABASE_HOST || "db",
