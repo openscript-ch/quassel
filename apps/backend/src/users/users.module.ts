@@ -7,11 +7,12 @@ import { SessionService } from "./session.service";
 import { SessionController } from "./session.controller";
 import { ConfigModule } from "../config/config.module";
 import { APP_GUARD } from "@nestjs/core";
-import { AuthenticationGuard } from "./guards/authentication.guard";
+import { SessionGuard } from "./guards/session.guard";
+import { RolesGuard } from "./guards/roles.guard";
 
 @Module({
   imports: [MikroOrmModule.forFeature([User]), ConfigModule],
   controllers: [UsersController, SessionController],
-  providers: [UsersService, SessionService, { provide: APP_GUARD, useClass: AuthenticationGuard }],
+  providers: [UsersService, SessionService, { provide: APP_GUARD, useClass: SessionGuard }, { provide: APP_GUARD, useClass: RolesGuard }],
 })
 export class UsersModule {}

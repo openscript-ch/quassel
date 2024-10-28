@@ -3,10 +3,10 @@ import { FastifyRequest } from "fastify";
 import { UsersService } from "../users.service";
 import { instanceToInstance } from "class-transformer";
 import { Reflector } from "@nestjs/core";
-import { IS_PUBLIC_KEY } from "../../common/decorators/public.decorator";
+import { IS_PUBLIC_KEY } from "../decorators/public.decorator";
 
 @Injectable()
-export class AuthenticationGuard implements CanActivate {
+export class SessionGuard implements CanActivate {
   constructor(
     private usersService: UsersService,
     private reflector: Reflector
