@@ -2,6 +2,7 @@
   "name": "quassel",
   "version": "0.0.0",
   "private": true,
+  "description": "Quassel: Gather language exposure data ",
   "scripts": {
     "build": "pnpm exec nx run-many --nx-bail --target=build --parallel --output-style stream",
     "changeset": "changeset",
@@ -28,7 +29,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.37.0",
     "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
-    "eslint-plugin-react-refresh": "^0.4.13",
+    "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.9.0",
     "nx": "20.0.6",
     "typescript-eslint": "^8.11.0"
