@@ -3,12 +3,14 @@ import { ApiOperation, ApiTags } from "@nestjs/swagger";
 import { SessionService } from "./session.service";
 import { CreateSessionDto } from "./dto/create-session.dto";
 import { Session as FastifySession } from "@fastify/secure-session";
+import { Public } from "../common/decorators/public.decorator";
 
 @ApiTags("Session")
 @Controller("session")
 export class SessionController {
   constructor(private sessionService: SessionService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ summary: "Create a session (sign in, log in, ..)" })
   create(@Body() credentials: CreateSessionDto, @Session() session: FastifySession) {
