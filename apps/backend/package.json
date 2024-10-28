@@ -24,7 +24,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@fastify/secure-session": "^7.5.1",
+    "@fastify/secure-session": "^8.0.0",
     "@fastify/static": "^7.0.4",
     "@mikro-orm/core": "^6.3.11",
     "@mikro-orm/nestjs": "^6.0.2",
