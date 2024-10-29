@@ -23,6 +23,7 @@ import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
 import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
+import { DefaultError, useQueryClient } from "@tanstack/react-query";
 
 function Root() {
   const n = useNavigate();
@@ -36,6 +37,14 @@ function Root() {
   const handleSignOut = () => {
     signOutMutation.mutate({});
   };
+  const qc = useQueryClient();
+  const handleUnauthorized = (error: DefaultError) => {
+    if (error.statusCode === 401) {
+      signOut();
+    }
+  };
+  qc.getQueryCache().config.onError = handleUnauthorized;
+  qc.getMutationCache().config.onError = handleUnauthorized;
 
   return (
     <>
