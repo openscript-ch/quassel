@@ -4,7 +4,7 @@ import { UserMutationDto } from "./dto/user-mutation.dto";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { User } from "./entities/user.entity";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
-import { bcrypt } from "hash-wasm";
+import { getPasswordHash } from "src/common/utils/encrypt";
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Injectable()
@@ -16,13 +16,10 @@ export class UsersService {
   ) {}
 
   async create(userCreationDto: UserCreationDto) {
-    const salt = new Uint8Array(16);
-    crypto.getRandomValues(salt);
-
     const user = new User();
     user.email = userCreationDto.email;
     user.role = userCreationDto.role;
-    user.password = await bcrypt({ password: userCreationDto.password, salt, costFactor: 10 });
+    user.password = await getPasswordHash(userCreationDto.password);
 
     try {
       await this.em.persist(user).flush();
@@ -48,16 +45,14 @@ export class UsersService {
     return this.userRepository.findOneOrFail(filter);
   }
 
-  async update(id: number, updateUserDto: UserMutationDto) {
+  async update(id: number, userMutationDto: UserMutationDto) {
     const user = await this.userRepository.findOneOrFail(id);
 
-    if (updateUserDto.password) {
-      const salt = new Uint8Array(16);
-      crypto.getRandomValues(salt);
-      updateUserDto.password = await bcrypt({ password: updateUserDto.password, salt, costFactor: 10 });
+    if (userMutationDto.password) {
+      userMutationDto.password = await getPasswordHash(userMutationDto.password);
     }
 
-    wrap(user).assign(updateUserDto);
+    wrap(user).assign(userMutationDto);
 
     await this.em.persist(user).flush();
 

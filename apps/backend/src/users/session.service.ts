@@ -16,7 +16,6 @@ export class SessionService {
 
       if (await bcryptVerify({ password, hash: user.password })) {
         session.set("userId", user.id);
-        console.log(session);
         return user;
       }
       throw INVALID_CREDENTIALS_EXCEPTION;
