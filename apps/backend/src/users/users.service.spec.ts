@@ -56,7 +56,6 @@ describe("UsersService", () => {
       const user = await service.create({
         email: "hans@example.ch",
         password: "kanns-noch-immer",
-        passwordConfirmation: "kanns-noch-immer",
       });
 
       expect(user.id).toBe("3");

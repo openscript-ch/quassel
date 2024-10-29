@@ -32,6 +32,7 @@ function Session() {
     },
   });
 
+  const getSessionQuery = $api.useQuery("get", "/session", {});
   const createSessionMutation = $api.useMutation("post", "/session", {
     onSuccess: (data) => {
       $session.set({ email: data.email, role: data.role });

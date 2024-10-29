@@ -1,10 +1,12 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { UpdateUserDto } from "./dto/update-user.dto";
-import { ApiOperation, ApiTags } from "@nestjs/swagger";
+import { UserCreationDto } from "./dto/user-creation.dto";
+import { UserMutationDto } from "./dto/user-mutation.dto";
+import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "./decorators/roles.decorator";
 import { UserRole } from "./entities/user.entity";
+import { ErrorResponseDto } from "src/common/dto/error-response.dto";
+import { UserDto } from "./dto/user.dto";
 
 @ApiTags("Users")
 @Controller("users")
@@ -13,7 +15,8 @@ export class UsersController {
 
   @Post()
   @ApiOperation({ summary: "Create a user" })
-  create(@Body() user: CreateUserDto) {
+  @ApiUnprocessableEntityResponse({ description: "Unique email constraint violation", type: ErrorResponseDto })
+  create(@Body() user: UserCreationDto): Promise<UserDto> {
     return this.usersService.create(user);
   }
 
@@ -31,7 +34,7 @@ export class UsersController {
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a user by ID" })
-  update(@Param("id") id: string, @Body() user: UpdateUserDto) {
+  update(@Param("id") id: string, @Body() user: UserMutationDto) {
     return this.usersService.update(+id, user);
   }
 

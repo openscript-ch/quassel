@@ -1,12 +1,11 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { UsersController } from "./users.controller";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
+import { UserCreationDto } from "./dto/user-creation.dto";
 
-const createUserDto: CreateUserDto = {
+const createUserDto: UserCreationDto = {
   email: "hans@example.ch",
   password: "kanns-noch-immer",
-  passwordConfirmation: "kanns-noch-immer",
 };
 
 describe("UsersController", () => {
@@ -20,7 +19,7 @@ describe("UsersController", () => {
         {
           provide: UsersService,
           useValue: {
-            create: jest.fn().mockImplementation((user: CreateUserDto) => Promise.resolve({ id: "3", ...user })),
+            create: jest.fn().mockImplementation((user: UserCreationDto) => Promise.resolve({ id: "3", ...user })),
             findAll: jest.fn().mockResolvedValue([
               {
                 id: "1",
@@ -40,7 +39,7 @@ describe("UsersController", () => {
                 id,
               })
             ),
-            update: jest.fn().mockImplementation((id: string, user: CreateUserDto) => {
+            update: jest.fn().mockImplementation((id: string, user: UserCreationDto) => {
               return Promise.resolve({ id, ...user });
             }),
             remove: jest.fn(),

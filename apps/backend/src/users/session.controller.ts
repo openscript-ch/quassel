@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, Post, Session } from "@nestjs/common";
-import { ApiOperation, ApiResponse, ApiTags, OmitType } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, HttpCode, Post, Session } from "@nestjs/common";
+import { ApiNoContentResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { SessionService } from "./session.service";
-import { CreateSessionDto } from "./dto/create-session.dto";
+import { SessionCreationDto } from "./dto/session-creation.dto";
 import { Session as FastifySession } from "@fastify/secure-session";
 import { Public } from "./decorators/public.decorator";
-import { User } from "./entities/user.entity";
+import { SessionResponseDto } from "./dto/session-response.dto";
+import { ErrorResponseDto } from "../common/dto/error-response.dto";
+import { CustomApiUnauthorizedResponse } from "src/common/decorators/custom-api-unauthorized-response";
 
 @ApiTags("Session")
 @Controller("session")
@@ -14,24 +16,27 @@ export class SessionController {
   @Public()
   @Post()
   @ApiOperation({ summary: "Create a session (sign in, log in, ..)" })
-  @ApiResponse({ status: 201, description: "Successful sign in", type: OmitType(User, ["password"]) })
-  @ApiResponse({ status: 401, description: "Invalid credentials" })
-  create(@Body() credentials: CreateSessionDto, @Session() session: FastifySession) {
+  @ApiResponse({ status: 201, description: "Signed in", type: SessionResponseDto })
+  @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
+  create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
     return this.sessionService.signIn(credentials, session);
   }
 
   @Get()
   @ApiOperation({ summary: "Get the current session (who am I, ..)" })
-  @ApiResponse({ status: 200, description: "Current session" })
-  @ApiResponse({ status: 401, description: "Unauthorized" })
+  @ApiResponse({ status: 200, description: "Current session", type: SessionResponseDto })
+  @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
   get(@Session() session: FastifySession) {
     return this.sessionService.whoAmI(session.get("userId"));
   }
 
   @Delete()
-  @ApiOperation({ summary: "Delete a session (sign out, log out, ..)" })
-  @ApiResponse({ status: 204, description: "Successful sign out" })
-  @ApiResponse({ status: 401, description: "Unauthorized" })
+  @HttpCode(204)
+  @ApiOperation({
+    summary: "Delete a session (sign out, log out, ..)",
+  })
+  @ApiNoContentResponse({ description: "Signed out" })
+  @CustomApiUnauthorizedResponse()
   delete(@Session() session: FastifySession) {
     session.delete();
   }
