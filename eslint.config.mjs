@@ -7,7 +7,7 @@ import pluginReactRefresh from "eslint-plugin-react-refresh";
 import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default tseslint.config(
-  { ignores: ["**/dist", "apps/mockup/"] },
+  { ignores: ["**/dist", "**/*.gen.ts", "apps/mockup/"] },
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     languageOptions: { ecmaVersion: 2020, parserOptions: { ecmaFeatures: { jsx: true } }, globals: { ...globals.browser, ...globals.node } },
