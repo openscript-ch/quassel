@@ -15,6 +15,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   await app.register(fastifySecureSession, {
+    expiry: configService.get("session.expiry"),
     cookieName: configService.get("session.cookieName"),
     secret: configService.get("session.secret"),
     salt: configService.get("session.salt"),
