@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc && vite build",
-    "build:types": "openapi-typescript http://localhost:3000/api-json -o src/types/api.d.ts",
+    "build:types": "openapi-typescript http://localhost:3000/api-json -o ./src/api.d.ts",
     "coverage": "vitest --coverage",
     "dev": "vite --host",
     "preview": "vite preview",

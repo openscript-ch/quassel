@@ -64,48 +64,74 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        CreateUserDto: {
+        UserCreationDto: {
             /**
              * @description The email of the user
-             * @example bart.simpson@example.ch
+             * @example administrator@example.ch
              */
             email: string;
             /**
              * @description The password of the user
-             * @example bart*macht*keine*Hausaufgaben
+             * @example quassel*1234
              */
             password: string;
             /**
-             * @description The password confirmation of the user
-             * @example bart*macht*keine*Hausaufgaben
+             * @description The role of the user
+             * @example ADMIN
+             * @enum {string}
              */
-            passwordConfirmation: string;
+            role?: "ASSISTANT" | "ADMIN";
         };
-        User: {
-            email: string;
-            password: string;
-            /** @enum {string} */
-            role: "ASSISTANT" | "ADMIN";
+        UserDto: {
+            /**
+             * @description The id of the user
+             * @example 1
+             */
             id: number;
-        };
-        UpdateUserDto: {
             /**
              * @description The email of the user
-             * @example bart.simpson@example.ch
+             * @example administrator@example.ch
+             */
+            email: string;
+            /**
+             * @description The password of the user
+             * @example quassel*1234
+             */
+            password: string;
+            /**
+             * @description The role of the user
+             * @example ADMIN
+             * @enum {string}
+             */
+            role?: "ASSISTANT" | "ADMIN";
+        };
+        ErrorResponseDto: {
+            /** @description Status code of the error */
+            statusCode: number;
+            /** @description Descriptive message of the error */
+            message: string;
+            /** @description Error name */
+            error?: string;
+        };
+        UserMutationDto: {
+            /**
+             * @description The email of the user
+             * @example administrator@example.ch
              */
             email?: string;
             /**
              * @description The password of the user
-             * @example bart*macht*keine*Hausaufgaben
+             * @example quassel*1234
              */
             password?: string;
             /**
-             * @description The password confirmation of the user
-             * @example bart*macht*keine*Hausaufgaben
+             * @description The role of the user
+             * @example ADMIN
+             * @enum {string}
              */
-            passwordConfirmation?: string;
+            role?: "ASSISTANT" | "ADMIN";
         };
-        CreateSessionDto: {
+        SessionCreationDto: {
             /**
              * @description The email of the user
              * @example administrator@example.ch
@@ -117,11 +143,23 @@ export interface components {
              */
             password: string;
         };
-        OmitTypeClass: {
+        SessionResponseDto: {
+            /**
+             * @description The id of the user
+             * @example 1
+             */
             id: number;
+            /**
+             * @description The email of the user
+             * @example administrator@example.ch
+             */
             email: string;
-            /** @enum {string} */
-            role: "ASSISTANT" | "ADMIN";
+            /**
+             * @description The role of the user
+             * @example ADMIN
+             * @enum {string}
+             */
+            role?: "ASSISTANT" | "ADMIN";
         };
     };
     responses: never;
@@ -160,7 +198,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateUserDto"];
+                "application/json": components["schemas"]["UserCreationDto"];
             };
         };
         responses: {
@@ -169,7 +207,16 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"];
+                    "application/json": components["schemas"]["UserDto"];
+                };
+            };
+            /** @description Unique email constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
         };
@@ -225,7 +272,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UpdateUserDto"];
+                "application/json": components["schemas"]["UserMutationDto"];
             };
         };
         responses: {
@@ -253,14 +300,18 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["SessionResponseDto"];
+                };
             };
-            /** @description Unauthorized */
+            /** @description Provided credentials are invalid */
             401: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -273,25 +324,27 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["CreateSessionDto"];
+                "application/json": components["schemas"]["SessionCreationDto"];
             };
         };
         responses: {
-            /** @description Successful sign in */
+            /** @description Signed in */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["OmitTypeClass"];
+                    "application/json": components["schemas"]["SessionResponseDto"];
                 };
             };
-            /** @description Invalid credentials */
+            /** @description Provided credentials are invalid */
             401: {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };
@@ -304,13 +357,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-            /** @description Successful sign out */
+            /** @description Signed out */
             204: {
                 headers: {
                     [name: string]: unknown;
@@ -322,7 +369,9 @@ export interface operations {
                 headers: {
                     [name: string]: unknown;
                 };
-                content?: never;
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
             };
         };
     };

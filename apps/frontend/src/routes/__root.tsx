@@ -22,14 +22,19 @@ import { version } from "../../package.json";
 import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
 import { $layout } from "../stores/layout";
+import { $api } from "../stores/api";
 
 function Root() {
   const n = useNavigate();
   const sessionStore = useStore($session);
   const layoutStore = useStore($layout);
-  const handleSignOut = () => {
+  const signOut = () => {
     $session.set({});
     n({ to: "/session" });
+  };
+  const signOutMutation = $api.useMutation("delete", "/session", { onSettled: () => signOut() });
+  const handleSignOut = () => {
+    signOutMutation.mutate({});
   };
 
   return (

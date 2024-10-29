@@ -4,7 +4,7 @@ import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useForm } from "@mantine/form";
 import { $session } from "../stores/session";
-import { $api } from "../provider/ApiProvider";
+import { $api } from "../stores/api";
 
 const messages = i18n("sessionRoute", {
   title: "Sign in",
@@ -32,7 +32,6 @@ function Session() {
     },
   });
 
-  const getSessionQuery = $api.useQuery("get", "/session", {});
   const createSessionMutation = $api.useMutation("post", "/session", {
     onSuccess: (data) => {
       $session.set({ email: data.email, role: data.role });

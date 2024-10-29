@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@quassel/ui/style.css";
 import { ThemeProvider } from "@quassel/ui";
-import { ApiProvider } from "./provider/ApiProvider.tsx";
+import { ApiProvider } from "./providers/ApiProvider.tsx";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen.ts";
 
