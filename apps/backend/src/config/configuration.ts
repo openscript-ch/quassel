@@ -1,5 +1,8 @@
 export const configuration = () => ({
   port: parseInt(process.env.PORT) || 3000,
+  cors: {
+    origin: process.env.CORS_ORIGIN || "http://localhost:3001",
+  },
   session: {
     expiry: parseInt(process.env.SESSION_EXPIRY) || 24 * 60 * 60,
     cookieName: process.env.SESSION_COOKIE_NAME || "session",
