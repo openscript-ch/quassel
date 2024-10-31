@@ -16,6 +16,7 @@ export {
   NavLink,
   Paper,
   PasswordInput,
+  Table,
   Text,
   TextInput,
   Title,

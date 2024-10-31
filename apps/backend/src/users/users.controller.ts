@@ -6,7 +6,7 @@ import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/s
 import { Roles } from "./decorators/roles.decorator";
 import { UserRole } from "./entities/user.entity";
 import { ErrorResponseDto } from "src/common/dto/error-response.dto";
-import { UserDto } from "./dto/user.dto";
+import { UserResponseDto } from "./dto/user-response.dto";
 
 @ApiTags("Users")
 @Controller("users")
@@ -16,13 +16,13 @@ export class UsersController {
   @Post()
   @ApiOperation({ summary: "Create a user" })
   @ApiUnprocessableEntityResponse({ description: "Unique email constraint violation", type: ErrorResponseDto })
-  create(@Body() user: UserCreationDto): Promise<UserDto> {
+  create(@Body() user: UserCreationDto): Promise<UserResponseDto> {
     return this.usersService.create(user);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all users" })
-  index() {
+  index(): Promise<UserResponseDto[]> {
     return this.usersService.findAll();
   }
 

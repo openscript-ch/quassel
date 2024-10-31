@@ -82,7 +82,7 @@ export interface components {
              */
             role?: "ASSISTANT" | "ADMIN";
         };
-        UserDto: {
+        UserResponseDto: {
             /**
              * @description The id of the user
              * @example 1
@@ -93,11 +93,6 @@ export interface components {
              * @example administrator@example.ch
              */
             email: string;
-            /**
-             * @description The password of the user
-             * @example quassel*1234
-             */
-            password: string;
             /**
              * @description The role of the user
              * @example ADMIN
@@ -184,7 +179,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>[];
+                    "application/json": components["schemas"]["UserResponseDto"][];
                 };
             };
         };
@@ -207,7 +202,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["UserDto"];
+                    "application/json": components["schemas"]["UserResponseDto"];
                 };
             };
             /** @description Unique email constraint violation */

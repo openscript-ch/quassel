@@ -16,14 +16,14 @@ import {
   IconMapSearch,
   Divider,
 } from "@quassel/ui";
-import { createRootRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { createRootRouteWithContext, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { version } from "../../package.json";
 import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
 import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
-import { DefaultError, useQueryClient } from "@tanstack/react-query";
+import { DefaultError, QueryClient, useQueryClient } from "@tanstack/react-query";
 
 function Root() {
   const n = useNavigate();
@@ -50,7 +50,7 @@ function Root() {
     <>
       <AppShell
         header={{ height: 118 }}
-        footer={{ height: 156 }}
+        footer={{ height: 84 }}
         navbar={{ width: 300, breakpoint: 1000, collapsed: { desktop: !layoutStore.admin } }}
       >
         <AppShell.Header>
@@ -101,6 +101,6 @@ function Root() {
   );
 }
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Root,
 });
