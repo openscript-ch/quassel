@@ -17,6 +17,8 @@ After running `pnpm dev` the following services should come up:
 - **Bump versions** by using `pnpm changeset`.
 - **Connect to the development database** with `psql -h db -U postgres` and the password `postgres`.
 - **Run db tasks** by using `pnpm --filter @quassel/backend run db`.
+    **Create a new migration** with `pnpm --filter @quassel/backend run db migration:create`.
   - **Migrate up to the latest version** with `pnpm --filter @quassel/backend run db migration:up`.
 - **Run nest tasks** by using `pnpm --filter @quassel/backend run nest`.
-  - **Generate ressources** with `pnpm --filter @quassel/backend run nest g`.
+  - **Generate ressources** with `pnpm --filter @quassel/backend run nest g res`.
+  - **Generate controllers** with e. g. `pnpm --filter @quassel/backend run nest g co --flat carer defaults`.
