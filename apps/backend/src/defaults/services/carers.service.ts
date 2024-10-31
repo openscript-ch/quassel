@@ -1,9 +1,9 @@
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { Carer } from "./entities/carer.entity";
+import { Carer } from "../entities/carer.entity";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
-import { CarerCreationDto } from "./dto/carer-creation.dto";
-import { CarerMutationDto } from "./dto/carer-mutation.dto";
+import { CarerCreationDto } from "../dto/carer-creation.dto";
+import { CarerMutationDto } from "../dto/carer-mutation.dto";
 
 @Injectable()
 export class CarersService {
