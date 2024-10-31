@@ -51,7 +51,9 @@ function Root() {
       <AppShell
         header={{ height: 118 }}
         footer={{ height: 84 }}
-        navbar={{ width: 300, breakpoint: 1000, collapsed: { desktop: !layoutStore.admin } }}
+        navbar={{ width: 300, breakpoint: "sm", collapsed: { desktop: !layoutStore.admin } }}
+        padding="sm"
+        mod={{ admin: layoutStore.admin }}
       >
         <AppShell.Header>
           <Group justify="space-between">
@@ -89,10 +91,8 @@ function Root() {
             <NavLink component={Link} to="/administration/users" leftSection={<IconUsers />} label="Users" />
           </AppShell.Navbar>
         )}
-        <AppShell.Main>
-          <div id="stage">
-            <Outlet />
-          </div>
+        <AppShell.Main m="lg">
+          <Outlet />
         </AppShell.Main>
         <AppShell.Footer>Version {version}</AppShell.Footer>
       </AppShell>
