@@ -1,5 +1,4 @@
 import { MantineProvider, MantineThemeOverride, MantineProviderProps } from "@mantine/core";
-import "@mantine/core/styles.css";
 import "./Theme.css";
 
 type ThemeProviderProps = MantineProviderProps;

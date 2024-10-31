@@ -3,7 +3,7 @@ import classes from "./HeroSection.module.css";
 import { Button, Container, Group, Text, Title } from "@quassel/ui";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { useNavigate } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 const messages = i18n("heroSection", {
   title: "Quassel",
@@ -14,7 +14,6 @@ const messages = i18n("heroSection", {
 
 export function HeroSection() {
   const t = useStore(messages);
-  const n = useNavigate();
   return (
     <Container size="md">
       <div className={classes.inner}>
@@ -27,10 +26,10 @@ export function HeroSection() {
           </Text>
 
           <Group mt={30}>
-            <Button size="md" onClick={() => n({ to: "/questionnaire" })}>
+            <Button size="md" renderRoot={(props) => <Link to="/questionnaire" {...props} />}>
               {t.toFormAction}
             </Button>
-            <Button variant="default" size="md" onClick={() => n({ to: "/administration" })}>
+            <Button variant="default" size="md" renderRoot={(props) => <Link to="/administration" {...props} />}>
               {t.toAdminAction}
             </Button>
           </Group>

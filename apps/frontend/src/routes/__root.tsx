@@ -16,35 +16,51 @@ import {
   IconMapSearch,
   Divider,
 } from "@quassel/ui";
-import { createRootRoute, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { createRootRouteWithContext, Link, Outlet, useNavigate } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { version } from "../../package.json";
 import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
 import { $layout } from "../stores/layout";
+import { $api } from "../stores/api";
+import { DefaultError, QueryClient, useQueryClient } from "@tanstack/react-query";
 
 function Root() {
   const n = useNavigate();
   const sessionStore = useStore($session);
   const layoutStore = useStore($layout);
-  const handleSignOut = () => {
+  const signOut = () => {
     $session.set({});
     n({ to: "/session" });
   };
+  const signOutMutation = $api.useMutation("delete", "/session", { onSettled: () => signOut() });
+  const handleSignOut = () => {
+    signOutMutation.mutate({});
+  };
+  const qc = useQueryClient();
+  const handleUnauthorized = (error: DefaultError) => {
+    if (error.statusCode === 401) {
+      signOut();
+    }
+  };
+  qc.getQueryCache().config.onError = handleUnauthorized;
+  qc.getMutationCache().config.onError = handleUnauthorized;
 
   return (
     <>
       <AppShell
         header={{ height: 118 }}
-        footer={{ height: 156 }}
-        navbar={{ width: 300, breakpoint: 1000, collapsed: { desktop: !layoutStore.admin } }}
+        footer={{ height: 84 }}
+        navbar={{ width: 300, breakpoint: "sm", collapsed: { desktop: !layoutStore.admin } }}
+        padding="xl"
+        mod={{ admin: layoutStore.admin }}
       >
         <AppShell.Header>
           <Group justify="space-between">
             <Link to="/">
               <Brand />
             </Link>
-            {sessionStore.token && (
+            {sessionStore.email && (
               <Group>
                 <Text>{sessionStore.email}</Text>
                 <Button leftSection={<IconLogout />} onClick={handleSignOut}>
@@ -76,9 +92,7 @@ function Root() {
           </AppShell.Navbar>
         )}
         <AppShell.Main>
-          <div id="stage">
-            <Outlet />
-          </div>
+          <Outlet />
         </AppShell.Main>
         <AppShell.Footer>Version {version}</AppShell.Footer>
       </AppShell>
@@ -87,6 +101,6 @@ function Root() {
   );
 }
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Root,
 });

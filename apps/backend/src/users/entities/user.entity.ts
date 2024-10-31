@@ -1,4 +1,4 @@
-import { Entity, Enum, Opt, Property } from "@mikro-orm/core";
+import { Entity, Enum, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Exclude } from "class-transformer";
 
@@ -17,5 +17,5 @@ export class User extends BaseEntity {
   password!: string;
 
   @Enum({ items: () => UserRole, nativeEnumName: "UserRole", default: UserRole.ASSISTANT })
-  role!: UserRole & Opt;
+  role!: UserRole;
 }

@@ -5,8 +5,16 @@
 
 /* Page layout */
 
-.mantine-AppShell-header, .mantine-AppShell-footer, #stage {
+.mantine-AppShell-header, .mantine-AppShell-footer {
   padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
+}
+
+[data-admin] :is(.mantine-AppShell-header, .mantine-AppShell-footer) {
+  padding: var(--mantine-spacing-xl) var(--mantine-spacing-sm);
+}
+
+[data-admin] .mantine-AppShell-header .quassel-Logo {
+  width: calc(var(--app-shell-navbar-width) - var(--mantine-spacing-sm) - var(--group-gap));
 }
 
 /* Components overrides */
