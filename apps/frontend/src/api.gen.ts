@@ -232,7 +232,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>;
+                    "application/json": components["schemas"]["UserResponseDto"];
                 };
             };
         };
@@ -276,7 +276,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": Record<string, never>;
+                    "application/json": components["schemas"]["UserResponseDto"];
                 };
             };
         };
@@ -371,3 +371,12 @@ export interface operations {
         };
     };
 }
+type ReadonlyArray<T> = [
+    Exclude<T, undefined>
+] extends [
+    any[]
+] ? Readonly<Exclude<T, undefined>> : Readonly<Exclude<T, undefined>[]>;
+export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["UserCreationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];

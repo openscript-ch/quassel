@@ -26,6 +26,8 @@ import { Route as AuthAdministrationLanguagesImport } from "./routes/_auth/admin
 import { Route as AuthAdministrationExportImport } from "./routes/_auth/administration/export";
 import { Route as AuthAdministrationCarersImport } from "./routes/_auth/administration/carers";
 import { Route as AuthAdministrationUsersIndexImport } from "./routes/_auth/administration/users/index";
+import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
+import { Route as AuthAdministrationUsersEditIdImport } from "./routes/_auth/administration/users/edit.$id";
 
 // Create/Update Routes
 
@@ -119,6 +121,21 @@ const AuthAdministrationUsersIndexRoute =
   AuthAdministrationUsersIndexImport.update({
     id: "/",
     path: "/",
+    getParentRoute: () => AuthAdministrationUsersRoute,
+  } as any);
+
+const AuthAdministrationUsersNewRoute = AuthAdministrationUsersNewImport.update(
+  {
+    id: "/new",
+    path: "/new",
+    getParentRoute: () => AuthAdministrationUsersRoute,
+  } as any,
+);
+
+const AuthAdministrationUsersEditIdRoute =
+  AuthAdministrationUsersEditIdImport.update({
+    id: "/edit/$id",
+    path: "/edit/$id",
     getParentRoute: () => AuthAdministrationUsersRoute,
   } as any);
 
@@ -224,11 +241,25 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthQuestionnaireIndexImport;
       parentRoute: typeof AuthQuestionnaireImport;
     };
+    "/_auth/administration/users/new": {
+      id: "/_auth/administration/users/new";
+      path: "/new";
+      fullPath: "/administration/users/new";
+      preLoaderRoute: typeof AuthAdministrationUsersNewImport;
+      parentRoute: typeof AuthAdministrationUsersImport;
+    };
     "/_auth/administration/users/": {
       id: "/_auth/administration/users/";
       path: "/";
       fullPath: "/administration/users/";
       preLoaderRoute: typeof AuthAdministrationUsersIndexImport;
+      parentRoute: typeof AuthAdministrationUsersImport;
+    };
+    "/_auth/administration/users/edit/$id": {
+      id: "/_auth/administration/users/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/users/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationUsersEditIdImport;
       parentRoute: typeof AuthAdministrationUsersImport;
     };
   }
@@ -237,12 +268,16 @@ declare module "@tanstack/react-router" {
 // Create and export the route tree
 
 interface AuthAdministrationUsersRouteChildren {
+  AuthAdministrationUsersNewRoute: typeof AuthAdministrationUsersNewRoute;
   AuthAdministrationUsersIndexRoute: typeof AuthAdministrationUsersIndexRoute;
+  AuthAdministrationUsersEditIdRoute: typeof AuthAdministrationUsersEditIdRoute;
 }
 
 const AuthAdministrationUsersRouteChildren: AuthAdministrationUsersRouteChildren =
   {
+    AuthAdministrationUsersNewRoute: AuthAdministrationUsersNewRoute,
     AuthAdministrationUsersIndexRoute: AuthAdministrationUsersIndexRoute,
+    AuthAdministrationUsersEditIdRoute: AuthAdministrationUsersEditIdRoute,
   };
 
 const AuthAdministrationUsersRouteWithChildren =
@@ -315,7 +350,9 @@ export interface FileRoutesByFullPath {
   "/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
   "/administration/": typeof AuthAdministrationIndexRoute;
   "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
+  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
 export interface FileRoutesByTo {
@@ -329,7 +366,9 @@ export interface FileRoutesByTo {
   "/administration/studies": typeof AuthAdministrationStudiesRoute;
   "/administration": typeof AuthAdministrationIndexRoute;
   "/questionnaire": typeof AuthQuestionnaireIndexRoute;
+  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/administration/users": typeof AuthAdministrationUsersIndexRoute;
+  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
 export interface FileRoutesById {
@@ -348,7 +387,9 @@ export interface FileRoutesById {
   "/_auth/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
   "/_auth/administration/": typeof AuthAdministrationIndexRoute;
   "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
+  "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/_auth/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/_auth/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
 export interface FileRouteTypes {
@@ -368,7 +409,9 @@ export interface FileRouteTypes {
     | "/administration/users"
     | "/administration/"
     | "/questionnaire/"
-    | "/administration/users/";
+    | "/administration/users/new"
+    | "/administration/users/"
+    | "/administration/users/edit/$id";
   fileRoutesByTo: FileRoutesByTo;
   to:
     | "/session"
@@ -381,7 +424,9 @@ export interface FileRouteTypes {
     | "/administration/studies"
     | "/administration"
     | "/questionnaire"
-    | "/administration/users";
+    | "/administration/users/new"
+    | "/administration/users"
+    | "/administration/users/edit/$id";
   id:
     | "__root__"
     | "/_auth"
@@ -398,7 +443,9 @@ export interface FileRouteTypes {
     | "/_auth/administration/users"
     | "/_auth/administration/"
     | "/_auth/questionnaire/"
-    | "/_auth/administration/users/";
+    | "/_auth/administration/users/new"
+    | "/_auth/administration/users/"
+    | "/_auth/administration/users/edit/$id";
   fileRoutesById: FileRoutesById;
 }
 
@@ -492,7 +539,9 @@ export const routeTree = rootRoute
       "filePath": "_auth/administration/users.tsx",
       "parent": "/_auth/administration",
       "children": [
-        "/_auth/administration/users/"
+        "/_auth/administration/users/new",
+        "/_auth/administration/users/",
+        "/_auth/administration/users/edit/$id"
       ]
     },
     "/_auth/administration/": {
@@ -503,8 +552,16 @@ export const routeTree = rootRoute
       "filePath": "_auth/questionnaire/index.tsx",
       "parent": "/_auth/questionnaire"
     },
+    "/_auth/administration/users/new": {
+      "filePath": "_auth/administration/users/new.tsx",
+      "parent": "/_auth/administration/users"
+    },
     "/_auth/administration/users/": {
       "filePath": "_auth/administration/users/index.tsx",
+      "parent": "/_auth/administration/users"
+    },
+    "/_auth/administration/users/edit/$id": {
+      "filePath": "_auth/administration/users/edit.$id.tsx",
       "parent": "/_auth/administration/users"
     }
   }

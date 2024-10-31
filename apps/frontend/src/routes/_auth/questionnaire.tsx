@@ -7,7 +7,6 @@ export const Route = createFileRoute("/_auth/questionnaire")({
 function QuestionnaireLayout() {
   return (
     <>
-      <h2>Questionnaire</h2>
       <Outlet />
     </>
   );

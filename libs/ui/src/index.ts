@@ -24,6 +24,8 @@ import "@mantine/core/styles/PasswordInput.css";
 import "@mantine/core/styles/Table.css";
 import "@mantine/core/styles/Text.css";
 import "@mantine/core/styles/Title.css";
+import "@mantine/core/styles/ActionIcon.css";
+import "@mantine/core/styles/Combobox.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -42,6 +44,7 @@ export {
   NavLink,
   Paper,
   PasswordInput,
+  Select,
   Table,
   Text,
   TextInput,

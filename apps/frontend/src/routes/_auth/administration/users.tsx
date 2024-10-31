@@ -1,11 +1,13 @@
-import { Title } from "@quassel/ui";
+import { Paper, Title } from "@quassel/ui";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 function AdministrationUsers() {
   return (
     <>
       <Title>Users</Title>
-      <Outlet />
+      <Paper my="lg">
+        <Outlet />
+      </Paper>
     </>
   );
 }

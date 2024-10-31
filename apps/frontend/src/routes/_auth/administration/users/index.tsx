@@ -1,13 +1,17 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
-import { Table } from "@quassel/ui";
+import { Button, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
 function AdministrationUsersIndex() {
   const users = useSuspenseQuery($api.queryOptions("get", "/users"));
+  const deleteUserMutation = $api.useMutation("delete", "/users/{id}", { onSuccess: () => users.refetch() });
 
   return (
     <>
+      <Button variant="default" renderRoot={(props) => <Link to="/administration/users/new" {...props} />}>
+        New user
+      </Button>
       <Table>
         <Table.Thead>
           <Table.Tr>
@@ -23,6 +27,14 @@ function AdministrationUsersIndex() {
               <Table.Td>{u.id}</Table.Td>
               <Table.Td>{u.email}</Table.Td>
               <Table.Td>{u.role}</Table.Td>
+              <Table.Td>
+                <Button variant="default" renderRoot={(props) => <Link to={`/administration/users/edit/${u.id}`} {...props} />}>
+                  Edit
+                </Button>
+                <Button variant="default" onClick={() => deleteUserMutation.mutate({ params: { path: { id: u.id.toString() } } })}>
+                  Delete
+                </Button>
+              </Table.Td>
             </Table.Tr>
           ))}
         </Table.Tbody>
