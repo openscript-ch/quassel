@@ -1,9 +1,9 @@
 import { Module } from "@nestjs/common";
-import { CarerController } from "./carer.controller";
-import { CarerService } from "./carer.service";
+import { CarersController } from "./carers.controller";
+import { CarersService } from "./carers.service";
 
 @Module({
-  controllers: [CarerController],
-  providers: [CarerService],
+  controllers: [CarersController],
+  providers: [CarersService],
 })
 export class DefaultsModule {}

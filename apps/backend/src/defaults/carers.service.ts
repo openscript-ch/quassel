@@ -6,7 +6,7 @@ import { CarerCreationDto } from "./dto/carer-creation.dto";
 import { CarerMutationDto } from "./dto/carer-mutation.dto";
 
 @Injectable()
-export class CarerService {
+export class CarersService {
   constructor(
     @InjectRepository(Carer)
     private readonly carerRepository: EntityRepository<Carer>,
