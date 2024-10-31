@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, HttpCode, Post, Session } from "@nestjs/common";
 import { ApiNoContentResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
-import { SessionService } from "./session.service";
-import { SessionCreationDto } from "./dto/session-creation.dto";
+import { SessionService } from "../services/session.service";
+import { SessionCreationDto } from "../dto/session-creation.dto";
 import { Session as FastifySession } from "@fastify/secure-session";
-import { Public } from "./decorators/public.decorator";
-import { SessionResponseDto } from "./dto/session-response.dto";
-import { ErrorResponseDto } from "../common/dto/error-response.dto";
-import { CustomApiUnauthorizedResponse } from "../common/decorators/custom-api-unauthorized-response";
+import { Public } from "../decorators/public.decorator";
+import { SessionResponseDto } from "../dto/session-response.dto";
+import { ErrorResponseDto } from "../../common/dto/error-response.dto";
+import { CustomApiUnauthorizedResponse } from "../../common/decorators/custom-api-unauthorized-response";
 
 @ApiTags("Session")
 @Controller("session")

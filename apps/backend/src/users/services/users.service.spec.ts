@@ -1,7 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { UsersService } from "./users.service";
 import { getRepositoryToken } from "@mikro-orm/nestjs";
-import { User } from "./entities/user.entity";
+import { User } from "../entities/user.entity";
 import { EntityManager } from "@mikro-orm/core";
 
 const userArray = [

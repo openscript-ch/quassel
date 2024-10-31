@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { FastifyRequest } from "fastify";
-import { UsersService } from "../users.service";
+import { UsersService } from "../services/users.service";
 import { instanceToInstance } from "class-transformer";
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "../decorators/public.decorator";

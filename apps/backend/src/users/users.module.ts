@@ -1,10 +1,10 @@
 import { Module } from "@nestjs/common";
-import { UsersService } from "./users.service";
-import { UsersController } from "./users.controller";
+import { UsersService } from "./services/users.service";
+import { UsersController } from "./controllers/users.controller";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { User } from "./entities/user.entity";
-import { SessionService } from "./session.service";
-import { SessionController } from "./session.controller";
+import { SessionService } from "./services/session.service";
+import { SessionController } from "./controllers/session.controller";
 import { APP_GUARD } from "@nestjs/core";
 import { SessionGuard } from "./guards/session.guard";
 import { RolesGuard } from "./guards/roles.guard";
