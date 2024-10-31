@@ -21,4 +21,5 @@ After running `pnpm dev` the following services should come up:
   - **Migrate up to the latest version** with `pnpm --filter @quassel/backend run db migration:up`.
 - **Run nest tasks** by using `pnpm --filter @quassel/backend run nest`.
   - **Generate ressources** with `pnpm --filter @quassel/backend run nest g res`.
-  - **Generate controllers** with e. g. `pnpm --filter @quassel/backend run nest g co --flat carer defaults`.
+  - **Generate services** with e. g. `pnpm --filter @quassel/backend run nest g --flat s participants research/services`.
+  - **Generate controllers** with e. g. `pnpm --filter @quassel/backend run nest g --flat co carer defaults`.

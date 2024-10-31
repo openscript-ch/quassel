@@ -1,7 +1,7 @@
 import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Participant } from "../../entities/participant.entity";
-import { Entry } from "../../entities/entry.entity";
+import { Participant } from "../../research/entities/participant.entity";
+import { Entry } from "../../research/entities/entry.entity";
 
 @Entity()
 export class Carer extends BaseEntity {
