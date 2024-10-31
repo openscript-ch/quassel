@@ -31,14 +31,16 @@ describe("UsersService", () => {
           useValue: {
             find: jest.fn().mockResolvedValue(userArray),
             findOneBy: jest.fn().mockResolvedValue(firstUser),
-            create: jest.fn().mockImplementation((user: User) => Promise.resolve({ id: "3", ...user })),
           },
         },
         {
           provide: EntityManager,
           useValue: {
             remove: jest.fn(),
-            persist: jest.fn(),
+            persist: jest.fn().mockImplementation((user: User) => {
+              user.id = 3;
+              return { flush: jest.fn() };
+            }),
           },
         },
       ],
@@ -58,7 +60,7 @@ describe("UsersService", () => {
         password: "kanns-noch-immer",
       });
 
-      expect(user.id).toBe("3");
+      expect(user.id).toBe(3);
       expect(user.email).toBe("hans@example.ch");
       expect(user.password).toHaveLength(60);
     });

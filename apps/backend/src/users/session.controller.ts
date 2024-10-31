@@ -6,7 +6,7 @@ import { Session as FastifySession } from "@fastify/secure-session";
 import { Public } from "./decorators/public.decorator";
 import { SessionResponseDto } from "./dto/session-response.dto";
 import { ErrorResponseDto } from "../common/dto/error-response.dto";
-import { CustomApiUnauthorizedResponse } from "src/common/decorators/custom-api-unauthorized-response";
+import { CustomApiUnauthorizedResponse } from "../common/decorators/custom-api-unauthorized-response";
 
 @ApiTags("Session")
 @Controller("session")

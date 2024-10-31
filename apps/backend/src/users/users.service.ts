@@ -4,7 +4,7 @@ import { UserMutationDto } from "./dto/user-mutation.dto";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { User } from "./entities/user.entity";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
-import { getPasswordHash } from "src/common/utils/encrypt";
+import { getPasswordHash } from "../common/utils/encrypt";
 
 @UseInterceptors(ClassSerializerInterceptor)
 @Injectable()

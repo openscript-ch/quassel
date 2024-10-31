@@ -5,7 +5,7 @@ import { UserMutationDto } from "./dto/user-mutation.dto";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "./decorators/roles.decorator";
 import { UserRole } from "./entities/user.entity";
-import { ErrorResponseDto } from "src/common/dto/error-response.dto";
+import { ErrorResponseDto } from "../common/dto/error-response.dto";
 import { UserResponseDto } from "./dto/user-response.dto";
 
 @ApiTags("Users")
