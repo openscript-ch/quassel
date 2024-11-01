@@ -4,7 +4,7 @@ import { UsersService } from "../services/users.service";
 import { UserCreationDto } from "../dto/user-creation.dto";
 
 const createUserDto: UserCreationDto = {
-  email: "hans@example.ch",
+  email: "hans@example.com",
   password: "kanns-noch-immer",
 };
 

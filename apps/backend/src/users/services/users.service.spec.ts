@@ -56,12 +56,12 @@ describe("UsersService", () => {
   describe("create()", () => {
     it("should successfully insert a user", async () => {
       const user = await service.create({
-        email: "hans@example.ch",
+        email: "hans@example.com",
         password: "kanns-noch-immer",
       });
 
       expect(user.id).toBe(3);
-      expect(user.email).toBe("hans@example.ch");
+      expect(user.email).toBe("hans@example.com");
       expect(user.password).toHaveLength(60);
     });
   });

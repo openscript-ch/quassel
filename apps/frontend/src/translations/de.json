@@ -2,7 +2,7 @@
   "sessionRoute": {
     "title": "Anmelden",
     "emailLabel": "E-Mail",
-    "emailPlaceholder": "franziska.tobler@example.ch",
+    "emailPlaceholder": "franziska.tobler@example.com",
     "passwordLabel": "Passwort",
     "passwordPlaceholder": "Ein sicheres Passwort",
     "formAction": "Anmelden"

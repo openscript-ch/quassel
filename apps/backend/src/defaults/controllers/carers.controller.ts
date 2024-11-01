@@ -11,37 +11,37 @@ import { UserRole } from "src/users/entities/user.entity";
 @ApiTags("Carers")
 @Controller("carers")
 export class CarersController {
-  constructor(private readonly carerService: CarersService) {}
+  constructor(private readonly carersService: CarersService) {}
 
   @Post()
   @ApiOperation({ summary: "Create a carer" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
   create(@Body() carer: CarerCreationDto): Promise<CarerResponseDto> {
-    return this.carerService.create(carer);
+    return this.carersService.create(carer);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all carers" })
   index(): Promise<CarerResponseDto[]> {
-    return this.carerService.findAll();
+    return this.carersService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a carer by ID" })
   get(@Param("id") id: string): Promise<CarerResponseDto> {
-    return this.carerService.findOne(+id);
+    return this.carersService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a carer by ID" })
   update(@Param("id") id: string, @Body() carer: CarerMutationDto): Promise<CarerResponseDto> {
-    return this.carerService.update(+id, carer);
+    return this.carersService.update(+id, carer);
   }
 
   @Delete(":id")
   @ApiOperation({ summary: "Delete a carer by ID" })
   @Roles(UserRole.ADMIN)
   delete(@Param("id") id: string) {
-    return this.carerService.remove(+id);
+    return this.carersService.remove(+id);
   }
 }

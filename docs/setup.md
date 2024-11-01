@@ -103,7 +103,7 @@ The following sources were used:
 1. Replace all `example.com` with the domain where the application runs on.
 
    ```bash
-   sed -i "s/example.com/example.ch/g" docker-compose.yaml
+   sed -i "s/example.com/example.com/g" docker-compose.yaml
    ```
 
 1. Change contact email for SSL certificates in `traefik.yaml`

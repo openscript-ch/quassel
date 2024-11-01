@@ -6,7 +6,7 @@ export class UserDto {
   @ApiProperty({ example: 1, description: "The id of the user" })
   id: number;
 
-  @ApiProperty({ example: "administrator@example.ch", description: "The email of the user" })
+  @ApiProperty({ example: "administrator@example.com", description: "The email of the user" })
   @IsEmail()
   @IsNotEmpty()
   email: string;
