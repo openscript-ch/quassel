@@ -1,9 +1,9 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsDate, IsOptional } from "class-validator";
-import { Questionnaire } from "../entities/questionnaire.entity";
+import { Questionnaire } from "../questionnaires/questionnaire.entity";
 import { Carer } from "../../defaults/carers/carer.entity";
-import { Language } from "../../defaults/entities/language.entity";
+import { Language } from "../../defaults/languages/language.entity";
 
 export class ParticipantDto {
   @ApiProperty({ example: 1, description: "The id of the participant (child id)" })

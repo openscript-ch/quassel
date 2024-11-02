@@ -1,7 +1,7 @@
 import { Check, Entity, ManyToOne, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Entry } from "./entry.entity";
-import { Language } from "../../defaults/entities/language.entity";
+import { Language } from "../../defaults/languages/language.entity";
+import { Entry } from "../entries/entry.entity";
 
 @Entity()
 export class EntryLanguage extends BaseEntity {

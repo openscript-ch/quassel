@@ -1,6 +1,6 @@
 import { Collection, Entity, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Questionnaire } from "./questionnaire.entity";
+import { Questionnaire } from "../questionnaires/questionnaire.entity";
 
 @Entity()
 export class Study extends BaseEntity {
