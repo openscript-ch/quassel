@@ -25,7 +25,7 @@ export class ParticipantsService {
       throw e;
     }
 
-    return participant;
+    return participant.toObject();
   }
 
   findAll() {

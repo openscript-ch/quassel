@@ -1,7 +1,9 @@
 import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsOptional, IsDate, Min, Max } from "class-validator";
-import { Questionnaire } from "../questionnaires/questionnaire.entity";
+import { QuestionnaireDto } from "../questionnaires/questionnaire.dto";
+import { CarerDto } from "../../defaults/carers/carer.dto";
+import { EntryLanguageDto } from "../entry-languages/entry-language.dto";
 
 export class EntryDto {
   @ApiProperty({ example: 1, description: "The id of the entry" })
@@ -25,8 +27,14 @@ export class EntryDto {
   @IsOptional()
   weeklyRecurring?: number;
 
-  @Type(() => Questionnaire)
-  questionnaire: Questionnaire;
+  @Type(() => QuestionnaireDto)
+  questionnaire: QuestionnaireDto;
+
+  @Type(() => CarerDto)
+  carer: CarerDto;
+
+  @Type(() => Array<EntryLanguageDto>)
+  entryLanguages: EntryLanguageDto[];
 }
 export class EntryResponseDto extends EntryDto {}
 export class EntryCreationDto extends OmitType(EntryDto, ["id"]) {}

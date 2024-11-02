@@ -3,6 +3,7 @@ import { Type } from "class-transformer";
 import { IsDate, IsNotEmpty } from "class-validator";
 import { ParticipantDto } from "../participants/participant.dto";
 import { EntryDto } from "../entries/entry.dto";
+import { StudyDto } from "../studies/study.dto";
 
 export class QuestionnaireDto {
   @ApiProperty({ example: 1, description: "The id of the questionnaire" })
@@ -22,6 +23,9 @@ export class QuestionnaireDto {
 
   @ApiProperty({ example: "We went on holidays for 2 weeks and only spoke Esperanto", description: "The remark of the questionnaire" })
   remark?: string;
+
+  @Type(() => StudyDto)
+  study: StudyDto;
 
   @Type(() => ParticipantDto)
   participant: ParticipantDto;

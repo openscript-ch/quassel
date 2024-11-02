@@ -2,7 +2,7 @@ import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { MinLength, IsNotEmpty, IsOptional } from "class-validator";
 import { ParticipantDto } from "../../research/participants/participant.dto";
-import { EntryLanguage } from "../../research/entry-languages/entry-language.entity";
+import { EntryLanguageDto } from "../../research/entry-languages/entry-language.dto";
 
 export class LanguageDto {
   @ApiProperty({ example: 1, description: "The id of the language" })
@@ -21,8 +21,8 @@ export class LanguageDto {
   @Type(() => ParticipantDto)
   participant?: ParticipantDto;
 
-  @Type(() => Array<EntryLanguage>)
-  entryLanguages: EntryLanguage[];
+  @Type(() => Array<EntryLanguageDto>)
+  entryLanguages: EntryLanguageDto[];
 }
 export class LanguageResponseDto extends LanguageDto {}
 export class LanguageCreationDto extends OmitType(LanguageDto, ["id"]) {}

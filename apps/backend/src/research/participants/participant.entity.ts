@@ -1,10 +1,10 @@
-import { Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { BaseEntity, Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Carer } from "../../defaults/carers/carer.entity";
 import { Language } from "../../defaults/languages/language.entity";
 import { Questionnaire } from "../questionnaires/questionnaire.entity";
 
 @Entity()
-export class Participant {
+export class Participant extends BaseEntity {
   @PrimaryKey({ columnType: "bigint" })
   id!: number;
 
