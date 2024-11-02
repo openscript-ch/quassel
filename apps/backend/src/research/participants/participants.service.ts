@@ -1,6 +1,6 @@
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException } from "@mikro-orm/core";
 import { ParticipantCreationDto, ParticipantMutationDto } from "./participant.dto";
 import { Participant } from "./participant.entity";
 
@@ -28,26 +28,25 @@ export class ParticipantsService {
     return participant.toObject();
   }
 
-  findAll() {
-    return this.participantRepository.findAll();
+  async findAll() {
+    return (await this.participantRepository.findAll()).map((participant) => participant.toObject());
   }
 
-  findOne(id: number) {
-    return this.participantRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.participantRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<Participant>) {
-    return this.participantRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<Participant>) {
+    return (await this.participantRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, participantMutationDto: ParticipantMutationDto) {
     const participant = await this.participantRepository.findOneOrFail(id);
-
-    wrap(participant).assign(participantMutationDto);
+    participant.assign(participantMutationDto);
 
     await this.em.persist(participant).flush();
 
-    return participant;
+    return participant.toObject();
   }
 
   remove(id: number) {

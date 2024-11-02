@@ -28,16 +28,16 @@ export class StudiesService {
     return questionnaire.toObject();
   }
 
-  findAll() {
-    return this.questionnaireRepository.findAll();
+  async findAll() {
+    return (await this.questionnaireRepository.findAll()).map((questionnaire) => questionnaire.toObject());
   }
 
-  findOne(id: number) {
-    return this.questionnaireRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.questionnaireRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<Study>) {
-    return this.questionnaireRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<Study>) {
+    return (await this.questionnaireRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, questionnaireMutationDto: StudyMutationDto) {
@@ -46,7 +46,7 @@ export class StudiesService {
 
     await this.em.persist(questionnaire).flush();
 
-    return questionnaire;
+    return questionnaire.toObject();
   }
 
   remove(id: number) {

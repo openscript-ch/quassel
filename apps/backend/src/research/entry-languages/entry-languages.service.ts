@@ -28,16 +28,16 @@ export class EntryLanguagesService {
     return entryLanguage.toObject();
   }
 
-  findAll() {
-    return this.entryLanguageRepository.findAll();
+  async findAll() {
+    return (await this.entryLanguageRepository.findAll()).map((entryLanguage) => entryLanguage.toObject());
   }
 
-  findOne(id: number) {
-    return this.entryLanguageRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.entryLanguageRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<EntryLanguage>) {
-    return this.entryLanguageRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<EntryLanguage>) {
+    return (await this.entryLanguageRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, entryLanguageMutationDto: EntryLanguageMutationDto) {
@@ -46,7 +46,7 @@ export class EntryLanguagesService {
 
     await this.em.persist(entryLanguage).flush();
 
-    return entryLanguage;
+    return entryLanguage.toObject();
   }
 
   remove(id: number) {

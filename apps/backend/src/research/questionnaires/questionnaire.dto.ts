@@ -2,7 +2,6 @@ import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsDate, IsNotEmpty } from "class-validator";
 import { ParticipantDto } from "../participants/participant.dto";
-import { EntryDto } from "../entries/entry.dto";
 import { StudyDto } from "../studies/study.dto";
 
 export class QuestionnaireDto {
@@ -30,8 +29,8 @@ export class QuestionnaireDto {
   @Type(() => ParticipantDto)
   participant: ParticipantDto;
 
-  @Type(() => Array<EntryDto>)
-  entries: EntryDto[];
+  @Type(() => Array<number>)
+  entries: number[];
 }
 export class QuestionnaireResponseDto extends QuestionnaireDto {}
 export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id"]) {}

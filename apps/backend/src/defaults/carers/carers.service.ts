@@ -28,16 +28,16 @@ export class CarersService {
     return carer.toObject();
   }
 
-  findAll() {
-    return this.carerRepository.findAll();
+  async findAll() {
+    return (await this.carerRepository.findAll()).map((carer) => carer.toObject());
   }
 
-  findOne(id: number) {
-    return this.carerRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.carerRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<Carer>) {
-    return this.carerRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<Carer>) {
+    return (await this.carerRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, carerMutationDto: CarerMutationDto) {
@@ -46,7 +46,7 @@ export class CarersService {
 
     await this.em.persist(carer).flush();
 
-    return carer;
+    return carer.toObject();
   }
 
   remove(id: number) {

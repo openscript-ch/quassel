@@ -1,5 +1,5 @@
 import { SessionData as FastifySessionData } from "@fastify/secure-session";
-import { User } from "./system/users/user.entity";
+import { UserDto } from "./system/users/user.dto";
 
 declare module "@fastify/secure-session" {
   interface SessionData extends FastifySessionData {
@@ -9,7 +9,7 @@ declare module "@fastify/secure-session" {
 
 declare module "fastify" {
   interface FastifyRequest {
-    user?: User;
+    user?: UserDto;
   }
 }
 

@@ -28,16 +28,16 @@ export class LanguagesService {
     return language.toObject();
   }
 
-  findAll() {
-    return this.languageRepository.findAll();
+  async findAll() {
+    return (await this.languageRepository.findAll()).map((language) => language.toObject());
   }
 
-  findOne(id: number) {
-    return this.languageRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.languageRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<Language>) {
-    return this.languageRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<Language>) {
+    return (await this.languageRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, languageMutationDto: LanguageMutationDto) {
@@ -46,7 +46,7 @@ export class LanguagesService {
 
     await this.em.persist(language).flush();
 
-    return language;
+    return language.toObject();
   }
 
   remove(id: number) {

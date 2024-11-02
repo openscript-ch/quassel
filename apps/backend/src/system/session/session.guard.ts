@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { FastifyRequest } from "fastify";
-import { instanceToInstance } from "class-transformer";
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "./public.decorator";
 import { UsersService } from "../users/users.service";
@@ -28,7 +27,7 @@ export class SessionGuard implements CanActivate {
 
     try {
       const user = await this.usersService.findOne(userId);
-      request.user = instanceToInstance(user);
+      request.user = user;
 
       return true;
     } catch {

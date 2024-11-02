@@ -14,6 +14,7 @@ async function bootstrap() {
     credentials: true,
     origin: configService.get("cors.origin"),
   });
+  app.enableShutdownHooks();
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 

@@ -2,7 +2,6 @@ import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { IsNotEmpty, MinLength } from "class-validator";
 import { Type } from "class-transformer";
 import { ParticipantDto } from "../../research/participants/participant.dto";
-import { EntryDto } from "../../research/entries/entry.dto";
 
 export class CarerDto {
   @ApiProperty({ example: 1, description: "The id of the carer" })
@@ -16,8 +15,8 @@ export class CarerDto {
   @Type(() => ParticipantDto)
   participant?: ParticipantDto;
 
-  @Type(() => Array<EntryDto>)
-  entries: EntryDto[];
+  @Type(() => Array<number>)
+  entries: number[];
 }
 export class CarerResponseDto extends CarerDto {}
 export class CarerCreationDto extends OmitType(CarerDto, ["id"]) {}

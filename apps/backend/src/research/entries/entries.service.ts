@@ -28,16 +28,16 @@ export class EntriesService {
     return entry.toObject();
   }
 
-  findAll() {
-    return this.entryRepository.findAll();
+  async findAll() {
+    return (await this.entryRepository.findAll()).map((entry) => entry.toObject());
   }
 
-  findOne(id: number) {
-    return this.entryRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.entryRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<Entry>) {
-    return this.entryRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<Entry>) {
+    return (await this.entryRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, entryMutationDto: EntryMutationDto) {
@@ -47,7 +47,7 @@ export class EntriesService {
 
     await this.em.persist(entry).flush();
 
-    return entry;
+    return entry.toObject();
   }
 
   remove(id: number) {

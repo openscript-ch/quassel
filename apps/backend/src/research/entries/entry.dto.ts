@@ -3,7 +3,6 @@ import { Type } from "class-transformer";
 import { IsOptional, IsDate, Min, Max } from "class-validator";
 import { QuestionnaireDto } from "../questionnaires/questionnaire.dto";
 import { CarerDto } from "../../defaults/carers/carer.dto";
-import { EntryLanguageDto } from "../entry-languages/entry-language.dto";
 
 export class EntryDto {
   @ApiProperty({ example: 1, description: "The id of the entry" })
@@ -33,8 +32,8 @@ export class EntryDto {
   @Type(() => CarerDto)
   carer: CarerDto;
 
-  @Type(() => Array<EntryLanguageDto>)
-  entryLanguages: EntryLanguageDto[];
+  @Type(() => Array<number>)
+  entryLanguages: number[];
 }
 export class EntryResponseDto extends EntryDto {}
 export class EntryCreationDto extends OmitType(EntryDto, ["id"]) {}

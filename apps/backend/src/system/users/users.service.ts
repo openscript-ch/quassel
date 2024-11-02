@@ -27,19 +27,19 @@ export class UsersService {
       throw e;
     }
 
-    return user;
+    return user.toObject();
   }
 
-  findAll() {
-    return this.userRepository.findAll();
+  async findAll() {
+    return (await this.userRepository.findAll()).map((user) => user.toObject());
   }
 
-  findOne(id: number) {
-    return this.userRepository.findOneOrFail(id);
+  async findOne(id: number) {
+    return (await this.userRepository.findOneOrFail(id)).toObject();
   }
 
-  findBy(filter: FilterQuery<User>) {
-    return this.userRepository.findOneOrFail(filter);
+  async findBy(filter: FilterQuery<User>) {
+    return (await this.userRepository.findOneOrFail(filter)).toObject();
   }
 
   async update(id: number, userMutationDto: UserMutationDto) {
@@ -53,7 +53,7 @@ export class UsersService {
 
     await this.em.persist(user).flush();
 
-    return user;
+    return user.toObject();
   }
 
   remove(id: number) {

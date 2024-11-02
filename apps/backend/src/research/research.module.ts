@@ -11,9 +11,13 @@ import { QuestionnairesController } from "./questionnaires/questionnaires.contro
 import { EntryLanguagesController } from "./entry-languages/entry-languages.controller";
 import { StudiesController } from "./studies/studies.controller";
 import { StudiesService } from "./studies/studies.service";
+import { Entry } from "./entries/entry.entity";
+import { EntryLanguage } from "./entry-languages/entry-language.entity";
+import { Questionnaire } from "./questionnaires/questionnaire.entity";
+import { Study } from "./studies/study.entity";
 
 @Module({
-  imports: [MikroOrmModule.forFeature([Participant])],
+  imports: [MikroOrmModule.forFeature([Entry, EntryLanguage, Participant, Questionnaire, Study])],
   providers: [ParticipantsService, EntriesService, EntryLanguagesService, QuestionnairesService, StudiesService],
   controllers: [ParticipantsController, EntriesController, QuestionnairesController, EntryLanguagesController, StudiesController],
 })
