@@ -1,7 +1,7 @@
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { User } from "./user.entity";
-import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException } from "@mikro-orm/core";
 import { getPasswordHash } from "../../common/utils/encrypt";
 import { UserCreationDto, UserMutationDto } from "./user.dto";
 
@@ -15,8 +15,7 @@ export class UsersService {
 
   async create(userCreationDto: UserCreationDto) {
     const user = new User();
-    user.email = userCreationDto.email;
-    user.role = userCreationDto.role;
+    user.assign(userCreationDto);
     user.password = await getPasswordHash(userCreationDto.password);
 
     try {
@@ -50,7 +49,7 @@ export class UsersService {
       userMutationDto.password = await getPasswordHash(userMutationDto.password);
     }
 
-    wrap(user).assign(userMutationDto);
+    user.assign(userMutationDto);
 
     await this.em.persist(user).flush();
 

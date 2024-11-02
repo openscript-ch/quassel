@@ -1,7 +1,7 @@
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { Carer } from "./carer.entity";
-import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException } from "@mikro-orm/core";
 import { CarerCreationDto, CarerMutationDto } from "./carer.dto";
 
 @Injectable()
@@ -14,7 +14,7 @@ export class CarersService {
 
   async create(carerCreationDto: CarerCreationDto) {
     const carer = new Carer();
-    carer.name = carerCreationDto.name;
+    carer.assign(carerCreationDto);
 
     try {
       await this.em.persist(carer).flush();
@@ -42,8 +42,7 @@ export class CarersService {
 
   async update(id: number, carerMutationDto: CarerMutationDto) {
     const carer = await this.carerRepository.findOneOrFail(id);
-
-    wrap(carer).assign(carerMutationDto);
+    carer.assign(carerMutationDto);
 
     await this.em.persist(carer).flush();
 

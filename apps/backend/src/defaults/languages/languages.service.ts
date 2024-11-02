@@ -1,7 +1,6 @@
 import { EntityRepository, EntityManager, UniqueConstraintViolationException, FilterQuery } from "@mikro-orm/core";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { wrap } from "module";
 import { LanguageCreationDto, LanguageMutationDto } from "./language.dto";
 import { Language } from "./language.entity";
 
@@ -15,7 +14,7 @@ export class LanguagesService {
 
   async create(languageCreationDto: LanguageCreationDto) {
     const language = new Language();
-    language.name = languageCreationDto.name;
+    language.assign(languageCreationDto);
 
     try {
       await this.em.persist(language).flush();
@@ -43,8 +42,7 @@ export class LanguagesService {
 
   async update(id: number, languageMutationDto: LanguageMutationDto) {
     const language = await this.languageRepository.findOneOrFail(id);
-
-    wrap(language).assign(languageMutationDto);
+    language.assign(languageMutationDto);
 
     await this.em.persist(language).flush();
 

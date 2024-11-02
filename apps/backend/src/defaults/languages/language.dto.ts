@@ -21,7 +21,7 @@ export class LanguageDto {
   @Type(() => ParticipantDto)
   participant?: ParticipantDto;
 
-  @Type(() => EntryLanguage)
+  @Type(() => Array<EntryLanguage>)
   entryLanguages: EntryLanguage[];
 }
 export class LanguageResponseDto extends LanguageDto {}
