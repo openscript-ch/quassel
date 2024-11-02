@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { bcryptVerify } from "hash-wasm";
-import { SessionCreationDto } from "../dto/session-creation.dto";
 import { Session as FastifySession } from "@fastify/secure-session";
+import { SessionCreationDto } from "../dto/session.dto";
 
 const INVALID_CREDENTIALS_EXCEPTION = new UnauthorizedException("Provided credentials are invalid", "Unauthorized");
 

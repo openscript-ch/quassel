@@ -1,10 +1,9 @@
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { UserCreationDto } from "../dto/user-creation.dto";
-import { UserMutationDto } from "../dto/user-mutation.dto";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { User } from "../entities/user.entity";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
 import { getPasswordHash } from "../../common/utils/encrypt";
+import { UserCreationDto, UserMutationDto } from "../dto/user.dto";
 
 @Injectable()
 export class UsersService {

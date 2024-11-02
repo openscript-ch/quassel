@@ -1,5 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, OmitType } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { UserDto } from "./user.dto";
 
 export class SessionCreationDto {
   @ApiProperty({ example: "administrator@example.com", description: "The email of the user" })
@@ -12,3 +13,5 @@ export class SessionCreationDto {
   @IsNotEmpty()
   password: string;
 }
+
+export class SessionResponseDto extends OmitType(UserDto, ["password"]) {}

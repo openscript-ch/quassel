@@ -2,8 +2,7 @@ import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { Participant } from "../entities/participant.entity";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException, wrap } from "@mikro-orm/core";
-import { ParticipantCreationDto } from "../dto/participant-creation.dto";
-import { ParticipantMutationDto } from "../dto/participant-mutation.dto";
+import { ParticipantCreationDto, ParticipantMutationDto } from "../dto/participant.dto";
 
 @Injectable()
 export class ParticipantsService {

@@ -1,12 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
 import { UsersService } from "../services/users.service";
-import { UserCreationDto } from "../dto/user-creation.dto";
-import { UserMutationDto } from "../dto/user-mutation.dto";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "../decorators/roles.decorator";
 import { UserRole } from "../entities/user.entity";
 import { ErrorResponseDto } from "../../common/dto/error-response.dto";
-import { UserResponseDto } from "../dto/user-response.dto";
+import { UserCreationDto, UserMutationDto, UserResponseDto } from "../dto/user.dto";
 
 @ApiTags("Users")
 @Controller("users")

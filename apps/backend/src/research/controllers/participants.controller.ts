@@ -2,11 +2,9 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/commo
 import { ParticipantsService } from "../services/participants.service";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { ErrorResponseDto } from "src/common/dto/error-response.dto";
-import { ParticipantCreationDto } from "../dto/participant-creation.dto";
-import { ParticipantResponseDto } from "../dto/participant-response.dto";
 import { Roles } from "src/users/decorators/roles.decorator";
 import { UserRole } from "src/users/entities/user.entity";
-import { ParticipantMutationDto } from "../dto/participant-mutation.dto";
+import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto } from "../dto/participant.dto";
 
 @ApiTags("Participants")
 @Controller("participants")

@@ -1,12 +1,11 @@
-import { Body, Controller, Delete, Get, HttpCode, Post, Session } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Post, Session, UnauthorizedException } from "@nestjs/common";
 import { ApiNoContentResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthorizedResponse } from "@nestjs/swagger";
 import { SessionService } from "../services/session.service";
-import { SessionCreationDto } from "../dto/session-creation.dto";
 import { Session as FastifySession } from "@fastify/secure-session";
 import { Public } from "../decorators/public.decorator";
-import { SessionResponseDto } from "../dto/session-response.dto";
 import { ErrorResponseDto } from "../../common/dto/error-response.dto";
 import { CustomApiUnauthorizedResponse } from "../../common/decorators/custom-api-unauthorized-response";
+import { SessionCreationDto, SessionResponseDto } from "../dto/session.dto";
 
 @ApiTags("Session")
 @Controller("session")
@@ -27,7 +26,9 @@ export class SessionController {
   @ApiResponse({ status: 200, description: "Current session", type: SessionResponseDto })
   @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
   get(@Session() session: FastifySession) {
-    return this.sessionService.whoAmI(session.get("userId"));
+    const userId = session.get("userId");
+    if (!userId) throw new UnauthorizedException();
+    return this.sessionService.whoAmI(userId);
   }
 
   @Delete()

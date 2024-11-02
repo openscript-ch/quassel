@@ -19,6 +19,7 @@ After running `pnpm dev` the following services should come up:
 - **Run db tasks** by using `pnpm --filter @quassel/backend run db`.
     **Create a new migration** with `pnpm --filter @quassel/backend run db migration:create`.
   - **Migrate up to the latest version** with `pnpm --filter @quassel/backend run db migration:up`.
+  - **Run seeders** with `pnpm --filter @quassel/backend run db seeder:run`.
 - **Run nest tasks** by using `pnpm --filter @quassel/backend run nest`.
   - **Generate ressources** with `pnpm --filter @quassel/backend run nest g res`.
   - **Generate services** with e. g. `pnpm --filter @quassel/backend run nest g --flat s participants research/services`.
