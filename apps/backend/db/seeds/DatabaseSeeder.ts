@@ -1,9 +1,9 @@
 import type { EntityManager } from "@mikro-orm/core";
 import { Seeder } from "@mikro-orm/seeder";
-import { User, UserRole } from "../../src/users/entities/user.entity";
+import { User, UserRole } from "../../src/system/users/user.entity";
 import { getPasswordHash } from "../../src/common/utils/encrypt";
 import { Participant } from "../../src/research/entities/participant.entity";
-import { Carer } from "../../src/defaults/entities/carer.entity";
+import { Carer } from "../../src/defaults/carers/carer.entity";
 
 export class DatabaseSeeder extends Seeder {
   async run(em: EntityManager) {

@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { ParticipantsService } from "./services/participants.service";
-import { ParticipantsController } from "./controllers/participants.controller";
+import { ParticipantsService } from "./participants/participants.service";
+import { ParticipantsController } from "./participants/participants.controller";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
-import { Participant } from "./entities/participant.entity";
+import { Participant } from "./participants/participant.entity";
 
 @Module({
   imports: [MikroOrmModule.forFeature([Participant])],

@@ -1,5 +1,5 @@
 import { SessionData as FastifySessionData } from "@fastify/secure-session";
-import { User } from "./users/entities/user.entity";
+import { User } from "./system/users/user.entity";
 
 declare module "@fastify/secure-session" {
   interface SessionData extends FastifySessionData {

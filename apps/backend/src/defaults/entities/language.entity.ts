@@ -1,6 +1,6 @@
 import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Participant } from "../../research/entities/participant.entity";
+import { Participant } from "../../research/participants/participant.entity";
 import { EntryLanguage } from "../../research/entities/entryLanguage.entity";
 
 @Entity()

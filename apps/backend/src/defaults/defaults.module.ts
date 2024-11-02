@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { CarersController } from "./controllers/carers.controller";
-import { CarersService } from "./services/carers.service";
+import { CarersController } from "./carers/carers.controller";
+import { CarersService } from "./carers/carers.service";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
-import { Carer } from "./entities/carer.entity";
+import { Carer } from "./carers/carer.entity";
 
 @Module({
   imports: [MikroOrmModule.forFeature([Carer])],
