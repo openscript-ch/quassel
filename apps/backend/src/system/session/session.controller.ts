@@ -3,7 +3,7 @@ import { ApiNoContentResponse, ApiOperation, ApiResponse, ApiTags, ApiUnauthoriz
 import { SessionService } from "./session.service";
 import { Session as FastifySession } from "@fastify/secure-session";
 import { Public } from "./public.decorator";
-import { ErrorResponseDto } from "../../common/dto/error-response.dto";
+import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { CustomApiUnauthorizedResponse } from "../../common/decorators/custom-api-unauthorized-response";
 import { SessionCreationDto, SessionResponseDto } from "./session.dto";
 

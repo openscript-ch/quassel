@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { CarersService } from "./carers.service";
-import { ErrorResponseDto } from "src/common/dto/error-response.dto";
+import { ErrorResponseDto } from "src/common/dto/error.dto";
 import { Roles } from "src/system/users/roles.decorator";
 import { UserRole } from "src/system/users/user.entity";
 import { CarerCreationDto, CarerMutationDto, CarerResponseDto } from "./carer.dto";

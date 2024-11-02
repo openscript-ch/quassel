@@ -3,7 +3,7 @@ import { UsersService } from "./users.service";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "./roles.decorator";
 import { UserRole } from "./user.entity";
-import { ErrorResponseDto } from "../../common/dto/error-response.dto";
+import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { UserCreationDto, UserMutationDto, UserResponseDto } from "./user.dto";
 
 @ApiTags("Users")
