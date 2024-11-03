@@ -12,7 +12,7 @@ export class SessionService {
 
   async signIn({ email, password }: SessionCreationDto, session: FastifySession) {
     try {
-      const user = await this.usersService.findBy({ email });
+      const user = await this.usersService.findForAuthentication(email);
 
       if (await bcryptVerify({ password, hash: user.password })) {
         session.set("userId", user.id);

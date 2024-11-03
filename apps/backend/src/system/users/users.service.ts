@@ -42,6 +42,13 @@ export class UsersService {
     return (await this.userRepository.findOneOrFail(filter)).toObject();
   }
 
+  async findForAuthentication(email: string) {
+    const user = await this.userRepository.findOneOrFail({ email }, { populate: ["password"] });
+    const dto = user.toObject();
+    dto.password = user.password;
+    return dto;
+  }
+
   async update(id: number, userMutationDto: UserMutationDto) {
     const user = await this.userRepository.findOneOrFail(id);
 

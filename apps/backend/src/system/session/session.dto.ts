@@ -3,7 +3,7 @@ import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 import { UserDto } from "../users/user.dto";
 
 export class SessionDto {
-  @ApiProperty({ example: "administrator@example.com", description: "The email of the user" })
+  @ApiProperty({ example: "admin@example.com", description: "The email of the user" })
   @IsEmail()
   @IsNotEmpty()
   email: string;
