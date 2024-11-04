@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.8
+
+### Patch Changes
+
+- 4d8a118: Move mikro orm config
+
 ## 0.1.7
 
 ### Patch Changes
