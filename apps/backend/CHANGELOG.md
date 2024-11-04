@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.6
+
+### Patch Changes
+
+- 0e099ca: Downgrade sodium-native
+
 ## 0.1.5
 
 ### Patch Changes
