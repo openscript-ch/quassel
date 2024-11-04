@@ -1,5 +1,11 @@
 # @quassel/ui
 
+## 0.1.1
+
+### Patch Changes
+
+- 0c9dff9: Fix container building
+
 ## 0.1.0
 
 ### Minor Changes
