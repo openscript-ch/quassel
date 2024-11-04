@@ -18,9 +18,11 @@ export default defineConfig({
   metadataProvider: TsMorphMetadataProvider,
   extensions: [Migrator, SeedManager],
   migrations: {
+    path: "./db/migrations",
     pathTs: "./db/migrations",
   },
   seeder: {
+    path: "./db/seeds",
     pathTs: "./db/seeds",
   },
 });
