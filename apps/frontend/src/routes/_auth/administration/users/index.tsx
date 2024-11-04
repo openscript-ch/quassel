@@ -45,5 +45,5 @@ function AdministrationUsersIndex() {
 
 export const Route = createFileRoute("/_auth/administration/users/")({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData($api.queryOptions("get", "/users")),
-  component: () => <AdministrationUsersIndex />,
+  component: AdministrationUsersIndex,
 });

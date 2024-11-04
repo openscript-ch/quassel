@@ -4,11 +4,7 @@ import { components, userCreationDtoRoleValues } from "../../../../api.gen";
 import { Button, PasswordInput, Select, TextInput } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 
-type FormValues = {
-  email: string;
-  password: string;
-  role?: components["schemas"]["UserCreationDto"]["role"];
-};
+type FormValues = components["schemas"]["UserCreationDto"];
 
 function AdministrationUsersNew() {
   const n = useNavigate();

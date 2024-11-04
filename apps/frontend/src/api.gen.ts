@@ -60,6 +60,265 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/carers": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all carers */
+        get: operations["CarersController_index"];
+        put?: never;
+        /** Create a carer */
+        post: operations["CarersController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/carers/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a carer by ID */
+        get: operations["CarersController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a carer by ID */
+        delete: operations["CarersController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a carer by ID */
+        patch: operations["CarersController_update"];
+        trace?: never;
+    };
+    "/languages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all languages */
+        get: operations["LanguagesController_index"];
+        put?: never;
+        /** Create a language */
+        post: operations["LanguagesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/languages/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a language by ID */
+        get: operations["LanguagesController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a language by ID */
+        delete: operations["LanguagesController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a language by ID */
+        patch: operations["LanguagesController_update"];
+        trace?: never;
+    };
+    "/participants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all participants */
+        get: operations["ParticipantsController_index"];
+        put?: never;
+        /** Create a participant */
+        post: operations["ParticipantsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/participants/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a participant by ID */
+        get: operations["ParticipantsController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a participant by ID */
+        delete: operations["ParticipantsController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a participant by ID */
+        patch: operations["ParticipantsController_update"];
+        trace?: never;
+    };
+    "/entries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all entries */
+        get: operations["EntriesController_index"];
+        put?: never;
+        /** Create a entry */
+        post: operations["EntriesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/entries/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a entry by ID */
+        get: operations["EntriesController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a entry by ID */
+        delete: operations["EntriesController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a entry by ID */
+        patch: operations["EntriesController_update"];
+        trace?: never;
+    };
+    "/questionnaires": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all questionnairess */
+        get: operations["QuestionnairesController_index"];
+        put?: never;
+        /** Create a questionnaires */
+        post: operations["QuestionnairesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/questionnaires/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a questionnaires by ID */
+        get: operations["QuestionnairesController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a questionnaires by ID */
+        delete: operations["QuestionnairesController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a questionnaires by ID */
+        patch: operations["QuestionnairesController_update"];
+        trace?: never;
+    };
+    "/entry-languages": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all entry languages */
+        get: operations["EntryLanguagesController_index"];
+        put?: never;
+        /** Create an entry language */
+        post: operations["EntryLanguagesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/entry-languages/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get an entry language by ID */
+        get: operations["EntryLanguagesController_get"];
+        put?: never;
+        post?: never;
+        /** Delete an entry language by ID */
+        delete: operations["EntryLanguagesController_delete"];
+        options?: never;
+        head?: never;
+        /** Update an entry language by ID */
+        patch: operations["EntryLanguagesController_update"];
+        trace?: never;
+    };
+    "/studies": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get all studies */
+        get: operations["StudiesController_index"];
+        put?: never;
+        /** Create a study */
+        post: operations["StudiesController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/studies/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a study by ID */
+        get: operations["StudiesController_get"];
+        put?: never;
+        post?: never;
+        /** Delete a study by ID */
+        delete: operations["StudiesController_delete"];
+        options?: never;
+        head?: never;
+        /** Update a study by ID */
+        patch: operations["StudiesController_update"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -67,7 +326,7 @@ export interface components {
         UserCreationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.com
+             * @example admin@example.com
              */
             email: string;
             /**
@@ -90,7 +349,7 @@ export interface components {
             id: number;
             /**
              * @description The email of the user
-             * @example administrator@example.com
+             * @example admin@example.com
              */
             email: string;
             /**
@@ -111,7 +370,7 @@ export interface components {
         UserMutationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.com
+             * @example admin@example.com
              */
             email?: string;
             /**
@@ -129,7 +388,7 @@ export interface components {
         SessionCreationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.com
+             * @example admin@example.com
              */
             email: string;
             /**
@@ -146,7 +405,7 @@ export interface components {
             id: number;
             /**
              * @description The email of the user
-             * @example administrator@example.com
+             * @example admin@example.com
              */
             email: string;
             /**
@@ -155,6 +414,487 @@ export interface components {
              * @enum {string}
              */
             role?: "ASSISTANT" | "ADMIN";
+        };
+        ParticipantDto: {
+            /**
+             * @description The id of the participant (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The birthday of the participant
+             * @example 2024-11-01T00:05:02.718Z
+             */
+            birthday?: string;
+            questionnaires: number[];
+            carers: number[];
+            languages: number[];
+        };
+        CarerCreationDto: {
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            participant?: components["schemas"]["ParticipantDto"];
+        };
+        CarerResponseDto: {
+            /**
+             * @description The id of the carer
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        CarerMutationDto: {
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+        };
+        LanguageCreationDto: {
+            /**
+             * @description The name of the language
+             * @example Deutsch
+             */
+            name: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+        };
+        LanguageResponseDto: {
+            /**
+             * @description The id of the language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the language
+             * @example Deutsch
+             */
+            name: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entryLanguages: number[];
+        };
+        LanguageMutationDto: {
+            /**
+             * @description The name of the language
+             * @example Deutsch
+             */
+            name?: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+        };
+        ParticipantCreationDto: {
+            /**
+             * @description The id of the participant (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The birthday of the participant
+             * @example 2024-11-01T00:05:02.718Z
+             */
+            birthday?: string;
+        };
+        ParticipantResponseDto: {
+            /**
+             * @description The id of the participant (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The birthday of the participant
+             * @example 2024-11-01T00:05:02.718Z
+             */
+            birthday?: string;
+            questionnaires: number[];
+            carers: number[];
+            languages: number[];
+        };
+        ParticipantMutationDto: {
+            /**
+             * @description The id of the participant (child id)
+             * @example 1
+             */
+            id?: number;
+            /**
+             * Format: date-time
+             * @description The birthday of the participant
+             * @example 2024-11-01T00:05:02.718Z
+             */
+            birthday?: string;
+            questionnaires?: number[];
+            carers?: number[];
+            languages?: number[];
+        };
+        StudyDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            questionnaires: number[];
+        };
+        QuestionnaireDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        CarerDto: {
+            /**
+             * @description The id of the carer
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        EntryCreationDto: {
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            questionnaire: components["schemas"]["QuestionnaireDto"];
+            carer: components["schemas"]["CarerDto"];
+            entryLanguages: number[];
+        };
+        EntryResponseDto: {
+            /**
+             * @description The id of the entry
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            questionnaire: components["schemas"]["QuestionnaireDto"];
+            carer: components["schemas"]["CarerDto"];
+            entryLanguages: number[];
+        };
+        EntryMutationDto: {
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday?: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            questionnaire?: components["schemas"]["QuestionnaireDto"];
+            carer?: components["schemas"]["CarerDto"];
+            entryLanguages?: number[];
+        };
+        QuestionnaireCreationDto: {
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        QuestionnaireResponseDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        QuestionnaireMutationDto: {
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title?: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+            entries?: number[];
+        };
+        LanguageDto: {
+            /**
+             * @description The id of the language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the language
+             * @example Deutsch
+             */
+            name: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entryLanguages: number[];
+        };
+        EntryDto: {
+            /**
+             * @description The id of the entry
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            questionnaire: components["schemas"]["QuestionnaireDto"];
+            carer: components["schemas"]["CarerDto"];
+            entryLanguages: number[];
+        };
+        EntryLanguageCreationDto: {
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio: number;
+            language: components["schemas"]["LanguageDto"];
+            entry: components["schemas"]["EntryDto"];
+        };
+        EntryLanguageResponseDto: {
+            /**
+             * @description The id of the entry language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio: number;
+            language: components["schemas"]["LanguageDto"];
+            entry: components["schemas"]["EntryDto"];
+        };
+        EntryLanguageMutationDto: {
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio?: number;
+            language?: components["schemas"]["LanguageDto"];
+            entry?: components["schemas"]["EntryDto"];
+        };
+        StudyCreationDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            questionnaires: number[];
+        };
+        StudyResponseDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            questionnaires: number[];
+        };
+        StudyMutationDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id?: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title?: string;
+            questionnaires?: number[];
         };
     };
     responses: never;
@@ -366,6 +1106,818 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CarersController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CarerResponseDto"][];
+                };
+            };
+        };
+    };
+    CarersController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CarerCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CarerResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    CarersController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CarerResponseDto"];
+                };
+            };
+        };
+    };
+    CarersController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    CarersController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CarerMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CarerResponseDto"];
+                };
+            };
+        };
+    };
+    LanguagesController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LanguageResponseDto"][];
+                };
+            };
+        };
+    };
+    LanguagesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LanguageCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LanguageResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    LanguagesController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LanguageResponseDto"];
+                };
+            };
+        };
+    };
+    LanguagesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    LanguagesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LanguageMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LanguageResponseDto"];
+                };
+            };
+        };
+    };
+    ParticipantsController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParticipantResponseDto"][];
+                };
+            };
+        };
+    };
+    ParticipantsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParticipantCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParticipantResponseDto"];
+                };
+            };
+            /** @description Unique id constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    ParticipantsController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParticipantResponseDto"];
+                };
+            };
+        };
+    };
+    ParticipantsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    ParticipantsController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ParticipantMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ParticipantResponseDto"];
+                };
+            };
+        };
+    };
+    EntriesController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryResponseDto"][];
+                };
+            };
+        };
+    };
+    EntriesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EntryCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    EntriesController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryResponseDto"];
+                };
+            };
+        };
+    };
+    EntriesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    EntriesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EntryMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryResponseDto"];
+                };
+            };
+        };
+    };
+    QuestionnairesController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionnaireResponseDto"][];
+                };
+            };
+        };
+    };
+    QuestionnairesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuestionnaireCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionnaireResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    QuestionnairesController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionnaireResponseDto"];
+                };
+            };
+        };
+    };
+    QuestionnairesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    QuestionnairesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["QuestionnaireMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuestionnaireResponseDto"];
+                };
+            };
+        };
+    };
+    EntryLanguagesController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryLanguageResponseDto"][];
+                };
+            };
+        };
+    };
+    EntryLanguagesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EntryLanguageCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryLanguageResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    EntryLanguagesController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryLanguageResponseDto"];
+                };
+            };
+        };
+    };
+    EntryLanguagesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    EntryLanguagesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EntryLanguageMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryLanguageResponseDto"];
+                };
+            };
+        };
+    };
+    StudiesController_index: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyResponseDto"][];
+                };
+            };
+        };
+    };
+    StudiesController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyCreationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+            /** @description Unique name constraint violation */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    StudiesController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+        };
+    };
+    StudiesController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    StudiesController_update: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyResponseDto"];
                 };
             };
         };

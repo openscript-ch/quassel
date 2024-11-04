@@ -6,11 +6,7 @@ import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Button, PasswordInput, Select, TextInput } from "@quassel/ui";
 import { useEffect } from "react";
 
-type FormValues = {
-  email: string;
-  password: string;
-  role?: components["schemas"]["UserCreationDto"]["role"];
-};
+type FormValues = components["schemas"]["UserMutationDto"];
 
 function AdministrationUsersEdit() {
   const p = Route.useParams();
