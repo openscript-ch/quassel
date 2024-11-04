@@ -142,6 +142,4 @@ The following sources were used:
 ### Maintain application system
 
 - Create a database backup
-
 - Archive storage
-
