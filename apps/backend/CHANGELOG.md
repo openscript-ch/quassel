@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.9
+
+### Patch Changes
+
+- cab3ec3: Enhance docker image
+
 ## 0.1.8
 
 ### Patch Changes
