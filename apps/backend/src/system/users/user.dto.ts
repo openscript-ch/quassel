@@ -11,7 +11,7 @@ export class UserDto {
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty({ example: "quassel*1234", description: "The password of the user" })
+  @ApiProperty({ example: "Quassel*1234", description: "The password of the user" })
   @IsString()
   @IsStrongPassword({ minLength: 8 })
   @IsNotEmpty()

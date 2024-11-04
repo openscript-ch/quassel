@@ -72,7 +72,7 @@ export interface components {
             email: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password: string;
             /**
@@ -116,7 +116,7 @@ export interface components {
             email?: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password?: string;
             /**
@@ -134,7 +134,7 @@ export interface components {
             email: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password: string;
         };

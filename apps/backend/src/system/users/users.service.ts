@@ -19,7 +19,7 @@ export class UsersService {
     user.password = await getPasswordHash(userCreationDto.password);
 
     try {
-      await this.em.persist(user).flush();
+      await this.em.persistAndFlush(user);
     } catch (e) {
       if (e instanceof UniqueConstraintViolationException) {
         throw new UnprocessableEntityException("User with this email already exists");

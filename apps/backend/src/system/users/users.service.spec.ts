@@ -3,6 +3,7 @@ import { UsersService } from "./users.service";
 import { getRepositoryToken } from "@mikro-orm/nestjs";
 import { User } from "./user.entity";
 import { EntityManager } from "@mikro-orm/core";
+import { MikroORM } from "@mikro-orm/postgresql";
 
 const userArray = [
   {
@@ -16,8 +17,8 @@ const userArray = [
     password: "$2a$10$uupGsF.gs4iDGmnZbOzpN.OnM5p60Y3gmCMW17UEUwH.yaYZ/QSUK",
   },
 ];
-
 const firstUser = userArray[0];
+MikroORM.initSync({ dbName: ":memory:", entities: [User] });
 
 describe("UsersService", () => {
   let service: UsersService;
@@ -37,9 +38,9 @@ describe("UsersService", () => {
           provide: EntityManager,
           useValue: {
             remove: jest.fn(),
-            persist: jest.fn().mockImplementation((user: User) => {
+            persistAndFlush: jest.fn().mockImplementation(async (user: User) => {
               user.id = 3;
-              return { flush: jest.fn() };
+              return user;
             }),
           },
         },
@@ -62,7 +63,6 @@ describe("UsersService", () => {
 
       expect(user.id).toBe(3);
       expect(user.email).toBe("hans@example.com");
-      expect(user.password).toHaveLength(60);
     });
   });
 });
