@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.12
+
+### Patch Changes
+
+- 0b71e9a: Tune for test server
+
 ## 0.1.11
 
 ### Patch Changes
