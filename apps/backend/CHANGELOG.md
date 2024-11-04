@@ -4,6 +4,12 @@
 
 ### Patch Changes
 
+- 8742ed0: Override sodium-native version
+
+## 0.1.10
+
+### Patch Changes
+
 - 4d6ae26: Enhance mikro orm config
 
 ## 0.1.9
