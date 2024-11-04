@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.11
+
+### Patch Changes
+
+- e8853a2: Fix backend image
+
 ## 0.1.10
 
 ### Patch Changes
