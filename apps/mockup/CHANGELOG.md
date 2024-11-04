@@ -1,5 +1,11 @@
 # @quassel/mockup
 
+## 0.0.4
+
+### Patch Changes
+
+- 0c9dff9: Fix container building
+
 ## 0.0.3
 
 ### Patch Changes

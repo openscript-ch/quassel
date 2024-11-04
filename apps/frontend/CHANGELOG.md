@@ -1,5 +1,13 @@
 # @quassel/frontend
 
+## 0.1.1
+
+### Patch Changes
+
+- 0c9dff9: Fix container building
+- Updated dependencies [0c9dff9]
+  - @quassel/ui@0.1.1
+
 ## 0.1.0
 
 ### Minor Changes
