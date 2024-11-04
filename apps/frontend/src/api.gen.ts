@@ -67,12 +67,12 @@ export interface components {
         UserCreationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.ch
+             * @example administrator@example.com
              */
             email: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password: string;
             /**
@@ -90,7 +90,7 @@ export interface components {
             id: number;
             /**
              * @description The email of the user
-             * @example administrator@example.ch
+             * @example administrator@example.com
              */
             email: string;
             /**
@@ -111,12 +111,12 @@ export interface components {
         UserMutationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.ch
+             * @example administrator@example.com
              */
             email?: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password?: string;
             /**
@@ -129,12 +129,12 @@ export interface components {
         SessionCreationDto: {
             /**
              * @description The email of the user
-             * @example administrator@example.ch
+             * @example administrator@example.com
              */
             email: string;
             /**
              * @description The password of the user
-             * @example quassel*1234
+             * @example Quassel*1234
              */
             password: string;
         };
@@ -146,7 +146,7 @@ export interface components {
             id: number;
             /**
              * @description The email of the user
-             * @example administrator@example.ch
+             * @example administrator@example.com
              */
             email: string;
             /**

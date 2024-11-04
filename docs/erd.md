@@ -10,7 +10,7 @@ erDiagram
 User {
     SERIAL id PK
     ENUM role "ASSISTANT, ADMINISTRATOR NOT NULL DEFAULT ASSISTANT"
-    VARCHAR(200) email "NOT NULL"
+    VARCHAR(200) email "NOT NULL UNIQUE"
     VARCHAR(60) password "NOT NULL"
 }
 
@@ -62,7 +62,7 @@ Entry ||--|{ EntryLanguage : has
 Carer {
     SERIAL id PK
     SERIAL participant_id FK
-    VARCHAR(200) name "NOT NULL"
+    VARCHAR(200) name "NOT NULL UNIQUE"
 }
 
 Carer ||--o{ Entry : has

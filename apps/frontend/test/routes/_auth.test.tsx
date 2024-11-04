@@ -31,7 +31,7 @@ describe("_auth route", () => {
     const router = createRouter({ routeTree, history, context: { queryClient } });
 
     act(() => {
-      $session.set({ email: "hans.kanns@example.ch" });
+      $session.set({ email: "hans.kanns@example.com" });
     });
 
     render(

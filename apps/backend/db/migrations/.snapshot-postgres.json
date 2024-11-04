@@ -8,12 +8,12 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": true,
           "primary": true,
           "nullable": false,
-          "mappedType": "integer"
+          "mappedType": "bigint"
         },
         "birthday": {
           "name": "birthday",
@@ -86,12 +86,12 @@
         },
         "participant_id": {
           "name": "participant_id",
-          "type": "int",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "integer"
+          "mappedType": "bigint"
         }
       },
       "name": "language",
@@ -158,17 +158,27 @@
         },
         "participant_id": {
           "name": "participant_id",
-          "type": "int",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "integer"
+          "mappedType": "bigint"
         }
       },
       "name": "carer",
       "schema": "public",
       "indexes": [
+        {
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "keyName": "carer_name_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
         {
           "keyName": "carer_pkey",
           "columnNames": [
@@ -317,12 +327,12 @@
         },
         "participant_id": {
           "name": "participant_id",
-          "type": "int",
+          "type": "bigint",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "integer"
+          "mappedType": "bigint"
         }
       },
       "name": "questionnaire",
@@ -646,7 +656,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "nativeEnumName": "UserRole",
           "default": "'ASSISTANT'",
           "enumItems": [
