@@ -40,7 +40,7 @@
   "packageManager": "pnpm@9.12.3",
   "pnpm": {
     "overrides": {
-      "sodium-native": "4.2.1",
+      "sodium-native": "4.2.0",
       "@nx-tools/core": "npm:@openscript/nx-tools-core@6.1.1"
     }
   }
