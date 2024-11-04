@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.2
+
+### Patch Changes
+
+- 35d1ef0: Fix package.json path
+
 ## 0.1.1
 
 ### Patch Changes
