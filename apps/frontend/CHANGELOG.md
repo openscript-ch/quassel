@@ -1,5 +1,21 @@
 # @quassel/frontend
 
+## 0.1.0
+
+### Minor Changes
+
+- 4170393: Implement authentication and user management
+
+### Patch Changes
+
+- 1f7eddb: Administrator navigation
+- f3427c6: Add authentication user interface
+- 15dd08e: Add default values management ui
+- Updated dependencies [1f7eddb]
+- Updated dependencies [f3427c6]
+- Updated dependencies [4170393]
+  - @quassel/ui@0.1.0
+
 ## 0.0.28
 
 ### Patch Changes
