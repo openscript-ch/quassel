@@ -1,5 +1,18 @@
 # @quassel/backend
 
+## 0.1.0
+
+### Minor Changes
+
+- 177c75c: Scaffold backend api
+- 4170393: Implement authentication and user management
+
+### Patch Changes
+
+- d000f93: Add authentication and authorization
+- 28f3ce0: Initialize model
+- 887049a: Set up base schema
+
 ## 0.0.25
 
 ### Patch Changes
