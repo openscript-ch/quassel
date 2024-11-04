@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.3
+
+### Patch Changes
+
+- a433b31: Add gcompat to image
+
 ## 0.1.2
 
 ### Patch Changes
