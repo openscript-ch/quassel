@@ -1,4 +1,4 @@
-import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsDate, IsOptional } from "class-validator";
 
@@ -22,5 +22,5 @@ export class ParticipantDto {
 }
 
 export class ParticipantResponseDto extends ParticipantDto {}
-export class ParticipantCreationDto extends ParticipantDto {}
+export class ParticipantCreationDto extends OmitType(ParticipantDto, ["questionnaires", "carers", "languages"]) {}
 export class ParticipantMutationDto extends PartialType(ParticipantDto) {}
