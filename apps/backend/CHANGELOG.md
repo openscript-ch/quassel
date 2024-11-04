@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.4
+
+### Patch Changes
+
+- 544d8d6: Enforce sodium-native 4.2.0
+
 ## 0.1.3
 
 ### Patch Changes
