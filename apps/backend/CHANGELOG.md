@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.10
+
+### Patch Changes
+
+- 4d6ae26: Enhance mikro orm config
+
 ## 0.1.9
 
 ### Patch Changes
