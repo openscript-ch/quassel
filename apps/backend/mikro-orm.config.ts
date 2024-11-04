@@ -2,7 +2,7 @@ import { defineConfig, PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { Migrator } from "@mikro-orm/migrations";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { SeedManager } from "@mikro-orm/seeder";
-import { configuration } from "./config/configuration";
+import { configuration } from "./src/config/configuration";
 
 const c = configuration();
 

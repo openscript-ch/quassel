@@ -106,6 +106,10 @@ The following sources were used:
    sed -i "s/example.com/example.com/g" docker-compose.yaml
    ```
 
+1. Set environment variables in `docker-compose.yaml`:
+   - `SESSION_SECRET` to a 32byte random hex string with `openssl rand -hex 32`
+   - `SESSION_SALT` to a 8byte random hex string with `openssl rand -hex 8`
+   - `DATABASE_PASSWORD` set a more secure password for the database
 1. Change contact email for SSL certificates in `traefik.yaml`
 1. Configure the following environment variables in `docker-compose.yaml`:
    - **todo**

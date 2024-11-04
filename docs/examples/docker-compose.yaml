@@ -39,7 +39,11 @@ services:
       - database
     environment:
       LANG: C.UTF-8
-      DATABASE_URL: "postgresql://postgres:secret@database/quassel_production"
+      CORS_ORIGIN: https://test.example.com
+      SESSION_SECRET: secret
+      SESSION_SALT: salt
+      DATABASE_HOST: database
+      DATABASE_PASSWORD: secret
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
