@@ -5,7 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  sodium-native: 4.2.0
   '@nx-tools/core': npm:@openscript/nx-tools-core@6.1.1
 
 importers:
