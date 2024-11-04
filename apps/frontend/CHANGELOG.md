@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 0.1.3
+
+### Patch Changes
+
+- 0b71e9a: Tune for test server
+
 ## 0.1.2
 
 ### Patch Changes
