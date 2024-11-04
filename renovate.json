@@ -5,7 +5,7 @@
   ],
   "packageRules": [
     {
-      "automerge": true,
+      "automerge": false,
       "groupName": "likely non breaking dependencies",
       "matchCurrentVersion": ">= 1.0.0",
       "matchUpdateTypes": [

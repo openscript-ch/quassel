@@ -18,4 +18,4 @@ COPY dist/ .
 RUN chown -R node:node .
 USER node
 EXPOSE 3000
-CMD ["dumb-init", "node", "main.js"]
+CMD ["dumb-init", "node", "src/main.js"]

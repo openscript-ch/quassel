@@ -7,8 +7,8 @@ import { configuration } from "./src/config/configuration";
 const c = configuration();
 
 export default defineConfig({
-  entities: ["./dist/src/**/*.entity.js"],
-  entitiesTs: ["./src/**/*.entity.ts"],
+  entities: ["./**/*.entity.js"],
+  entitiesTs: ["./**/*.entity.ts"],
   host: c.database.host,
   port: c.database.port,
   dbName: c.database.name,
