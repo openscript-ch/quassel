@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 0.1.2
+
+### Patch Changes
+
+- 9e8c60f: Update dependencies
+
 ## 0.1.1
 
 ### Patch Changes

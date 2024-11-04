@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.1.7
+
+### Patch Changes
+
+- 9e8c60f: Update dependencies
+
 ## 0.1.6
 
 ### Patch Changes
