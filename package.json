@@ -38,9 +38,11 @@
     "node": ">=20.0.0"
   },
   "packageManager": "pnpm@9.12.3",
+  "resolutions": {
+    "sodium-native": "4.2.0"
+  },
   "pnpm": {
     "overrides": {
-      "sodium-native": "4.2.1",
       "@nx-tools/core": "npm:@openscript/nx-tools-core@6.1.1"
     }
   }
