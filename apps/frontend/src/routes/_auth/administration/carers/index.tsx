@@ -5,7 +5,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 
 function AdministrationCarerIndex() {
   const carers = useSuspenseQuery($api.queryOptions("get", "/carers"));
-  const deleteUserMutation = $api.useMutation("delete", "/carers/{id}", {
+  const deleteCarerMutation = $api.useMutation("delete", "/carers/{id}", {
     onSuccess: () => carers.refetch(),
   });
 
@@ -33,7 +33,7 @@ function AdministrationCarerIndex() {
                 <Button
                   variant="default"
                   onClick={() =>
-                    deleteUserMutation.mutate({
+                    deleteCarerMutation.mutate({
                       params: { path: { id: c.id.toString() } },
                     })
                   }
