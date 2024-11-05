@@ -6,7 +6,7 @@ import { UserRole } from "../../system/users/user.entity";
 import { QuestionnairesService } from "./questionnaires.service";
 import { QuestionnaireCreationDto, QuestionnaireResponseDto, QuestionnaireMutationDto } from "./questionnaire.dto";
 
-@ApiTags("Entry Languages")
+@ApiTags("Questionnaires")
 @Controller("questionnaires")
 export class QuestionnairesController {
   constructor(private readonly questionnairesService: QuestionnairesService) {}
