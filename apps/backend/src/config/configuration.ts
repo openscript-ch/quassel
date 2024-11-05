@@ -1,4 +1,5 @@
 export const configuration = () => ({
+  host: process.env.HOST || "0.0.0.0",
   port: parseInt(process.env.PORT || "") || 3000,
   cors: {
     origin: process.env.CORS_ORIGIN || "http://localhost:3001",

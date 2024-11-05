@@ -106,13 +106,14 @@ The following sources were used:
    sed -i "s/example.com/example.com/g" docker-compose.yaml
    ```
 
-1. Set environment variables in `docker-compose.yaml`:
-   - `SESSION_SECRET` to a 32byte random hex string with `openssl rand -hex 32`
-   - `SESSION_SALT` to a 8byte random hex string with `openssl rand -hex 8`
-   - `DATABASE_PASSWORD` set a more secure password for the database
 1. Change contact email for SSL certificates in `traefik.yaml`
 1. Configure the following environment variables in `docker-compose.yaml`:
-   - **todo**
+   - **backend**:
+      - `SESSION_SECRET` to a 32byte random hex string with `openssl rand -hex 32`
+      - `SESSION_SALT` to a 8byte random hex string with `openssl rand -hex 8`
+      - `DATABASE_PASSWORD` set a more secure password for the database
+   - **frontend**:
+      - `API_URL` set to a escaped URL so it works with sed (e.g. "https:\\/\\/api.test.example.com")
 1. Run application system
 
    ```bash
@@ -139,7 +140,22 @@ The following sources were used:
 
 1. Migrate database
 
+   ```bash
+   docker exec -it $(docker ps -f name=backend -q) npx mikro-orm migration:up
+   ```
+
+1. Seed database
+
+   ```bash
+   docker exec -it $(docker ps -f name=backend -q) npx mikro-orm seeder:run
+   ```
+
 ### Maintain application system
 
 - Create a database backup
+
+  ```bash
+  docker exec -it $(docker ps -f name=database -q) pg_dumpall -c -U postgres > quassel_dump_`date +%d-%m-%Y"_"%H_%M_%S`.sql
+  ```
+
 - Archive storage
