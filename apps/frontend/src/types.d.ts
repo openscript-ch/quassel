@@ -9,3 +9,11 @@ declare module "@tanstack/react-query" {
     };
   }
 }
+
+declare global {
+  interface Window {
+    env?: {
+      apiUrl?: string;
+    };
+  }
+}

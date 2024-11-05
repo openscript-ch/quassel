@@ -67,7 +67,7 @@ services:
   frontend:
     image: ghcr.io/openscript-ch/quassel-frontend:latest
     environment:
-      API: api.test.example.com
+      API_URL: https://api.test.example.com
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
