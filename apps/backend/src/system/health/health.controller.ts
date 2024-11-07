@@ -12,7 +12,7 @@ export class HealthController {
   @Get()
   @HealthCheck()
   @Public()
-  check() {
+  get() {
     return this.health.check([() => this.database.pingCheck("database")]);
   }
 }
