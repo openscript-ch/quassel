@@ -2,7 +2,7 @@
 
 ## Getting started
 
-The following steps describe how to set up the Quassel.
+The following steps describe how to set up the Quassel application system.
 
 ### Environment
 
@@ -89,7 +89,9 @@ The following sources were used:
 
 ### Application system
 
-1. Clone this repository
+The following steps describe how to set up the application system:
+
+1. Copy the example files
 
    ```bash
    cd /srv \
@@ -119,6 +121,39 @@ The following sources were used:
    ```bash
    docker compose -f docker-compose.yaml up -d
    ```
+
+### Automatic updates
+
+For automatic updates, there is a watchtower service configured. This service exposes an endpoint at `http://test.example.com:8080/v1/update`. If a HTTP GET request is sent including the configured secret Bearer token to this endpoint, watchtower will pull new images and restart the services accordingly.
+
+### Monitoring
+
+The following opinionated steps describe to push data to a Grafana instance via Prometheus:
+
+1. Get the remote url and token.
+1. Enable [Docker Metrics](https://docs.docker.com/engine/daemon/prometheus/).
+   1. Add the following to the Docker daemon configuration file `/etc/docker/daemon.json`:
+
+      ```json
+      {
+        "metrics-addr" : "localhost:9323"
+      }
+      ```
+
+   1. Restart the Docker daemon with `systemctl restart docker`.
+1. Copy the Grafana Agent configuration example:
+
+   ```bash
+   wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/grafana-agent.yaml
+   ```
+
+1. Replace the `remote_write` url and token in `grafana-agent.yaml`.
+   1. `<endpoint>` with the remote url.
+   1. `<token>` with the token.
+
+## Tasks
+
+The following sections describe the tasks to take care of the application system.
 
 ### Release a new version
 

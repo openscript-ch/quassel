@@ -7,7 +7,8 @@ volumes:
 
 services:
   proxy:
-    image: traefik:3.1
+    image: traefik:3.2
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yaml:/traefik.yml
@@ -33,6 +34,7 @@ services:
 
   backend:
     image: ghcr.io/openscript-ch/quassel-backend:latest
+    restart: unless-stopped
     volumes:
       - storage:/app/storage
     depends_on:
@@ -59,6 +61,7 @@ services:
 
   database:
     image: postgres:17.0-alpine
+    restart: unless-stopped
     volumes:
       - database:/var/lib/postgresql/data
     environment:
@@ -66,6 +69,7 @@ services:
 
   frontend:
     image: ghcr.io/openscript-ch/quassel-frontend:latest
+    restart: unless-stopped
     environment:
       API_URL: https://api.test.example.com
     labels:
@@ -83,6 +87,7 @@ services:
 
   mockup:
     image: ghcr.io/openscript-ch/quassel-mockup:latest
+    restart: unless-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
@@ -96,8 +101,9 @@ services:
       - "traefik.http.routers.mockup-https-service=mockup-http-service"
       - "traefik.http.services.mockup-http-service.loadbalancer.server.port=80"
 
-  watchtower:
+  updates:
     image: containrrr/watchtower
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --http-api-update
@@ -107,3 +113,11 @@ services:
       - "com.centurylinklabs.watchtower.enable=false"
     ports:
       - 8080:8080
+
+  metrics:
+    image: grafana/agent:v0.43.3
+    restart: unless-stopped
+    volumes:
+      - ./grafana-agent.yaml:/etc/grafana-agent.yaml
+    command:
+      - --config.file=/etc/grafana-agent.yaml
