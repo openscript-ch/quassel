@@ -6,47 +6,47 @@ import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Button, TextInput } from "@quassel/ui";
 import { useEffect } from "react";
 
-type FormValues = components["schemas"]["ParticipantMutationDto"];
+type FormValues = components["schemas"]["StudyMutationDto"];
 
-function AdministrationParticipantsEdit() {
+function AdministrationStudiesEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const participant = useSuspenseQuery(
-    $api.queryOptions("get", "/participants/{id}", {
+  const study = useSuspenseQuery(
+    $api.queryOptions("get", "/studies/{id}", {
       params: { path: { id: p.id } },
     })
   );
   const n = useNavigate();
-  const editParticipantMutation = $api.useMutation("patch", "/participants/{id}", {
+  const editStudyMutation = $api.useMutation("patch", "/studies/{id}", {
     onSuccess: () => {
       q.invalidateQueries(
-        $api.queryOptions("get", "/participants/{id}", {
+        $api.queryOptions("get", "/studies/{id}", {
           params: { path: { id: p.id } },
         })
       );
-      n({ to: "/administration/participants" });
+      n({ to: "/administration/studies" });
     },
   });
   const f = useForm<FormValues>();
   const handleSubmit = (values: FormValues) => {
-    editParticipantMutation.mutate({
+    editStudyMutation.mutate({
       body: { ...values },
       params: { path: { id: p.id } },
     });
   };
 
   useEffect(() => {
-    f.setValues(participant.data ?? {});
+    f.setValues(study.data ?? {});
     f.resetDirty();
-  }, [participant.isSuccess, participant.data]);
+  }, [study.isSuccess, study.data]);
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Id" type="text" {...f.getInputProps("id")} required />
-        <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
+        <TextInput label="Id" type="number" {...f.getInputProps("id")} required />
+        <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={editParticipantMutation.isPending}>
+        <Button type="submit" fullWidth mt="xl" loading={editStudyMutation.isPending}>
           Change
         </Button>
       </form>
@@ -54,12 +54,12 @@ function AdministrationParticipantsEdit() {
   );
 }
 
-export const Route = createFileRoute("/_auth/administration/participants/edit/$id")({
+export const Route = createFileRoute("/_auth/administration/studies/edit/$id")({
   loader: ({ params, context: { queryClient } }) =>
     queryClient.ensureQueryData(
-      $api.queryOptions("get", "/participants/{id}", {
+      $api.queryOptions("get", "/studies/{id}", {
         params: { path: { id: params.id } },
       })
     ),
-  component: AdministrationParticipantsEdit,
+  component: AdministrationStudiesEdit,
 });

@@ -23,19 +23,19 @@ function AdministrationParticipantsIndex() {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {participants.data?.map((c) => (
-            <Table.Tr key={c.id}>
-              <Table.Td>{c.id}</Table.Td>
-              <Table.Td>{c.birthday}</Table.Td>
+          {participants.data?.map((p) => (
+            <Table.Tr key={p.id}>
+              <Table.Td>{p.id}</Table.Td>
+              <Table.Td>{p.birthday}</Table.Td>
               <Table.Td>
-                <Button variant="default" renderRoot={(props) => <Link to={`/administration/participants/edit/${c.id}`} {...props} />}>
+                <Button variant="default" renderRoot={(props) => <Link to={`/administration/participants/edit/${p.id}`} {...props} />}>
                   Edit
                 </Button>
                 <Button
                   variant="default"
                   onClick={() =>
                     deleteParticipantMutation.mutate({
-                      params: { path: { id: c.id.toString() } },
+                      params: { path: { id: p.id.toString() } },
                     })
                   }
                 >

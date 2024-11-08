@@ -4,33 +4,34 @@ import { Button, TextInput } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 import { components } from "../../../../api.gen";
 
-type FormValues = components["schemas"]["ParticipantCreationDto"];
+type FormValues = components["schemas"]["StudyCreationDto"];
 
-function AdministrationParticipantsNew() {
+function AdministrationStudiesNew() {
   const n = useNavigate();
-  const createParticipantMutation = $api.useMutation("post", "/participants", {
+  const createStudyMutation = $api.useMutation("post", "/studies", {
     onSuccess: () => {
-      n({ to: "/administration/participants" });
+      n({ to: "/administration/studies" });
     },
   });
   const f = useForm<FormValues>({
     mode: "uncontrolled",
     initialValues: {
       id: 0,
-      birthday: "",
+      title: "",
+      questionnaires: [],
     },
   });
   const handleSubmit = (values: FormValues) => {
-    createParticipantMutation.mutate({ body: values });
+    createStudyMutation.mutate({ body: values });
   };
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
         <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
-        <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
+        <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={createParticipantMutation.isPending}>
+        <Button type="submit" fullWidth mt="xl" loading={createStudyMutation.isPending}>
           Create
         </Button>
       </form>
@@ -38,6 +39,6 @@ function AdministrationParticipantsNew() {
   );
 }
 
-export const Route = createFileRoute("/_auth/administration/participants/new")({
-  component: AdministrationParticipantsNew,
+export const Route = createFileRoute("/_auth/administration/studies/new")({
+  component: AdministrationStudiesNew,
 });
