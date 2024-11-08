@@ -7,22 +7,22 @@ import { Entry } from "../entries/entry.entity";
 @Entity()
 export class Questionnaire extends BaseEntity {
   @Property()
-  startedAt!: Date;
+  startedAt?: Date;
 
   @Property()
-  endedAt!: Date;
+  endedAt?: Date;
 
   @Property()
-  title!: string;
+  title?: string;
 
   @Property({ columnType: "text" })
   remark?: string;
 
   @ManyToOne()
-  study!: Study;
+  study?: Study;
 
   @ManyToOne()
-  participant!: Participant;
+  participant?: Participant;
 
   @OneToMany(() => Entry, (entry) => entry.questionnaire)
   entries = new Collection<Entry>(this);

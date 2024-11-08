@@ -283,7 +283,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "length": 6,
           "mappedType": "datetime"
         },
@@ -293,7 +293,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "length": 6,
           "mappedType": "datetime"
         },
@@ -303,7 +303,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "length": 255,
           "mappedType": "string"
         },
@@ -322,7 +322,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "integer"
         },
         "participant_id": {
@@ -331,7 +331,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "bigint"
         }
       },
@@ -361,6 +361,7 @@
             "id"
           ],
           "referencedTableName": "public.study",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         },
         "questionnaire_participant_id_foreign": {
@@ -373,6 +374,7 @@
             "id"
           ],
           "referencedTableName": "public.participant",
+          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       },
