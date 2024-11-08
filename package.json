@@ -30,7 +30,7 @@
     "eslint-plugin-react-hooks": "5.1.0-rc-fb9a90fa48-20240614",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
-    "nx": "20.0.10",
+    "nx": "^20.0.11",
     "typescript-eslint": "^8.13.0"
   },
   "engines": {

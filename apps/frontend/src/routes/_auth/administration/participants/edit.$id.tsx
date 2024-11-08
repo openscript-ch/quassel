@@ -6,46 +6,51 @@ import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Button, TextInput } from "@quassel/ui";
 import { useEffect } from "react";
 
-type FormValues = components["schemas"]["CarerMutationDto"];
+type FormValues = components["schemas"]["ParticipantMutationDto"];
 
-function AdministrationCarersEdit() {
+function AdministrationParticipantsEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const carer = useSuspenseQuery($api.queryOptions("get", "/carers/{id}", { params: { path: { id: p.id } } }));
+  const participant = useSuspenseQuery(
+    $api.queryOptions("get", "/participants/{id}", {
+      params: { path: { id: p.id } },
+    })
+  );
   const n = useNavigate();
-  const editCarerMutation = $api.useMutation("patch", "/carers/{id}", {
+  const editParticipantMutation = $api.useMutation("patch", "/participants/{id}", {
     onSuccess: () => {
       q.invalidateQueries(
-        $api.queryOptions("get", "/carers/{id}", {
+        $api.queryOptions("get", "/participants/{id}", {
           params: { path: { id: p.id } },
         })
       );
-      n({ to: "/administration/carers" });
+      n({ to: "/administration/participants" });
     },
   });
   const f = useForm<FormValues>({
     initialValues: {
-      name: "",
+      id: 0,
     },
   });
   const handleSubmit = (values: FormValues) => {
-    editCarerMutation.mutate({
+    editParticipantMutation.mutate({
       body: { ...values },
       params: { path: { id: p.id } },
     });
   };
 
   useEffect(() => {
-    f.setValues(carer.data ?? {});
+    f.setValues(participant.data ?? {});
     f.resetDirty();
-  }, [carer.isSuccess, carer.data]);
+  }, [participant.isSuccess, participant.data]);
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="name" {...f.getInputProps("name")} />
+        <TextInput label="Id" type="text" {...f.getInputProps("id")} required />
+        <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={editCarerMutation.isPending}>
+        <Button type="submit" fullWidth mt="xl" loading={editParticipantMutation.isPending}>
           Change
         </Button>
       </form>
@@ -53,12 +58,12 @@ function AdministrationCarersEdit() {
   );
 }
 
-export const Route = createFileRoute("/_auth/administration/carers/edit/$id")({
+export const Route = createFileRoute("/_auth/administration/participants/edit/$id")({
   loader: ({ params, context: { queryClient } }) =>
     queryClient.ensureQueryData(
-      $api.queryOptions("get", "/carers/{id}", {
+      $api.queryOptions("get", "/participants/{id}", {
         params: { path: { id: params.id } },
       })
     ),
-  component: AdministrationCarersEdit,
+  component: AdministrationParticipantsEdit,
 });

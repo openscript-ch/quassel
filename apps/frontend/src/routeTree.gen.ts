@@ -26,12 +26,15 @@ import { Route as AuthAdministrationLanguagesImport } from "./routes/_auth/admin
 import { Route as AuthAdministrationExportImport } from "./routes/_auth/administration/export";
 import { Route as AuthAdministrationCarersImport } from "./routes/_auth/administration/carers";
 import { Route as AuthAdministrationUsersIndexImport } from "./routes/_auth/administration/users/index";
+import { Route as AuthAdministrationParticipantsIndexImport } from "./routes/_auth/administration/participants/index";
 import { Route as AuthAdministrationLanguagesIndexImport } from "./routes/_auth/administration/languages/index";
 import { Route as AuthAdministrationCarersIndexImport } from "./routes/_auth/administration/carers/index";
 import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
+import { Route as AuthAdministrationParticipantsNewImport } from "./routes/_auth/administration/participants/new";
 import { Route as AuthAdministrationLanguagesNewImport } from "./routes/_auth/administration/languages/new";
 import { Route as AuthAdministrationCarersNewImport } from "./routes/_auth/administration/carers/new";
 import { Route as AuthAdministrationUsersEditIdImport } from "./routes/_auth/administration/users/edit.$id";
+import { Route as AuthAdministrationParticipantsEditIdImport } from "./routes/_auth/administration/participants/edit.$id";
 import { Route as AuthAdministrationLanguagesEditIdImport } from "./routes/_auth/administration/languages/edit.$id";
 import { Route as AuthAdministrationCarersEditIdImport } from "./routes/_auth/administration/carers/edit.$id";
 
@@ -130,6 +133,13 @@ const AuthAdministrationUsersIndexRoute =
     getParentRoute: () => AuthAdministrationUsersRoute,
   } as any);
 
+const AuthAdministrationParticipantsIndexRoute =
+  AuthAdministrationParticipantsIndexImport.update({
+    id: "/",
+    path: "/",
+    getParentRoute: () => AuthAdministrationParticipantsRoute,
+  } as any);
+
 const AuthAdministrationLanguagesIndexRoute =
   AuthAdministrationLanguagesIndexImport.update({
     id: "/",
@@ -152,6 +162,13 @@ const AuthAdministrationUsersNewRoute = AuthAdministrationUsersNewImport.update(
   } as any,
 );
 
+const AuthAdministrationParticipantsNewRoute =
+  AuthAdministrationParticipantsNewImport.update({
+    id: "/new",
+    path: "/new",
+    getParentRoute: () => AuthAdministrationParticipantsRoute,
+  } as any);
+
 const AuthAdministrationLanguagesNewRoute =
   AuthAdministrationLanguagesNewImport.update({
     id: "/new",
@@ -171,6 +188,13 @@ const AuthAdministrationUsersEditIdRoute =
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationUsersRoute,
+  } as any);
+
+const AuthAdministrationParticipantsEditIdRoute =
+  AuthAdministrationParticipantsEditIdImport.update({
+    id: "/edit/$id",
+    path: "/edit/$id",
+    getParentRoute: () => AuthAdministrationParticipantsRoute,
   } as any);
 
 const AuthAdministrationLanguagesEditIdRoute =
@@ -303,6 +327,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthAdministrationLanguagesNewImport;
       parentRoute: typeof AuthAdministrationLanguagesImport;
     };
+    "/_auth/administration/participants/new": {
+      id: "/_auth/administration/participants/new";
+      path: "/new";
+      fullPath: "/administration/participants/new";
+      preLoaderRoute: typeof AuthAdministrationParticipantsNewImport;
+      parentRoute: typeof AuthAdministrationParticipantsImport;
+    };
     "/_auth/administration/users/new": {
       id: "/_auth/administration/users/new";
       path: "/new";
@@ -324,6 +355,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthAdministrationLanguagesIndexImport;
       parentRoute: typeof AuthAdministrationLanguagesImport;
     };
+    "/_auth/administration/participants/": {
+      id: "/_auth/administration/participants/";
+      path: "/";
+      fullPath: "/administration/participants/";
+      preLoaderRoute: typeof AuthAdministrationParticipantsIndexImport;
+      parentRoute: typeof AuthAdministrationParticipantsImport;
+    };
     "/_auth/administration/users/": {
       id: "/_auth/administration/users/";
       path: "/";
@@ -344,6 +382,13 @@ declare module "@tanstack/react-router" {
       fullPath: "/administration/languages/edit/$id";
       preLoaderRoute: typeof AuthAdministrationLanguagesEditIdImport;
       parentRoute: typeof AuthAdministrationLanguagesImport;
+    };
+    "/_auth/administration/participants/edit/$id": {
+      id: "/_auth/administration/participants/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/participants/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationParticipantsEditIdImport;
+      parentRoute: typeof AuthAdministrationParticipantsImport;
     };
     "/_auth/administration/users/edit/$id": {
       id: "/_auth/administration/users/edit/$id";
@@ -395,6 +440,27 @@ const AuthAdministrationLanguagesRouteWithChildren =
     AuthAdministrationLanguagesRouteChildren,
   );
 
+interface AuthAdministrationParticipantsRouteChildren {
+  AuthAdministrationParticipantsNewRoute: typeof AuthAdministrationParticipantsNewRoute;
+  AuthAdministrationParticipantsIndexRoute: typeof AuthAdministrationParticipantsIndexRoute;
+  AuthAdministrationParticipantsEditIdRoute: typeof AuthAdministrationParticipantsEditIdRoute;
+}
+
+const AuthAdministrationParticipantsRouteChildren: AuthAdministrationParticipantsRouteChildren =
+  {
+    AuthAdministrationParticipantsNewRoute:
+      AuthAdministrationParticipantsNewRoute,
+    AuthAdministrationParticipantsIndexRoute:
+      AuthAdministrationParticipantsIndexRoute,
+    AuthAdministrationParticipantsEditIdRoute:
+      AuthAdministrationParticipantsEditIdRoute,
+  };
+
+const AuthAdministrationParticipantsRouteWithChildren =
+  AuthAdministrationParticipantsRoute._addFileChildren(
+    AuthAdministrationParticipantsRouteChildren,
+  );
+
 interface AuthAdministrationUsersRouteChildren {
   AuthAdministrationUsersNewRoute: typeof AuthAdministrationUsersNewRoute;
   AuthAdministrationUsersIndexRoute: typeof AuthAdministrationUsersIndexRoute;
@@ -417,7 +483,7 @@ interface AuthAdministrationRouteChildren {
   AuthAdministrationCarersRoute: typeof AuthAdministrationCarersRouteWithChildren;
   AuthAdministrationExportRoute: typeof AuthAdministrationExportRoute;
   AuthAdministrationLanguagesRoute: typeof AuthAdministrationLanguagesRouteWithChildren;
-  AuthAdministrationParticipantsRoute: typeof AuthAdministrationParticipantsRoute;
+  AuthAdministrationParticipantsRoute: typeof AuthAdministrationParticipantsRouteWithChildren;
   AuthAdministrationQuestionnairesRoute: typeof AuthAdministrationQuestionnairesRoute;
   AuthAdministrationStudiesRoute: typeof AuthAdministrationStudiesRoute;
   AuthAdministrationUsersRoute: typeof AuthAdministrationUsersRouteWithChildren;
@@ -429,7 +495,8 @@ const AuthAdministrationRouteChildren: AuthAdministrationRouteChildren = {
   AuthAdministrationExportRoute: AuthAdministrationExportRoute,
   AuthAdministrationLanguagesRoute:
     AuthAdministrationLanguagesRouteWithChildren,
-  AuthAdministrationParticipantsRoute: AuthAdministrationParticipantsRoute,
+  AuthAdministrationParticipantsRoute:
+    AuthAdministrationParticipantsRouteWithChildren,
   AuthAdministrationQuestionnairesRoute: AuthAdministrationQuestionnairesRoute,
   AuthAdministrationStudiesRoute: AuthAdministrationStudiesRoute,
   AuthAdministrationUsersRoute: AuthAdministrationUsersRouteWithChildren,
@@ -473,7 +540,7 @@ export interface FileRoutesByFullPath {
   "/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
   "/administration/export": typeof AuthAdministrationExportRoute;
   "/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
-  "/administration/participants": typeof AuthAdministrationParticipantsRoute;
+  "/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
   "/administration/questionnaires": typeof AuthAdministrationQuestionnairesRoute;
   "/administration/studies": typeof AuthAdministrationStudiesRoute;
   "/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
@@ -481,12 +548,15 @@ export interface FileRoutesByFullPath {
   "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
   "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
   "/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
+  "/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
   "/administration/users/": typeof AuthAdministrationUsersIndexRoute;
   "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
   "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
   "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
@@ -494,19 +564,21 @@ export interface FileRoutesByTo {
   "/session": typeof SessionRoute;
   "/": typeof AuthIndexRoute;
   "/administration/export": typeof AuthAdministrationExportRoute;
-  "/administration/participants": typeof AuthAdministrationParticipantsRoute;
   "/administration/questionnaires": typeof AuthAdministrationQuestionnairesRoute;
   "/administration/studies": typeof AuthAdministrationStudiesRoute;
   "/administration": typeof AuthAdministrationIndexRoute;
   "/questionnaire": typeof AuthQuestionnaireIndexRoute;
   "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/administration/carers": typeof AuthAdministrationCarersIndexRoute;
   "/administration/languages": typeof AuthAdministrationLanguagesIndexRoute;
+  "/administration/participants": typeof AuthAdministrationParticipantsIndexRoute;
   "/administration/users": typeof AuthAdministrationUsersIndexRoute;
   "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
   "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
   "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
@@ -520,7 +592,7 @@ export interface FileRoutesById {
   "/_auth/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
   "/_auth/administration/export": typeof AuthAdministrationExportRoute;
   "/_auth/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
-  "/_auth/administration/participants": typeof AuthAdministrationParticipantsRoute;
+  "/_auth/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
   "/_auth/administration/questionnaires": typeof AuthAdministrationQuestionnairesRoute;
   "/_auth/administration/studies": typeof AuthAdministrationStudiesRoute;
   "/_auth/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
@@ -528,12 +600,15 @@ export interface FileRoutesById {
   "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
   "/_auth/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/_auth/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/_auth/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
   "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/_auth/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
   "/_auth/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
+  "/_auth/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
   "/_auth/administration/users/": typeof AuthAdministrationUsersIndexRoute;
   "/_auth/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
   "/_auth/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/_auth/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
   "/_auth/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
 }
 
@@ -556,31 +631,36 @@ export interface FileRouteTypes {
     | "/questionnaire/"
     | "/administration/carers/new"
     | "/administration/languages/new"
+    | "/administration/participants/new"
     | "/administration/users/new"
     | "/administration/carers/"
     | "/administration/languages/"
+    | "/administration/participants/"
     | "/administration/users/"
     | "/administration/carers/edit/$id"
     | "/administration/languages/edit/$id"
+    | "/administration/participants/edit/$id"
     | "/administration/users/edit/$id";
   fileRoutesByTo: FileRoutesByTo;
   to:
     | "/session"
     | "/"
     | "/administration/export"
-    | "/administration/participants"
     | "/administration/questionnaires"
     | "/administration/studies"
     | "/administration"
     | "/questionnaire"
     | "/administration/carers/new"
     | "/administration/languages/new"
+    | "/administration/participants/new"
     | "/administration/users/new"
     | "/administration/carers"
     | "/administration/languages"
+    | "/administration/participants"
     | "/administration/users"
     | "/administration/carers/edit/$id"
     | "/administration/languages/edit/$id"
+    | "/administration/participants/edit/$id"
     | "/administration/users/edit/$id";
   id:
     | "__root__"
@@ -600,12 +680,15 @@ export interface FileRouteTypes {
     | "/_auth/questionnaire/"
     | "/_auth/administration/carers/new"
     | "/_auth/administration/languages/new"
+    | "/_auth/administration/participants/new"
     | "/_auth/administration/users/new"
     | "/_auth/administration/carers/"
     | "/_auth/administration/languages/"
+    | "/_auth/administration/participants/"
     | "/_auth/administration/users/"
     | "/_auth/administration/carers/edit/$id"
     | "/_auth/administration/languages/edit/$id"
+    | "/_auth/administration/participants/edit/$id"
     | "/_auth/administration/users/edit/$id";
   fileRoutesById: FileRoutesById;
 }
@@ -694,7 +777,12 @@ export const routeTree = rootRoute
     },
     "/_auth/administration/participants": {
       "filePath": "_auth/administration/participants.tsx",
-      "parent": "/_auth/administration"
+      "parent": "/_auth/administration",
+      "children": [
+        "/_auth/administration/participants/new",
+        "/_auth/administration/participants/",
+        "/_auth/administration/participants/edit/$id"
+      ]
     },
     "/_auth/administration/questionnaires": {
       "filePath": "_auth/administration/questionnaires.tsx",
@@ -729,6 +817,10 @@ export const routeTree = rootRoute
       "filePath": "_auth/administration/languages/new.tsx",
       "parent": "/_auth/administration/languages"
     },
+    "/_auth/administration/participants/new": {
+      "filePath": "_auth/administration/participants/new.tsx",
+      "parent": "/_auth/administration/participants"
+    },
     "/_auth/administration/users/new": {
       "filePath": "_auth/administration/users/new.tsx",
       "parent": "/_auth/administration/users"
@@ -741,6 +833,10 @@ export const routeTree = rootRoute
       "filePath": "_auth/administration/languages/index.tsx",
       "parent": "/_auth/administration/languages"
     },
+    "/_auth/administration/participants/": {
+      "filePath": "_auth/administration/participants/index.tsx",
+      "parent": "/_auth/administration/participants"
+    },
     "/_auth/administration/users/": {
       "filePath": "_auth/administration/users/index.tsx",
       "parent": "/_auth/administration/users"
@@ -752,6 +848,10 @@ export const routeTree = rootRoute
     "/_auth/administration/languages/edit/$id": {
       "filePath": "_auth/administration/languages/edit.$id.tsx",
       "parent": "/_auth/administration/languages"
+    },
+    "/_auth/administration/participants/edit/$id": {
+      "filePath": "_auth/administration/participants/edit.$id.tsx",
+      "parent": "/_auth/administration/participants"
     },
     "/_auth/administration/users/edit/$id": {
       "filePath": "_auth/administration/users/edit.$id.tsx",
