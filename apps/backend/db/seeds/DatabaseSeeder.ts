@@ -41,12 +41,22 @@ export class DatabaseSeeder extends Seeder {
     ];
 
     const carers: CarerCreationDto[] = [
-      { name: "Grossmutter" },
-      { name: "Grossvater" },
-      { name: "Mutter" },
-      { name: "Vater" },
-      { name: "Tante" },
-      { name: "Onkel" },
+      { name: "Mutter, Mother" },
+      { name: "Vater, Father" },
+      { name: "Grossmutter, Grandmother" },
+      { name: "Grossvater, Grandfather" },
+      { name: "Schwester, Sister" },
+      { name: "Bruder, Brother" },
+      { name: "Tante, Aunt" },
+      { name: "Onkel, Uncle" },
+      { name: "Onkel, Uncle" },
+      { name: "KiTa, Day care centre" },
+      { name: "Spielgruppe, Playgroup" },
+      { name: "Turnen, Gymnastics" },
+      { name: "Kindergarten, Kindergarten" },
+      { name: "Hort, After-school care" },
+      { name: "Nanny / Babysitter" },
+      { name: "Nachbar, Neighbour" },
     ];
 
     const languages: LanguageCreationDto[] = [
