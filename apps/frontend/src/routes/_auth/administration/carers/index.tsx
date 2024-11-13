@@ -3,7 +3,7 @@ import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
 
-function AdministrationCarerIndex() {
+function AdministrationCarersIndex() {
   const carers = useSuspenseQuery($api.queryOptions("get", "/carers"));
   const deleteCarerMutation = $api.useMutation("delete", "/carers/{id}", {
     onSuccess: () => carers.refetch(),
@@ -51,5 +51,5 @@ function AdministrationCarerIndex() {
 
 export const Route = createFileRoute("/_auth/administration/carers/")({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData($api.queryOptions("get", "/carers")),
-  component: () => <AdministrationCarerIndex />,
+  component: () => <AdministrationCarersIndex />,
 });

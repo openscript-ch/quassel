@@ -33,7 +33,7 @@ function Root() {
     $session.set({});
     n({ to: "/session" });
   };
-  const signOutMutation = $api.useMutation("delete", "/session", { onSettled: () => signOut() });
+  const signOutMutation = $api.useMutation("delete", "/session", { onSettled: signOut });
   const handleSignOut = () => {
     signOutMutation.mutate({});
   };

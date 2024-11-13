@@ -60,6 +60,38 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["HealthController_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["StatusController_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/carers": {
         parameters: {
             query?: never;
@@ -325,6 +357,7 @@ export interface components {
     schemas: {
         UserCreationDto: {
             /**
+             * Format: email
              * @description The email of the user
              * @example admin@example.com
              */
@@ -348,6 +381,7 @@ export interface components {
              */
             id: number;
             /**
+             * Format: email
              * @description The email of the user
              * @example admin@example.com
              */
@@ -369,6 +403,7 @@ export interface components {
         };
         UserMutationDto: {
             /**
+             * Format: email
              * @description The email of the user
              * @example admin@example.com
              */
@@ -387,6 +422,7 @@ export interface components {
         };
         SessionCreationDto: {
             /**
+             * Format: email
              * @description The email of the user
              * @example admin@example.com
              */
@@ -404,6 +440,7 @@ export interface components {
              */
             id: number;
             /**
+             * Format: email
              * @description The email of the user
              * @example admin@example.com
              */
@@ -575,26 +612,26 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt: string;
+            startedAt?: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt: string;
+            endedAt?: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title: string;
+            title?: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
-            entries: number[];
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+            entries?: number[];
         };
         CarerDto: {
             /**
@@ -696,26 +733,26 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt: string;
+            startedAt?: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt: string;
+            endedAt?: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title: string;
+            title?: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
-            entries: number[];
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+            entries?: number[];
         };
         QuestionnaireResponseDto: {
             /**
@@ -728,26 +765,26 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt: string;
+            startedAt?: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt: string;
+            endedAt?: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title: string;
+            title?: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
-            entries: number[];
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+            entries?: number[];
         };
         QuestionnaireMutationDto: {
             /**
@@ -1107,6 +1144,131 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["ErrorResponseDto"];
                 };
+            };
+        };
+    };
+    HealthController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description The Health Check is successful */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example ok */
+                        status?: string;
+                        /** @example {
+                         *       "database": {
+                         *         "status": "up"
+                         *       }
+                         *     } */
+                        info?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        } | null;
+                        /** @example {} */
+                        error?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        } | null;
+                        /** @example {
+                         *       "database": {
+                         *         "status": "up"
+                         *       }
+                         *     } */
+                        details?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        };
+                    };
+                };
+            };
+            /** @description The Health Check is not successful */
+            503: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @example error */
+                        status?: string;
+                        /** @example {
+                         *       "database": {
+                         *         "status": "up"
+                         *       }
+                         *     } */
+                        info?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        } | null;
+                        /** @example {
+                         *       "redis": {
+                         *         "status": "down",
+                         *         "message": "Could not connect"
+                         *       }
+                         *     } */
+                        error?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        } | null;
+                        /** @example {
+                         *       "database": {
+                         *         "status": "up"
+                         *       },
+                         *       "redis": {
+                         *         "status": "down",
+                         *         "message": "Could not connect"
+                         *       }
+                         *     } */
+                        details?: {
+                            [key: string]: {
+                                status: string;
+                            } & {
+                                [key: string]: unknown;
+                            };
+                        };
+                    };
+                };
+            };
+        };
+    };
+    StatusController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };

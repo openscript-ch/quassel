@@ -6,46 +6,46 @@ import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Button, TextInput } from "@quassel/ui";
 import { useEffect } from "react";
 
-type FormValues = components["schemas"]["CarerMutationDto"];
+type FormValues = components["schemas"]["QuestionnaireMutationDto"];
 
-function AdministrationCarersEdit() {
+function AdministrationQuestionnairesEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const carer = useSuspenseQuery($api.queryOptions("get", "/carers/{id}", { params: { path: { id: p.id } } }));
+  const questionnaire = useSuspenseQuery(
+    $api.queryOptions("get", "/questionnaires/{id}", {
+      params: { path: { id: p.id } },
+    })
+  );
   const n = useNavigate();
-  const editCarerMutation = $api.useMutation("patch", "/carers/{id}", {
+  const editQuestionnaireMutation = $api.useMutation("patch", "/questionnaires/{id}", {
     onSuccess: () => {
       q.invalidateQueries(
-        $api.queryOptions("get", "/carers/{id}", {
+        $api.queryOptions("get", "/questionnaires/{id}", {
           params: { path: { id: p.id } },
         })
       );
-      n({ to: "/administration/carers" });
+      n({ to: "/administration/questionnaires" });
     },
   });
-  const f = useForm<FormValues>({
-    initialValues: {
-      name: "",
-    },
-  });
+  const f = useForm<FormValues>();
   const handleSubmit = (values: FormValues) => {
-    editCarerMutation.mutate({
+    editQuestionnaireMutation.mutate({
       body: { ...values },
       params: { path: { id: p.id } },
     });
   };
 
   useEffect(() => {
-    f.setValues(carer.data ?? {});
+    f.setValues(questionnaire.data ?? {});
     f.resetDirty();
-  }, [carer.isSuccess, carer.data]);
+  }, [questionnaire.isSuccess, questionnaire.data]);
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
         <TextInput label="Name" type="name" {...f.getInputProps("name")} />
 
-        <Button type="submit" fullWidth mt="xl" loading={editCarerMutation.isPending}>
+        <Button type="submit" fullWidth mt="xl" loading={editQuestionnaireMutation.isPending}>
           Change
         </Button>
       </form>
@@ -53,12 +53,12 @@ function AdministrationCarersEdit() {
   );
 }
 
-export const Route = createFileRoute("/_auth/administration/carers/edit/$id")({
+export const Route = createFileRoute("/_auth/administration/questionnaires/edit/$id")({
   loader: ({ params, context: { queryClient } }) =>
     queryClient.ensureQueryData(
-      $api.queryOptions("get", "/carers/{id}", {
+      $api.queryOptions("get", "/questionnaires/{id}", {
         params: { path: { id: params.id } },
       })
     ),
-  component: AdministrationCarersEdit,
+  component: AdministrationQuestionnairesEdit,
 });

@@ -8,7 +8,7 @@ RUN npm install --omit=dev
 
 # Production image, copy all the files and run nest
 FROM docker.io/node:20-alpine AS runner
-RUN apk add --no-cache dumb-init
+RUN apk add --no-cache dumb-init curl
 ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /usr/src/app
@@ -18,4 +18,6 @@ COPY dist/ .
 RUN chown -R node:node .
 USER node
 EXPOSE 3000
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl --fail http://localhost:3000/health || exit 1
 CMD ["dumb-init", "node", "src/main.js"]

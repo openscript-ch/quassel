@@ -1,0 +1,41 @@
+name: "quassel"
+
+volumes:
+  storage:
+  database:
+  letsencrypt:
+
+services:
+  backend:
+    image: quassel-backend:latest
+    volumes:
+      - storage:/app/storage
+    depends_on:
+      - database
+    ports:
+      - "3000:4000"
+    environment:
+      LANG: C.UTF-8
+      CORS_ORIGIN: http://localhost:4001
+      SESSION_SECRET: secret
+      SESSION_SALT: salt
+      DATABASE_HOST: database
+      DATABASE_PASSWORD: secret
+
+  database:
+    image: postgres:17.0-alpine
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "secret"
+
+  frontend:
+    image: quassel-frontend:latest
+    ports:
+      - "80:4001"
+    environment:
+      API_URL: http://localhost:4000
+  mockup:
+    image: quassel-mockup:latest
+    ports:
+      - "80:4002"

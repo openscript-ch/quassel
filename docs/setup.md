@@ -95,9 +95,9 @@ The following steps describe how to set up the application system:
 
    ```bash
    cd /srv \
-   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/docker-compose.yaml \
-   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/traefik.yaml \
-   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/.env.example
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/examples/public/docker-compose.yaml \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/examples/public/traefik.yaml \
+   && wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/examples/public/.env.example
    ```
 
 1. Rename environment file and fill out the gaps `mv .env.example .env`
@@ -144,7 +144,7 @@ The following opinionated steps describe to push data to a Grafana instance via 
 1. Copy the Grafana Agent configuration example:
 
    ```bash
-   wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/docs/examples/grafana-agent.yaml
+   wget https://raw.githubusercontent.com/openscript-ch/quassel/refs/heads/main/examples/public/grafana-agent.yaml
    ```
 
 1. Replace the `remote_write` url and token in `grafana-agent.yaml`.
