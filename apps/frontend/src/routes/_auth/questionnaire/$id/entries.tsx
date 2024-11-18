@@ -13,7 +13,7 @@ function QuestionnaireEntries() {
     <form onSubmit={handleSubmit}>
       <Group>
         <Link to="/questionnaire/$id/period" params={p}>
-          <Button variant="outline">Back</Button>
+          <Button variant="light">Back</Button>
         </Link>
         <Button type="submit">Continue</Button>
       </Group>

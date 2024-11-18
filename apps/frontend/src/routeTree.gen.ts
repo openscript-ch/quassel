@@ -35,6 +35,7 @@ import { Route as AuthAdministrationLanguagesIndexImport } from "./routes/_auth/
 import { Route as AuthAdministrationCarersIndexImport } from "./routes/_auth/administration/carers/index";
 import { Route as AuthQuestionnaireIdRemarksImport } from "./routes/_auth/questionnaire/$id/remarks";
 import { Route as AuthQuestionnaireIdPeriodImport } from "./routes/_auth/questionnaire/$id/period";
+import { Route as AuthQuestionnaireIdOverviewImport } from "./routes/_auth/questionnaire/$id/overview";
 import { Route as AuthQuestionnaireIdEntriesImport } from "./routes/_auth/questionnaire/$id/entries";
 import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
 import { Route as AuthAdministrationStudiesNewImport } from "./routes/_auth/administration/studies/new";
@@ -205,6 +206,13 @@ const AuthQuestionnaireIdPeriodRoute = AuthQuestionnaireIdPeriodImport.update({
   path: "/$id/period",
   getParentRoute: () => AuthQuestionnaireRoute,
 } as any);
+
+const AuthQuestionnaireIdOverviewRoute =
+  AuthQuestionnaireIdOverviewImport.update({
+    id: "/$id/overview",
+    path: "/$id/overview",
+    getParentRoute: () => AuthQuestionnaireRoute,
+  } as any);
 
 const AuthQuestionnaireIdEntriesRoute = AuthQuestionnaireIdEntriesImport.update(
   {
@@ -464,6 +472,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthQuestionnaireIdEntriesImport;
       parentRoute: typeof AuthQuestionnaireImport;
     };
+    "/_auth/questionnaire/$id/overview": {
+      id: "/_auth/questionnaire/$id/overview";
+      path: "/$id/overview";
+      fullPath: "/questionnaire/$id/overview";
+      preLoaderRoute: typeof AuthQuestionnaireIdOverviewImport;
+      parentRoute: typeof AuthQuestionnaireImport;
+    };
     "/_auth/questionnaire/$id/period": {
       id: "/_auth/questionnaire/$id/period";
       path: "/$id/period";
@@ -716,6 +731,7 @@ interface AuthQuestionnaireRouteChildren {
   AuthQuestionnaireParticipantRoute: typeof AuthQuestionnaireParticipantRoute;
   AuthQuestionnaireIndexRoute: typeof AuthQuestionnaireIndexRoute;
   AuthQuestionnaireIdEntriesRoute: typeof AuthQuestionnaireIdEntriesRoute;
+  AuthQuestionnaireIdOverviewRoute: typeof AuthQuestionnaireIdOverviewRoute;
   AuthQuestionnaireIdPeriodRoute: typeof AuthQuestionnaireIdPeriodRoute;
   AuthQuestionnaireIdRemarksRoute: typeof AuthQuestionnaireIdRemarksRoute;
 }
@@ -725,6 +741,7 @@ const AuthQuestionnaireRouteChildren: AuthQuestionnaireRouteChildren = {
   AuthQuestionnaireParticipantRoute: AuthQuestionnaireParticipantRoute,
   AuthQuestionnaireIndexRoute: AuthQuestionnaireIndexRoute,
   AuthQuestionnaireIdEntriesRoute: AuthQuestionnaireIdEntriesRoute,
+  AuthQuestionnaireIdOverviewRoute: AuthQuestionnaireIdOverviewRoute,
   AuthQuestionnaireIdPeriodRoute: AuthQuestionnaireIdPeriodRoute,
   AuthQuestionnaireIdRemarksRoute: AuthQuestionnaireIdRemarksRoute,
 };
@@ -770,6 +787,7 @@ export interface FileRoutesByFullPath {
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
+  "/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
   "/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
   "/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
   "/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
@@ -801,6 +819,7 @@ export interface FileRoutesByTo {
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
+  "/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
   "/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
   "/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
   "/administration/carers": typeof AuthAdministrationCarersIndexRoute;
@@ -842,6 +861,7 @@ export interface FileRoutesById {
   "/_auth/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/_auth/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
+  "/_auth/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
   "/_auth/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
   "/_auth/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
   "/_auth/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
@@ -884,6 +904,7 @@ export interface FileRouteTypes {
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/$id/entries"
+    | "/questionnaire/$id/overview"
     | "/questionnaire/$id/period"
     | "/questionnaire/$id/remarks"
     | "/administration/carers/"
@@ -914,6 +935,7 @@ export interface FileRouteTypes {
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/$id/entries"
+    | "/questionnaire/$id/overview"
     | "/questionnaire/$id/period"
     | "/questionnaire/$id/remarks"
     | "/administration/carers"
@@ -953,6 +975,7 @@ export interface FileRouteTypes {
     | "/_auth/administration/studies/new"
     | "/_auth/administration/users/new"
     | "/_auth/questionnaire/$id/entries"
+    | "/_auth/questionnaire/$id/overview"
     | "/_auth/questionnaire/$id/period"
     | "/_auth/questionnaire/$id/remarks"
     | "/_auth/administration/carers/"
@@ -1027,6 +1050,7 @@ export const routeTree = rootRoute
         "/_auth/questionnaire/participant",
         "/_auth/questionnaire/",
         "/_auth/questionnaire/$id/entries",
+        "/_auth/questionnaire/$id/overview",
         "/_auth/questionnaire/$id/period",
         "/_auth/questionnaire/$id/remarks"
       ]
@@ -1135,6 +1159,10 @@ export const routeTree = rootRoute
     },
     "/_auth/questionnaire/$id/entries": {
       "filePath": "_auth/questionnaire/$id/entries.tsx",
+      "parent": "/_auth/questionnaire"
+    },
+    "/_auth/questionnaire/$id/overview": {
+      "filePath": "_auth/questionnaire/$id/overview.tsx",
       "parent": "/_auth/questionnaire"
     },
     "/_auth/questionnaire/$id/period": {
