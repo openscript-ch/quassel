@@ -26,6 +26,7 @@ import "@mantine/core/styles/Text.css";
 import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
+import "@mantine/core/styles/Stack.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -45,6 +46,7 @@ export {
   Paper,
   PasswordInput,
   Select,
+  Stack,
   Table,
   Text,
   TextInput,
