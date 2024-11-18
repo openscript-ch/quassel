@@ -16,10 +16,8 @@ import { Route as AuthImport } from "./routes/_auth";
 import { Route as AuthIndexImport } from "./routes/_auth/index";
 import { Route as AuthQuestionnaireImport } from "./routes/_auth/questionnaire";
 import { Route as AuthAdministrationImport } from "./routes/_auth/administration";
-import { Route as AuthQuestionnaireIndexImport } from "./routes/_auth/questionnaire/index";
 import { Route as AuthAdministrationIndexImport } from "./routes/_auth/administration/index";
-import { Route as AuthQuestionnaireParticipantImport } from "./routes/_auth/questionnaire/participant";
-import { Route as AuthQuestionnaireNewImport } from "./routes/_auth/questionnaire/new";
+import { Route as AuthQuestionnaireFormImport } from "./routes/_auth/questionnaire/_form";
 import { Route as AuthAdministrationUsersImport } from "./routes/_auth/administration/users";
 import { Route as AuthAdministrationStudiesImport } from "./routes/_auth/administration/studies";
 import { Route as AuthAdministrationQuestionnairesImport } from "./routes/_auth/administration/questionnaires";
@@ -27,15 +25,15 @@ import { Route as AuthAdministrationParticipantsImport } from "./routes/_auth/ad
 import { Route as AuthAdministrationLanguagesImport } from "./routes/_auth/administration/languages";
 import { Route as AuthAdministrationExportImport } from "./routes/_auth/administration/export";
 import { Route as AuthAdministrationCarersImport } from "./routes/_auth/administration/carers";
+import { Route as AuthQuestionnaireFormIndexImport } from "./routes/_auth/questionnaire/_form/index";
 import { Route as AuthAdministrationUsersIndexImport } from "./routes/_auth/administration/users/index";
 import { Route as AuthAdministrationStudiesIndexImport } from "./routes/_auth/administration/studies/index";
 import { Route as AuthAdministrationQuestionnairesIndexImport } from "./routes/_auth/administration/questionnaires/index";
 import { Route as AuthAdministrationParticipantsIndexImport } from "./routes/_auth/administration/participants/index";
 import { Route as AuthAdministrationLanguagesIndexImport } from "./routes/_auth/administration/languages/index";
 import { Route as AuthAdministrationCarersIndexImport } from "./routes/_auth/administration/carers/index";
-import { Route as AuthQuestionnaireIdRemarksImport } from "./routes/_auth/questionnaire/$id/remarks";
-import { Route as AuthQuestionnaireIdPeriodImport } from "./routes/_auth/questionnaire/$id/period";
-import { Route as AuthQuestionnaireIdOverviewImport } from "./routes/_auth/questionnaire/$id/overview";
+import { Route as AuthQuestionnaireFormParticipantImport } from "./routes/_auth/questionnaire/_form/participant";
+import { Route as AuthQuestionnaireFormNewImport } from "./routes/_auth/questionnaire/_form/new";
 import { Route as AuthQuestionnaireIdEntriesImport } from "./routes/_auth/questionnaire/$id/entries";
 import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
 import { Route as AuthAdministrationStudiesNewImport } from "./routes/_auth/administration/studies/new";
@@ -43,6 +41,9 @@ import { Route as AuthAdministrationQuestionnairesNewImport } from "./routes/_au
 import { Route as AuthAdministrationParticipantsNewImport } from "./routes/_auth/administration/participants/new";
 import { Route as AuthAdministrationLanguagesNewImport } from "./routes/_auth/administration/languages/new";
 import { Route as AuthAdministrationCarersNewImport } from "./routes/_auth/administration/carers/new";
+import { Route as AuthQuestionnaireFormIdRemarksImport } from "./routes/_auth/questionnaire/_form/$id/remarks";
+import { Route as AuthQuestionnaireFormIdPeriodImport } from "./routes/_auth/questionnaire/_form/$id/period";
+import { Route as AuthQuestionnaireFormIdOverviewImport } from "./routes/_auth/questionnaire/_form/$id/overview";
 import { Route as AuthAdministrationUsersEditIdImport } from "./routes/_auth/administration/users/edit.$id";
 import { Route as AuthAdministrationStudiesEditIdImport } from "./routes/_auth/administration/studies/edit.$id";
 import { Route as AuthAdministrationQuestionnairesEditIdImport } from "./routes/_auth/administration/questionnaires/edit.$id";
@@ -81,28 +82,14 @@ const AuthAdministrationRoute = AuthAdministrationImport.update({
   getParentRoute: () => AuthRoute,
 } as any);
 
-const AuthQuestionnaireIndexRoute = AuthQuestionnaireIndexImport.update({
-  id: "/",
-  path: "/",
-  getParentRoute: () => AuthQuestionnaireRoute,
-} as any);
-
 const AuthAdministrationIndexRoute = AuthAdministrationIndexImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
-const AuthQuestionnaireParticipantRoute =
-  AuthQuestionnaireParticipantImport.update({
-    id: "/participant",
-    path: "/participant",
-    getParentRoute: () => AuthQuestionnaireRoute,
-  } as any);
-
-const AuthQuestionnaireNewRoute = AuthQuestionnaireNewImport.update({
-  id: "/new",
-  path: "/new",
+const AuthQuestionnaireFormRoute = AuthQuestionnaireFormImport.update({
+  id: "/_form",
   getParentRoute: () => AuthQuestionnaireRoute,
 } as any);
 
@@ -151,6 +138,14 @@ const AuthAdministrationCarersRoute = AuthAdministrationCarersImport.update({
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
 
+const AuthQuestionnaireFormIndexRoute = AuthQuestionnaireFormIndexImport.update(
+  {
+    id: "/",
+    path: "/",
+    getParentRoute: () => AuthQuestionnaireFormRoute,
+  } as any,
+);
+
 const AuthAdministrationUsersIndexRoute =
   AuthAdministrationUsersIndexImport.update({
     id: "/",
@@ -193,26 +188,18 @@ const AuthAdministrationCarersIndexRoute =
     getParentRoute: () => AuthAdministrationCarersRoute,
   } as any);
 
-const AuthQuestionnaireIdRemarksRoute = AuthQuestionnaireIdRemarksImport.update(
-  {
-    id: "/$id/remarks",
-    path: "/$id/remarks",
-    getParentRoute: () => AuthQuestionnaireRoute,
-  } as any,
-);
-
-const AuthQuestionnaireIdPeriodRoute = AuthQuestionnaireIdPeriodImport.update({
-  id: "/$id/period",
-  path: "/$id/period",
-  getParentRoute: () => AuthQuestionnaireRoute,
-} as any);
-
-const AuthQuestionnaireIdOverviewRoute =
-  AuthQuestionnaireIdOverviewImport.update({
-    id: "/$id/overview",
-    path: "/$id/overview",
-    getParentRoute: () => AuthQuestionnaireRoute,
+const AuthQuestionnaireFormParticipantRoute =
+  AuthQuestionnaireFormParticipantImport.update({
+    id: "/participant",
+    path: "/participant",
+    getParentRoute: () => AuthQuestionnaireFormRoute,
   } as any);
+
+const AuthQuestionnaireFormNewRoute = AuthQuestionnaireFormNewImport.update({
+  id: "/new",
+  path: "/new",
+  getParentRoute: () => AuthQuestionnaireFormRoute,
+} as any);
 
 const AuthQuestionnaireIdEntriesRoute = AuthQuestionnaireIdEntriesImport.update(
   {
@@ -263,6 +250,27 @@ const AuthAdministrationCarersNewRoute =
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationCarersRoute,
+  } as any);
+
+const AuthQuestionnaireFormIdRemarksRoute =
+  AuthQuestionnaireFormIdRemarksImport.update({
+    id: "/$id/remarks",
+    path: "/$id/remarks",
+    getParentRoute: () => AuthQuestionnaireFormRoute,
+  } as any);
+
+const AuthQuestionnaireFormIdPeriodRoute =
+  AuthQuestionnaireFormIdPeriodImport.update({
+    id: "/$id/period",
+    path: "/$id/period",
+    getParentRoute: () => AuthQuestionnaireFormRoute,
+  } as any);
+
+const AuthQuestionnaireFormIdOverviewRoute =
+  AuthQuestionnaireFormIdOverviewImport.update({
+    id: "/$id/overview",
+    path: "/$id/overview",
+    getParentRoute: () => AuthQuestionnaireFormRoute,
   } as any);
 
 const AuthAdministrationUsersEditIdRoute =
@@ -395,18 +403,11 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthAdministrationUsersImport;
       parentRoute: typeof AuthAdministrationImport;
     };
-    "/_auth/questionnaire/new": {
-      id: "/_auth/questionnaire/new";
-      path: "/new";
-      fullPath: "/questionnaire/new";
-      preLoaderRoute: typeof AuthQuestionnaireNewImport;
-      parentRoute: typeof AuthQuestionnaireImport;
-    };
-    "/_auth/questionnaire/participant": {
-      id: "/_auth/questionnaire/participant";
-      path: "/participant";
-      fullPath: "/questionnaire/participant";
-      preLoaderRoute: typeof AuthQuestionnaireParticipantImport;
+    "/_auth/questionnaire/_form": {
+      id: "/_auth/questionnaire/_form";
+      path: "";
+      fullPath: "/questionnaire";
+      preLoaderRoute: typeof AuthQuestionnaireFormImport;
       parentRoute: typeof AuthQuestionnaireImport;
     };
     "/_auth/administration/": {
@@ -415,13 +416,6 @@ declare module "@tanstack/react-router" {
       fullPath: "/administration/";
       preLoaderRoute: typeof AuthAdministrationIndexImport;
       parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/questionnaire/": {
-      id: "/_auth/questionnaire/";
-      path: "/";
-      fullPath: "/questionnaire/";
-      preLoaderRoute: typeof AuthQuestionnaireIndexImport;
-      parentRoute: typeof AuthQuestionnaireImport;
     };
     "/_auth/administration/carers/new": {
       id: "/_auth/administration/carers/new";
@@ -472,26 +466,19 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthQuestionnaireIdEntriesImport;
       parentRoute: typeof AuthQuestionnaireImport;
     };
-    "/_auth/questionnaire/$id/overview": {
-      id: "/_auth/questionnaire/$id/overview";
-      path: "/$id/overview";
-      fullPath: "/questionnaire/$id/overview";
-      preLoaderRoute: typeof AuthQuestionnaireIdOverviewImport;
-      parentRoute: typeof AuthQuestionnaireImport;
+    "/_auth/questionnaire/_form/new": {
+      id: "/_auth/questionnaire/_form/new";
+      path: "/new";
+      fullPath: "/questionnaire/new";
+      preLoaderRoute: typeof AuthQuestionnaireFormNewImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
     };
-    "/_auth/questionnaire/$id/period": {
-      id: "/_auth/questionnaire/$id/period";
-      path: "/$id/period";
-      fullPath: "/questionnaire/$id/period";
-      preLoaderRoute: typeof AuthQuestionnaireIdPeriodImport;
-      parentRoute: typeof AuthQuestionnaireImport;
-    };
-    "/_auth/questionnaire/$id/remarks": {
-      id: "/_auth/questionnaire/$id/remarks";
-      path: "/$id/remarks";
-      fullPath: "/questionnaire/$id/remarks";
-      preLoaderRoute: typeof AuthQuestionnaireIdRemarksImport;
-      parentRoute: typeof AuthQuestionnaireImport;
+    "/_auth/questionnaire/_form/participant": {
+      id: "/_auth/questionnaire/_form/participant";
+      path: "/participant";
+      fullPath: "/questionnaire/participant";
+      preLoaderRoute: typeof AuthQuestionnaireFormParticipantImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
     };
     "/_auth/administration/carers/": {
       id: "/_auth/administration/carers/";
@@ -535,6 +522,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof AuthAdministrationUsersIndexImport;
       parentRoute: typeof AuthAdministrationUsersImport;
     };
+    "/_auth/questionnaire/_form/": {
+      id: "/_auth/questionnaire/_form/";
+      path: "/";
+      fullPath: "/questionnaire/";
+      preLoaderRoute: typeof AuthQuestionnaireFormIndexImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
+    };
     "/_auth/administration/carers/edit/$id": {
       id: "/_auth/administration/carers/edit/$id";
       path: "/edit/$id";
@@ -576,6 +570,27 @@ declare module "@tanstack/react-router" {
       fullPath: "/administration/users/edit/$id";
       preLoaderRoute: typeof AuthAdministrationUsersEditIdImport;
       parentRoute: typeof AuthAdministrationUsersImport;
+    };
+    "/_auth/questionnaire/_form/$id/overview": {
+      id: "/_auth/questionnaire/_form/$id/overview";
+      path: "/$id/overview";
+      fullPath: "/questionnaire/$id/overview";
+      preLoaderRoute: typeof AuthQuestionnaireFormIdOverviewImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
+    };
+    "/_auth/questionnaire/_form/$id/period": {
+      id: "/_auth/questionnaire/_form/$id/period";
+      path: "/$id/period";
+      fullPath: "/questionnaire/$id/period";
+      preLoaderRoute: typeof AuthQuestionnaireFormIdPeriodImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
+    };
+    "/_auth/questionnaire/_form/$id/remarks": {
+      id: "/_auth/questionnaire/_form/$id/remarks";
+      path: "/$id/remarks";
+      fullPath: "/questionnaire/$id/remarks";
+      preLoaderRoute: typeof AuthQuestionnaireFormIdRemarksImport;
+      parentRoute: typeof AuthQuestionnaireFormImport;
     };
   }
 }
@@ -726,24 +741,37 @@ const AuthAdministrationRouteChildren: AuthAdministrationRouteChildren = {
 const AuthAdministrationRouteWithChildren =
   AuthAdministrationRoute._addFileChildren(AuthAdministrationRouteChildren);
 
+interface AuthQuestionnaireFormRouteChildren {
+  AuthQuestionnaireFormNewRoute: typeof AuthQuestionnaireFormNewRoute;
+  AuthQuestionnaireFormParticipantRoute: typeof AuthQuestionnaireFormParticipantRoute;
+  AuthQuestionnaireFormIndexRoute: typeof AuthQuestionnaireFormIndexRoute;
+  AuthQuestionnaireFormIdOverviewRoute: typeof AuthQuestionnaireFormIdOverviewRoute;
+  AuthQuestionnaireFormIdPeriodRoute: typeof AuthQuestionnaireFormIdPeriodRoute;
+  AuthQuestionnaireFormIdRemarksRoute: typeof AuthQuestionnaireFormIdRemarksRoute;
+}
+
+const AuthQuestionnaireFormRouteChildren: AuthQuestionnaireFormRouteChildren = {
+  AuthQuestionnaireFormNewRoute: AuthQuestionnaireFormNewRoute,
+  AuthQuestionnaireFormParticipantRoute: AuthQuestionnaireFormParticipantRoute,
+  AuthQuestionnaireFormIndexRoute: AuthQuestionnaireFormIndexRoute,
+  AuthQuestionnaireFormIdOverviewRoute: AuthQuestionnaireFormIdOverviewRoute,
+  AuthQuestionnaireFormIdPeriodRoute: AuthQuestionnaireFormIdPeriodRoute,
+  AuthQuestionnaireFormIdRemarksRoute: AuthQuestionnaireFormIdRemarksRoute,
+};
+
+const AuthQuestionnaireFormRouteWithChildren =
+  AuthQuestionnaireFormRoute._addFileChildren(
+    AuthQuestionnaireFormRouteChildren,
+  );
+
 interface AuthQuestionnaireRouteChildren {
-  AuthQuestionnaireNewRoute: typeof AuthQuestionnaireNewRoute;
-  AuthQuestionnaireParticipantRoute: typeof AuthQuestionnaireParticipantRoute;
-  AuthQuestionnaireIndexRoute: typeof AuthQuestionnaireIndexRoute;
+  AuthQuestionnaireFormRoute: typeof AuthQuestionnaireFormRouteWithChildren;
   AuthQuestionnaireIdEntriesRoute: typeof AuthQuestionnaireIdEntriesRoute;
-  AuthQuestionnaireIdOverviewRoute: typeof AuthQuestionnaireIdOverviewRoute;
-  AuthQuestionnaireIdPeriodRoute: typeof AuthQuestionnaireIdPeriodRoute;
-  AuthQuestionnaireIdRemarksRoute: typeof AuthQuestionnaireIdRemarksRoute;
 }
 
 const AuthQuestionnaireRouteChildren: AuthQuestionnaireRouteChildren = {
-  AuthQuestionnaireNewRoute: AuthQuestionnaireNewRoute,
-  AuthQuestionnaireParticipantRoute: AuthQuestionnaireParticipantRoute,
-  AuthQuestionnaireIndexRoute: AuthQuestionnaireIndexRoute,
+  AuthQuestionnaireFormRoute: AuthQuestionnaireFormRouteWithChildren,
   AuthQuestionnaireIdEntriesRoute: AuthQuestionnaireIdEntriesRoute,
-  AuthQuestionnaireIdOverviewRoute: AuthQuestionnaireIdOverviewRoute,
-  AuthQuestionnaireIdPeriodRoute: AuthQuestionnaireIdPeriodRoute,
-  AuthQuestionnaireIdRemarksRoute: AuthQuestionnaireIdRemarksRoute,
 };
 
 const AuthQuestionnaireRouteWithChildren =
@@ -767,7 +795,7 @@ export interface FileRoutesByFullPath {
   "": typeof AuthRouteWithChildren;
   "/session": typeof SessionRoute;
   "/administration": typeof AuthAdministrationRouteWithChildren;
-  "/questionnaire": typeof AuthQuestionnaireRouteWithChildren;
+  "/questionnaire": typeof AuthQuestionnaireFormRouteWithChildren;
   "/": typeof AuthIndexRoute;
   "/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
   "/administration/export": typeof AuthAdministrationExportRoute;
@@ -776,10 +804,7 @@ export interface FileRoutesByFullPath {
   "/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
   "/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
   "/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
-  "/questionnaire/new": typeof AuthQuestionnaireNewRoute;
-  "/questionnaire/participant": typeof AuthQuestionnaireParticipantRoute;
   "/administration/": typeof AuthAdministrationIndexRoute;
-  "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
   "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
@@ -787,31 +812,32 @@ export interface FileRoutesByFullPath {
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
-  "/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
-  "/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
-  "/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
+  "/questionnaire/new": typeof AuthQuestionnaireFormNewRoute;
+  "/questionnaire/participant": typeof AuthQuestionnaireFormParticipantRoute;
   "/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
   "/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
   "/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
   "/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
   "/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
   "/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/questionnaire/": typeof AuthQuestionnaireFormIndexRoute;
   "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
   "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
   "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
   "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
   "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
   "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/questionnaire/$id/overview": typeof AuthQuestionnaireFormIdOverviewRoute;
+  "/questionnaire/$id/period": typeof AuthQuestionnaireFormIdPeriodRoute;
+  "/questionnaire/$id/remarks": typeof AuthQuestionnaireFormIdRemarksRoute;
 }
 
 export interface FileRoutesByTo {
   "/session": typeof SessionRoute;
+  "/questionnaire": typeof AuthQuestionnaireFormIndexRoute;
   "/": typeof AuthIndexRoute;
   "/administration/export": typeof AuthAdministrationExportRoute;
-  "/questionnaire/new": typeof AuthQuestionnaireNewRoute;
-  "/questionnaire/participant": typeof AuthQuestionnaireParticipantRoute;
   "/administration": typeof AuthAdministrationIndexRoute;
-  "/questionnaire": typeof AuthQuestionnaireIndexRoute;
   "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
@@ -819,9 +845,8 @@ export interface FileRoutesByTo {
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
-  "/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
-  "/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
-  "/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
+  "/questionnaire/new": typeof AuthQuestionnaireFormNewRoute;
+  "/questionnaire/participant": typeof AuthQuestionnaireFormParticipantRoute;
   "/administration/carers": typeof AuthAdministrationCarersIndexRoute;
   "/administration/languages": typeof AuthAdministrationLanguagesIndexRoute;
   "/administration/participants": typeof AuthAdministrationParticipantsIndexRoute;
@@ -834,6 +859,9 @@ export interface FileRoutesByTo {
   "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
   "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
   "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/questionnaire/$id/overview": typeof AuthQuestionnaireFormIdOverviewRoute;
+  "/questionnaire/$id/period": typeof AuthQuestionnaireFormIdPeriodRoute;
+  "/questionnaire/$id/remarks": typeof AuthQuestionnaireFormIdRemarksRoute;
 }
 
 export interface FileRoutesById {
@@ -850,10 +878,8 @@ export interface FileRoutesById {
   "/_auth/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
   "/_auth/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
   "/_auth/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
-  "/_auth/questionnaire/new": typeof AuthQuestionnaireNewRoute;
-  "/_auth/questionnaire/participant": typeof AuthQuestionnaireParticipantRoute;
+  "/_auth/questionnaire/_form": typeof AuthQuestionnaireFormRouteWithChildren;
   "/_auth/administration/": typeof AuthAdministrationIndexRoute;
-  "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
   "/_auth/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
   "/_auth/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/_auth/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
@@ -861,21 +887,24 @@ export interface FileRoutesById {
   "/_auth/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/_auth/questionnaire/$id/entries": typeof AuthQuestionnaireIdEntriesRoute;
-  "/_auth/questionnaire/$id/overview": typeof AuthQuestionnaireIdOverviewRoute;
-  "/_auth/questionnaire/$id/period": typeof AuthQuestionnaireIdPeriodRoute;
-  "/_auth/questionnaire/$id/remarks": typeof AuthQuestionnaireIdRemarksRoute;
+  "/_auth/questionnaire/_form/new": typeof AuthQuestionnaireFormNewRoute;
+  "/_auth/questionnaire/_form/participant": typeof AuthQuestionnaireFormParticipantRoute;
   "/_auth/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
   "/_auth/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
   "/_auth/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
   "/_auth/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
   "/_auth/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
   "/_auth/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/_auth/questionnaire/_form/": typeof AuthQuestionnaireFormIndexRoute;
   "/_auth/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
   "/_auth/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
   "/_auth/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
   "/_auth/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
   "/_auth/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
   "/_auth/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/_auth/questionnaire/_form/$id/overview": typeof AuthQuestionnaireFormIdOverviewRoute;
+  "/_auth/questionnaire/_form/$id/period": typeof AuthQuestionnaireFormIdPeriodRoute;
+  "/_auth/questionnaire/_form/$id/remarks": typeof AuthQuestionnaireFormIdRemarksRoute;
 }
 
 export interface FileRouteTypes {
@@ -893,10 +922,7 @@ export interface FileRouteTypes {
     | "/administration/questionnaires"
     | "/administration/studies"
     | "/administration/users"
-    | "/questionnaire/new"
-    | "/questionnaire/participant"
     | "/administration/"
-    | "/questionnaire/"
     | "/administration/carers/new"
     | "/administration/languages/new"
     | "/administration/participants/new"
@@ -904,30 +930,31 @@ export interface FileRouteTypes {
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/$id/entries"
-    | "/questionnaire/$id/overview"
-    | "/questionnaire/$id/period"
-    | "/questionnaire/$id/remarks"
+    | "/questionnaire/new"
+    | "/questionnaire/participant"
     | "/administration/carers/"
     | "/administration/languages/"
     | "/administration/participants/"
     | "/administration/questionnaires/"
     | "/administration/studies/"
     | "/administration/users/"
+    | "/questionnaire/"
     | "/administration/carers/edit/$id"
     | "/administration/languages/edit/$id"
     | "/administration/participants/edit/$id"
     | "/administration/questionnaires/edit/$id"
     | "/administration/studies/edit/$id"
-    | "/administration/users/edit/$id";
+    | "/administration/users/edit/$id"
+    | "/questionnaire/$id/overview"
+    | "/questionnaire/$id/period"
+    | "/questionnaire/$id/remarks";
   fileRoutesByTo: FileRoutesByTo;
   to:
     | "/session"
+    | "/questionnaire"
     | "/"
     | "/administration/export"
-    | "/questionnaire/new"
-    | "/questionnaire/participant"
     | "/administration"
-    | "/questionnaire"
     | "/administration/carers/new"
     | "/administration/languages/new"
     | "/administration/participants/new"
@@ -935,9 +962,8 @@ export interface FileRouteTypes {
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/$id/entries"
-    | "/questionnaire/$id/overview"
-    | "/questionnaire/$id/period"
-    | "/questionnaire/$id/remarks"
+    | "/questionnaire/new"
+    | "/questionnaire/participant"
     | "/administration/carers"
     | "/administration/languages"
     | "/administration/participants"
@@ -949,7 +975,10 @@ export interface FileRouteTypes {
     | "/administration/participants/edit/$id"
     | "/administration/questionnaires/edit/$id"
     | "/administration/studies/edit/$id"
-    | "/administration/users/edit/$id";
+    | "/administration/users/edit/$id"
+    | "/questionnaire/$id/overview"
+    | "/questionnaire/$id/period"
+    | "/questionnaire/$id/remarks";
   id:
     | "__root__"
     | "/_auth"
@@ -964,10 +993,8 @@ export interface FileRouteTypes {
     | "/_auth/administration/questionnaires"
     | "/_auth/administration/studies"
     | "/_auth/administration/users"
-    | "/_auth/questionnaire/new"
-    | "/_auth/questionnaire/participant"
+    | "/_auth/questionnaire/_form"
     | "/_auth/administration/"
-    | "/_auth/questionnaire/"
     | "/_auth/administration/carers/new"
     | "/_auth/administration/languages/new"
     | "/_auth/administration/participants/new"
@@ -975,21 +1002,24 @@ export interface FileRouteTypes {
     | "/_auth/administration/studies/new"
     | "/_auth/administration/users/new"
     | "/_auth/questionnaire/$id/entries"
-    | "/_auth/questionnaire/$id/overview"
-    | "/_auth/questionnaire/$id/period"
-    | "/_auth/questionnaire/$id/remarks"
+    | "/_auth/questionnaire/_form/new"
+    | "/_auth/questionnaire/_form/participant"
     | "/_auth/administration/carers/"
     | "/_auth/administration/languages/"
     | "/_auth/administration/participants/"
     | "/_auth/administration/questionnaires/"
     | "/_auth/administration/studies/"
     | "/_auth/administration/users/"
+    | "/_auth/questionnaire/_form/"
     | "/_auth/administration/carers/edit/$id"
     | "/_auth/administration/languages/edit/$id"
     | "/_auth/administration/participants/edit/$id"
     | "/_auth/administration/questionnaires/edit/$id"
     | "/_auth/administration/studies/edit/$id"
-    | "/_auth/administration/users/edit/$id";
+    | "/_auth/administration/users/edit/$id"
+    | "/_auth/questionnaire/_form/$id/overview"
+    | "/_auth/questionnaire/_form/$id/period"
+    | "/_auth/questionnaire/_form/$id/remarks";
   fileRoutesById: FileRoutesById;
 }
 
@@ -1046,13 +1076,8 @@ export const routeTree = rootRoute
       "filePath": "_auth/questionnaire.tsx",
       "parent": "/_auth",
       "children": [
-        "/_auth/questionnaire/new",
-        "/_auth/questionnaire/participant",
-        "/_auth/questionnaire/",
-        "/_auth/questionnaire/$id/entries",
-        "/_auth/questionnaire/$id/overview",
-        "/_auth/questionnaire/$id/period",
-        "/_auth/questionnaire/$id/remarks"
+        "/_auth/questionnaire/_form",
+        "/_auth/questionnaire/$id/entries"
       ]
     },
     "/_auth/": {
@@ -1117,21 +1142,21 @@ export const routeTree = rootRoute
         "/_auth/administration/users/edit/$id"
       ]
     },
-    "/_auth/questionnaire/new": {
-      "filePath": "_auth/questionnaire/new.tsx",
-      "parent": "/_auth/questionnaire"
-    },
-    "/_auth/questionnaire/participant": {
-      "filePath": "_auth/questionnaire/participant.tsx",
-      "parent": "/_auth/questionnaire"
+    "/_auth/questionnaire/_form": {
+      "filePath": "_auth/questionnaire/_form.tsx",
+      "parent": "/_auth/questionnaire",
+      "children": [
+        "/_auth/questionnaire/_form/new",
+        "/_auth/questionnaire/_form/participant",
+        "/_auth/questionnaire/_form/",
+        "/_auth/questionnaire/_form/$id/overview",
+        "/_auth/questionnaire/_form/$id/period",
+        "/_auth/questionnaire/_form/$id/remarks"
+      ]
     },
     "/_auth/administration/": {
       "filePath": "_auth/administration/index.tsx",
       "parent": "/_auth/administration"
-    },
-    "/_auth/questionnaire/": {
-      "filePath": "_auth/questionnaire/index.tsx",
-      "parent": "/_auth/questionnaire"
     },
     "/_auth/administration/carers/new": {
       "filePath": "_auth/administration/carers/new.tsx",
@@ -1161,17 +1186,13 @@ export const routeTree = rootRoute
       "filePath": "_auth/questionnaire/$id/entries.tsx",
       "parent": "/_auth/questionnaire"
     },
-    "/_auth/questionnaire/$id/overview": {
-      "filePath": "_auth/questionnaire/$id/overview.tsx",
-      "parent": "/_auth/questionnaire"
+    "/_auth/questionnaire/_form/new": {
+      "filePath": "_auth/questionnaire/_form/new.tsx",
+      "parent": "/_auth/questionnaire/_form"
     },
-    "/_auth/questionnaire/$id/period": {
-      "filePath": "_auth/questionnaire/$id/period.tsx",
-      "parent": "/_auth/questionnaire"
-    },
-    "/_auth/questionnaire/$id/remarks": {
-      "filePath": "_auth/questionnaire/$id/remarks.tsx",
-      "parent": "/_auth/questionnaire"
+    "/_auth/questionnaire/_form/participant": {
+      "filePath": "_auth/questionnaire/_form/participant.tsx",
+      "parent": "/_auth/questionnaire/_form"
     },
     "/_auth/administration/carers/": {
       "filePath": "_auth/administration/carers/index.tsx",
@@ -1197,6 +1218,10 @@ export const routeTree = rootRoute
       "filePath": "_auth/administration/users/index.tsx",
       "parent": "/_auth/administration/users"
     },
+    "/_auth/questionnaire/_form/": {
+      "filePath": "_auth/questionnaire/_form/index.tsx",
+      "parent": "/_auth/questionnaire/_form"
+    },
     "/_auth/administration/carers/edit/$id": {
       "filePath": "_auth/administration/carers/edit.$id.tsx",
       "parent": "/_auth/administration/carers"
@@ -1220,6 +1245,18 @@ export const routeTree = rootRoute
     "/_auth/administration/users/edit/$id": {
       "filePath": "_auth/administration/users/edit.$id.tsx",
       "parent": "/_auth/administration/users"
+    },
+    "/_auth/questionnaire/_form/$id/overview": {
+      "filePath": "_auth/questionnaire/_form/$id/overview.tsx",
+      "parent": "/_auth/questionnaire/_form"
+    },
+    "/_auth/questionnaire/_form/$id/period": {
+      "filePath": "_auth/questionnaire/_form/$id/period.tsx",
+      "parent": "/_auth/questionnaire/_form"
+    },
+    "/_auth/questionnaire/_form/$id/remarks": {
+      "filePath": "_auth/questionnaire/_form/$id/remarks.tsx",
+      "parent": "/_auth/questionnaire/_form"
     }
   }
 }

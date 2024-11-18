@@ -22,6 +22,6 @@ function Questionnaire() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/")({
+export const Route = createFileRoute("/_auth/questionnaire/_form/")({
   component: Questionnaire,
 });
