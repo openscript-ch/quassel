@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { ParticipantsService } from "./participants.service";
-import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { ApiNotFoundResponse, ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto } from "./participant.dto";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
@@ -26,6 +26,7 @@ export class ParticipantsController {
 
   @Get(":id")
   @ApiOperation({ summary: "Get a participant by ID" })
+  @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
   get(@Param("id") id: string): Promise<ParticipantResponseDto> {
     return this.participantService.findOne(+id);
   }

@@ -1574,6 +1574,15 @@ export interface operations {
                     "application/json": components["schemas"]["ParticipantResponseDto"];
                 };
             };
+            /** @description Entity not found exception */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
         };
     };
     ParticipantsController_delete: {
@@ -2036,6 +2045,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+            /** @description Entity not found exception */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
         };
