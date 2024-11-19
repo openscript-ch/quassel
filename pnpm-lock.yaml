@@ -259,6 +259,9 @@ importers:
       '@mantine/core':
         specifier: ^7.13.5
         version: 7.13.5(@mantine/hooks@7.13.5(react@18.3.1))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/dates':
+        specifier: ^7.14.1
+        version: 7.14.1(@mantine/core@7.13.5(@mantine/hooks@7.13.5(react@18.3.1))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.13.5(react@18.3.1))(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mantine/hooks':
         specifier: ^7.13.5
         version: 7.13.5(react@18.3.1)
@@ -1112,6 +1115,15 @@ packages:
       react: ^18.x || ^19.x
       react-dom: ^18.x || ^19.x
 
+  '@mantine/dates@7.14.1':
+    resolution: {integrity: sha512-NtQWisJi0DmYehShmYvHM6bvUsVE864kW4NJc8rbatFL7/bhCp9U49s6vqpz6B1GxZ2WfiQZtjPE1FLInWX+Pw==}
+    peerDependencies:
+      '@mantine/core': 7.14.1
+      '@mantine/hooks': 7.14.1
+      dayjs: '>=1.0.0'
+      react: ^18.x || ^19.x
+      react-dom: ^18.x || ^19.x
+
   '@mantine/form@7.13.5':
     resolution: {integrity: sha512-BnHbGFPRlIfzpetg+igjn81MUuI38qEcLhiC3s7grolaJncAnvcxSEVUTiwUJP2KS6mqxtNHKOcaqEs7rH8Umg==}
     peerDependencies:
@@ -1545,12 +1557,6 @@ packages:
 
   '@octokit/types@13.6.1':
     resolution: {integrity: sha512-PHZE9Z+kWXb23Ndik8MKPirBPziOc0D2/3KH1P+6jK5nGWe96kadZuE4jev2/Jq7FvIfTlT2Ltg8Fv2x1v0a5g==}
-
-  '@openscript/nx-tools-core@6.1.1':
-    resolution: {integrity: sha512-UM1HUfsCBn1nfGf7jaw6dixL0k9rLRCjKtfESVBmaDmTAJYPfg48YhOVScR1od6mXrIj9XQ4rOyPHaK2GvgkFA==}
-    peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0
-      tslib: ^2.5.0
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -2780,6 +2786,9 @@ packages:
 
   dataloader@2.2.2:
     resolution: {integrity: sha512-8YnDaaf7N3k/q5HnTJVuzSyLETjoZjVmHc4AeKAzOvKHEFQKcn64OKBfzHYtE9zGjctNM7V9I0MfnUVLpi7M5g==}
+
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -6910,6 +6919,15 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
+  '@mantine/dates@7.14.1(@mantine/core@7.13.5(@mantine/hooks@7.13.5(react@18.3.1))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@mantine/hooks@7.13.5(react@18.3.1))(dayjs@1.11.13)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mantine/core': 7.13.5(@mantine/hooks@7.13.5(react@18.3.1))(@types/react@18.3.12)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@mantine/hooks': 7.13.5(react@18.3.1)
+      clsx: 2.1.1
+      dayjs: 1.11.13
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   '@mantine/form@7.13.5(react@18.3.1)':
     dependencies:
       fast-deep-equal: 3.1.3
@@ -7280,7 +7298,7 @@ snapshots:
   '@nx-tools/container-metadata@6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)':
     dependencies:
       '@nx-tools/ci-context': 6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)
-      '@nx-tools/core': '@openscript/nx-tools-core@6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)'
+      '@nx-tools/core': 6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)
       '@nx/devkit': 19.8.4(nx@20.1.0)
       '@renovate/pep440': 1.0.0
       csv-parse: 5.5.6
@@ -7302,7 +7320,7 @@ snapshots:
   '@nx-tools/nx-container@6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(@swc/helpers@0.5.13)(dotenv@16.4.5)(tslib@2.8.1)':
     dependencies:
       '@nx-tools/container-metadata': 6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)
-      '@nx-tools/core': '@openscript/nx-tools-core@6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)'
+      '@nx-tools/core': 6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)
       '@nx/devkit': 19.8.4(nx@20.1.0)
       '@swc/helpers': 0.5.13
       csv-parse: 5.5.6
@@ -7413,16 +7431,6 @@ snapshots:
   '@octokit/types@13.6.1':
     dependencies:
       '@octokit/openapi-types': 22.2.0
-
-  '@openscript/nx-tools-core@6.1.1(@nx/devkit@19.8.4(nx@20.1.0))(tslib@2.8.1)':
-    dependencies:
-      '@actions/exec': 1.1.1
-      '@actions/io': 1.1.3
-      '@nx/devkit': 19.8.4(nx@20.1.0)
-      chalk: 4.1.2
-      ci-info: 4.0.0
-      csv-parse: 5.5.6
-      tslib: 2.8.1
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -8878,6 +8886,8 @@ snapshots:
       is-data-view: 1.0.1
 
   dataloader@2.2.2: {}
+
+  dayjs@1.11.13: {}
 
   de-indent@1.0.2: {}
 

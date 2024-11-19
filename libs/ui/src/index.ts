@@ -27,6 +27,7 @@ import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
+import "@mantine/dates/styles.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -41,6 +42,7 @@ export {
   Checkbox,
   Container,
   Divider,
+  Flex,
   Group,
   NavLink,
   Paper,
@@ -54,6 +56,8 @@ export {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
+
+export { MonthPicker } from "@mantine/dates";
 
 export {
   IconLogout,

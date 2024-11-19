@@ -1,7 +1,9 @@
-import { Button } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
+import { PeriodForm } from "../../../../components/questionnaire/PeriodForm";
+import { $api } from "../../../../stores/api";
+import { $questionnaire } from "../../../../stores/questionnaire";
 
 export const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -12,19 +14,25 @@ function QuestionnaireNew() {
   const n = useNavigate();
   const t = useStore(messages);
 
-  const handleSubmit = () => {
-    // TODO create new questionnaire and receive ID
+  const questionnaire = useStore($questionnaire);
 
-    n({ to: "/questionnaire/$id/entries", params: { id: "123" } });
-  };
+  const createQuestionnaireMutation = $api.useMutation("post", "/questionnaires", {
+    onSuccess: (questionnaire) => {
+      n({ to: "/questionnaire/$id/entries", params: { id: questionnaire.id.toString() } });
+    },
+  });
 
   return (
     <>
       <h3>{t.title}</h3>
-      <form onSubmit={handleSubmit}>
-        {/* TODO period form */}
-        <Button type="submit">{t.formAction}</Button>
-      </form>
+      <PeriodForm
+        onSave={(period) =>
+          createQuestionnaireMutation.mutate({
+            body: { ...period, study: questionnaire!.study.id, participant: questionnaire!.participant.id },
+          })
+        }
+        actionLabel={t.formAction}
+      />
     </>
   );
 }

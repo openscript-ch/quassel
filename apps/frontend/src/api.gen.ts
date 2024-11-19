@@ -750,8 +750,8 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
+            study: number;
+            participant: number;
             entries?: number[];
         };
         QuestionnaireResponseDto: {
@@ -809,9 +809,9 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
             entries?: number[];
+            study?: number;
+            participant?: number;
         };
         LanguageDto: {
             /**

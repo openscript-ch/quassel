@@ -1,6 +1,6 @@
 import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsDate, IsNotEmpty } from "class-validator";
+import { IsDateString, IsNotEmpty } from "class-validator";
 import { ParticipantDto } from "../participants/participant.dto";
 import { StudyDto } from "../studies/study.dto";
 
@@ -9,11 +9,11 @@ export class QuestionnaireDto {
   id: number;
 
   @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The starting date of the questionnaire" })
-  @IsDate()
+  @IsDateString()
   startedAt?: Date;
 
   @ApiProperty({ example: "2024-11-01T08:00:00.00Z", description: "The ending date of the questionnaire" })
-  @IsDate()
+  @IsDateString()
   endedAt?: Date;
 
   @ApiProperty({ example: "First few months", description: "The title of the questionnaire" })
@@ -33,5 +33,8 @@ export class QuestionnaireDto {
   entries?: number[];
 }
 export class QuestionnaireResponseDto extends QuestionnaireDto {}
-export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id"]) {}
+export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", "study", "participant"]) {
+  study: number;
+  participant: number;
+}
 export class QuestionnaireMutationDto extends PartialType(QuestionnaireCreationDto) {}
