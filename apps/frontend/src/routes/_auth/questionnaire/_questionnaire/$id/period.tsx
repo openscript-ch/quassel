@@ -28,6 +28,6 @@ function QuestionnairePeriod() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/_form/$id/period")({
+export const Route = createFileRoute("/_auth/questionnaire/_questionnaire/$id/period")({
   component: QuestionnairePeriod,
 });

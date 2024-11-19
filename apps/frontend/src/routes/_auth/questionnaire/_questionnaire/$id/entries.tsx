@@ -1,6 +1,6 @@
 import { Button, Group } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { i18n } from "../../../../stores/i18n";
+import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 
 export const messages = i18n("questionnaireEntries", {
@@ -30,6 +30,6 @@ function QuestionnaireEntries() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/$id/entries")({
+export const Route = createFileRoute("/_auth/questionnaire/_questionnaire/$id/entries")({
   component: QuestionnaireEntries,
 });

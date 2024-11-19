@@ -26,6 +26,6 @@ function QuestionnaireParticipant() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/_form/participant")({
+export const Route = createFileRoute("/_auth/questionnaire/_questionnaire/participant")({
   component: QuestionnaireParticipant,
 });

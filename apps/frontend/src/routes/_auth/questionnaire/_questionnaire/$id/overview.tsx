@@ -32,6 +32,6 @@ function QuestionnaireOverview() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/_form/$id/overview")({
+export const Route = createFileRoute("/_auth/questionnaire/_questionnaire/$id/overview")({
   component: QuestionnaireOverview,
 });

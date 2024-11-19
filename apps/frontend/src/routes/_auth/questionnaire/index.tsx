@@ -1,10 +1,10 @@
 import { Button, Stack, TextInput } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { i18n } from "../../../../stores/i18n";
+import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useForm } from "@mantine/form";
-import { $api } from "../../../../stores/api";
-import { $questionnaire } from "../../../../stores/questionnaire";
+import { $api } from "../../../stores/api";
+import { $questionnaire } from "../../../stores/questionnaire";
 
 type FormValues = {
   participantId: string;
@@ -41,8 +41,12 @@ function Questionnaire() {
   });
 
   const handleSubmit = async (values: FormValues) => {
-    const participantCheck = validateParticipantMutation.mutateAsync({ params: { path: { id: values.participantId } } });
-    const studyCheck = validateStudyMutation.mutateAsync({ params: { path: { id: values.studyId } } });
+    const participantCheck = validateParticipantMutation.mutateAsync({
+      params: { path: { id: values.participantId } },
+    });
+    const studyCheck = validateStudyMutation.mutateAsync({
+      params: { path: { id: values.studyId } },
+    });
 
     Promise.all([participantCheck, studyCheck]).then(([participant, study]) => {
       $questionnaire.set({ participant, study });
@@ -64,6 +68,6 @@ function Questionnaire() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/_form/")({
+export const Route = createFileRoute("/_auth/questionnaire/")({
   component: Questionnaire,
 });
