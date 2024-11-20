@@ -27,7 +27,7 @@ export const messages = i18n("periodForm", {
 });
 
 export function PeriodForm({ onSave, actionLabel }: PeriodFormProps) {
-  const f = useForm<FormValues>({});
+  const f = useForm<FormValues>({ mode: "uncontrolled" });
   const t = useStore(messages);
 
   return (

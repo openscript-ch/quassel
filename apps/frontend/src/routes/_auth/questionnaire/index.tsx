@@ -23,7 +23,7 @@ function Questionnaire() {
 
   const t = useStore(messages);
 
-  const f = useForm<FormValues>();
+  const f = useForm<FormValues>({ mode: "uncontrolled" });
 
   const validateParticipantMutation = $api.useMutation("get", "/participants/{id}", {
     onError(error) {

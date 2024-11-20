@@ -30,16 +30,18 @@ function QuestionnaireParticipant() {
       <h3>{t.title}</h3>
       <Stack>
         <Table>
-          <Table.Tr>
-            <Table.Th>{t.participantLabel}</Table.Th>
-            <Table.Td>{questionnaire?.participant.id}</Table.Td>
-            <Table.Td>{birthday ? time(new Date(birthday)) : <i>{t.birthdateMissing}</i>}</Table.Td>
-          </Table.Tr>
-          <Table.Tr>
-            <Table.Th>{t.studyLabel}</Table.Th>
-            <Table.Td>{questionnaire?.study.id}</Table.Td>
-            <Table.Td>{questionnaire?.study.title}</Table.Td>
-          </Table.Tr>
+          <Table.Tbody>
+            <Table.Tr>
+              <Table.Th>{t.participantLabel}</Table.Th>
+              <Table.Td>{questionnaire?.participant.id}</Table.Td>
+              <Table.Td>{birthday ? time(new Date(birthday)) : <i>{t.birthdateMissing}</i>}</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Th>{t.studyLabel}</Table.Th>
+              <Table.Td>{questionnaire?.study.id}</Table.Td>
+              <Table.Td>{questionnaire?.study.title}</Table.Td>
+            </Table.Tr>
+          </Table.Tbody>
         </Table>
         <form onSubmit={handleSubmit}>
           <Button type="submit">{t.formAction}</Button>
