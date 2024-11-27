@@ -3,6 +3,7 @@ import { Button, Flex, MonthPicker, Stack, TextInput } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { components } from "../../api.gen";
+import { endOfMonth } from "date-fns";
 
 type FormValues = {
   title: string;
@@ -27,8 +28,16 @@ export const messages = i18n("periodForm", {
 });
 
 export function PeriodForm({ onSave, actionLabel }: PeriodFormProps) {
-  const f = useForm<FormValues>({ mode: "uncontrolled" });
   const t = useStore(messages);
+
+  const f = useForm<FormValues>({
+    mode: "uncontrolled",
+    transformValues(values) {
+      values.range[1] = endOfMonth(values.range[1]);
+
+      return values;
+    },
+  });
 
   return (
     <form onSubmit={f.onSubmit((values) => onSave(mapValues(values)))}>
