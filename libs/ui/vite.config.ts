@@ -11,6 +11,7 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: packageJson.name,
+      cssFileName: "style",
     },
     rollupOptions: {
       external: ["react", "react-dom"],
@@ -19,6 +20,7 @@ export default defineConfig({
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
           "@mantine/core": "mantineCore",
+          "@mantine/dates": "mantineDates",
           "@tabler/icons-react": "tablerIconsReact",
         },
       },
