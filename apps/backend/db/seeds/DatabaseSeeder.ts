@@ -71,7 +71,7 @@ export class DatabaseSeeder extends Seeder {
       { name: "Turnen, Gymnastics" },
       { name: "Kindergarten, Kindergarten" },
       { name: "Hort, After-school care" },
-      { name: "Nanny / Babysitter" },
+      { name: "Kinderbetreuung, Nanny / Babysitter" },
       { name: "Nachbar, Neighbour" },
     ];
 
