@@ -5,7 +5,7 @@ import { PeriodForm, PeriodFormValues } from "../../../../components/questionnai
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 
-export const messages = i18n("questionnaireNew", {
+const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
   formAction: "Create",
 });

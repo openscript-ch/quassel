@@ -1,7 +1,10 @@
 import { MantineProvider, MantineThemeOverride, MantineProviderProps } from "@mantine/core";
 import "./Theme.css";
 import { DatesProvider } from "@mantine/dates";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
+dayjs.extend(utc);
 type ThemeProviderProps = MantineProviderProps;
 
 export const theme: MantineThemeOverride = {

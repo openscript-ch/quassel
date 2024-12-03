@@ -2,7 +2,6 @@ import { useForm } from "@mantine/form";
 import { Button, Flex, MonthPicker, Stack, TextInput } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import dayjs from "dayjs";
 import { useEffect } from "react";
 
 export type PeriodFormValues = {
@@ -16,7 +15,7 @@ type PeriodFormProps = {
   actionLabel: string;
 };
 
-export const messages = i18n("periodForm", {
+const messages = i18n("periodForm", {
   labelTitle: "Title",
 });
 
@@ -25,11 +24,7 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
 
   const f = useForm<PeriodFormValues>({
     initialValues: period,
-    transformValues(values) {
-      values.range[1] = dayjs(values.range[1]).utc().endOf("month").toDate();
-
-      return values;
-    },
+    mode: "uncontrolled",
   });
 
   useEffect(() => {
@@ -43,7 +38,7 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
     <form onSubmit={f.onSubmit((values) => onSave(values))}>
       <Stack>
         <Flex justify="center">
-          <MonthPicker {...f.getInputProps("range")} size="md" type="range" numberOfColumns={2} />
+          <MonthPicker {...f.getInputProps("range")} size="md" type="range" numberOfColumns={2} selectEndOfMonth />
         </Flex>
         <TextInput {...f.getInputProps("title")} label={t.labelTitle} />
         <Button type="submit">{actionLabel}</Button>

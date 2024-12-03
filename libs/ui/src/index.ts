@@ -33,6 +33,7 @@ export { ThemeProvider } from "./theme/ThemeProvider";
 
 // custom components
 export { Brand } from "./components/Brand";
+export { MonthPicker } from "./components/MonthPicker";
 
 // external components
 export {
@@ -56,8 +57,6 @@ export {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
-
-export { MonthPicker } from "@mantine/dates";
 
 export {
   IconLogout,

@@ -192,9 +192,6 @@ importers:
       '@tanstack/react-router':
         specifier: ^1.85.0
         version: 1.85.0(@tanstack/router-generator@1.84.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      dayjs:
-        specifier: ^1.11.13
-        version: 1.11.13
       nanostores:
         specifier: ^0.11.3
         version: 0.11.3
@@ -271,6 +268,9 @@ importers:
       '@tabler/icons-react':
         specifier: 3.17.0
         version: 3.17.0(react@18.3.1)
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       react:
         specifier: ^18.3.1
         version: 18.3.1

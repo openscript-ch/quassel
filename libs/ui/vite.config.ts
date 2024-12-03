@@ -17,6 +17,8 @@ export default defineConfig({
       external: ["react", "react-dom"],
       output: {
         globals: {
+          dayjs: "dayjs",
+          "dayjs/plugin/utc": "dayjsPluginUtc",
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
           "@mantine/core": "mantineCore",
