@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { PeriodForm } from "../../../../components/questionnaire/PeriodForm";
+import { PeriodForm, PeriodFormValues } from "../../../../components/questionnaire/PeriodForm";
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 
@@ -22,17 +22,24 @@ function QuestionnaireNew() {
     },
   });
 
+  const onSave = (form: PeriodFormValues) => {
+    const {
+      title,
+      range: [localStartedAt, localEndedAt],
+    } = form;
+
+    const startedAt = localStartedAt.toISOString();
+    const endedAt = localEndedAt.toISOString();
+
+    createQuestionnaireMutation.mutate({
+      body: { title, startedAt, endedAt, study: questionnaire!.study.id, participant: questionnaire!.participant.id },
+    });
+  };
+
   return (
     <>
       <h3>{t.title}</h3>
-      <PeriodForm
-        onSave={(period) =>
-          createQuestionnaireMutation.mutate({
-            body: { ...period, study: questionnaire!.study.id, participant: questionnaire!.participant.id },
-          })
-        }
-        actionLabel={t.formAction}
-      />
+      <PeriodForm onSave={onSave} actionLabel={t.formAction} />
     </>
   );
 }

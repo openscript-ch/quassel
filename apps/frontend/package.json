@@ -23,7 +23,7 @@
     "@quassel/ui": "workspace:*",
     "@tanstack/react-query": "^5.62.0",
     "@tanstack/react-router": "^1.85.0",
-    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
     "nanostores": "^0.11.3",
     "openapi-fetch": "^0.13.1",
     "openapi-react-query": "^0.2.6",

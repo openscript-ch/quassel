@@ -599,7 +599,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         QuestionnaireDto: {
             /**
@@ -905,7 +905,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         StudyResponseDto: {
             /**
@@ -918,7 +918,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         StudyMutationDto: {
             /**

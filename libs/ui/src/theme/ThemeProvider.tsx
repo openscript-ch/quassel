@@ -1,5 +1,6 @@
 import { MantineProvider, MantineThemeOverride, MantineProviderProps } from "@mantine/core";
 import "./Theme.css";
+import { DatesProvider } from "@mantine/dates";
 
 type ThemeProviderProps = MantineProviderProps;
 
@@ -26,5 +27,9 @@ export const theme: MantineThemeOverride = {
 };
 
 export function ThemeProvider(args: ThemeProviderProps) {
-  return <MantineProvider {...args} theme={theme} />;
+  return (
+    <DatesProvider settings={{ timezone: "UTC" }}>
+      <MantineProvider {...args} theme={theme} />
+    </DatesProvider>
+  );
 }

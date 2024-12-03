@@ -2,26 +2,17 @@ import { useForm } from "@mantine/form";
 import { Button, Flex, MonthPicker, Stack, TextInput } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { components } from "../../api.gen";
-import { endOfMonth } from "date-fns";
+import dayjs from "dayjs";
 
-type FormValues = {
+export type PeriodFormValues = {
   title: string;
   range: [Date, Date];
 };
 
-type ResultType = Pick<components["schemas"]["QuestionnaireMutationDto"], "startedAt" | "endedAt" | "title">;
-
 type PeriodFormProps = {
-  onSave: (questionnaire: ResultType) => void;
+  onSave: (form: PeriodFormValues) => void;
   actionLabel: string;
 };
-
-const mapValues = ({ range: [startedAt, endedAt], ...rest }: FormValues): ResultType => ({
-  ...rest,
-  startedAt: startedAt.toISOString(),
-  endedAt: endedAt.toISOString(),
-});
 
 export const messages = i18n("periodForm", {
   labelTitle: "Title",
@@ -30,17 +21,18 @@ export const messages = i18n("periodForm", {
 export function PeriodForm({ onSave, actionLabel }: PeriodFormProps) {
   const t = useStore(messages);
 
-  const f = useForm<FormValues>({
+  const f = useForm<PeriodFormValues>({
     mode: "uncontrolled",
     transformValues(values) {
-      values.range[1] = endOfMonth(values.range[1]);
+      values.range[0] = dayjs(values.range[0]).utc().toDate();
+      values.range[1] = dayjs(values.range[1]).utc().endOf("month").toDate();
 
       return values;
     },
   });
 
   return (
-    <form onSubmit={f.onSubmit((values) => onSave(mapValues(values)))}>
+    <form onSubmit={f.onSubmit((values) => onSave(values))}>
       <Stack>
         <Flex justify="center">
           <MonthPicker {...f.getInputProps("range")} size="md" type="range" numberOfColumns={2} />
