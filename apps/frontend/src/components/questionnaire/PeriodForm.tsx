@@ -24,7 +24,6 @@ export function PeriodForm({ onSave, actionLabel }: PeriodFormProps) {
   const f = useForm<PeriodFormValues>({
     mode: "uncontrolled",
     transformValues(values) {
-      values.range[0] = dayjs(values.range[0]).utc().toDate();
       values.range[1] = dayjs(values.range[1]).utc().endOf("month").toDate();
 
       return values;
