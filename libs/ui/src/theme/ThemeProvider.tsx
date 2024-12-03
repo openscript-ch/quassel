@@ -3,8 +3,11 @@ import "./Theme.css";
 import { DatesProvider } from "@mantine/dates";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import de from "dayjs/locale/de";
 
 dayjs.extend(utc);
+dayjs.locale(de);
+
 type ThemeProviderProps = MantineProviderProps;
 
 export const theme: MantineThemeOverride = {
