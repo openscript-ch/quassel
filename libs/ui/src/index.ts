@@ -29,6 +29,8 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/dates/styles.css";
 
+import { formatDate } from "./utils/date";
+
 export { ThemeProvider } from "./theme/ThemeProvider";
 
 // custom components
@@ -69,3 +71,5 @@ export {
   IconCalendarWeek,
   IconMapSearch,
 } from "@tabler/icons-react";
+
+export { formatDate };

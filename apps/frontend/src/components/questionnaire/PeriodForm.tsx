@@ -1,8 +1,9 @@
 import { useForm } from "@mantine/form";
-import { Button, Flex, MonthPicker, Stack, TextInput } from "@quassel/ui";
+import { Button, Flex, formatDate, MonthPicker, Stack, TextInput } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
+import { params } from "@nanostores/i18n";
 
 export type PeriodFormValues = {
   title: string;
@@ -17,6 +18,7 @@ type PeriodFormProps = {
 
 const messages = i18n("periodForm", {
   labelTitle: "Title",
+  defaultTitle: params("Period ({start} - {end})"),
 });
 
 export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
@@ -24,7 +26,11 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
 
   const f = useForm<PeriodFormValues>({
     initialValues: period,
-    mode: "uncontrolled",
+    onValuesChange({ range: [newStart, newEnd] }, { range: [prevStart, prevEnd] }) {
+      if ((!prevStart || !prevEnd) && newStart && newEnd) {
+        f.setFieldValue("title", t.defaultTitle({ start: formatDate(newStart, "M/YY"), end: formatDate(newEnd, "M/YY") }));
+      }
+    },
   });
 
   useEffect(() => {
