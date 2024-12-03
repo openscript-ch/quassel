@@ -25,7 +25,7 @@ export class QuestionnairesService {
       throw e;
     }
 
-    return questionnaire.toObject();
+    return (await questionnaire.populate(["entries"])).toObject();
   }
 
   async findAll() {
@@ -33,7 +33,7 @@ export class QuestionnairesService {
   }
 
   async findOne(id: number) {
-    return (await this.questionnaireRepository.findOneOrFail(id)).toObject();
+    return (await this.questionnaireRepository.findOneOrFail(id, { populate: ["entries"] })).toObject();
   }
 
   async findBy(filter: FilterQuery<Questionnaire>) {
@@ -41,7 +41,7 @@ export class QuestionnairesService {
   }
 
   async update(id: number, questionnaireMutationDto: QuestionnaireMutationDto) {
-    const questionnaire = await this.questionnaireRepository.findOneOrFail(id);
+    const questionnaire = await this.questionnaireRepository.findOneOrFail(id, { populate: ["entries"] });
     questionnaire.assign(questionnaireMutationDto);
 
     await this.em.persist(questionnaire).flush();

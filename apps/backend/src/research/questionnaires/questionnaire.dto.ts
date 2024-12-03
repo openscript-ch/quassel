@@ -3,6 +3,7 @@ import { Type } from "class-transformer";
 import { IsDateString, IsNotEmpty } from "class-validator";
 import { ParticipantDto } from "../participants/participant.dto";
 import { StudyDto } from "../studies/study.dto";
+import { QuestionnaireEntryDto } from "../entries/entry.dto";
 
 export class QuestionnaireDto {
   @ApiProperty({ example: 1, description: "The id of the questionnaire" })
@@ -29,10 +30,12 @@ export class QuestionnaireDto {
   @Type(() => ParticipantDto)
   participant?: ParticipantDto;
 
-  @Type(() => Array<number>)
-  entries?: number[];
+  @Type(() => Array<QuestionnaireEntryDto>)
+  entries?: QuestionnaireEntryDto[];
 }
 export class QuestionnaireResponseDto extends QuestionnaireDto {}
+export class EntryQuestionnaireDto extends OmitType(QuestionnaireDto, ["entries"]) {}
+export class QuestionnairesResponseDto extends Array<EntryQuestionnaireDto> {}
 export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", "study", "participant"]) {
   study: number;
   participant: number;
