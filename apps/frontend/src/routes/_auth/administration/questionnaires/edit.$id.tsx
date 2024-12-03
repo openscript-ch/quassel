@@ -11,7 +11,7 @@ type FormValues = components["schemas"]["QuestionnaireMutationDto"];
 function AdministrationQuestionnairesEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const questionnaire = useSuspenseQuery(
+  const { data, isSuccess } = useSuspenseQuery(
     $api.queryOptions("get", "/questionnaires/{id}", {
       params: { path: { id: p.id } },
     })
@@ -36,14 +36,14 @@ function AdministrationQuestionnairesEdit() {
   };
 
   useEffect(() => {
-    f.setValues(questionnaire.data ?? {});
+    f.setValues({ title: data.title });
     f.resetDirty();
-  }, [questionnaire.isSuccess, questionnaire.data]);
+  }, [isSuccess, data]);
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="name" {...f.getInputProps("name")} />
+        <TextInput label="Name" type="name" {...f.getInputProps("title")} />
 
         <Button type="submit" fullWidth mt="xl" loading={editQuestionnaireMutation.isPending}>
           Change
