@@ -11,14 +11,18 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: packageJson.name,
+      cssFileName: "style",
     },
     rollupOptions: {
       external: ["react", "react-dom"],
       output: {
         globals: {
+          dayjs: "dayjs",
+          "dayjs/plugin/utc": "dayjsPluginUtc",
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
           "@mantine/core": "mantineCore",
+          "@mantine/dates": "mantineDates",
           "@tabler/icons-react": "tablerIconsReact",
         },
       },

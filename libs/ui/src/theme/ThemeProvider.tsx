@@ -1,13 +1,16 @@
 import { MantineProvider, MantineThemeOverride, MantineProviderProps } from "@mantine/core";
 import "./Theme.css";
+import { DatesProvider } from "@mantine/dates";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 
+dayjs.extend(utc);
 type ThemeProviderProps = MantineProviderProps;
 
 export const theme: MantineThemeOverride = {
   // based on https://www.cd.uzh.ch/dam/jcr:ceea0afd-0f51-442c-b4ca-c49bb6bd1220/uzh-corporate-colors-rgb.pdf
   colors: {
-    // https://mantine.dev/colors-generator/?color=0028A5
-    uzhBlue: ["#ebf0ff", "#d2dbfa", "#a0b4f7", "#6c8af6", "#4367f6", "#2e51f6", "#2446f7", "#1a38dd", "#1232c5", "#002aad"],
+    uzhBlue: ["#BACBFF", "#7596FF", "#3062FF", "#3062FF", "#0028A5", "#0028A5", "#0028A5", "#001E7C", "#001452", "#001452"],
     // https://mantine.dev/colors-generator/?color=4AC9E3
     uzhCyan: ["#e0fdff", "#cff4fc", "#a5e6f3", "#76d7eb", "#51cbe4", "#37c3e0", "#21c0df", "#01a9c6", "#0096b2", "#00839d"],
     // https://mantine.dev/colors-generator/?color=A5D233
@@ -27,5 +30,9 @@ export const theme: MantineThemeOverride = {
 };
 
 export function ThemeProvider(args: ThemeProviderProps) {
-  return <MantineProvider {...args} theme={theme} />;
+  return (
+    <DatesProvider settings={{ timezone: "UTC" }}>
+      <MantineProvider {...args} theme={theme} />
+    </DatesProvider>
+  );
 }

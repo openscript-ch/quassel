@@ -3,6 +3,7 @@ import { Migrator } from "@mikro-orm/migrations";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
 import { SeedManager } from "@mikro-orm/seeder";
 import { configuration } from "./src/config/configuration";
+import { HttpException, HttpStatus } from "@nestjs/common";
 
 const c = configuration();
 
@@ -17,6 +18,7 @@ export default defineConfig({
   driver: PostgreSqlDriver,
   metadataProvider: TsMorphMetadataProvider,
   extensions: [Migrator, SeedManager],
+  findOneOrFailHandler: (entityName) => new HttpException(`${entityName} not found.`, HttpStatus.NOT_FOUND),
   migrations: {
     path: "./db/migrations",
     pathTs: "./db/migrations",

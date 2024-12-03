@@ -599,7 +599,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         QuestionnaireDto: {
             /**
@@ -750,8 +750,8 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
+            study: number;
+            participant: number;
             entries?: number[];
         };
         QuestionnaireResponseDto: {
@@ -809,9 +809,9 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
             entries?: number[];
+            study?: number;
+            participant?: number;
         };
         LanguageDto: {
             /**
@@ -905,7 +905,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         StudyResponseDto: {
             /**
@@ -918,7 +918,7 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires: number[];
+            questionnaires?: number[];
         };
         StudyMutationDto: {
             /**
@@ -1574,6 +1574,15 @@ export interface operations {
                     "application/json": components["schemas"]["ParticipantResponseDto"];
                 };
             };
+            /** @description Entity not found exception */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
         };
     };
     ParticipantsController_delete: {
@@ -2036,6 +2045,15 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+            /** @description Entity not found exception */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
         };

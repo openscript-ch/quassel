@@ -14,7 +14,7 @@ export class QuestionnairesService {
 
   async create(questionnaireCreationDto: QuestionnaireCreationDto) {
     const questionnaire = new Questionnaire();
-    questionnaire.assign(questionnaireCreationDto);
+    questionnaire.assign(questionnaireCreationDto, { em: this.em });
 
     try {
       await this.em.persist(questionnaire).flush();

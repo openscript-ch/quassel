@@ -34,6 +34,6 @@ function QuestionnaireRemarks() {
   );
 }
 
-export const Route = createFileRoute("/_auth/questionnaire/_form/$id/remarks")({
+export const Route = createFileRoute("/_auth/questionnaire/_questionnaire/$id/remarks")({
   component: QuestionnaireRemarks,
 });

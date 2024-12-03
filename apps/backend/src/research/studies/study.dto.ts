@@ -11,7 +11,7 @@ export class StudyDto {
   title: string;
 
   @Type(() => Array<number>)
-  questionnaires: number[];
+  questionnaires?: number[];
 }
 
 export class StudyResponseDto extends StudyDto {}
