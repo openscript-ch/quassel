@@ -3,6 +3,7 @@ import { Button, Flex, MonthPicker, Stack, TextInput } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import dayjs from "dayjs";
+import { useEffect } from "react";
 
 export type PeriodFormValues = {
   title: string;
@@ -11,6 +12,7 @@ export type PeriodFormValues = {
 
 type PeriodFormProps = {
   onSave: (form: PeriodFormValues) => void;
+  period?: PeriodFormValues;
   actionLabel: string;
 };
 
@@ -18,17 +20,24 @@ export const messages = i18n("periodForm", {
   labelTitle: "Title",
 });
 
-export function PeriodForm({ onSave, actionLabel }: PeriodFormProps) {
+export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
   const t = useStore(messages);
 
   const f = useForm<PeriodFormValues>({
-    mode: "uncontrolled",
+    initialValues: period,
     transformValues(values) {
       values.range[1] = dayjs(values.range[1]).utc().endOf("month").toDate();
 
       return values;
     },
   });
+
+  useEffect(() => {
+    if (period) {
+      f.setValues(period);
+      f.resetDirty();
+    }
+  }, [period]);
 
   return (
     <form onSubmit={f.onSubmit((values) => onSave(values))}>
