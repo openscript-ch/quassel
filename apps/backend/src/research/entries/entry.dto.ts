@@ -1,6 +1,6 @@
 import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsOptional, IsDate, Min, Max } from "class-validator";
+import { IsOptional, Min, Max, IsMilitaryTime } from "class-validator";
 import { CarerDto } from "../../defaults/carers/carer.dto";
 import { EntryQuestionnaireDto, QuestionnaireDto } from "../questionnaires/questionnaire.dto";
 
@@ -9,11 +9,11 @@ export class EntryDto {
   id: number;
 
   @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The starting date of the entry" })
-  @IsDate()
+  @IsMilitaryTime()
   startedAt: string;
 
   @ApiProperty({ example: "2024-11-01T08:00:00.00Z", description: "The ending date of the entry" })
-  @IsDate()
+  @IsMilitaryTime()
   endedAt: string;
 
   @ApiProperty({ example: 1, description: "The weekday of the entry (Sunday is 0 like in JS)" })
@@ -37,5 +37,8 @@ export class EntryDto {
 }
 export class EntryResponseDto extends EntryDto {}
 export class QuestionnaireEntryDto extends OmitType(EntryDto, ["questionnaire"]) {}
-export class EntryCreationDto extends OmitType(EntryDto, ["id"]) {}
+export class EntryCreationDto extends OmitType(EntryDto, ["id", "carer", "questionnaire"]) {
+  carer: number;
+  questionnaire: number;
+}
 export class EntryMutationDto extends PartialType(EntryCreationDto) {}

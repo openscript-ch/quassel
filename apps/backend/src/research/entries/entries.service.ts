@@ -14,7 +14,7 @@ export class EntriesService {
 
   async create(entryCreationDto: EntryCreationDto) {
     const entry = new Entry();
-    entry.assign(entryCreationDto);
+    entry.assign(entryCreationDto, { em: this.em });
 
     try {
       await this.em.persist(entry).flush();
