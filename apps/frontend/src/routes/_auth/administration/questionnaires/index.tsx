@@ -11,9 +11,6 @@ function AdministrationQuestionnairesIndex() {
 
   return (
     <>
-      <Button variant="default" renderRoot={(props) => <Link to="/administration/questionnaires/new" {...props} />}>
-        New questionnaire
-      </Button>
       <Table>
         <Table.Thead>
           <Table.Tr>
