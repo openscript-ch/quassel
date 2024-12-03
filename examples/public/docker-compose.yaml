@@ -60,7 +60,7 @@ services:
       - "traefik.http.services.backend-http-service.loadbalancer.server.port=3000"
 
   database:
-    image: postgres:17.0-alpine
+    image: postgres:17.2-alpine
     restart: unless-stopped
     volumes:
       - database:/var/lib/postgresql/data
