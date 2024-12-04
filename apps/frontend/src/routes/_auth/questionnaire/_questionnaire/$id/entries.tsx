@@ -22,6 +22,8 @@ function QuestionnaireEntries() {
 
   const t = useStore(messages);
 
+  const theme = useMantineTheme();
+
   const { data: questionnaire } = useSuspenseQuery($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } }));
 
   const events: ExtendedEvent[] =
@@ -30,6 +32,7 @@ function QuestionnaireEntries() {
       end: getDateFromTimeAndWeekday(endedAt, weekday),
       title: carer.name,
       extendedProps: { entryLanguages },
+      backgroundColor: theme.colors[theme.primaryColor][4],
     })) ?? [];
 
   const handleSubmit = () => {

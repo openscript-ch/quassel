@@ -10,6 +10,25 @@ dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 dayjs.locale(de);
 
+import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
+
+type ExtendedCustomColors =
+  | "uzhBlue"
+  | "uzhCyan"
+  | "uzhGreen"
+  | "uzhGold"
+  | "uzhOrange"
+  | "uzhBerry"
+  | "uzhBlack"
+  | "uzhWhite"
+  | DefaultMantineColor;
+
+declare module "@mantine/core" {
+  export interface MantineThemeColorsOverride {
+    colors: Record<ExtendedCustomColors, MantineColorsTuple>;
+  }
+}
+
 type ThemeProviderProps = MantineProviderProps;
 
 export const theme: MantineThemeOverride = {
