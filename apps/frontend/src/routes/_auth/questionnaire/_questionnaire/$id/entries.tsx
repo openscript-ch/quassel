@@ -12,6 +12,18 @@ import { QuestionnaireEntry } from "../../../../../components/questionnaire/cale
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
+const calendarBaseConfig: FullCalendar["props"] = {
+  allDaySlot: false,
+  headerToolbar: false,
+  slotMinTime: { hour: 5 },
+  slotMaxTime: { hour: 23 },
+  slotDuration: { hour: 1 },
+  firstDay: 1,
+  dayHeaderContent: ({ date }) => formatDate(date, "dddd"),
+  locale: "de",
+  expandRows: true,
+};
+
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
   backAction: "Back",
@@ -44,18 +56,10 @@ function QuestionnaireEntries() {
     <form onSubmit={handleSubmit}>
       <Stack>
         <FullCalendar
+          {...calendarBaseConfig}
           plugins={[timeGridPlugin]}
-          allDaySlot={false}
-          headerToolbar={false}
           events={events}
           eventContent={({ event }) => <QuestionnaireEntry event={event} />}
-          slotMinTime={{ hour: 5 }}
-          slotMaxTime={{ hour: 23 }}
-          slotDuration={{ hour: 1 }}
-          firstDay={1}
-          dayHeaderContent={({ date }) => formatDate(date, "dddd")}
-          locale={"de"}
-          expandRows
         />
 
         <Group>
