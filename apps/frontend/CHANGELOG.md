@@ -1,5 +1,15 @@
 # @quassel/frontend
 
+## 0.1.13
+
+### Patch Changes
+
+- f7a1b18: Upgrade dependencies
+- 8a6746d: Add questionnaire management
+- 80e0a6b: Improve nginx and env configuration
+- 5a3dc47: Add studies management
+- 0fb073f: Add participants management
+
 ## 0.1.3
 
 ### Patch Changes
