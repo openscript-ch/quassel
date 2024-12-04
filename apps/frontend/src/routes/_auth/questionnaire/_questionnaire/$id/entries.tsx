@@ -1,4 +1,4 @@
-import { Button, Flex, formatDate, getDateFromTimeAndWeekday, Group, Stack } from "@quassel/ui";
+import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -8,8 +8,9 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import { EventInput } from "@fullcalendar/core";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
+import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
 
-type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
+export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
@@ -47,16 +48,7 @@ function QuestionnaireEntries() {
           allDaySlot={false}
           headerToolbar={false}
           events={events}
-          eventContent={({ event }) => {
-            return (
-              <Flex direction={"column"}>
-                <span>{event.title}</span>
-                <span>
-                  {(event.extendedProps as ExtendedEvent["extendedProps"]).entryLanguages.map(({ language }) => language.name).join(", ")}
-                </span>
-              </Flex>
-            );
-          }}
+          eventContent={({ event }) => <QuestionnaireEntry event={event} />}
           slotMinTime={{ hour: 5 }}
           slotMaxTime={{ hour: 23 }}
           slotDuration={{ hour: 1 }}
