@@ -45,6 +45,7 @@ export {
   Divider,
   Flex,
   Group,
+  Modal,
   NavLink,
   Paper,
   PasswordInput,
@@ -57,6 +58,10 @@ export {
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
+
+export { TimeInput } from "@mantine/dates";
+
+export { useDisclosure } from "@mantine/hooks";
 
 export {
   IconLogout,

@@ -1,4 +1,15 @@
-import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme } from "@quassel/ui";
+import {
+  Button,
+  formatDate,
+  getDateFromTimeAndWeekday,
+  Group,
+  Stack,
+  useMantineTheme,
+  useDisclosure,
+  Modal,
+  TimeInput,
+  Select,
+} from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -6,6 +17,7 @@ import { $api } from "../../../../../stores/api";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { EventInput } from "@fullcalendar/core";
+import interactionPlugin from "@fullcalendar/interaction";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
@@ -36,6 +48,7 @@ function QuestionnaireEntries() {
   const t = useStore(messages);
 
   const theme = useMantineTheme();
+  const [opened, { open, close }] = useDisclosure();
 
   const { data: questionnaire } = useSuspenseQuery($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } }));
 
@@ -53,23 +66,36 @@ function QuestionnaireEntries() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Stack>
-        <FullCalendar
-          {...calendarBaseConfig}
-          plugins={[timeGridPlugin]}
-          events={events}
-          eventContent={({ event }) => <QuestionnaireEntry event={event} />}
-        />
-
-        <Group>
-          <Link to="/questionnaire/$id/period" params={p}>
-            <Button variant="light">{t.backAction}</Button>
-          </Link>
-          <Button type="submit">{t.formAction}</Button>
-        </Group>
-      </Stack>
-    </form>
+    <>
+      <Modal opened={opened} onClose={close} title="test" centered size="sm">
+        <form>
+          <Select />
+          <TimeInput />
+          <TimeInput />
+        </form>
+      </Modal>
+      <form onSubmit={handleSubmit}>
+        <Stack>
+          <FullCalendar
+            {...calendarBaseConfig}
+            plugins={[timeGridPlugin, interactionPlugin]}
+            editable
+            events={events}
+            selectable
+            select={(args) => {
+              open();
+            }}
+            eventContent={({ event }) => <QuestionnaireEntry event={event} />}
+          />
+          <Group>
+            <Link to="/questionnaire/$id/period" params={p}>
+              <Button variant="light">{t.backAction}</Button>
+            </Link>
+            <Button type="submit">{t.formAction}</Button>
+          </Group>
+        </Stack>
+      </form>
+    </>
   );
 }
 
