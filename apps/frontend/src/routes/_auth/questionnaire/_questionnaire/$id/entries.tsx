@@ -1,12 +1,17 @@
-import { Button, formatDate, Group, Stack } from "@quassel/ui";
+import { Button, Flex, formatDate, getDateFromTimeAndWeekday, Group, Stack } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { $api } from "../../../../../stores/api";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import { EventInput } from "@fullcalendar/core";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { components } from "../../../../../api.gen";
 
-export const messages = i18n("questionnaireEntries", {
+type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
+
+const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
   backAction: "Back",
 });
@@ -16,6 +21,16 @@ function QuestionnaireEntries() {
   const p = Route.useParams();
 
   const t = useStore(messages);
+
+  const { data: questionnaire } = useSuspenseQuery($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } }));
+
+  const events: ExtendedEvent[] =
+    questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages }) => ({
+      start: getDateFromTimeAndWeekday(startedAt, weekday),
+      end: getDateFromTimeAndWeekday(endedAt, weekday),
+      title: carer.name,
+      extendedProps: { entryLanguages },
+    })) ?? [];
 
   const handleSubmit = () => {
     n({ to: "/questionnaire/$id/remarks", params: p });
@@ -28,6 +43,17 @@ function QuestionnaireEntries() {
           plugins={[timeGridPlugin]}
           allDaySlot={false}
           headerToolbar={false}
+          events={events}
+          eventContent={({ event }) => {
+            return (
+              <Flex direction={"column"}>
+                <span>{event.title}</span>
+                <span>
+                  {(event.extendedProps as ExtendedEvent["extendedProps"]).entryLanguages.map(({ language }) => language.name).join(", ")}
+                </span>
+              </Flex>
+            );
+          }}
           slotMinTime={{ hour: 5 }}
           slotMaxTime={{ hour: 23 }}
           slotDuration={{ hour: 1 }}

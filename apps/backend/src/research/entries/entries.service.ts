@@ -25,23 +25,23 @@ export class EntriesService {
       throw e;
     }
 
-    return entry.toObject();
+    return (await entry.populate(["entryLanguages"])).toObject();
   }
 
   async findAll() {
-    return (await this.entryRepository.findAll()).map((entry) => entry.toObject());
+    return (await this.entryRepository.findAll({ populate: ["entryLanguages"] })).map((entry) => entry.toObject());
   }
 
   async findOne(id: number) {
-    return (await this.entryRepository.findOneOrFail(id)).toObject();
+    return (await this.entryRepository.findOneOrFail(id, { populate: ["entryLanguages"] })).toObject();
   }
 
   async findBy(filter: FilterQuery<Entry>) {
-    return (await this.entryRepository.findOneOrFail(filter)).toObject();
+    return (await this.entryRepository.findOneOrFail(filter, { populate: ["entryLanguages"] })).toObject();
   }
 
   async update(id: number, entryMutationDto: EntryMutationDto) {
-    const entry = await this.entryRepository.findOneOrFail(id);
+    const entry = await this.entryRepository.findOneOrFail(id, { populate: ["entryLanguages"] });
 
     entry.assign(entryMutationDto);
 

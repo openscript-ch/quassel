@@ -32,8 +32,8 @@ export class EntryDto {
   @Type(() => CarerDto)
   carer: CarerDto;
 
-  @Type(() => Array<number>)
-  entryLanguages: number[];
+  @Type(() => Array<EntryLanguageResponseDto>)
+  entryLanguages: Array<EntryLanguageResponseDto>;
 }
 export class EntryResponseDto extends EntryDto {}
 export class QuestionnaireEntryDto extends OmitType(EntryDto, ["questionnaire"]) {}

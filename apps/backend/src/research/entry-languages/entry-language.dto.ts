@@ -19,6 +19,6 @@ export class EntryLanguageDto {
   @Type(() => QuestionnaireEntryDto)
   entry: QuestionnaireEntryDto;
 }
-export class EntryLanguageResponseDto extends EntryLanguageDto {}
-export class EntryLanguageCreationDto extends OmitType(EntryLanguageDto, ["id"]) {}
+export class EntryLanguageResponseDto extends OmitType(EntryLanguageDto, ["entry"]) {}
+export class EntryLanguageCreationDto extends OmitType(EntryLanguageDto, ["id", "entry", "language"]) {
 export class EntryLanguageMutationDto extends PartialType(EntryLanguageCreationDto) {}
