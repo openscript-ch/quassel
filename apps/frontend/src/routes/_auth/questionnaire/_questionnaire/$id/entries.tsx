@@ -1,15 +1,4 @@
-import {
-  Button,
-  formatDate,
-  getDateFromTimeAndWeekday,
-  Group,
-  Stack,
-  useMantineTheme,
-  useDisclosure,
-  Modal,
-  TimeInput,
-  Select,
-} from "@quassel/ui";
+import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme, useDisclosure, Modal } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -21,6 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
+import { EntityForm } from "../../../../../components/questionnaire/calendar/EntryForm";
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
@@ -39,6 +29,7 @@ const calendarBaseConfig: FullCalendar["props"] = {
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
   backAction: "Back",
+  addEntityLabel: "Add",
 });
 
 function QuestionnaireEntries() {
@@ -67,12 +58,8 @@ function QuestionnaireEntries() {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="test" centered size="sm">
-        <form>
-          <Select />
-          <TimeInput />
-          <TimeInput />
-        </form>
+      <Modal opened={opened} onClose={close} title="test" centered size="md">
+        <EntityForm onSave={console.log} actionLabel={t.addEntityLabel} />
       </Modal>
       <form onSubmit={handleSubmit}>
         <Stack>
