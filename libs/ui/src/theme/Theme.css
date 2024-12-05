@@ -1,11 +1,16 @@
 :root {
   --quassel-padding-x: 20%;
   --quassel-color-light-gray: #fafafa;
+
+  /* fullcalendar overrides */
+  --fc-today-bg-color: #fff;
+  --fc-border-color: var(--mantine-color-default-border);
 }
 
 /* Page layout */
 
-.mantine-AppShell-header, .mantine-AppShell-footer {
+.mantine-AppShell-header,
+.mantine-AppShell-footer {
   padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
 }
 
@@ -23,6 +28,7 @@
   border: none;
   box-shadow: var(--mantine-shadow-sm);
 }
+
 .mantine-AppShell-header a {
   text-decoration: none;
 }

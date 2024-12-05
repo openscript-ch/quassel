@@ -29,8 +29,6 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/dates/styles.css";
 
-import { formatDate } from "./utils/date";
-
 export { ThemeProvider } from "./theme/ThemeProvider";
 
 // custom components
@@ -47,6 +45,7 @@ export {
   Divider,
   Flex,
   Group,
+  Modal,
   NavLink,
   Paper,
   PasswordInput,
@@ -60,6 +59,10 @@ export {
   useMantineTheme,
 } from "@mantine/core";
 
+export { TimeInput } from "@mantine/dates";
+
+export { useDisclosure } from "@mantine/hooks";
+
 export {
   IconLogout,
   IconUsers,
@@ -72,4 +75,4 @@ export {
   IconMapSearch,
 } from "@tabler/icons-react";
 
-export { formatDate };
+export { formatDate, getDateFromTimeAndWeekday } from "./utils/date";
