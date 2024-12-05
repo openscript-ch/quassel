@@ -37,6 +37,7 @@ export { MonthPicker } from "./components/MonthPicker";
 
 // external components
 export {
+  ActionIcon,
   Anchor,
   AppShell,
   Button,
@@ -54,6 +55,7 @@ export {
   Table,
   Text,
   TextInput,
+  NumberInput,
   Title,
   UnstyledButton,
   useMantineTheme,
@@ -73,6 +75,7 @@ export {
   IconLego,
   IconCalendarWeek,
   IconMapSearch,
+  IconMinus,
 } from "@tabler/icons-react";
 
 export { formatDate, getDateFromTimeAndWeekday } from "./utils/date";
