@@ -1,10 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
-import { useSuspenseQuery } from "@tanstack/react-query";
 
 function AdministrationCarersIndex() {
-  const carers = useSuspenseQuery($api.queryOptions("get", "/carers"));
+  const carers = $api.useSuspenseQuery("get", "/carers");
   const deleteCarerMutation = $api.useMutation("delete", "/carers/{id}", {
     onSuccess: () => carers.refetch(),
   });
