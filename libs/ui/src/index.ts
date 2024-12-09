@@ -10,6 +10,7 @@ import "@mantine/core/styles/Group.css";
 import "@mantine/core/styles/Loader.css";
 import "@mantine/core/styles/Overlay.css";
 import "@mantine/core/styles/ModalBase.css";
+import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Input.css";
 import "@mantine/core/styles/InlineInput.css";
 import "@mantine/core/styles/Flex.css";
@@ -29,8 +30,6 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/dates/styles.css";
 
-import { formatDate } from "./utils/date";
-
 export { ThemeProvider } from "./theme/ThemeProvider";
 
 // custom components
@@ -39,6 +38,7 @@ export { MonthPicker } from "./components/MonthPicker";
 
 // external components
 export {
+  ActionIcon,
   Anchor,
   AppShell,
   Button,
@@ -47,18 +47,25 @@ export {
   Divider,
   Flex,
   Group,
+  Modal,
   NavLink,
   Paper,
   PasswordInput,
   Select,
+  type SelectProps,
   Stack,
   Table,
   Text,
   TextInput,
+  NumberInput,
   Title,
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core";
+
+export { TimeInput } from "@mantine/dates";
+
+export { useDisclosure } from "@mantine/hooks";
 
 export {
   IconLogout,
@@ -70,6 +77,7 @@ export {
   IconLego,
   IconCalendarWeek,
   IconMapSearch,
+  IconMinus,
 } from "@tabler/icons-react";
 
-export { formatDate };
+export { formatDate, getTime, getDateFromTimeAndWeekday } from "./utils/date";

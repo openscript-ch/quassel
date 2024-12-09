@@ -3,8 +3,32 @@ import "./Theme.css";
 import { DatesProvider } from "@mantine/dates";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import de from "dayjs/locale/de";
 
 dayjs.extend(utc);
+dayjs.extend(customParseFormat);
+dayjs.locale(de);
+
+import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
+
+type ExtendedCustomColors =
+  | "uzhBlue"
+  | "uzhCyan"
+  | "uzhGreen"
+  | "uzhGold"
+  | "uzhOrange"
+  | "uzhBerry"
+  | "uzhBlack"
+  | "uzhWhite"
+  | DefaultMantineColor;
+
+declare module "@mantine/core" {
+  export interface MantineThemeColorsOverride {
+    colors: Record<ExtendedCustomColors, MantineColorsTuple>;
+  }
+}
+
 type ThemeProviderProps = MantineProviderProps;
 
 export const theme: MantineThemeOverride = {
