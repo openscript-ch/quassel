@@ -1,5 +1,21 @@
 # @quassel/backend
 
+## 0.2.0
+
+### Minor Changes
+
+- 2bd1751: Add database dump export
+
+### Patch Changes
+
+- 54319b1: Add healthchecks
+- f7a1b18: Upgrade dependencies
+- 97a319c: Add status endpoint
+- 8a6746d: Add questionnaire management
+- 5a3dc47: Add studies management
+- 0fb073f: Add participants management
+- c27dfac: Enhance host configuration
+
 ## 0.1.12
 
 ### Patch Changes
