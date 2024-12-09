@@ -1,4 +1,4 @@
-import { useForm } from "@mantine/form";
+import { isInRange, isNotEmpty, useForm } from "@mantine/form";
 import { Button, Group, Select, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -15,6 +15,9 @@ type FormValues = {
 
 const messages = i18n("entityForm", {
   addDialectAction: "Add dialect",
+  validationRatio: "Ratio must be between 1 and 100.",
+  validationTotalRatio: "Total Ratio must always be 100%.",
+  validationNotEmpty: "Field must not be empty.",
 });
 
 type EntityFormProps = {
@@ -33,6 +36,21 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
           ratio: 100,
         },
       ],
+    },
+    validate: {
+      startedAt: isNotEmpty(t.validationNotEmpty),
+      endedAt: isNotEmpty(t.validationNotEmpty),
+      carerId: isNotEmpty(t.validationNotEmpty),
+      languageEntries: {
+        ratio: (value) => {
+          const fieldError = isInRange({ min: 1, max: 100 }, t.validationRatio)(value);
+          if (fieldError) return fieldError;
+
+          const listError = getTotalRatio() !== 100;
+          if (listError) return t.validationTotalRatio;
+        },
+        languageId: isNotEmpty(t.validationNotEmpty),
+      },
     },
   });
 
@@ -60,7 +78,7 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
         {f.getValues().languageEntries.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`}>
-            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={0} />
+            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} />
             <Select {...f.getInputProps(`languageEntries.${index}.languageId`)} />
             {!!index && (
               <ActionIcon
@@ -94,7 +112,7 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
         <TimeInput {...f.getInputProps("startedAt")} />
         <TimeInput {...f.getInputProps("endedAt")} />
 
-        <Button>{actionLabel}</Button>
+        <Button type="submit">{actionLabel}</Button>
       </Stack>
     </form>
   );
