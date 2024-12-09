@@ -1,5 +1,5 @@
 import { isInRange, isNotEmpty, useForm } from "@mantine/form";
-import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, Flex } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
@@ -83,14 +83,14 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
 
   return (
     <form onSubmit={f.onSubmit(onSave)}>
-      <Stack align="flex-start">
+      <Stack>
         <CarerSelect {...f.getInputProps("carerId")} />
 
         {f.getValues().languageEntries.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
-          <Group key={`entry-${index}`}>
-            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} />
-            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} />
+          <Group key={`entry-${index}`} justify="stretch">
+            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} w={80} />
+            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} flex={1} />
             {!!index && (
               <ActionIcon
                 variant="light"
@@ -105,6 +105,7 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
           </Group>
         ))}
         <Button
+          ml="auto"
           onClick={() => {
             const currentRatio = getTotalRatio();
 
@@ -119,9 +120,11 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
         >
           {t.addDialectAction}
         </Button>
-
-        <TimeInput {...f.getInputProps("startedAt")} />
-        <TimeInput {...f.getInputProps("endedAt")} />
+        <Group>
+          <TimeInput flex={1} {...f.getInputProps("startedAt")} />
+          -
+          <TimeInput flex={1} {...f.getInputProps("endedAt")} />
+        </Group>
 
         <Button type="submit">{actionLabel}</Button>
       </Stack>

@@ -62,7 +62,7 @@ function QuestionnaireEntries() {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="test" centered size="md">
+      <Modal opened={opened} onClose={close} size="md">
         <EntityForm
           onSave={console.log}
           entry={!!selectedStartTime && !!selectedEndTime ? { startedAt: selectedStartTime, endedAt: selectedEndTime } : undefined}
