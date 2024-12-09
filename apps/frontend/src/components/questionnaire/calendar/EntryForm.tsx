@@ -1,5 +1,5 @@
 import { isInRange, isNotEmpty, useForm } from "@mantine/form";
-import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, Flex } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
@@ -18,6 +18,8 @@ type FormValues = {
 
 const messages = i18n("entityForm", {
   addDialectAction: "Add dialect",
+  labelCarer: "Carer",
+  labelLanguage: "Language",
   validationRatio: "Ratio must be between 1 and 100.",
   validationTotalRatio: "Total Ratio must always be 100%.",
   validationNotEmpty: "Field must not be empty.",
@@ -84,13 +86,13 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carerId")} />
+        <CarerSelect {...f.getInputProps("carerId")} placeholder={t.labelCarer} />
 
         {f.getValues().languageEntries.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`} justify="stretch">
-            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} w={80} />
-            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} flex={1} />
+            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
+            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} flex={1} placeholder={t.labelLanguage} />
             {!!index && (
               <ActionIcon
                 variant="light"
