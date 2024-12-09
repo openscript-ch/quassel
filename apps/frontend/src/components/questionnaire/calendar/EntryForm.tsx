@@ -2,6 +2,7 @@ import { isInRange, isNotEmpty, useForm } from "@mantine/form";
 import { Button, Group, Select, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
+import { useEffect } from "react";
 
 type FormValues = {
   carerId?: number;
@@ -22,10 +23,11 @@ const messages = i18n("entityForm", {
 
 type EntityFormProps = {
   onSave: (entity: FormValues) => void;
+  entry?: Partial<FormValues>;
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
+export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<FormValues>({
     initialValues: {
@@ -53,6 +55,13 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
       },
     },
   });
+
+  useEffect(() => {
+    if (entry) {
+      f.setValues(entry);
+      f.resetDirty();
+    }
+  }, [entry]);
 
   const getTotalRatio = () => f.getValues().languageEntries.reduce((acc, cur) => (acc += cur.ratio), 0);
 

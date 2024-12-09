@@ -78,4 +78,4 @@ export {
   IconMinus,
 } from "@tabler/icons-react";
 
-export { formatDate, getDateFromTimeAndWeekday } from "./utils/date";
+export { formatDate, getTime, getDateFromTimeAndWeekday } from "./utils/date";

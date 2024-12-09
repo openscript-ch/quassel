@@ -1,4 +1,4 @@
-import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme, useDisclosure, Modal } from "@quassel/ui";
+import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme, useDisclosure, Modal, getTime } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -11,6 +11,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
 import { EntityForm } from "../../../../../components/questionnaire/calendar/EntryForm";
+import { useState } from "react";
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
@@ -41,6 +42,9 @@ function QuestionnaireEntries() {
   const theme = useMantineTheme();
   const [opened, { open, close }] = useDisclosure();
 
+  const [selectedStartTime, setSelectedStartTime] = useState<string>();
+  const [selectedEndTime, setSelectedEndTime] = useState<string>();
+
   const { data: questionnaire } = useSuspenseQuery($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } }));
 
   const events: ExtendedEvent[] =
@@ -59,7 +63,11 @@ function QuestionnaireEntries() {
   return (
     <>
       <Modal opened={opened} onClose={close} title="test" centered size="md">
-        <EntityForm onSave={console.log} actionLabel={t.addEntityLabel} />
+        <EntityForm
+          onSave={console.log}
+          entry={!!selectedStartTime && !!selectedEndTime ? { startedAt: selectedStartTime, endedAt: selectedEndTime } : undefined}
+          actionLabel={t.addEntityLabel}
+        />
       </Modal>
       <form onSubmit={handleSubmit}>
         <Stack>
@@ -70,6 +78,8 @@ function QuestionnaireEntries() {
             events={events}
             selectable
             select={(args) => {
+              setSelectedStartTime(getTime(args.start));
+              setSelectedEndTime(getTime(args.end));
               open();
             }}
             eventContent={({ event }) => <QuestionnaireEntry event={event} />}
