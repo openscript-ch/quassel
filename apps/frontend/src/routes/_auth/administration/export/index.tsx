@@ -1,9 +1,9 @@
 import { Button } from "@quassel/ui";
 import { createFileRoute } from "@tanstack/react-router";
-import { useDownload } from "../../../../hooks/useDownload";
+import { $api } from "../../../../stores/api";
 
 function AdministrationExportIndex() {
-  const { downloadFile } = useDownload("/export", "dump.sql");
+  const { downloadFile } = $api.useDownload("/export", "dump.sql");
   return (
     <div>
       <Button onClick={() => downloadFile()}>Download</Button>
