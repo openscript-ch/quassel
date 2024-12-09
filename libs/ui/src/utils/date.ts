@@ -7,7 +7,8 @@ export function formatDate(date: Date, dayjsFormatTemplate: string) {
 export const getTime = (date: Date) => formatDate(date, "HH:mm");
 
 export function getDateFromTimeAndWeekday(time: string, weekday: number) {
-  const startOfWeek = dayjs().startOf("week");
-
-  return dayjs(time, "HH:mm:ss").set("date", startOfWeek.date()).add(weekday, "days").toDate();
+  return dayjs(time, "HH:mm:ss")
+    .set("day", weekday)
+    .add(weekday === 0 ? 1 : 0, "week")
+    .toDate();
 }
