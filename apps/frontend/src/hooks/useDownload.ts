@@ -82,10 +82,12 @@ export const useDownload = (fileUrl: string, fileName: string, response?: () => 
     setProgress(null);
 
     try {
-      const res = response ? response() : fetch(fileUrl);
-      const url = await handleResponse(await res);
+      const res = response ? await response() : await fetch(fileUrl);
+      const url = await handleResponse(res);
 
-      handleDownload(fileName, url);
+      const headerFileName = res.headers.get("content-disposition")?.match(/filename="(.+)"/)?.[1];
+
+      handleDownload(headerFileName || fileName, url);
     } catch (error) {
       setError(error);
     } finally {

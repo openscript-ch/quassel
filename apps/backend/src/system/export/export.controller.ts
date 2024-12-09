@@ -20,7 +20,7 @@ export class ExportController {
     headers: {
       "Content-Disposition": {
         description: "Attachment dump.sql",
-        schema: { type: "string", example: "attachment; filename=dump.sql" },
+        schema: { type: "string", example: 'attachment; filename="quassel-database-dump.sql"' },
       },
     },
   })
@@ -28,7 +28,8 @@ export class ExportController {
     try {
       const data = await this.exportService.fullDatabaseDump();
       const buffer = Buffer.from(data, "utf-8");
-      res.header("Content-Disposition", "attachment; filename=dump.sql");
+      const dateTime = new Date().toISOString().replace(/:/g, "-").replace("T", "_").replace(/\..+/, "");
+      res.header("Content-Disposition", `attachment; filename="quassel-database-dump-${dateTime}.sql"`);
       res.header("Content-Type", "text/sql");
       res.header("Content-Length", buffer.byteLength.toString());
       res.send(buffer);
