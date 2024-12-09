@@ -11,8 +11,6 @@ type Props<T extends { id: number }> = Omit<EntitySelectProps, "data"> & {
 };
 
 export function EntitySelect<T extends { id: number }>({ value, onChange, data, buildLabel, ...rest }: Props<T>) {
-  console.log(value);
-
   return (
     <Select
       value={value?.toString()}
