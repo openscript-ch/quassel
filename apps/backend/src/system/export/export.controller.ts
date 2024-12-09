@@ -20,7 +20,7 @@ export class ExportController {
     headers: {
       "Content-Disposition": {
         description: "Attachment dump.sql",
-        schema: { type: "string", example: 'attachment; filename="quassel-database-dump.sql"' },
+        schema: { type: "string", example: 'attachment; filename="quassel-database-dump-01-01-01_15-12.sql"' },
       },
     },
   })
