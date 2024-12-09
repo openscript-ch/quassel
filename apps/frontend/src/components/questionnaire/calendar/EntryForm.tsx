@@ -86,18 +86,18 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carerId")} placeholder={t.labelCarer} />
+        <CarerSelect {...f.getInputProps("carer")} placeholder={t.labelCarer} />
 
         {f.getValues().entryLanguages.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`} justify="stretch">
-            <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
-            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} flex={1} placeholder={t.labelLanguage} />
+            <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
+            <LanguageSelect {...f.getInputProps(`entryLanguages.${index}.language`)} flex={1} placeholder={t.labelLanguage} />
             {!!index && (
               <ActionIcon
                 variant="light"
                 onClick={() => {
-                  f.removeListItem("languageEntries", index);
+                  f.removeListItem("entryLanguages", index);
                   updateRatios();
                 }}
               >
@@ -112,9 +112,9 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
             const currentRatio = getTotalRatio();
 
             if (currentRatio < 100) {
-              f.insertListItem("languageEntries", { ratio: 100 - currentRatio });
+              f.insertListItem("entryLanguages", { ratio: 100 - currentRatio });
             } else {
-              f.insertListItem("languageEntries", { ratio: 0 });
+              f.insertListItem("entryLanguages", { ratio: 0 });
               updateRatios();
             }
           }}
