@@ -4,4 +4,4 @@ RUN apt update
 RUN apt install -y postgresql-common
 RUN YES=yes /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 RUN apt install -y postgresql-client-17
-RUN su node -c "npm install -g pnpm@9.14.4"
+RUN su node -c "npm install -g pnpm@9.15.0"
