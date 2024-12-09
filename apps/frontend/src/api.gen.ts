@@ -67,6 +67,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** Returns the backends health information */
         get: operations["HealthController_get"];
         put?: never;
         post?: never;
@@ -83,7 +84,25 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** Returns the backends status information */
         get: operations["StatusController_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Offers the backends data for download */
+        get: operations["ExportController_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1269,6 +1288,28 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+        };
+    };
+    ExportController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Database dump file */
+            200: {
+                headers: {
+                    /** @description Attachment dump.sql */
+                    "Content-Disposition"?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/sql": string;
+                };
             };
         };
     };

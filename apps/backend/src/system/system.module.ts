@@ -11,10 +11,19 @@ import { RolesGuard } from "./users/roles.guard";
 import { HealthController } from "./health/health.controller";
 import { TerminusModule } from "@nestjs/terminus";
 import { StatusController } from "./status/status.controller";
+import { ExportController } from "./export/export.controller";
+import { ExportService } from "./export/export.service";
+import { ConfigModule } from "../config/config.module";
 
 @Module({
-  imports: [MikroOrmModule.forFeature([User]), TerminusModule],
-  controllers: [UsersController, SessionController, HealthController, StatusController],
-  providers: [UsersService, SessionService, { provide: APP_GUARD, useClass: SessionGuard }, { provide: APP_GUARD, useClass: RolesGuard }],
+  imports: [MikroOrmModule.forFeature([User]), TerminusModule, ConfigModule],
+  controllers: [UsersController, SessionController, HealthController, StatusController, ExportController],
+  providers: [
+    UsersService,
+    SessionService,
+    ExportService,
+    { provide: APP_GUARD, useClass: SessionGuard },
+    { provide: APP_GUARD, useClass: RolesGuard },
+  ],
 })
 export class SystemModule {}
