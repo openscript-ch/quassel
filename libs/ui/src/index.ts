@@ -51,6 +51,7 @@ export {
   Paper,
   PasswordInput,
   Select,
+  type SelectProps,
   Stack,
   Table,
   Text,

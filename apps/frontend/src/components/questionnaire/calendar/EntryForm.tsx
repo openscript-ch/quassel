@@ -1,8 +1,10 @@
 import { isInRange, isNotEmpty, useForm } from "@mantine/form";
-import { Button, Group, Select, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
+import { CarerSelect } from "../../CarerSelect";
+import { LanguageSelect } from "../../LanguageSelect";
 
 type FormValues = {
   carerId?: number;
@@ -82,13 +84,13 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack align="flex-start">
-        <Select {...f.getInputProps("carerId")} />
+        <CarerSelect {...f.getInputProps("carerId")} />
 
         {f.getValues().languageEntries.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`}>
             <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} />
-            <Select {...f.getInputProps(`languageEntries.${index}.languageId`)} />
+            <LanguageSelect {...f.getInputProps(`languageEntries.${index}.languageId`)} />
             {!!index && (
               <ActionIcon
                 variant="light"
