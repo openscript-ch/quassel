@@ -36,13 +36,30 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
     },
   });
 
+  const getTotalRatio = () => f.getValues().languageEntries.reduce((acc, cur) => (acc += cur.ratio), 0);
+
+  const updateRatios = () => {
+    const currentEntries = f.getValues().languageEntries;
+    const lastEntryIndex = currentEntries.length - 1;
+
+    const avarageRatio = Math.round(100 / currentEntries.length);
+
+    f.setValues({
+      languageEntries: currentEntries.map((entry, index) => ({
+        ...entry,
+        ratio: index === lastEntryIndex ? 100 - lastEntryIndex * avarageRatio : avarageRatio,
+      })),
+    });
+  };
+
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack align="flex-start">
         <Select {...f.getInputProps("carerId")} />
 
-        {f.getValues().languageEntries.map((entry, index) => (
-          <Group key={entry.languageId}>
+        {f.getValues().languageEntries.map((_, index) => (
+          // TODO: make key either languageId or name of new language entry
+          <Group key={`entry-${index}`}>
             <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={0} />
             <Select {...f.getInputProps(`languageEntries.${index}.languageId`)} />
             {!!index && (
@@ -50,6 +67,7 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
                 variant="light"
                 onClick={() => {
                   f.removeListItem("languageEntries", index);
+                  updateRatios();
                 }}
               >
                 <IconMinus />
@@ -59,7 +77,14 @@ export function EntityForm({ onSave, actionLabel }: EntityFormProps) {
         ))}
         <Button
           onClick={() => {
-            f.insertListItem("languageEntries", { ratio: 100 });
+            const currentRatio = getTotalRatio();
+
+            if (currentRatio < 100) {
+              f.insertListItem("languageEntries", { ratio: 100 - currentRatio });
+            } else {
+              f.insertListItem("languageEntries", { ratio: 0 });
+              updateRatios();
+            }
           }}
           variant="light"
         >
