@@ -13,9 +13,10 @@ import { TerminusModule } from "@nestjs/terminus";
 import { StatusController } from "./status/status.controller";
 import { ExportController } from "./export/export.controller";
 import { ExportService } from "./export/export.service";
+import { ConfigModule } from "../config/config.module";
 
 @Module({
-  imports: [MikroOrmModule.forFeature([User]), TerminusModule],
+  imports: [MikroOrmModule.forFeature([User]), TerminusModule, ConfigModule],
   controllers: [UsersController, SessionController, HealthController, StatusController, ExportController],
   providers: [
     UsersService,

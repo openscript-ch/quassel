@@ -24,12 +24,16 @@ export class ExportController {
       },
     },
   })
-  get(@Response() res: FastifyReply) {
-    const data = this.exportService.fullDatabaseDump();
-    const buffer = Buffer.from(data, "utf-8");
-    res.header("Content-Disposition", "attachment; filename=dump.sql");
-    res.header("Content-Type", "text/sql");
-    res.header("Content-Length", buffer.byteLength);
-    res.send(data);
+  async get(@Response() res: FastifyReply) {
+    try {
+      const data = await this.exportService.fullDatabaseDump();
+      const buffer = Buffer.from(data, "utf-8");
+      res.header("Content-Disposition", "attachment; filename=dump.sql");
+      res.header("Content-Type", "text/sql");
+      res.header("Content-Length", buffer.byteLength.toString());
+      res.send(buffer);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
   }
 }
