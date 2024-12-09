@@ -6,11 +6,11 @@ import { useEffect } from "react";
 import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
 
-type FormValues = {
-  carerId?: number;
-  languageEntries: {
+export type EntryFormValues = {
+  carer?: number;
+  entryLanguages: {
     ratio: number;
-    languageId?: number;
+    language?: number;
   }[];
   startedAt: string;
   endedAt: string;
@@ -26,18 +26,18 @@ const messages = i18n("entityForm", {
 });
 
 type EntityFormProps = {
-  onSave: (entity: FormValues) => void;
-  entry?: Partial<FormValues>;
+  onSave: (entity: EntryFormValues) => void;
+  entry?: Partial<EntryFormValues>;
   actionLabel: string;
 };
 
 export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
   const t = useStore(messages);
-  const f = useForm<FormValues>({
+  const f = useForm<EntryFormValues>({
     initialValues: {
       startedAt: "",
       endedAt: "",
-      languageEntries: [
+      entryLanguages: [
         {
           ratio: 100,
         },
@@ -46,8 +46,8 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
     validate: {
       startedAt: isNotEmpty(t.validationNotEmpty),
       endedAt: isNotEmpty(t.validationNotEmpty),
-      carerId: isNotEmpty(t.validationNotEmpty),
-      languageEntries: {
+      carer: isNotEmpty(t.validationNotEmpty),
+      entryLanguages: {
         ratio: (value) => {
           const fieldError = isInRange({ min: 1, max: 100 }, t.validationRatio)(value);
           if (fieldError) return fieldError;
@@ -55,7 +55,7 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
           const listError = getTotalRatio() !== 100;
           if (listError) return t.validationTotalRatio;
         },
-        languageId: isNotEmpty(t.validationNotEmpty),
+        language: isNotEmpty(t.validationNotEmpty),
       },
     },
   });
@@ -67,16 +67,16 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
     }
   }, [entry]);
 
-  const getTotalRatio = () => f.getValues().languageEntries.reduce((acc, cur) => (acc += cur.ratio), 0);
+  const getTotalRatio = () => f.getValues().entryLanguages.reduce((acc, cur) => (acc += cur.ratio), 0);
 
   const updateRatios = () => {
-    const currentEntries = f.getValues().languageEntries;
+    const currentEntries = f.getValues().entryLanguages;
     const lastEntryIndex = currentEntries.length - 1;
 
     const avarageRatio = Math.round(100 / currentEntries.length);
 
     f.setValues({
-      languageEntries: currentEntries.map((entry, index) => ({
+      entryLanguages: currentEntries.map((entry, index) => ({
         ...entry,
         ratio: index === lastEntryIndex ? 100 - lastEntryIndex * avarageRatio : avarageRatio,
       })),
@@ -88,7 +88,7 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
       <Stack>
         <CarerSelect {...f.getInputProps("carerId")} placeholder={t.labelCarer} />
 
-        {f.getValues().languageEntries.map((_, index) => (
+        {f.getValues().entryLanguages.map((_, index) => (
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`languageEntries.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />

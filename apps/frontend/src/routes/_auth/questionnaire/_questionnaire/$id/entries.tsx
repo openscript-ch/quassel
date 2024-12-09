@@ -10,7 +10,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
-import { EntityForm } from "../../../../../components/questionnaire/calendar/EntryForm";
+import { EntityForm, EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useState } from "react";
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
@@ -44,8 +44,12 @@ function QuestionnaireEntries() {
 
   const [selectedStartTime, setSelectedStartTime] = useState<string>();
   const [selectedEndTime, setSelectedEndTime] = useState<string>();
+  const [selectedWeekday, setSelectedWeekday] = useState<number>();
 
-  const { data: questionnaire } = useSuspenseQuery($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } }));
+  const createMutation = $api.useMutation("post", "/entries");
+  const { data: questionnaire, refetch } = useSuspenseQuery(
+    $api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } })
+  );
 
   const events: ExtendedEvent[] =
     questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages }) => ({
@@ -56,6 +60,28 @@ function QuestionnaireEntries() {
       backgroundColor: theme.colors[theme.primaryColor][4],
     })) ?? [];
 
+  const handleAddEntry = ({ entryLanguages, carer, ...rest }: EntryFormValues) => {
+    if (selectedWeekday === undefined) return;
+
+    createMutation.mutate(
+      {
+        body: {
+          ...rest,
+          carer: carer!,
+          entryLanguages: entryLanguages.map(({ ratio, language: languageId }) => ({ language: languageId!, ratio })),
+          weekday: selectedWeekday,
+          questionnaire: questionnaire.id,
+        },
+      },
+      {
+        onSuccess() {
+          refetch();
+          close();
+        },
+      }
+    );
+  };
+
   const handleSubmit = () => {
     n({ to: "/questionnaire/$id/remarks", params: p });
   };
@@ -64,7 +90,7 @@ function QuestionnaireEntries() {
     <>
       <Modal opened={opened} onClose={close} size="md">
         <EntityForm
-          onSave={console.log}
+          onSave={handleAddEntry}
           entry={!!selectedStartTime && !!selectedEndTime ? { startedAt: selectedStartTime, endedAt: selectedEndTime } : undefined}
           actionLabel={t.addEntityLabel}
         />
@@ -80,6 +106,7 @@ function QuestionnaireEntries() {
             select={(args) => {
               setSelectedStartTime(getTime(args.start));
               setSelectedEndTime(getTime(args.end));
+              setSelectedWeekday(args.start.getDay());
               open();
             }}
             eventContent={({ event }) => <QuestionnaireEntry event={event} />}
