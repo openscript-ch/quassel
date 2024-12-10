@@ -79,10 +79,11 @@ function QuestionnaireEntries() {
     createMutation.mutate({ body: entryRequest }, { onSuccess: handleReset });
   };
 
-  const handleUpdate = (id: number, { carer, ...rest }: Partial<EntryFormValues>) => {
+  const handleUpdate = (id: number, { carer, ...rest }: Partial<EntryFormValues>, weekday?: number) => {
     const entryRequest = {
       ...rest,
       carer: carer!,
+      weekday,
       questionnaire: questionnaire.id,
     };
 
@@ -133,6 +134,9 @@ function QuestionnaireEntries() {
             }}
             eventResize={({ event: { id, start, end } }) => {
               handleUpdate(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!) });
+            }}
+            eventDrop={({ event: { id, start, end } }) => {
+              handleUpdate(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!) }, start!.getDay());
             }}
             eventContent={({ event }) => <QuestionnaireEntry event={event} />}
           />
