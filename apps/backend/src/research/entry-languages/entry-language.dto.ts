@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
+import { ApiProperty, OmitType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { Min, Max } from "class-validator";
 import { LanguageDto } from "../../defaults/languages/language.dto";
@@ -20,7 +20,8 @@ export class EntryLanguageDto {
   entry: QuestionnaireEntryDto;
 }
 export class EntryLanguageResponseDto extends OmitType(EntryLanguageDto, ["entry"]) {}
-export class EntryLanguageCreationDto extends OmitType(EntryLanguageDto, ["id", "entry", "language"]) {
-  language: number;
+export class EntryLanguageMutationDto extends OmitType(EntryLanguageDto, ["id", "entry", "language"]) {
+  id?: number;
+  language?: number;
 }
-export class EntryLanguageMutationDto extends PartialType(EntryLanguageCreationDto) {}
+export class EntryLanguageCreationDto extends OmitType(EntryLanguageMutationDto, ["id"]) {}

@@ -594,7 +594,7 @@ export interface components {
              * @example 50
              */
             ratio: number;
-            language: number;
+            language?: number;
         };
         EntryCreationDto: {
             /**
@@ -887,7 +887,8 @@ export interface components {
              * @description The ratio in percent of the entry language
              * @example 50
              */
-            ratio?: number;
+            ratio: number;
+            id?: number;
             language?: number;
         };
         StudyCreationDto: {

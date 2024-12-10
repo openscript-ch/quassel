@@ -9,6 +9,7 @@ import { LanguageSelect } from "../../LanguageSelect";
 export type EntryFormValues = {
   carer?: number;
   entryLanguages: {
+    id?: number;
     ratio: number;
     language?: number;
   }[];

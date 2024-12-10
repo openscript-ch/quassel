@@ -7,7 +7,6 @@ import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { EventInput } from "@fullcalendar/core";
 import interactionPlugin from "@fullcalendar/interaction";
-import { useSuspenseQuery } from "@tanstack/react-query";
 import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
 import { EntityForm, EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
@@ -42,17 +41,17 @@ function QuestionnaireEntries() {
   const theme = useMantineTheme();
   const [opened, { open, close }] = useDisclosure();
 
-  const [selectedStartTime, setSelectedStartTime] = useState<string>();
-  const [selectedEndTime, setSelectedEndTime] = useState<string>();
   const [selectedWeekday, setSelectedWeekday] = useState<number>();
+  const [entryUpdatingId, setEntryUpdadingId] = useState<number>();
+  const [entryDraft, setEntryDraft] = useState<Partial<EntryFormValues>>();
 
   const createMutation = $api.useMutation("post", "/entries");
-  const { data: questionnaire, refetch } = useSuspenseQuery(
-    $api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: p.id } } })
-  );
+  const updateMutation = $api.useMutation("patch", "/entries/{id}");
+  const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
 
   const events: ExtendedEvent[] =
-    questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages }) => ({
+    questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
+      id: id.toString(),
       start: getDateFromTimeAndWeekday(startedAt, weekday),
       end: getDateFromTimeAndWeekday(endedAt, weekday),
       title: carer.name,
@@ -60,26 +59,28 @@ function QuestionnaireEntries() {
       backgroundColor: theme.colors[theme.primaryColor][4],
     })) ?? [];
 
-  const handleAddEntry = ({ entryLanguages, carer, ...rest }: EntryFormValues) => {
+  const handleReset = () => {
+    refetch();
+    close();
+    setSelectedWeekday(undefined);
+    setEntryUpdadingId(undefined);
+  };
+
+  const handleOnSave = ({ carer, ...rest }: EntryFormValues) => {
     if (selectedWeekday === undefined) return;
 
-    createMutation.mutate(
-      {
-        body: {
-          ...rest,
-          carer: carer!,
-          entryLanguages: entryLanguages.map(({ ratio, language: languageId }) => ({ language: languageId!, ratio })),
-          weekday: selectedWeekday,
-          questionnaire: questionnaire.id,
-        },
-      },
-      {
-        onSuccess() {
-          refetch();
-          close();
-        },
-      }
-    );
+    const entryRequest = {
+      ...rest,
+      carer: carer!,
+      weekday: selectedWeekday,
+      questionnaire: questionnaire.id,
+    };
+
+    if (!entryUpdatingId) {
+      createMutation.mutate({ body: entryRequest }, { onSuccess: handleReset });
+    } else {
+      updateMutation.mutate({ body: entryRequest, params: { path: { id: entryUpdatingId?.toString() } } }, { onSuccess: handleReset });
+    }
   };
 
   const handleSubmit = () => {
@@ -89,11 +90,7 @@ function QuestionnaireEntries() {
   return (
     <>
       <Modal opened={opened} onClose={close} size="md">
-        <EntityForm
-          onSave={handleAddEntry}
-          entry={!!selectedStartTime && !!selectedEndTime ? { startedAt: selectedStartTime, endedAt: selectedEndTime } : undefined}
-          actionLabel={t.addEntityLabel}
-        />
+        <EntityForm onSave={handleOnSave} entry={entryDraft} actionLabel={t.addEntityLabel} />
       </Modal>
       <form onSubmit={handleSubmit}>
         <Stack>
@@ -104,9 +101,22 @@ function QuestionnaireEntries() {
             events={events}
             selectable
             select={(args) => {
-              setSelectedStartTime(getTime(args.start));
-              setSelectedEndTime(getTime(args.end));
+              setEntryDraft({ startedAt: getTime(args.start), endedAt: getTime(args.end) });
               setSelectedWeekday(args.start.getDay());
+              open();
+            }}
+            eventClick={(args) => {
+              const { carer, entryLanguages, weekday, id } =
+                questionnaire.entries?.find((entry) => entry.id.toString() === args.event.id) ?? {};
+
+              setEntryUpdadingId(id);
+              setEntryDraft({
+                carer: carer?.id,
+                startedAt: getTime(args.event.start!),
+                endedAt: getTime(args.event.end!),
+                entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
+              });
+              setSelectedWeekday(weekday);
               open();
             }}
             eventContent={({ event }) => <QuestionnaireEntry event={event} />}

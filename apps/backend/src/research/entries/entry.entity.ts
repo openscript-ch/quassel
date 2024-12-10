@@ -29,6 +29,6 @@ export class Entry extends BaseEntity {
   @ManyToOne()
   carer!: Carer;
 
-  @OneToMany(() => EntryLanguage, (entryLanguage) => entryLanguage.entry)
+  @OneToMany(() => EntryLanguage, (entryLanguage) => entryLanguage.entry, { orphanRemoval: true })
   entryLanguages = new Collection<EntryLanguage>(this);
 }
