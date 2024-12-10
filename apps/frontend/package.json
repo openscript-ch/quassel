@@ -30,16 +30,16 @@
     "nanostores": "^0.11.3",
     "openapi-fetch": "0.13.3",
     "openapi-react-query": "0.2.8",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@tanstack/router-devtools": "^1.87.3",
     "@tanstack/router-plugin": "^1.87.4",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "2.1.8",
     "jsdom": "^25.0.1",
