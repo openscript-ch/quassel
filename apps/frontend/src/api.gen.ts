@@ -607,6 +607,39 @@ export interface components {
             carers?: number[];
             languages?: number[];
         };
+        EntryLanguageCreationDto: {
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio: number;
+            language?: number;
+        };
+        EntryCreationDto: {
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            carer: number;
+            questionnaire: number;
+            entryLanguages: components["schemas"]["EntryLanguageCreationDto"][];
+        };
         StudyDto: {
             /**
              * @description The id of the study (child id)
@@ -620,7 +653,7 @@ export interface components {
             title: string;
             questionnaires?: number[];
         };
-        QuestionnaireDto: {
+        EntryQuestionnaireDto: {
             /**
              * @description The id of the questionnaire
              * @example 1
@@ -650,7 +683,6 @@ export interface components {
             remark?: string;
             study?: components["schemas"]["StudyDto"];
             participant?: components["schemas"]["ParticipantDto"];
-            entries?: number[];
         };
         CarerDto: {
             /**
@@ -666,30 +698,37 @@ export interface components {
             participant?: components["schemas"]["ParticipantDto"];
             entries: number[];
         };
-        EntryCreationDto: {
+        LanguageDto: {
             /**
-             * @description The starting date of the entry
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt: string;
-            /**
-             * @description The ending date of the entry
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt: string;
-            /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @description The id of the language
              * @example 1
              */
-            weekday: number;
+            id: number;
             /**
-             * @description The weekly recurring of the entry
-             * @example 1
+             * @description The name of the language
+             * @example Deutsch
              */
-            weeklyRecurring?: number;
-            questionnaire: components["schemas"]["QuestionnaireDto"];
-            carer: components["schemas"]["CarerDto"];
+            name: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
             entryLanguages: number[];
+        };
+        EntryLanguageResponseDto: {
+            /**
+             * @description The id of the entry language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio: number;
+            language: components["schemas"]["LanguageDto"];
         };
         EntryResponseDto: {
             /**
@@ -717,9 +756,9 @@ export interface components {
              * @example 1
              */
             weeklyRecurring?: number;
-            questionnaire: components["schemas"]["QuestionnaireDto"];
+            questionnaire: components["schemas"]["EntryQuestionnaireDto"];
             carer: components["schemas"]["CarerDto"];
-            entryLanguages: number[];
+            entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
         };
         EntryMutationDto: {
             /**
@@ -742,9 +781,38 @@ export interface components {
              * @example 1
              */
             weeklyRecurring?: number;
-            questionnaire?: components["schemas"]["QuestionnaireDto"];
-            carer?: components["schemas"]["CarerDto"];
-            entryLanguages?: number[];
+            carer?: number;
+            questionnaire?: number;
+            entryLanguages?: components["schemas"]["EntryLanguageCreationDto"][];
+        };
+        QuestionnaireEntryDto: {
+            /**
+             * @description The id of the entry
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The starting date of the entry
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * @description The ending date of the entry
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
+            /**
+             * @description The weekly recurring of the entry
+             * @example 1
+             */
+            weeklyRecurring?: number;
+            carer: components["schemas"]["CarerDto"];
+            entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
         };
         QuestionnaireCreationDto: {
             /**
@@ -771,7 +839,7 @@ export interface components {
             remark?: string;
             study: number;
             participant: number;
-            entries?: number[];
+            entries?: components["schemas"]["QuestionnaireEntryDto"][];
         };
         QuestionnaireResponseDto: {
             /**
@@ -803,7 +871,38 @@ export interface components {
             remark?: string;
             study?: components["schemas"]["StudyDto"];
             participant?: components["schemas"]["ParticipantDto"];
-            entries?: number[];
+            entries?: components["schemas"]["QuestionnaireEntryDto"][];
+        };
+        QuestionnairesResponseDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title?: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
         };
         QuestionnaireMutationDto: {
             /**
@@ -828,90 +927,18 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            entries?: number[];
+            entries?: components["schemas"]["QuestionnaireEntryDto"][];
             study?: number;
             participant?: number;
-        };
-        LanguageDto: {
-            /**
-             * @description The id of the language
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the language
-             * @example Deutsch
-             */
-            name: string;
-            /**
-             * @description The IETF BCP 47 code of the language
-             * @example de-DE
-             */
-            ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entryLanguages: number[];
-        };
-        EntryDto: {
-            /**
-             * @description The id of the entry
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The starting date of the entry
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt: string;
-            /**
-             * @description The ending date of the entry
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt: string;
-            /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
-             * @example 1
-             */
-            weekday: number;
-            /**
-             * @description The weekly recurring of the entry
-             * @example 1
-             */
-            weeklyRecurring?: number;
-            questionnaire: components["schemas"]["QuestionnaireDto"];
-            carer: components["schemas"]["CarerDto"];
-            entryLanguages: number[];
-        };
-        EntryLanguageCreationDto: {
-            /**
-             * @description The ratio in percent of the entry language
-             * @example 50
-             */
-            ratio: number;
-            language: components["schemas"]["LanguageDto"];
-            entry: components["schemas"]["EntryDto"];
-        };
-        EntryLanguageResponseDto: {
-            /**
-             * @description The id of the entry language
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The ratio in percent of the entry language
-             * @example 50
-             */
-            ratio: number;
-            language: components["schemas"]["LanguageDto"];
-            entry: components["schemas"]["EntryDto"];
         };
         EntryLanguageMutationDto: {
             /**
              * @description The ratio in percent of the entry language
              * @example 50
              */
-            ratio?: number;
-            language?: components["schemas"]["LanguageDto"];
-            entry?: components["schemas"]["EntryDto"];
+            ratio: number;
+            id?: number;
+            language?: number;
         };
         StudyCreationDto: {
             /**
@@ -1800,7 +1827,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnaireResponseDto"][];
+                    "application/json": components["schemas"]["QuestionnairesResponseDto"][];
                 };
             };
         };

@@ -481,8 +481,8 @@
         },
         {
           "name": "entry_weekly_recurring_check",
-          "expression": "weekday >= 1",
-          "definition": "check ((weekday >= 1))",
+          "expression": "weekly_recurring >= 1",
+          "definition": "check ((weekly_recurring >= 1))",
           "columnName": "weekly_recurring"
         }
       ],
@@ -558,7 +558,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "integer"
         }
       },
@@ -607,6 +607,7 @@
             "id"
           ],
           "referencedTableName": "public.entry",
+          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },

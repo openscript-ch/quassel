@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
-import { useSuspenseQuery } from "@tanstack/react-query";
 
 function AdministrationQuestionnairesIndex() {
-  const questionnaires = useSuspenseQuery($api.queryOptions("get", "/questionnaires"));
+  const { data, refetch } = $api.useSuspenseQuery("get", "/questionnaires");
   const deleteQuestionnaireMutation = $api.useMutation("delete", "/questionnaires/{id}", {
-    onSuccess: () => questionnaires.refetch(),
+    onSuccess: () => refetch(),
   });
 
   return (
@@ -19,7 +18,7 @@ function AdministrationQuestionnairesIndex() {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {questionnaires.data?.map((q) => (
+          {data?.map((q) => (
             <Table.Tr key={q.id}>
               <Table.Td>{q.id}</Table.Td>
               <Table.Td>

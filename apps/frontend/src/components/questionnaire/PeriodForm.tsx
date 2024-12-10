@@ -26,7 +26,11 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
 
   const f = useForm<PeriodFormValues>({
     initialValues: period,
-    onValuesChange({ range: [newStart, newEnd] }, { range: [prevStart, prevEnd] }) {
+    mode: "uncontrolled",
+    onValuesChange(newValues, prevValues) {
+      const [newStart, newEnd] = newValues.range ?? [];
+      const [prevStart, prevEnd] = prevValues.range ?? [];
+
       if ((!prevStart || !prevEnd) && newStart && newEnd) {
         f.setFieldValue("title", t.defaultTitle({ start: formatDate(newStart, "M/YY"), end: formatDate(newEnd, "M/YY") }));
       }
