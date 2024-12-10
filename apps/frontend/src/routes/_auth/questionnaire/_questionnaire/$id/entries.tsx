@@ -66,7 +66,7 @@ function QuestionnaireEntries() {
     setEntryUpdadingId(undefined);
   };
 
-  const handleOnSave = ({ carer, ...rest }: EntryFormValues) => {
+  const handleCreate = ({ carer, ...rest }: EntryFormValues) => {
     if (selectedWeekday === undefined) return;
 
     const entryRequest = {
@@ -76,10 +76,24 @@ function QuestionnaireEntries() {
       questionnaire: questionnaire.id,
     };
 
+    createMutation.mutate({ body: entryRequest }, { onSuccess: handleReset });
+  };
+
+  const handleUpdate = (id: number, { carer, ...rest }: Partial<EntryFormValues>) => {
+    const entryRequest = {
+      ...rest,
+      carer: carer!,
+      questionnaire: questionnaire.id,
+    };
+
+    updateMutation.mutate({ body: entryRequest, params: { path: { id: id.toString() } } }, { onSuccess: handleReset });
+  };
+
+  const handleOnSave = (entry: EntryFormValues | Partial<EntryFormValues>) => {
     if (!entryUpdatingId) {
-      createMutation.mutate({ body: entryRequest }, { onSuccess: handleReset });
+      handleCreate(entry as EntryFormValues);
     } else {
-      updateMutation.mutate({ body: entryRequest, params: { path: { id: entryUpdatingId?.toString() } } }, { onSuccess: handleReset });
+      handleUpdate(entryUpdatingId, entry);
     }
   };
 
@@ -100,24 +114,25 @@ function QuestionnaireEntries() {
             editable
             events={events}
             selectable
-            select={(args) => {
-              setEntryDraft({ startedAt: getTime(args.start), endedAt: getTime(args.end) });
-              setSelectedWeekday(args.start.getDay());
+            select={({ start, end }) => {
+              setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end) });
+              setSelectedWeekday(start.getDay());
               open();
             }}
             eventClick={(args) => {
-              const { carer, entryLanguages, weekday, id } =
-                questionnaire.entries?.find((entry) => entry.id.toString() === args.event.id) ?? {};
+              const { carer, entryLanguages, id } = questionnaire.entries?.find((entry) => entry.id.toString() === args.event.id) ?? {};
 
-              setEntryUpdadingId(id);
               setEntryDraft({
                 carer: carer?.id,
                 startedAt: getTime(args.event.start!),
                 endedAt: getTime(args.event.end!),
                 entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
               });
-              setSelectedWeekday(weekday);
+              setEntryUpdadingId(id);
               open();
+            }}
+            eventResize={({ event: { id, start, end } }) => {
+              handleUpdate(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!) });
             }}
             eventContent={({ event }) => <QuestionnaireEntry event={event} />}
           />
