@@ -47,6 +47,7 @@ function QuestionnaireEntries() {
 
   const createMutation = $api.useMutation("post", "/entries");
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
+  const deleteMutation = $api.useMutation("delete", "/entries/{id}");
   const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
 
   const events: ExtendedEvent[] =
@@ -59,7 +60,7 @@ function QuestionnaireEntries() {
       backgroundColor: theme.colors[theme.primaryColor][4],
     })) ?? [];
 
-  const handleReset = () => {
+  const reset = () => {
     refetch();
     close();
     setSelectedWeekday(undefined);
@@ -76,7 +77,7 @@ function QuestionnaireEntries() {
       questionnaire: questionnaire.id,
     };
 
-    createMutation.mutate({ body: entryRequest }, { onSuccess: handleReset });
+    createMutation.mutate({ body: entryRequest }, { onSuccess: reset });
   };
 
   const handleUpdate = (id: number, { carer, ...rest }: Partial<EntryFormValues>, weekday?: number) => {
@@ -87,7 +88,11 @@ function QuestionnaireEntries() {
       questionnaire: questionnaire.id,
     };
 
-    updateMutation.mutate({ body: entryRequest, params: { path: { id: id.toString() } } }, { onSuccess: handleReset });
+    updateMutation.mutate({ body: entryRequest, params: { path: { id: id.toString() } } }, { onSuccess: reset });
+  };
+
+  const handleDelete = (id: number) => {
+    deleteMutation.mutate({ params: { path: { id: id.toString() } } }, { onSuccess: reset });
   };
 
   const handleOnSave = (entry: EntryFormValues | Partial<EntryFormValues>) => {
@@ -105,7 +110,12 @@ function QuestionnaireEntries() {
   return (
     <>
       <Modal opened={opened} onClose={close} size="md">
-        <EntityForm onSave={handleOnSave} entry={entryDraft} actionLabel={t.addEntityLabel} />
+        <EntityForm
+          onSave={handleOnSave}
+          onDelete={entryUpdatingId ? () => handleDelete(entryUpdatingId) : undefined}
+          entry={entryDraft}
+          actionLabel={t.addEntityLabel}
+        />
       </Modal>
       <form onSubmit={handleSubmit}>
         <Stack>

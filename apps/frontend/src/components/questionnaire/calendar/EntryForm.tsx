@@ -18,7 +18,8 @@ export type EntryFormValues = {
 };
 
 const messages = i18n("entityForm", {
-  addDialectAction: "Add dialect",
+  actionAddDialect: "Add dialect",
+  actionDelete: "Delete",
   labelCarer: "Carer",
   labelLanguage: "Language",
   validationRatio: "Ratio must be between 1 and 100.",
@@ -28,11 +29,12 @@ const messages = i18n("entityForm", {
 
 type EntityFormProps = {
   onSave: (entity: EntryFormValues) => void;
+  onDelete?: () => void;
   entry?: Partial<EntryFormValues>;
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -121,7 +123,7 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
           }}
           variant="light"
         >
-          {t.addDialectAction}
+          {t.actionAddDialect}
         </Button>
         <Group>
           <TimeInput flex={1} {...f.getInputProps("startedAt")} />
@@ -129,7 +131,14 @@ export function EntityForm({ onSave, actionLabel, entry }: EntityFormProps) {
           <TimeInput flex={1} {...f.getInputProps("endedAt")} />
         </Group>
 
-        <Button type="submit">{actionLabel}</Button>
+        <Group justify="flex-end">
+          {onDelete && (
+            <Button onClick={onDelete} variant="outline" color="uzhOrange">
+              {t.actionDelete}
+            </Button>
+          )}
+          <Button type="submit">{actionLabel}</Button>
+        </Group>
       </Stack>
     </form>
   );
