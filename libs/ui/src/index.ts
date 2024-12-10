@@ -56,6 +56,7 @@ export {
   Stack,
   Table,
   Text,
+  Textarea,
   TextInput,
   NumberInput,
   Title,
