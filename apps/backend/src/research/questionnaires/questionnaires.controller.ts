@@ -20,7 +20,7 @@ export class QuestionnairesController {
 
   @Get()
   @ApiOperation({ summary: "Get all questionnairess" })
-  index(): Promise<QuestionnairesResponseDto> {
+  index(): Promise<QuestionnairesResponseDto[]> {
     return this.questionnairesService.findAll();
   }
 

@@ -854,7 +854,37 @@ export interface components {
             participant?: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
         };
-        QuestionnairesResponseDto: Record<string, never>;
+        QuestionnairesResponseDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title?: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+        };
         QuestionnaireMutationDto: {
             /**
              * Format: date-time
@@ -1756,7 +1786,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnairesResponseDto"];
+                    "application/json": components["schemas"]["QuestionnairesResponseDto"][];
                 };
             };
         };

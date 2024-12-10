@@ -35,7 +35,7 @@ export class QuestionnaireDto {
 }
 export class QuestionnaireResponseDto extends QuestionnaireDto {}
 export class EntryQuestionnaireDto extends OmitType(QuestionnaireDto, ["entries"]) {}
-export class QuestionnairesResponseDto extends Array<EntryQuestionnaireDto> {}
+export class QuestionnairesResponseDto extends OmitType(QuestionnaireDto, ["entries"]) {}
 export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", "study", "participant"]) {
   study: number;
   participant: number;
