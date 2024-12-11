@@ -22,9 +22,7 @@ export class QuestionnairesService {
     const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
     this.validateStartDate(questionnaire, prevQuestionnaire);
 
-    prevQuestionnaire?.populate(["entries.entryLanguages"]);
-
-    await this.questionnaireRepository.findOne({ participant: questionnaire.participant }, { orderBy: { endedAt: "desc" } });
+    await prevQuestionnaire?.populate(["entries.entryLanguages"]);
 
     const clonedEntries = prevQuestionnaire?.entries.map((entry) => {
       const { id: _id, entryLanguages: _entryLanguages, questionnaire: _questionnaire, ...rest } = entry.toPOJO();
