@@ -1,4 +1,4 @@
-import { Check, Collection, Entity, ManyToOne, OneToMany, Opt, Property } from "@mikro-orm/core";
+import { Cascade, Check, Collection, Entity, ManyToOne, OneToMany, Opt, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Carer } from "../../defaults/carers/carer.entity";
 import { EntryLanguage } from "../entry-languages/entry-language.entity";
@@ -23,7 +23,7 @@ export class Entry extends BaseEntity {
   @Check<Entry>({ expression: (columns) => `${columns.weeklyRecurring} >= 1` })
   weeklyRecurring!: number & Opt;
 
-  @ManyToOne()
+  @ManyToOne({ cascade: [Cascade.ALL] })
   questionnaire!: Questionnaire;
 
   @ManyToOne()

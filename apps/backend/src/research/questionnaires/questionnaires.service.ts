@@ -3,6 +3,8 @@ import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { QuestionnaireCreationDto, QuestionnaireMutationDto } from "./questionnaire.dto";
 import { Questionnaire } from "./questionnaire.entity";
+import { Entry } from "../entries/entry.entity";
+import { EntryLanguage } from "../entry-languages/entry-language.entity";
 
 @Injectable()
 export class QuestionnairesService {
@@ -15,6 +17,25 @@ export class QuestionnairesService {
   async create(questionnaireCreationDto: QuestionnaireCreationDto) {
     const questionnaire = new Questionnaire();
     questionnaire.assign(questionnaireCreationDto, { em: this.em });
+
+    const prevQuestionnaire = await this.questionnaireRepository.findOne(
+      { participant: questionnaire.participant },
+      { orderBy: { endedAt: "desc" }, populate: ["entries.entryLanguages"] }
+    );
+
+    const clonedEntries = prevQuestionnaire?.entries.map((entry) => {
+      const { id: _id, entryLanguages: _entryLanguages, questionnaire: _questionnaire, ...rest } = entry.toPOJO();
+      const newEntry = this.em.create(Entry, { ...rest, questionnaire });
+
+      entry.entryLanguages.map((entryLanguage) => {
+        const { id: _id, entry: _entry, ...rest } = entryLanguage.toPOJO();
+        return this.em.create(EntryLanguage, { ...rest, entry: newEntry });
+      });
+
+      return newEntry;
+    });
+
+    questionnaire.assign({ entries: clonedEntries });
 
     try {
       await this.em.persist(questionnaire).flush();
