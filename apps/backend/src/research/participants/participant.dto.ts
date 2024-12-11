@@ -1,6 +1,7 @@
 import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsDateString, IsOptional } from "class-validator";
+import { QuestionnaireListResponseDto } from "../questionnaires/questionnaire.dto";
 
 export class ParticipantDto {
   @ApiProperty({ example: 1, description: "The id of the participant (child id)" })
@@ -10,6 +11,9 @@ export class ParticipantDto {
   @IsDateString()
   @IsOptional()
   birthday?: Date;
+
+  @Type(() => QuestionnaireListResponseDto)
+  latestQuestionnaire?: QuestionnaireListResponseDto;
 
   @Type(() => Array<number>)
   questionnaires: number[];

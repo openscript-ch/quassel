@@ -22,14 +22,16 @@ function QuestionnaireNew() {
     },
   });
 
+  const prevEndDate = questionnaire?.participant.latestQuestionnaire?.endedAt;
+
   const onSave = (form: PeriodFormValues) => {
     const {
       title,
       range: [localStartedAt, localEndedAt],
     } = form;
 
-    const startedAt = localStartedAt.toISOString();
-    const endedAt = localEndedAt.toISOString();
+    const startedAt = localStartedAt!.toISOString();
+    const endedAt = localEndedAt!.toISOString();
 
     createQuestionnaireMutation.mutate({
       body: { title, startedAt, endedAt, study: questionnaire!.study.id, participant: questionnaire!.participant.id },
@@ -39,7 +41,7 @@ function QuestionnaireNew() {
   return (
     <>
       <h3>{t.title}</h3>
-      <PeriodForm onSave={onSave} actionLabel={t.formAction} />
+      <PeriodForm onSave={onSave} prevEndDate={prevEndDate ? new Date(prevEndDate) : undefined} actionLabel={t.formAction} />
     </>
   );
 }
