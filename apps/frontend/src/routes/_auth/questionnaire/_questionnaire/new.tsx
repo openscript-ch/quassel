@@ -4,6 +4,7 @@ import { useStore } from "@nanostores/react";
 import { PeriodForm, PeriodFormValues } from "../../../../components/questionnaire/PeriodForm";
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
+import { useEffect } from "react";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -15,6 +16,14 @@ function QuestionnaireNew() {
   const t = useStore(messages);
 
   const questionnaire = useStore($questionnaire);
+
+  const { data: participant } = $api.useQuery("get", "/participants/{id}", {
+    params: { path: { id: questionnaire!.participant.id.toString() } },
+  });
+
+  useEffect(() => {
+    if (participant) $questionnaire.set({ ...questionnaire!, participant });
+  }, [participant]);
 
   const createQuestionnaireMutation = $api.useMutation("post", "/questionnaires", {
     onSuccess: (questionnaire) => {

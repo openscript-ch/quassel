@@ -27,15 +27,13 @@ export function PeriodForm({ onSave, actionLabel, period, prevEndDate }: PeriodF
   const t = useStore(messages);
 
   const f = useForm<PeriodFormValues>({
+    mode: "uncontrolled",
     initialValues: {
       range: [prevEndDate ? getNext("month", prevEndDate) : null, null],
       title: "",
     },
     validate: {
       range([start]) {
-        console.log(start);
-        console.log(prevEndDate && getNext("month", prevEndDate));
-
         if (prevEndDate && +getNext("month", prevEndDate) !== +start!) {
           return t.validationStartDate;
         }
