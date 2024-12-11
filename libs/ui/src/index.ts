@@ -47,6 +47,7 @@ export {
   Divider,
   Flex,
   Group,
+  InputError,
   Modal,
   NavLink,
   Paper,
