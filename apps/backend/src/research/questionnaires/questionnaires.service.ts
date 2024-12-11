@@ -5,6 +5,7 @@ import { QuestionnaireCreationDto, QuestionnaireMutationDto } from "./questionna
 import { Questionnaire } from "./questionnaire.entity";
 import { Entry } from "../entries/entry.entity";
 import { EntryLanguage } from "../entry-languages/entry-language.entity";
+import { addDays, isSameDay } from "date-fns";
 
 @Injectable()
 export class QuestionnairesService {
@@ -18,10 +19,12 @@ export class QuestionnairesService {
     const questionnaire = new Questionnaire();
     questionnaire.assign(questionnaireCreationDto, { em: this.em });
 
-    const prevQuestionnaire = await this.questionnaireRepository.findOne(
-      { participant: questionnaire.participant },
-      { orderBy: { endedAt: "desc" }, populate: ["entries.entryLanguages"] }
-    );
+    const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
+    this.validateStartDate(questionnaire, prevQuestionnaire);
+
+    prevQuestionnaire?.populate(["entries.entryLanguages"]);
+
+    await this.questionnaireRepository.findOne({ participant: questionnaire.participant }, { orderBy: { endedAt: "desc" } });
 
     const clonedEntries = prevQuestionnaire?.entries.map((entry) => {
       const { id: _id, entryLanguages: _entryLanguages, questionnaire: _questionnaire, ...rest } = entry.toPOJO();
@@ -35,7 +38,7 @@ export class QuestionnairesService {
       return newEntry;
     });
 
-    questionnaire.assign({ entries: clonedEntries });
+    questionnaire.assign({ entries: clonedEntries ?? [] });
 
     try {
       await this.em.persist(questionnaire).flush();
@@ -63,11 +66,20 @@ export class QuestionnairesService {
     return (await this.questionnaireRepository.findOneOrFail(filter)).toObject();
   }
 
+  async findLatestByParticipant(participantId: number) {
+    return this.questionnaireRepository.findOne({ participant: participantId }, { orderBy: { endedAt: "desc" } });
+  }
+
   async update(id: number, questionnaireMutationDto: QuestionnaireMutationDto) {
     const questionnaire = await this.questionnaireRepository.findOneOrFail(id, {
       populate: ["entries", "entries.carer", "entries.entryLanguages.language"],
     });
     questionnaire.assign(questionnaireMutationDto);
+
+    const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
+    if (prevQuestionnaire?.id !== id) {
+      this.validateStartDate(questionnaire, prevQuestionnaire);
+    }
 
     await this.em.persist(questionnaire).flush();
 
@@ -76,5 +88,11 @@ export class QuestionnairesService {
 
   remove(id: number) {
     return this.em.remove(this.questionnaireRepository.getReference(id)).flush();
+  }
+
+  private validateStartDate(questionnaire: Questionnaire, prevQuestionnaire: Questionnaire | null) {
+    if (prevQuestionnaire && !isSameDay(addDays(prevQuestionnaire.endedAt!, 1), questionnaire.startedAt!)) {
+      throw new UnprocessableEntityException("Start of the new questionnaire must match with the end of the previous");
+    }
   }
 }
