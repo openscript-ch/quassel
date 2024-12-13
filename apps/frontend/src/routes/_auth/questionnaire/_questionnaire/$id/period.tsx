@@ -35,8 +35,8 @@ function QuestionnairePeriod() {
       range: [localStartedAt, localEndedAt],
     } = form;
 
-    const startedAt = localStartedAt.toISOString();
-    const endedAt = localEndedAt.toISOString();
+    const startedAt = localStartedAt!.toISOString();
+    const endedAt = localEndedAt!.toISOString();
 
     await updateQuestionnaireMutation.mutateAsync({
       params: { path: { id } },

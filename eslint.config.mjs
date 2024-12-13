@@ -17,6 +17,17 @@ export default tseslint.config(
       "react-hooks": pluginReactHooks,
       "react-refresh": pluginReactRefresh,
     },
+    rules: {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "warn", // or "error"
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+    },
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,

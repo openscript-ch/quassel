@@ -5,11 +5,15 @@ import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto 
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
+import { QuestionnairesService } from "../questionnaires/questionnaires.service";
 
 @ApiTags("Participants")
 @Controller("participants")
 export class ParticipantsController {
-  constructor(private readonly participantService: ParticipantsService) {}
+  constructor(
+    private readonly participantService: ParticipantsService,
+    private readonly questionnairesService: QuestionnairesService
+  ) {}
 
   @Post()
   @ApiOperation({ summary: "Create a participant" })
@@ -27,8 +31,10 @@ export class ParticipantsController {
   @Get(":id")
   @ApiOperation({ summary: "Get a participant by ID" })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
-  get(@Param("id") id: string): Promise<ParticipantResponseDto> {
-    return this.participantService.findOne(+id);
+  async get(@Param("id") id: string): Promise<ParticipantResponseDto> {
+    const participant = await this.participantService.findOne(+id);
+    const latestQuestionnaire = (await this.questionnairesService.findLatestByParticipant(+id))?.toObject();
+    return { ...participant, latestQuestionnaire };
   }
 
   @Patch(":id")

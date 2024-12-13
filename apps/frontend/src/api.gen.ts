@@ -471,6 +471,50 @@ export interface components {
              */
             role?: "ASSISTANT" | "ADMIN";
         };
+        StudyDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            questionnaires?: number[];
+        };
+        QuestionnaireListResponseDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title?: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+        };
         ParticipantDto: {
             /**
              * @description The id of the participant (child id)
@@ -483,6 +527,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires: number[];
             carers: number[];
             languages: number[];
@@ -574,6 +619,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
         };
         ParticipantResponseDto: {
             /**
@@ -587,6 +633,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires: number[];
             carers: number[];
             languages: number[];
@@ -603,6 +650,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires?: number[];
             carers?: number[];
             languages?: number[];
@@ -639,19 +687,6 @@ export interface components {
             carer: number;
             questionnaire: number;
             entryLanguages: components["schemas"]["EntryLanguageCreationDto"][];
-        };
-        StudyDto: {
-            /**
-             * @description The id of the study (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The title of the study
-             * @example Series 1
-             */
-            title: string;
-            questionnaires?: number[];
         };
         EntryQuestionnaireDto: {
             /**
@@ -872,37 +907,6 @@ export interface components {
             study?: components["schemas"]["StudyDto"];
             participant?: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
-        };
-        QuestionnairesResponseDto: {
-            /**
-             * @description The id of the questionnaire
-             * @example 1
-             */
-            id: number;
-            /**
-             * Format: date-time
-             * @description The starting date of the questionnaire
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt?: string;
-            /**
-             * Format: date-time
-             * @description The ending date of the questionnaire
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt?: string;
-            /**
-             * @description The title of the questionnaire
-             * @example First few months
-             */
-            title?: string;
-            /**
-             * @description The remark of the questionnaire
-             * @example We went on holidays for 2 weeks and only spoke Esperanto
-             */
-            remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
         };
         QuestionnaireMutationDto: {
             /**
@@ -1827,7 +1831,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnairesResponseDto"][];
+                    "application/json": components["schemas"]["QuestionnaireListResponseDto"][];
                 };
             };
         };
