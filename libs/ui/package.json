@@ -26,9 +26,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "^7.14.3",
-    "@mantine/dates": "^7.14.3",
-    "@mantine/hooks": "^7.14.3",
+    "@mantine/core": "^7.15.1",
+    "@mantine/dates": "^7.15.1",
+    "@mantine/hooks": "^7.15.1",
     "@tabler/icons-react": "3.17.0",
     "dayjs": "^1.11.13",
     "react": "^18.3.1",
