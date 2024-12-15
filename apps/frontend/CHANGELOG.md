@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 0.2.2
+
+### Patch Changes
+
+- 61586af: Fix sed to set api url from environment variable
+
 ## 0.2.1
 
 ### Patch Changes
