@@ -86,3 +86,6 @@ export {
   IconMapSearch,
   IconMinus,
 } from "@tabler/icons-react";
+
+export { DSVImport } from "react-dsv-import";
+export type { ColumnType } from "react-dsv-import";

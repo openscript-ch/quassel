@@ -30,7 +30,8 @@
     "openapi-fetch": "0.13.3",
     "openapi-react-query": "0.2.8",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-dsv-import": "^0.4.6"
   },
   "devDependencies": {
     "@tanstack/router-devtools": "^1.90.0",

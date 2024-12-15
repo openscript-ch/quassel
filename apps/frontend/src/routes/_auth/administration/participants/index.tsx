@@ -14,6 +14,9 @@ function AdministrationParticipantsIndex() {
       <Button variant="default" renderRoot={(props) => <Link to="/administration/participants/new" {...props} />}>
         New participant
       </Button>
+      <Button variant="default" renderRoot={(props) => <Link to="/administration/participants/import" {...props} />}>
+        Import participants
+      </Button>
       <Table>
         <Table.Thead>
           <Table.Tr>
