@@ -1,5 +1,4 @@
-import { useForm } from "@mantine/form";
-import { Button, Flex, formatDate, getNext, InputError, MonthPicker, Stack, TextInput } from "@quassel/ui";
+import { Button, Flex, formatDate, getNext, InputError, MonthPicker, Stack, TextInput, useForm } from "@quassel/ui";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";

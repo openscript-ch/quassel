@@ -1,6 +1,5 @@
-import { useForm } from "@mantine/form";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Button, TextInput } from "@quassel/ui";
+import { Button, TextInput, useForm } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 import { components } from "../../../../api.gen";
 

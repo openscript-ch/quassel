@@ -1,8 +1,7 @@
-import { Button, Group, Stack, Textarea } from "@quassel/ui";
+import { Button, Group, Stack, Textarea, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { useForm } from "@mantine/form";
 import { $api } from "../../../../../stores/api";
 import { useEffect } from "react";
 

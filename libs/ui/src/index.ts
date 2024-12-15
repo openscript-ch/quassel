@@ -1,4 +1,4 @@
-// Theme
+// quassel theme
 import "@mantine/core/styles/global.css";
 import "@mantine/core/styles/ScrollArea.css";
 import "@mantine/core/styles/UnstyledButton.css";
@@ -31,6 +31,9 @@ import "@mantine/core/styles/Stack.css";
 import "@mantine/dates/styles.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
+
+// custom ui helpers
+export { formatDate, getTime, getDateFromTimeAndWeekday, getNext } from "./utils/date";
 
 // custom components
 export { Brand } from "./components/Brand";
@@ -69,6 +72,8 @@ export { TimeInput } from "@mantine/dates";
 
 export { useDisclosure } from "@mantine/hooks";
 
+export { useForm, isInRange, isNotEmpty } from "@mantine/form";
+
 export {
   IconLogout,
   IconUsers,
@@ -81,5 +86,3 @@ export {
   IconMapSearch,
   IconMinus,
 } from "@tabler/icons-react";
-
-export { formatDate, getTime, getDateFromTimeAndWeekday, getNext } from "./utils/date";

@@ -1,9 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { components, userMutationDtoRoleValues } from "../../../../api.gen";
 import { $api } from "../../../../stores/api";
-import { useForm } from "@mantine/form";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { Button, PasswordInput, Select, TextInput } from "@quassel/ui";
+import { Button, PasswordInput, Select, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
 
 type FormValues = components["schemas"]["UserMutationDto"];

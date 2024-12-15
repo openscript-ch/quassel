@@ -1,8 +1,7 @@
-import { Button, Container, Paper, PasswordInput, TextInput, Title } from "@quassel/ui";
+import { Button, Container, Paper, PasswordInput, TextInput, Title, useForm } from "@quassel/ui";
 import { createFileRoute, redirect, useLocation, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { useForm } from "@mantine/form";
 import { $session } from "../stores/session";
 import { $api } from "../stores/api";
 
