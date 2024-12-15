@@ -1,13 +1,23 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { ParticipantsService } from "./participants.service";
-import { ApiNotFoundResponse, ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import {
+  ApiBody,
+  ApiExtraModels,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnprocessableEntityResponse,
+  getSchemaPath,
+} from "@nestjs/swagger";
 import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto } from "./participant.dto";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { QuestionnairesService } from "../questionnaires/questionnaires.service";
+import { OneOrMany } from "../../types";
 
 @ApiTags("Participants")
+@ApiExtraModels(ParticipantCreationDto)
 @Controller("participants")
 export class ParticipantsController {
   constructor(
@@ -18,7 +28,27 @@ export class ParticipantsController {
   @Post()
   @ApiOperation({ summary: "Create a participant" })
   @ApiUnprocessableEntityResponse({ description: "Unique id constraint violation", type: ErrorResponseDto })
-  create(@Body() participant: ParticipantCreationDto): Promise<ParticipantResponseDto> {
+  @ApiBody({
+    schema: {
+      oneOf: [
+        { $ref: getSchemaPath(ParticipantCreationDto) },
+        {
+          type: "array",
+          items: { $ref: getSchemaPath(ParticipantCreationDto) },
+        },
+      ],
+    },
+    examples: {
+      single: { value: { id: 1, birthday: "2024-11-01T00:05:02.718Z" } },
+      multiple: {
+        value: [
+          { id: 1, birthday: "2024-11-01T00:05:02.718Z" },
+          { id: 2, birthday: "2024-11-01T00:05:02.718Z" },
+        ],
+      },
+    },
+  })
+  create(@Body() participant: OneOrMany<ParticipantCreationDto>): Promise<ParticipantResponseDto[]> {
     return this.participantService.create(participant);
   }
 

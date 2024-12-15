@@ -3,6 +3,7 @@ import { Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException } from "@mikro-orm/core";
 import { ParticipantCreationDto, ParticipantMutationDto } from "./participant.dto";
 import { Participant } from "./participant.entity";
+import { OneOrMany } from "../../types";
 
 @Injectable()
 export class ParticipantsService {
@@ -12,12 +13,17 @@ export class ParticipantsService {
     private readonly em: EntityManager
   ) {}
 
-  async create(participantCreationDto: ParticipantCreationDto) {
-    const participant = new Participant();
-    participant.birthday = participantCreationDto.birthday;
+  async create(participantCreationDto: OneOrMany<ParticipantCreationDto>) {
+    const participantDtos = Array.isArray(participantCreationDto) ? participantCreationDto : [participantCreationDto];
+    const participants = participantDtos.map((dto) => {
+      const participant = new Participant();
+      participant.id = dto.id;
+      participant.birthday = dto.birthday;
+      return participant;
+    });
 
     try {
-      await this.em.persist(participant).flush();
+      await this.em.persist(participants).flush();
     } catch (e) {
       if (e instanceof UniqueConstraintViolationException) {
         throw new UnprocessableEntityException("Participant with this id already exists");
@@ -25,7 +31,7 @@ export class ParticipantsService {
       throw e;
     }
 
-    return participant.toObject();
+    return participants.map((p) => p.toObject());
   }
 
   async findAll() {
