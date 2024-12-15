@@ -19,5 +19,5 @@ RUN chown -R node:node .
 USER node
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD curl --fail http://localhost:3000/health || exit 1
+  CMD curl --head --fail http://localhost:3000/health || exit 1
 CMD ["dumb-init", "node", "src/main.js"]
