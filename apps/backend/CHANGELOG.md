@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.2.1
+
+### Patch Changes
+
+- 790a348: Fix docker healthcheck
+
 ## 0.2.0
 
 ### Minor Changes
