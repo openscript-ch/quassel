@@ -8,7 +8,7 @@ RUN npm install --omit=dev
 
 # Production image, copy all the files and run nest
 FROM docker.io/node:20-alpine AS runner
-RUN apk add --no-cache dumb-init curl
+RUN apk add --no-cache dumb-init curl postgresql17-client
 ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /usr/src/app
