@@ -26,5 +26,5 @@ export class ParticipantDto {
 }
 
 export class ParticipantResponseDto extends ParticipantDto {}
-export class ParticipantCreationDto extends OmitType(ParticipantDto, ["questionnaires", "carers", "languages"]) {}
+export class ParticipantCreationDto extends OmitType(ParticipantDto, ["questionnaires", "carers", "languages", "latestQuestionnaire"]) {}
 export class ParticipantMutationDto extends PartialType(ParticipantDto) {}
