@@ -1,20 +1,19 @@
+import { ColumnType, DSVImport, ImportInput, ImportPreview } from "@quassel/ui";
 import { createFileRoute } from "@tanstack/react-router";
-import { ColumnType, DSVImport } from "react-dsv-import";
 
-type BasicType = { forename: string; surname: string; email: string };
+type BasicType = { childId: string; birthday: string };
 
 const columns: ColumnType<BasicType>[] = [
-  { key: "forename", label: "Forename" },
-  { key: "surname", label: "Surname" },
-  { key: "email", label: "Email" },
+  { key: "childId", label: "Child ID" },
+  { key: "birthday", label: "Birthday" },
 ];
 
 function AdministrationParticipantsImport() {
   return (
     <div>
       <DSVImport<BasicType> columns={columns}>
-        <DSVImport.TextareaInput />
-        <DSVImport.TablePreview />
+        <ImportInput />
+        <ImportPreview />
       </DSVImport>
     </div>
   );
