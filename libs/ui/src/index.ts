@@ -37,6 +37,8 @@ export { formatDate, getTime, getDateFromTimeAndWeekday, getNext } from "./utils
 
 // custom components
 export { Brand } from "./components/Brand";
+export { ImportInput } from "./components/ImportInput";
+export { ImportPreview } from "./components/ImportPreview";
 export { MonthPicker } from "./components/MonthPicker";
 
 // external components
@@ -86,3 +88,6 @@ export {
   IconMapSearch,
   IconMinus,
 } from "@tabler/icons-react";
+
+export { DSVImport } from "react-dsv-import";
+export type { ColumnType } from "react-dsv-import";

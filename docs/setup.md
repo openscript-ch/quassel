@@ -115,7 +115,7 @@ The following steps describe how to set up the application system:
       - `SESSION_SALT` to a 8byte random hex string with `openssl rand -hex 8`
       - `DATABASE_PASSWORD` set a more secure password for the database
    - **frontend**:
-      - `API_URL` point to the API endpoint (e.g. "https://api.test.example.com")
+      - `API_URL` point to the API endpoint (e.g. "<https://api.test.example.com>")
 1. Run application system
 
    ```bash

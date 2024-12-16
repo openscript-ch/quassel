@@ -26,3 +26,5 @@ declare global {
       ? T[S]
       : never;
 }
+
+export type OneOrMany<T> = T | T[];

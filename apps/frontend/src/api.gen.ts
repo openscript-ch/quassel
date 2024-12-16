@@ -619,7 +619,6 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
-            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
         };
         ParticipantResponseDto: {
             /**
@@ -1604,7 +1603,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ParticipantCreationDto"];
+                "application/json": components["schemas"]["ParticipantCreationDto"] | components["schemas"]["ParticipantCreationDto"][];
             };
         };
         responses: {
@@ -1613,7 +1612,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ParticipantResponseDto"];
+                    "application/json": components["schemas"]["ParticipantResponseDto"][];
                 };
             };
             /** @description Unique id constraint violation */
