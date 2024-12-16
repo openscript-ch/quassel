@@ -1306,7 +1306,9 @@ export interface operations {
     };
     CarersController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                participantId?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;

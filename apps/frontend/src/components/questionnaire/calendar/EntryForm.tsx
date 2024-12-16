@@ -5,6 +5,7 @@ import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
 import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
+import { components } from "../../../api.gen";
 
 export type EntryFormValues = {
   carer?: number;
@@ -32,10 +33,11 @@ type EntityFormProps = {
   onDelete?: () => void;
   onAddCarer: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
+  carers: components["schemas"]["CarerDto"][];
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry, carers }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -90,7 +92,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry }:
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
+        <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
         {f.getValues().entryLanguages.map((_, index) => (
           // TODO: make key either languageId or name of new language entry

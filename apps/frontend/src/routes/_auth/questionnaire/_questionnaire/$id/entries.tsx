@@ -53,6 +53,7 @@ function QuestionnaireEntries() {
   const deleteMutation = $api.useMutation("delete", "/entries/{id}");
   const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
 
+  const { data: carers } = $api.useQuery("get", "/carers", { params: { query: { participantId: questionnaire.participant?.id } } });
   const createCarerMutation = $api.useMutation("post", "/carers", {
     onSuccess() {
       c.refetchQueries($api.queryOptions("get", "/carers"));
@@ -126,6 +127,7 @@ function QuestionnaireEntries() {
           onSave={handleOnSave}
           onDelete={entryUpdatingId ? () => handleDelete(entryUpdatingId) : undefined}
           entry={entryDraft}
+          carers={carers ?? []}
           actionLabel={t.addEntityLabel}
         />
       </Modal>

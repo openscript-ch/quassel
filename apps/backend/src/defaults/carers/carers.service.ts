@@ -14,7 +14,7 @@ export class CarersService {
 
   async create(carerCreationDto: CarerCreationDto) {
     const carer = new Carer();
-    carer.assign(carerCreationDto);
+    carer.assign(carerCreationDto, { em: this.em });
 
     try {
       await this.em.persist(carer).flush();
@@ -28,8 +28,12 @@ export class CarersService {
     return carer.toObject();
   }
 
-  async findAll() {
-    return (await this.carerRepository.findAll()).map((carer) => carer.toObject());
+  async findAll(participantId?: number) {
+    return (
+      await this.carerRepository.findAll({
+        where: participantId ? { $or: [{ participant: null }, { participant: participantId }] } : { participant: null },
+      })
+    ).map((carer) => carer.toObject());
   }
 
   async findOne(id: number) {
