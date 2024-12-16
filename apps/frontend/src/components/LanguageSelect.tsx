@@ -6,5 +6,5 @@ type LanguageSelectProps = EntitySelectProps & {
 };
 
 export function LanguageSelect({ value, onChange, data, onAddNew, ...rest }: LanguageSelectProps) {
-  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} inputKey="name" />;
+  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} labelKey="name" />;
 }

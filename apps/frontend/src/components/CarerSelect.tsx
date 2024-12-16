@@ -6,5 +6,5 @@ type CarerSelectProps = EntitySelectProps & {
 };
 
 export function CarerSelect({ value, onChange, onAddNew, data, ...rest }: CarerSelectProps) {
-  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} inputKey="name" />;
+  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} labelKey="name" />;
 }
