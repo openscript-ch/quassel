@@ -1,4 +1,5 @@
 // Theme
+import "@mantine/core/styles.css";
 import "@mantine/core/styles/global.css";
 import "@mantine/core/styles/ScrollArea.css";
 import "@mantine/core/styles/UnstyledButton.css";
@@ -28,7 +29,10 @@ import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
+
 import "@mantine/dates/styles.css";
+
+import "@mantine/notifications/styles.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -69,6 +73,8 @@ export {
 export { TimeInput } from "@mantine/dates";
 
 export { useDisclosure } from "@mantine/hooks";
+
+export { notifications } from "@mantine/notifications";
 
 export {
   IconLogout,

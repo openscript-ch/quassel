@@ -5,12 +5,12 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import de from "dayjs/locale/de";
+import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
 dayjs.locale(de);
-
-import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
 
 type ExtendedCustomColors =
   | "uzhBlue"
@@ -53,10 +53,13 @@ export const theme: MantineThemeOverride = {
   primaryColor: "uzhBlue",
 };
 
-export function ThemeProvider(args: ThemeProviderProps) {
+export function ThemeProvider({ children, ...args }: ThemeProviderProps) {
   return (
     <DatesProvider settings={{ timezone: "UTC" }}>
-      <MantineProvider {...args} theme={theme} />
+      <MantineProvider {...args} theme={theme}>
+        <Notifications />
+        {children}
+      </MantineProvider>
     </DatesProvider>
   );
 }

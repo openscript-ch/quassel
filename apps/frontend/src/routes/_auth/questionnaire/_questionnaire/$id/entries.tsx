@@ -1,4 +1,15 @@
-import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme, useDisclosure, Modal, getTime } from "@quassel/ui";
+import {
+  Button,
+  formatDate,
+  getDateFromTimeAndWeekday,
+  Group,
+  Stack,
+  useMantineTheme,
+  useDisclosure,
+  Modal,
+  getTime,
+  notifications,
+} from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -31,6 +42,8 @@ const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
   backAction: "Back",
   addEntityLabel: "Add",
+  notificationSuccessCreateLanguage: "Successfully add a new language.",
+  notificationSuccessCreateCarer: "Successfully add a new carer.",
 });
 
 function QuestionnaireEntries() {
@@ -58,6 +71,7 @@ function QuestionnaireEntries() {
   const { data: languages } = $api.useQuery("get", "/languages", { params: { query: { participantId } } });
   const createLanguageMutation = $api.useMutation("post", "/languages", {
     onSuccess() {
+      notifications.show({ message: t.notificationSuccessCreateLanguage, color: "uzhGreen" });
       c.refetchQueries($api.queryOptions("get", "/languages", { params: { query: { participantId } } }));
     },
   });
@@ -65,6 +79,7 @@ function QuestionnaireEntries() {
   const { data: carers } = $api.useQuery("get", "/carers", { params: { query: { participantId } } });
   const createCarerMutation = $api.useMutation("post", "/carers", {
     onSuccess() {
+      notifications.show({ message: t.notificationSuccessCreateCarer, color: "uzhGreen" });
       c.refetchQueries($api.queryOptions("get", "/carers", { params: { query: { participantId } } }));
     },
   });
