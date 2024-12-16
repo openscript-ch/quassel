@@ -5,4 +5,4 @@ type Session = {
   role?: string;
 };
 
-export const $session = persistentMap<Session>("session:", {});
+export const $session = persistentMap<Session>("session", {});

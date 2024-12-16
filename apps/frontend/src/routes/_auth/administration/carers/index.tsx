@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
+import { $session } from "../../../../stores/session";
+import { useStore } from "@nanostores/react";
 
 function AdministrationCarersIndex() {
+  const sessionStore = useStore($session);
   const carers = $api.useSuspenseQuery("get", "/carers");
   const deleteCarerMutation = $api.useMutation("delete", "/carers/{id}", {
     onSuccess: () => carers.refetch(),
@@ -29,16 +32,18 @@ function AdministrationCarersIndex() {
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/carers/edit/${c.id}`} {...props} />}>
                   Edit
                 </Button>
-                <Button
-                  variant="default"
-                  onClick={() =>
-                    deleteCarerMutation.mutate({
-                      params: { path: { id: c.id.toString() } },
-                    })
-                  }
-                >
-                  Delete
-                </Button>
+                {sessionStore.role === "ADMIN" && (
+                  <Button
+                    variant="default"
+                    onClick={() =>
+                      deleteCarerMutation.mutate({
+                        params: { path: { id: c.id.toString() } },
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                )}
               </Table.Td>
             </Table.Tr>
           ))}
