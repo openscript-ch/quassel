@@ -67,7 +67,7 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
         if (value === customValueKey) {
           id = await onAddNew!(searchValue);
         } else {
-          id = parseInt(value);
+          id = +value;
         }
         onChange?.(id);
         combobox.closeDropdown();

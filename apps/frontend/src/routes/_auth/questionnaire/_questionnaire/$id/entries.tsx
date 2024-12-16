@@ -53,10 +53,19 @@ function QuestionnaireEntries() {
   const deleteMutation = $api.useMutation("delete", "/entries/{id}");
   const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
 
-  const { data: carers } = $api.useQuery("get", "/carers", { params: { query: { participantId: questionnaire.participant?.id } } });
+  const participantId = questionnaire.participant?.id;
+
+  const { data: languages } = $api.useQuery("get", "/languages", { params: { query: { participantId } } });
+  const createLanguageMutation = $api.useMutation("post", "/languages", {
+    onSuccess() {
+      c.refetchQueries($api.queryOptions("get", "/languages", { params: { query: { participantId } } }));
+    },
+  });
+
+  const { data: carers } = $api.useQuery("get", "/carers", { params: { query: { participantId } } });
   const createCarerMutation = $api.useMutation("post", "/carers", {
     onSuccess() {
-      c.refetchQueries($api.queryOptions("get", "/carers"));
+      c.refetchQueries($api.queryOptions("get", "/carers", { params: { query: { participantId } } }));
     },
   });
 
@@ -121,13 +130,13 @@ function QuestionnaireEntries() {
     <>
       <Modal opened={opened} onClose={close} size="md">
         <EntityForm
-          onAddCarer={(name) =>
-            createCarerMutation.mutateAsync({ body: { name, participant: questionnaire?.participant?.id } }).then(({ id }) => id)
-          }
+          onAddCarer={(name) => createCarerMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
+          onAddLanguage={(name) => createLanguageMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
           onSave={handleOnSave}
           onDelete={entryUpdatingId ? () => handleDelete(entryUpdatingId) : undefined}
           entry={entryDraft}
           carers={carers ?? []}
+          languages={languages ?? []}
           actionLabel={t.addEntityLabel}
         />
       </Modal>

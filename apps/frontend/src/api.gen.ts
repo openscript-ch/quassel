@@ -514,7 +514,7 @@ export interface components {
              * @example de-DE
              */
             ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         LanguageResponseDto: {
             /**
@@ -546,7 +546,7 @@ export interface components {
              * @example de-DE
              */
             ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         ParticipantCreationDto: {
             /**
@@ -1424,7 +1424,9 @@ export interface operations {
     };
     LanguagesController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                participantId?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;

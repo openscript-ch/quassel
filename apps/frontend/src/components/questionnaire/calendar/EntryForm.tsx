@@ -32,12 +32,14 @@ type EntityFormProps = {
   onSave: (entity: EntryFormValues) => void;
   onDelete?: () => void;
   onAddCarer: (value: string) => Promise<number>;
+  onAddLanguage: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
   carers: components["schemas"]["CarerDto"][];
+  languages: components["schemas"]["LanguageDto"][];
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry, carers }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -98,7 +100,13 @@ export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry, c
           // TODO: make key either languageId or name of new language entry
           <Group key={`entry-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
-            <LanguageSelect {...f.getInputProps(`entryLanguages.${index}.language`)} flex={1} placeholder={t.labelLanguage} />
+            <LanguageSelect
+              data={languages}
+              onAddNew={onAddLanguage}
+              {...f.getInputProps(`entryLanguages.${index}.language`)}
+              flex={1}
+              placeholder={t.labelLanguage}
+            />
             {!!index && (
               <ActionIcon
                 variant="light"

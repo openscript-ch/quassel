@@ -1,10 +1,10 @@
-import { $api } from "../stores/api";
+import { components } from "../api.gen";
 import { EntitySelect, EntitySelectProps } from "./EntitySelect";
 
-type LanguageSelectProps = EntitySelectProps;
+type LanguageSelectProps = EntitySelectProps & {
+  data: components["schemas"]["LanguageDto"][];
+};
 
-export function LanguageSelect({ value, onChange, ...rest }: LanguageSelectProps) {
-  const { data } = $api.useQuery("get", "/languages");
-
-  return <EntitySelect value={value} onChange={onChange} {...rest} data={data} inputKey="name" />;
+export function LanguageSelect({ value, onChange, data, onAddNew, ...rest }: LanguageSelectProps) {
+  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} inputKey="name" />;
 }
