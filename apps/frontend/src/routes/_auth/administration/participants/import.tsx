@@ -1,21 +1,48 @@
-import { ColumnType, DSVImport, ImportInput, ImportPreview } from "@quassel/ui";
-import { createFileRoute } from "@tanstack/react-router";
+import { Button, ColumnType, DSVImport, ImportInput, ImportPreview, useForm } from "@quassel/ui";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { $api } from "../../../../stores/api";
+import { components } from "../../../../api.gen";
 
-type BasicType = { childId: string; birthday: string };
+type ImportType = { id: string; birthday: string };
+type FormValues = components["schemas"]["ParticipantCreationDto"][];
 
-const columns: ColumnType<BasicType>[] = [
-  { key: "childId", label: "Child ID" },
+const columns: ColumnType<ImportType>[] = [
+  { key: "id", label: "Child ID" },
   { key: "birthday", label: "Birthday" },
 ];
 
 function AdministrationParticipantsImport() {
+  const n = useNavigate();
+  const createParticipantMutation = $api.useMutation("post", "/participants", {
+    onSuccess: () => {
+      n({ to: "/administration/participants" });
+    },
+  });
+  const f = useForm<FormValues>({
+    mode: "uncontrolled",
+    initialValues: [],
+  });
+  const handleSubmit = (values: FormValues) => {
+    createParticipantMutation.mutate({ body: values });
+  };
+  const mapValues = (values: ImportType[]): FormValues => {
+    return values.map((value) => ({
+      id: parseInt(value.id),
+      birthday: value.birthday,
+    }));
+  };
+
   return (
-    <div>
-      <DSVImport<BasicType> columns={columns}>
+    <form onSubmit={f.onSubmit(handleSubmit)}>
+      <DSVImport<ImportType> columns={columns} onChange={(values) => f.setValues(mapValues(values))}>
         <ImportInput />
         <ImportPreview />
       </DSVImport>
-    </div>
+
+      <Button type="submit" fullWidth mt="xl" loading={createParticipantMutation.isPending}>
+        Create
+      </Button>
+    </form>
   );
 }
 
