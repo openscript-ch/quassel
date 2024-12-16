@@ -43,6 +43,7 @@ export {
   AppShell,
   Button,
   Checkbox,
+  Combobox,
   Container,
   Divider,
   Flex,
@@ -57,9 +58,11 @@ export {
   Table,
   Text,
   TextInput,
+  type TextInputProps,
   NumberInput,
   Title,
   UnstyledButton,
+  useCombobox,
   useMantineTheme,
 } from "@mantine/core";
 

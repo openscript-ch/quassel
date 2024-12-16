@@ -3,8 +3,8 @@ import { EntitySelect, EntitySelectProps } from "./EntitySelect";
 
 type CarerSelectProps = EntitySelectProps;
 
-export function CarerSelect({ value, onChange, ...rest }: CarerSelectProps) {
+export function CarerSelect({ value, onChange, onAddNew, ...rest }: CarerSelectProps) {
   const { data } = $api.useQuery("get", "/carers");
 
-  return <EntitySelect value={value} onChange={onChange} {...rest} data={data} buildLabel={(carer) => carer.name} />;
+  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} inputKey="name" />;
 }

@@ -19,5 +19,7 @@ export class CarerDto {
   entries: number[];
 }
 export class CarerResponseDto extends CarerDto {}
-export class CarerCreationDto extends OmitType(CarerDto, ["id", "entries"]) {}
-export class CarerMutationDto extends PartialType(CarerCreationDto) {}
+export class CarerCreationDto extends OmitType(CarerDto, ["id", "entries", "participant"]) {
+  participant?: number;
+}
+export class CarerMutationDto extends PartialType(OmitType(CarerDto, ["entries"])) {}

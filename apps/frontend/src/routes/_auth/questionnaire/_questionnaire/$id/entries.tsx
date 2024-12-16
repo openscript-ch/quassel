@@ -11,6 +11,7 @@ import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
 import { EntityForm, EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
@@ -38,6 +39,8 @@ function QuestionnaireEntries() {
 
   const t = useStore(messages);
 
+  const c = useQueryClient();
+
   const theme = useMantineTheme();
   const [opened, { open, close }] = useDisclosure();
 
@@ -49,6 +52,12 @@ function QuestionnaireEntries() {
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
   const deleteMutation = $api.useMutation("delete", "/entries/{id}");
   const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
+
+  const createCarerMutation = $api.useMutation("post", "/carers", {
+    onSuccess() {
+      c.refetchQueries($api.queryOptions("get", "/carers"));
+    },
+  });
 
   const events: ExtendedEvent[] =
     questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
@@ -111,6 +120,9 @@ function QuestionnaireEntries() {
     <>
       <Modal opened={opened} onClose={close} size="md">
         <EntityForm
+          onAddCarer={(name) =>
+            createCarerMutation.mutateAsync({ body: { name, participant: questionnaire?.participant?.id } }).then(({ id }) => id)
+          }
           onSave={handleOnSave}
           onDelete={entryUpdatingId ? () => handleDelete(entryUpdatingId) : undefined}
           entry={entryDraft}

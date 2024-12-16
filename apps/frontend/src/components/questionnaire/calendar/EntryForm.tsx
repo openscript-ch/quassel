@@ -30,11 +30,12 @@ const messages = i18n("entityForm", {
 type EntityFormProps = {
   onSave: (entity: EntryFormValues) => void;
   onDelete?: () => void;
+  onAddCarer: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, actionLabel, entry }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -89,7 +90,7 @@ export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormP
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carer")} placeholder={t.labelCarer} />
+        <CarerSelect {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
         {f.getValues().entryLanguages.map((_, index) => (
           // TODO: make key either languageId or name of new language entry

@@ -452,6 +452,14 @@ export interface components {
              */
             role?: "ASSISTANT" | "ADMIN";
         };
+        CarerCreationDto: {
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            participant?: number;
+        };
         ParticipantDto: {
             /**
              * @description The id of the participant (child id)
@@ -468,14 +476,6 @@ export interface components {
             carers: number[];
             languages: number[];
         };
-        CarerCreationDto: {
-            /**
-             * @description The name of the carer
-             * @example Grandmother
-             */
-            name: string;
-            participant?: components["schemas"]["ParticipantDto"];
-        };
         CarerResponseDto: {
             /**
              * @description The id of the carer
@@ -491,6 +491,11 @@ export interface components {
             entries: number[];
         };
         CarerMutationDto: {
+            /**
+             * @description The id of the carer
+             * @example 1
+             */
+            id?: number;
             /**
              * @description The name of the carer
              * @example Grandmother
