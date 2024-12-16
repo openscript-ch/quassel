@@ -1,6 +1,7 @@
 import { Controller, Get } from "@nestjs/common";
 import { HealthCheck, HealthCheckService, MikroOrmHealthIndicator } from "@nestjs/terminus";
 import { Public } from "../session/public.decorator";
+import { ApiOperation } from "@nestjs/swagger";
 
 @Controller("health")
 export class HealthController {
@@ -10,6 +11,7 @@ export class HealthController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: "Returns the backends health information" })
   @HealthCheck()
   @Public()
   get() {

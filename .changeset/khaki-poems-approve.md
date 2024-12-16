@@ -1,6 +1,7 @@
 ---
 "@quassel/frontend": patch
 "@quassel/backend": patch
+"@quassel/ui": patch
 ---
 
-Add participants management
+Add participant csv import

@@ -67,6 +67,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** Returns the backends health information */
         get: operations["HealthController_get"];
         put?: never;
         post?: never;
@@ -83,7 +84,25 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** Returns the backends status information */
         get: operations["StatusController_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/export": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Offers the backends data for download */
+        get: operations["ExportController_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -460,6 +479,50 @@ export interface components {
             name: string;
             participant?: number;
         };
+        StudyDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            questionnaires?: number[];
+        };
+        QuestionnaireListResponseDto: {
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt?: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt?: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title?: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            study?: components["schemas"]["StudyDto"];
+            participant?: components["schemas"]["ParticipantDto"];
+        };
         ParticipantDto: {
             /**
              * @description The id of the participant (child id)
@@ -472,6 +535,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires: number[];
             carers: number[];
             languages: number[];
@@ -573,6 +637,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires: number[];
             carers: number[];
             languages: number[];
@@ -589,6 +654,7 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
+            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
             questionnaires?: number[];
             carers?: number[];
             languages?: number[];
@@ -625,19 +691,6 @@ export interface components {
             carer: number;
             questionnaire: number;
             entryLanguages: components["schemas"]["EntryLanguageCreationDto"][];
-        };
-        StudyDto: {
-            /**
-             * @description The id of the study (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The title of the study
-             * @example Series 1
-             */
-            title: string;
-            questionnaires?: number[];
         };
         EntryQuestionnaireDto: {
             /**
@@ -858,37 +911,6 @@ export interface components {
             study?: components["schemas"]["StudyDto"];
             participant?: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
-        };
-        QuestionnairesResponseDto: {
-            /**
-             * @description The id of the questionnaire
-             * @example 1
-             */
-            id: number;
-            /**
-             * Format: date-time
-             * @description The starting date of the questionnaire
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt?: string;
-            /**
-             * Format: date-time
-             * @description The ending date of the questionnaire
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt?: string;
-            /**
-             * @description The title of the questionnaire
-             * @example First few months
-             */
-            title?: string;
-            /**
-             * @description The remark of the questionnaire
-             * @example We went on holidays for 2 weeks and only spoke Esperanto
-             */
-            remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
         };
         QuestionnaireMutationDto: {
             /**
@@ -1304,6 +1326,28 @@ export interface operations {
             };
         };
     };
+    ExportController_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Database dump file */
+            200: {
+                headers: {
+                    /** @description Attachment dump.sql */
+                    "Content-Disposition"?: string;
+                    [name: string]: unknown;
+                };
+                content: {
+                    "text/sql": string;
+                };
+            };
+        };
+    };
     CarersController_index: {
         parameters: {
             query?: {
@@ -1568,7 +1612,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["ParticipantCreationDto"];
+                "application/json": components["schemas"]["ParticipantCreationDto"] | components["schemas"]["ParticipantCreationDto"][];
             };
         };
         responses: {
@@ -1577,7 +1621,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ParticipantResponseDto"];
+                    "application/json": components["schemas"]["ParticipantResponseDto"][];
                 };
             };
             /** @description Unique id constraint violation */
@@ -1795,7 +1839,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnairesResponseDto"][];
+                    "application/json": components["schemas"]["QuestionnaireListResponseDto"][];
                 };
             };
         };

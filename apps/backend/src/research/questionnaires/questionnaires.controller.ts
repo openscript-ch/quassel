@@ -4,7 +4,12 @@ import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { QuestionnairesService } from "./questionnaires.service";
-import { QuestionnaireCreationDto, QuestionnaireResponseDto, QuestionnaireMutationDto, QuestionnairesResponseDto } from "./questionnaire.dto";
+import {
+  QuestionnaireCreationDto,
+  QuestionnaireResponseDto,
+  QuestionnaireMutationDto,
+  QuestionnaireListResponseDto,
+} from "./questionnaire.dto";
 
 @ApiTags("Questionnaires")
 @Controller("questionnaires")
@@ -20,7 +25,7 @@ export class QuestionnairesController {
 
   @Get()
   @ApiOperation({ summary: "Get all questionnairess" })
-  index(): Promise<QuestionnairesResponseDto[]> {
+  index(): Promise<QuestionnaireListResponseDto[]> {
     return this.questionnairesService.findAll();
   }
 

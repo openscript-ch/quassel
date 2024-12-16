@@ -445,7 +445,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": false,
+          "nullable": true,
           "mappedType": "integer"
         },
         "carer_id": {
@@ -497,6 +497,7 @@
             "id"
           ],
           "referencedTableName": "public.questionnaire",
+          "deleteRule": "cascade",
           "updateRule": "cascade"
         },
         "entry_carer_id_foreign": {

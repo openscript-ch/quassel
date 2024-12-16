@@ -7,6 +7,9 @@ export default defineConfig({
   server: {
     port: 3001,
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
   clearScreen: false,
   plugins: [react(), TanStackRouterVite({ quoteStyle: "double", semicolons: true })],
 });

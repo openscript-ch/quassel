@@ -13,6 +13,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     origin: configService.get("cors.origin"),
+    exposedHeaders: ["Content-Disposition"],
   });
   app.enableShutdownHooks();
   app.useGlobalPipes(new ValidationPipe());

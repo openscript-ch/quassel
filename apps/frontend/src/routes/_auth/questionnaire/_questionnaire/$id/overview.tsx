@@ -2,6 +2,7 @@ import { Button, Group } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
+import { $questionnaire } from "../../../../../stores/questionnaire";
 
 export const messages = i18n("questionnaireOverview", {
   title: "Thanks for submitting the questionnaire!",
@@ -14,7 +15,7 @@ function QuestionnaireOverview() {
   const t = useStore(messages);
 
   const handleClose = () => {
-    // TODO handle closing quesitonnaire ("logout")
+    $questionnaire.set(undefined);
 
     n({ to: "/questionnaire" });
   };

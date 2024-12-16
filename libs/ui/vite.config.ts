@@ -18,15 +18,27 @@ export default defineConfig({
       output: {
         globals: {
           dayjs: "dayjs",
-          "dayjs/plugin/utc": "dayjsPluginUtc",
+          "dayjs/plugin/utc.js": "dayjsPluginUtc",
+          "dayjs/plugin/customParseFormat.js": "dayjsPluginCustomParseFormat",
+          "dayjs/locale/de.js": "dayjsLocaleDe",
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
           "@mantine/core": "mantineCore",
           "@mantine/dates": "mantineDates",
-          "@tabler/icons-react": "tablerIconsReact",
+          "@mantine/hooks": "mantineHooks",
+          "@mantine/form": "mantineForm",
+          "@tabler/icons-react/dist/esm/icons/index.mjs": "tablerIconsReact",
+          "react-dsv-import": "reactDsvImport",
         },
       },
     },
   },
   plugins: [dts({ entryRoot: "src", tsconfigPath: "tsconfig.json" }), react(), svgr({ svgrOptions: { ref: true }, include: "**/*.svg?react" })],
+  resolve: {
+    alias: {
+      // Workaround so that tabler doesn't import all icons as separate junks
+      // https://github.com/tabler/tabler-icons/issues/1233#issuecomment-2428245119
+      "@tabler/icons-react": "@tabler/icons-react/dist/esm/icons/index.mjs",
+    },
+  },
 });

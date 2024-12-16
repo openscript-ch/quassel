@@ -1,7 +1,6 @@
-import { useForm } from "@mantine/form";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { components, userCreationDtoRoleValues } from "../../../../api.gen";
-import { Button, PasswordInput, Select, TextInput } from "@quassel/ui";
+import { Button, PasswordInput, Select, TextInput, useForm } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 
 type FormValues = components["schemas"]["UserCreationDto"];

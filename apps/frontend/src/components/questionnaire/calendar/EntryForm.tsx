@@ -1,5 +1,4 @@
-import { isInRange, isNotEmpty, useForm } from "@mantine/form";
-import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, isInRange, isNotEmpty, useForm } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";

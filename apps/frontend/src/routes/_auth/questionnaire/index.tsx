@@ -1,8 +1,7 @@
-import { Button, Stack, TextInput } from "@quassel/ui";
+import { Button, Stack, TextInput, useForm } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { useForm } from "@mantine/form";
 import { $api } from "../../../stores/api";
 import { $questionnaire } from "../../../stores/questionnaire";
 
