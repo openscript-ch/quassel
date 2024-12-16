@@ -23,7 +23,7 @@ function AdministrationParticipantsImport() {
     initialValues: [],
   });
   const handleSubmit = (values: FormValues) => {
-    createParticipantMutation.mutate({ body: values });
+    createParticipantMutation.mutate({ body: Object.values(values) });
   };
   const mapValues = (values: ImportType[]): FormValues => {
     return values.map((value) => ({
