@@ -96,9 +96,8 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
       <Stack>
         <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
-        {f.getValues().entryLanguages.map((_, index) => (
-          // TODO: make key either languageId or name of new language entry
-          <Group key={`entry-${index}`} justify="stretch">
+        {f.getValues().entryLanguages.map((value, index) => (
+          <Group key={value.language ? `l-${value.language}` : `i-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
             <LanguageSelect
               data={languages}
