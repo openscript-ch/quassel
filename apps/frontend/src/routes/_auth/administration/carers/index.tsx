@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
-import { Button, Table } from "@quassel/ui";
+import { Button, ColorSwatch, Table } from "@quassel/ui";
 
 function AdministrationCarersIndex() {
   const carers = $api.useSuspenseQuery("get", "/carers");
@@ -18,6 +18,7 @@ function AdministrationCarersIndex() {
           <Table.Tr>
             <Table.Th>Id</Table.Th>
             <Table.Th>Name</Table.Th>
+            <Table.Th>Color</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
@@ -25,6 +26,7 @@ function AdministrationCarersIndex() {
             <Table.Tr key={c.id}>
               <Table.Td>{c.id}</Table.Td>
               <Table.Td>{c.name}</Table.Td>
+              <Table.Td>{c.color && <ColorSwatch color={c.color} />}</Table.Td>
               <Table.Td>
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/carers/edit/${c.id}`} {...props} />}>
                   Edit

@@ -1,4 +1,4 @@
-import { Button, TextInput, useForm } from "@quassel/ui";
+import { Button, ColorInput, TextInput, useForm, uzhColors } from "@quassel/ui";
 import { useEffect } from "react";
 
 type CarerFormProps = {
@@ -9,6 +9,7 @@ type CarerFormProps = {
 
 type FormValues = {
   name: string;
+  color?: string;
 };
 
 export function CarerForm({ carer, onSave, loading }: CarerFormProps) {
@@ -19,12 +20,14 @@ export function CarerForm({ carer, onSave, loading }: CarerFormProps) {
   });
 
   useEffect(() => {
-    if (carer) f.initialize(carer);
+    if (carer) f.initialize({ ...carer, color: carer.color ?? "" });
   }, [carer]);
 
   return (
     <form autoComplete="off" onSubmit={f.onSubmit(onSave)}>
       <TextInput label="Name" type="name" {...f.getInputProps("name")} />
+
+      <ColorInput label="Color" {...f.getInputProps("color")} swatchesPerRow={6} swatches={Object.values(uzhColors).flat()} />
 
       <Button type="submit" fullWidth mt="xl" loading={loading}>
         Change

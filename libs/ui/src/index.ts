@@ -54,6 +54,8 @@ export {
   Checkbox,
   Combobox,
   Container,
+  ColorInput,
+  ColorSwatch,
   Divider,
   Flex,
   Group,
@@ -102,3 +104,5 @@ export {
 
 export { DSVImport } from "react-dsv-import";
 export type { ColumnType } from "react-dsv-import";
+
+export { uzhColors } from "./theme/uzh";

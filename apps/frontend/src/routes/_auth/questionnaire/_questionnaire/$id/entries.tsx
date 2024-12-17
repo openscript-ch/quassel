@@ -93,7 +93,8 @@ function QuestionnaireEntries() {
       end: getDateFromTimeAndWeekday(endedAt, weekday),
       title: carer.name,
       extendedProps: { entryLanguages, weeklyRecurring },
-      backgroundColor: theme.colors[theme.primaryColor][4],
+      backgroundColor: carer.color ?? theme.colors[theme.primaryColor][4],
+      borderColor: carer.color ?? theme.colors[theme.primaryColor][4],
     })) ?? [];
 
   const reset = () => {
