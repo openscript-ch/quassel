@@ -97,6 +97,7 @@ export {
   IconCalendarWeek,
   IconMapSearch,
   IconMinus,
+  IconRepeat,
 } from "@tabler/icons-react";
 
 export { DSVImport } from "react-dsv-import";

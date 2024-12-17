@@ -24,7 +24,9 @@ import { EntityForm, EntryFormValues } from "../../../../../components/questionn
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
-export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
+export type ExtendedEvent = EventInput & {
+  extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][]; weeklyRecurring?: number };
+};
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -85,12 +87,12 @@ function QuestionnaireEntries() {
   });
 
   const events: ExtendedEvent[] =
-    questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
+    questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id, weeklyRecurring }) => ({
       id: id.toString(),
       start: getDateFromTimeAndWeekday(startedAt, weekday),
       end: getDateFromTimeAndWeekday(endedAt, weekday),
       title: carer.name,
-      extendedProps: { entryLanguages },
+      extendedProps: { entryLanguages, weeklyRecurring },
       backgroundColor: theme.colors[theme.primaryColor][4],
     })) ?? [];
 
