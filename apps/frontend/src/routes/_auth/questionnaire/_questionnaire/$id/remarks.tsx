@@ -1,9 +1,10 @@
-import { Button, Group, Stack, Textarea, useForm } from "@quassel/ui";
+import { Button, Group, isSameOrAfter, Stack, Textarea, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { $api } from "../../../../../stores/api";
 import { useEffect } from "react";
+import { components } from "../../../../../api.gen";
 
 export const messages = i18n("questionnaireRemarks", {
   title: "Add remarks",
@@ -39,11 +40,17 @@ function QuestionnaireRemarks() {
     }
   }, [questionnaire]);
 
-  const onSave = (values: FormValues) => updateMutation.mutateAsync({ params: { path: p }, body: values });
+  const onSave = (values: components["schemas"]["QuestionnaireMutationDto"]) =>
+    updateMutation.mutateAsync({ params: { path: p }, body: values });
 
   const handleSubmit = async (values: FormValues) => {
-    await onSave(values);
-    n({ to: "/questionnaire/$id/overview", params: p });
+    await onSave({ ...values, completedAt: new Date().toISOString() });
+
+    if (isSameOrAfter(new Date(Date.parse(questionnaire.endedAt)), new Date(), "month")) {
+      n({ to: "/questionnaire/$id/overview", params: p });
+    } else {
+      n({ to: "/questionnaire/new" });
+    }
   };
 
   return (
