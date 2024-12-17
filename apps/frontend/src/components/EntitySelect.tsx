@@ -24,7 +24,7 @@ const messages = i18n("entitySelect", {
   actionCreateNew: params('Create new "{value}"'),
 });
 
-export function EntitySelect<T extends { id: number }>({ value, onChange, data, labelKey: inputKey, onAddNew, ...rest }: Props<T>) {
+export function EntitySelect<T extends { id: number }>({ value, onChange, data, labelKey, onAddNew, ...rest }: Props<T>) {
   const t = useStore(messages);
 
   const combobox = useCombobox({
@@ -33,15 +33,15 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
 
   const [searchValue, setSearchValue] = useState("");
 
-  const shouldFilterOptions = !data?.some((item) => item[inputKey] === searchValue);
+  const shouldFilterOptions = !data?.some((item) => item[labelKey] === searchValue);
   const filteredOptions =
     (shouldFilterOptions
-      ? data?.filter((item) => (item[inputKey] as string)?.toLowerCase().includes(searchValue.toLowerCase().trim()))
+      ? data?.filter((item) => (item[labelKey] as string)?.toLowerCase().includes(searchValue.toLowerCase().trim()))
       : data) ?? [];
 
   const options = filteredOptions?.map((item) => (
     <Combobox.Option key={item.id} value={item.id.toString()}>
-      {item[inputKey] as string}
+      {item[labelKey] as string}
     </Combobox.Option>
   ));
 
@@ -49,7 +49,7 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
     if (value && data) {
       const index = data.findIndex((item) => item.id === value);
       if (index !== -1) {
-        setSearchValue(data[index][inputKey] as string);
+        setSearchValue(data[index][labelKey] as string);
         combobox.selectOption(index);
       }
     }
