@@ -4,6 +4,7 @@ import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
 import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
+import { components } from "../../../api.gen";
 
 export type EntryFormValues = {
   carer?: number;
@@ -29,11 +30,15 @@ const messages = i18n("entityForm", {
 type EntityFormProps = {
   onSave: (entity: EntryFormValues) => void;
   onDelete?: () => void;
+  onAddCarer: (value: string) => Promise<number>;
+  onAddLanguage: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
+  carers: components["schemas"]["CarerDto"][];
+  languages: components["schemas"]["LanguageDto"][];
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -88,13 +93,18 @@ export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormP
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carer")} placeholder={t.labelCarer} />
+        <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
-        {f.getValues().entryLanguages.map((_, index) => (
-          // TODO: make key either languageId or name of new language entry
-          <Group key={`entry-${index}`} justify="stretch">
+        {f.getValues().entryLanguages.map((value, index) => (
+          <Group key={value.language ? `l-${value.language}` : `i-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
-            <LanguageSelect {...f.getInputProps(`entryLanguages.${index}.language`)} flex={1} placeholder={t.labelLanguage} />
+            <LanguageSelect
+              data={languages}
+              onAddNew={onAddLanguage}
+              {...f.getInputProps(`entryLanguages.${index}.language`)}
+              flex={1}
+              placeholder={t.labelLanguage}
+            />
             {!!index && (
               <ActionIcon
                 variant="light"

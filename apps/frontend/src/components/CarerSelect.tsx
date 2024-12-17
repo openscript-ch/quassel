@@ -1,10 +1,10 @@
-import { $api } from "../stores/api";
+import { components } from "../api.gen";
 import { EntitySelect, EntitySelectProps } from "./EntitySelect";
 
-type CarerSelectProps = EntitySelectProps;
+type CarerSelectProps = EntitySelectProps & {
+  data: components["schemas"]["CarerDto"][];
+};
 
-export function CarerSelect({ value, onChange, ...rest }: CarerSelectProps) {
-  const { data } = $api.useQuery("get", "/carers");
-
-  return <EntitySelect value={value} onChange={onChange} {...rest} data={data} buildLabel={(carer) => carer.name} />;
+export function CarerSelect({ value, onChange, onAddNew, data, ...rest }: CarerSelectProps) {
+  return <EntitySelect value={value} onChange={onChange} onAddNew={onAddNew} {...rest} data={data} labelKey="name" />;
 }

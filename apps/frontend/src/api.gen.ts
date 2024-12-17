@@ -471,6 +471,14 @@ export interface components {
              */
             role?: "ASSISTANT" | "ADMIN";
         };
+        CarerCreationDto: {
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            participant?: number;
+        };
         StudyDto: {
             /**
              * @description The id of the study (child id)
@@ -532,14 +540,6 @@ export interface components {
             carers: number[];
             languages: number[];
         };
-        CarerCreationDto: {
-            /**
-             * @description The name of the carer
-             * @example Grandmother
-             */
-            name: string;
-            participant?: components["schemas"]["ParticipantDto"];
-        };
         CarerResponseDto: {
             /**
              * @description The id of the carer
@@ -560,7 +560,7 @@ export interface components {
              * @example Grandmother
              */
             name?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         LanguageCreationDto: {
             /**
@@ -573,7 +573,7 @@ export interface components {
              * @example de-DE
              */
             ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         LanguageResponseDto: {
             /**
@@ -605,7 +605,7 @@ export interface components {
              * @example de-DE
              */
             ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         ParticipantCreationDto: {
             /**
@@ -1345,7 +1345,9 @@ export interface operations {
     };
     CarersController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                participantId?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1461,7 +1463,9 @@ export interface operations {
     };
     LanguagesController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                participantId?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;

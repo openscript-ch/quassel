@@ -1,4 +1,15 @@
-import { Button, formatDate, getDateFromTimeAndWeekday, Group, Stack, useMantineTheme, useDisclosure, Modal, getTime } from "@quassel/ui";
+import {
+  Button,
+  formatDate,
+  getDateFromTimeAndWeekday,
+  Group,
+  Stack,
+  useMantineTheme,
+  useDisclosure,
+  Modal,
+  getTime,
+  notifications,
+} from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -11,6 +22,7 @@ import { components } from "../../../../../api.gen";
 import { QuestionnaireEntry } from "../../../../../components/questionnaire/calendar/QuestionnaireEntry";
 import { EntityForm, EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
 
@@ -30,6 +42,8 @@ const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
   backAction: "Back",
   addEntityLabel: "Add",
+  notificationSuccessCreateLanguage: "Successfully add a new language.",
+  notificationSuccessCreateCarer: "Successfully add a new carer.",
 });
 
 function QuestionnaireEntries() {
@@ -37,6 +51,8 @@ function QuestionnaireEntries() {
   const p = Route.useParams();
 
   const t = useStore(messages);
+
+  const c = useQueryClient();
 
   const theme = useMantineTheme();
   const [opened, { open, close }] = useDisclosure();
@@ -49,6 +65,24 @@ function QuestionnaireEntries() {
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
   const deleteMutation = $api.useMutation("delete", "/entries/{id}");
   const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: { id: p.id } } });
+
+  const participantId = questionnaire.participant?.id;
+
+  const { data: languages } = $api.useQuery("get", "/languages", { params: { query: { participantId } } });
+  const createLanguageMutation = $api.useMutation("post", "/languages", {
+    onSuccess() {
+      notifications.show({ message: t.notificationSuccessCreateLanguage, color: "uzhGreen" });
+      c.refetchQueries($api.queryOptions("get", "/languages", { params: { query: { participantId } } }));
+    },
+  });
+
+  const { data: carers } = $api.useQuery("get", "/carers", { params: { query: { participantId } } });
+  const createCarerMutation = $api.useMutation("post", "/carers", {
+    onSuccess() {
+      notifications.show({ message: t.notificationSuccessCreateCarer, color: "uzhGreen" });
+      c.refetchQueries($api.queryOptions("get", "/carers", { params: { query: { participantId } } }));
+    },
+  });
 
   const events: ExtendedEvent[] =
     questionnaire.entries?.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
@@ -111,9 +145,13 @@ function QuestionnaireEntries() {
     <>
       <Modal opened={opened} onClose={close} size="md">
         <EntityForm
+          onAddCarer={(name) => createCarerMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
+          onAddLanguage={(name) => createLanguageMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
           onSave={handleOnSave}
           onDelete={entryUpdatingId ? () => handleDelete(entryUpdatingId) : undefined}
           entry={entryDraft}
+          carers={carers ?? []}
+          languages={languages ?? []}
           actionLabel={t.addEntityLabel}
         />
       </Modal>

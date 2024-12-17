@@ -14,7 +14,7 @@ export class LanguagesService {
 
   async create(languageCreationDto: LanguageCreationDto) {
     const language = new Language();
-    language.assign(languageCreationDto);
+    language.assign(languageCreationDto, { em: this.em });
 
     try {
       await this.em.persist(language).flush();
@@ -28,8 +28,12 @@ export class LanguagesService {
     return language.toObject();
   }
 
-  async findAll() {
-    return (await this.languageRepository.findAll()).map((language) => language.toObject());
+  async findAll(participantId?: number) {
+    return (
+      await this.languageRepository.findAll({
+        where: participantId ? { $or: [{ participant: null }, { participant: participantId }] } : { participant: null },
+      })
+    ).map((language) => language.toObject());
   }
 
   async findOne(id: number) {
