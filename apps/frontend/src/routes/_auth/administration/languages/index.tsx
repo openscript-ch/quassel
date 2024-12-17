@@ -2,8 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { $session } from "../../../../stores/session";
+import { useStore } from "@nanostores/react";
 
 function AdministrationLanguageIndex() {
+  const sessionStore = useStore($session);
   const languages = useSuspenseQuery($api.queryOptions("get", "/languages"));
   const deleteLanguageMutation = $api.useMutation("delete", "/languages/{id}", {
     onSuccess: () => languages.refetch(),
@@ -32,16 +35,18 @@ function AdministrationLanguageIndex() {
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/languages/edit/${l.id}`} {...props} />}>
                   Edit
                 </Button>
-                <Button
-                  variant="default"
-                  onClick={() =>
-                    deleteLanguageMutation.mutate({
-                      params: { path: { id: l.id.toString() } },
-                    })
-                  }
-                >
-                  Delete
-                </Button>
+                {sessionStore.role === "ADMIN" && (
+                  <Button
+                    variant="default"
+                    onClick={() =>
+                      deleteLanguageMutation.mutate({
+                        params: { path: { id: l.id.toString() } },
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                )}
               </Table.Td>
             </Table.Tr>
           ))}

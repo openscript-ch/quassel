@@ -4,4 +4,4 @@
 "@quassel/ui": patch
 ---
 
-Introduce entering custom values for carers and languages
+Allow custom carers and languages per participant

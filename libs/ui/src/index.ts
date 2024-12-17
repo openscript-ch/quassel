@@ -102,7 +102,5 @@ export {
   IconRepeat,
 } from "@tabler/icons-react";
 
-export { DSVImport } from "react-dsv-import";
-export type { ColumnType } from "react-dsv-import";
-
 export { uzhColors } from "./theme/uzh";
+export { DSVImport, type ColumnType } from "react-dsv-import";
