@@ -2,8 +2,11 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { Button, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { $session } from "../../../../stores/session";
+import { useStore } from "@nanostores/react";
 
 function AdministrationStudiesIndex() {
+  const sessionStore = useStore($session);
   const studies = useSuspenseQuery($api.queryOptions("get", "/studies"));
   const deleteStudyMutation = $api.useMutation("delete", "/studies/{id}", {
     onSuccess: () => studies.refetch(),
@@ -30,16 +33,18 @@ function AdministrationStudiesIndex() {
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
                   Edit
                 </Button>
-                <Button
-                  variant="default"
-                  onClick={() =>
-                    deleteStudyMutation.mutate({
-                      params: { path: { id: s.id.toString() } },
-                    })
-                  }
-                >
-                  Delete
-                </Button>
+                {sessionStore.role === "ADMIN" && (
+                  <Button
+                    variant="default"
+                    onClick={() =>
+                      deleteStudyMutation.mutate({
+                        params: { path: { id: s.id.toString() } },
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                )}
               </Table.Td>
             </Table.Tr>
           ))}
