@@ -1,16 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { components } from "../../../../api.gen";
 import { $api } from "../../../../stores/api";
 import { useQueryClient } from "@tanstack/react-query";
-import { Button, TextInput, useForm } from "@quassel/ui";
-import { useEffect } from "react";
-
-type FormValues = components["schemas"]["CarerMutationDto"];
+import { CarerForm } from "../../../../components/CarerForm";
+import { components } from "../../../../api.gen";
 
 function AdministrationCarersEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const { data, isSuccess } = $api.useSuspenseQuery("get", "/carers/{id}", { params: { path: { id: p.id } } });
+  const { data } = $api.useSuspenseQuery("get", "/carers/{id}", { params: { path: { id: p.id } } });
   const n = useNavigate();
   const editCarerMutation = $api.useMutation("patch", "/carers/{id}", {
     onSuccess: () => {
@@ -22,34 +19,15 @@ function AdministrationCarersEdit() {
       n({ to: "/administration/carers" });
     },
   });
-  const f = useForm<FormValues>({
-    initialValues: {
-      name: "",
-    },
-  });
-  const handleSubmit = (values: FormValues) => {
+
+  const handleSubmit = (values: components["schemas"]["CarerMutationDto"]) => {
     editCarerMutation.mutate({
       body: { ...values },
       params: { path: { id: p.id } },
     });
   };
 
-  useEffect(() => {
-    f.setValues({ ...data, participant: data.participant?.id });
-    f.resetDirty();
-  }, [isSuccess, data]);
-
-  return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="name" {...f.getInputProps("name")} />
-
-        <Button type="submit" fullWidth mt="xl" loading={editCarerMutation.isPending}>
-          Change
-        </Button>
-      </form>
-    </>
-  );
+  return <CarerForm carer={data} onSave={handleSubmit} loading={editCarerMutation.isPending} />;
 }
 
 export const Route = createFileRoute("/_auth/administration/carers/edit/$id")({
