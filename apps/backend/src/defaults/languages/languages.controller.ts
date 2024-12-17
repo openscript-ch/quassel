@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { ApiOperation, ApiQuery, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { LanguagesService } from "./languages.service";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
@@ -19,9 +19,10 @@ export class LanguagesController {
   }
 
   @Get()
+  @ApiQuery({ name: "participantId", required: false, type: Number })
   @ApiOperation({ summary: "Get all languages" })
-  index(): Promise<LanguageResponseDto[]> {
-    return this.languagesService.findAll();
+  index(@Query("participantId") participantId?: number): Promise<LanguageResponseDto[]> {
+    return this.languagesService.findAll(participantId);
   }
 
   @Get(":id")

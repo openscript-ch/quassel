@@ -24,5 +24,7 @@ export class LanguageDto {
   entryLanguages: number[];
 }
 export class LanguageResponseDto extends LanguageDto {}
-export class LanguageCreationDto extends OmitType(LanguageDto, ["id", "entryLanguages"]) {}
+export class LanguageCreationDto extends OmitType(LanguageDto, ["id", "entryLanguages", "participant"]) {
+  participant?: number;
+}
 export class LanguageMutationDto extends PartialType(LanguageCreationDto) {}

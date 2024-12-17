@@ -1,9 +1,10 @@
-import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, isInRange, isNotEmpty, useForm } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, isInRange, isNotEmpty, useForm, Switch } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
+import { components } from "../../../api.gen";
 
 export type EntryFormValues = {
   carer?: number;
@@ -12,15 +13,20 @@ export type EntryFormValues = {
     ratio: number;
     language?: number;
   }[];
+  weeklyRecurring?: number;
   startedAt: string;
   endedAt: string;
 };
 
 const messages = i18n("entityForm", {
-  actionAddDialect: "Add dialect",
+  actionAddLanguage: "Add language",
+  actionAddRecurringRule: "Add recurring rule",
   actionDelete: "Delete",
+
   labelCarer: "Carer",
   labelLanguage: "Language",
+  labelRecurringRulePrefix: "Recurs every",
+  labelRecurringRuleSuffix: "weeks.",
   validationRatio: "Ratio must be between 1 and 100.",
   validationTotalRatio: "Total Ratio must always be 100%.",
   validationNotEmpty: "Field must not be empty.",
@@ -29,11 +35,15 @@ const messages = i18n("entityForm", {
 type EntityFormProps = {
   onSave: (entity: EntryFormValues) => void;
   onDelete?: () => void;
+  onAddCarer: (value: string) => Promise<number>;
+  onAddLanguage: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
+  carers: components["schemas"]["CarerDto"][];
+  languages: components["schemas"]["LanguageDto"][];
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -62,10 +72,16 @@ export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormP
     },
   });
 
+  const [showRecurringRule, setShowRecurringRule] = useState(false);
+
   useEffect(() => {
     if (entry) {
       f.setValues(entry);
       f.resetDirty();
+
+      if (entry.weeklyRecurring && entry.weeklyRecurring > 1) {
+        setShowRecurringRule(true);
+      }
     }
   }, [entry]);
 
@@ -88,13 +104,18 @@ export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormP
   return (
     <form onSubmit={f.onSubmit(onSave)}>
       <Stack>
-        <CarerSelect {...f.getInputProps("carer")} placeholder={t.labelCarer} />
+        <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
-        {f.getValues().entryLanguages.map((_, index) => (
-          // TODO: make key either languageId or name of new language entry
-          <Group key={`entry-${index}`} justify="stretch">
+        {f.getValues().entryLanguages.map((value, index) => (
+          <Group key={value.language ? `l-${value.language}` : `i-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
-            <LanguageSelect {...f.getInputProps(`entryLanguages.${index}.language`)} flex={1} placeholder={t.labelLanguage} />
+            <LanguageSelect
+              data={languages}
+              onAddNew={onAddLanguage}
+              {...f.getInputProps(`entryLanguages.${index}.language`)}
+              flex={1}
+              placeholder={t.labelLanguage}
+            />
             {!!index && (
               <ActionIcon
                 variant="light"
@@ -122,13 +143,29 @@ export function EntityForm({ onSave, onDelete, actionLabel, entry }: EntityFormP
           }}
           variant="light"
         >
-          {t.actionAddDialect}
+          {t.actionAddLanguage}
         </Button>
         <Group>
           <TimeInput flex={1} {...f.getInputProps("startedAt")} />
           -
           <TimeInput flex={1} {...f.getInputProps("endedAt")} />
         </Group>
+
+        <Switch
+          checked={showRecurringRule}
+          onClick={() => {
+            f.setValues({ weeklyRecurring: showRecurringRule ? 1 : 2 });
+            setShowRecurringRule(!showRecurringRule);
+          }}
+          label={t.actionAddRecurringRule}
+        ></Switch>
+        {showRecurringRule && (
+          <Group>
+            {t.labelRecurringRulePrefix}
+            <NumberInput {...f.getInputProps("weeklyRecurring")} min={2} w={60} />
+            {t.labelRecurringRuleSuffix}
+          </Group>
+        )}
 
         <Group justify="flex-end">
           {onDelete && (

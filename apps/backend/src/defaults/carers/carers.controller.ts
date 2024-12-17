@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { ApiOperation, ApiQuery, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { CarersService } from "./carers.service";
 import { CarerCreationDto, CarerMutationDto, CarerResponseDto } from "./carer.dto";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
@@ -19,9 +19,10 @@ export class CarersController {
   }
 
   @Get()
+  @ApiQuery({ name: "participantId", required: false, type: Number })
   @ApiOperation({ summary: "Get all carers" })
-  index(): Promise<CarerResponseDto[]> {
-    return this.carersService.findAll();
+  index(@Query("participantId") participantId?: number): Promise<CarerResponseDto[]> {
+    return this.carersService.findAll(participantId);
   }
 
   @Get(":id")

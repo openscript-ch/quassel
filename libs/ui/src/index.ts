@@ -1,4 +1,5 @@
-// quassel theme
+// Theme
+import "@mantine/core/styles.css";
 import "@mantine/core/styles/global.css";
 import "@mantine/core/styles/ScrollArea.css";
 import "@mantine/core/styles/UnstyledButton.css";
@@ -28,7 +29,10 @@ import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
+
 import "@mantine/dates/styles.css";
+
+import "@mantine/notifications/styles.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
@@ -48,6 +52,7 @@ export {
   AppShell,
   Button,
   Checkbox,
+  Combobox,
   Container,
   Divider,
   Flex,
@@ -60,19 +65,24 @@ export {
   Select,
   type SelectProps,
   Stack,
+  Switch,
   Table,
   Text,
   Textarea,
   TextInput,
+  type TextInputProps,
   NumberInput,
   Title,
   UnstyledButton,
+  useCombobox,
   useMantineTheme,
 } from "@mantine/core";
 
 export { TimeInput } from "@mantine/dates";
 
 export { useDisclosure } from "@mantine/hooks";
+
+export { notifications } from "@mantine/notifications";
 
 export { useForm, isInRange, isNotEmpty } from "@mantine/form";
 
@@ -89,5 +99,4 @@ export {
   IconMinus,
 } from "@tabler/icons-react";
 
-export { DSVImport } from "react-dsv-import";
-export type { ColumnType } from "react-dsv-import";
+export { DSVImport, type ColumnType } from "react-dsv-import";
