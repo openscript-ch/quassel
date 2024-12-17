@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { components } from "../../../../api.gen";
 import { $api } from "../../../../stores/api";
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
 
@@ -10,7 +10,7 @@ type FormValues = components["schemas"]["CarerMutationDto"];
 function AdministrationCarersEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const carer = useSuspenseQuery($api.queryOptions("get", "/carers/{id}", { params: { path: { id: p.id } } }));
+  const { data, isSuccess } = $api.useSuspenseQuery("get", "/carers/{id}", { params: { path: { id: p.id } } });
   const n = useNavigate();
   const editCarerMutation = $api.useMutation("patch", "/carers/{id}", {
     onSuccess: () => {
@@ -35,9 +35,9 @@ function AdministrationCarersEdit() {
   };
 
   useEffect(() => {
-    f.setValues(carer.data ?? {});
+    f.setValues({ ...data, participant: data.participant?.id });
     f.resetDirty();
-  }, [carer.isSuccess, carer.data]);
+  }, [isSuccess, data]);
 
   return (
     <>

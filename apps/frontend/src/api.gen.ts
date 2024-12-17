@@ -556,16 +556,11 @@ export interface components {
         };
         CarerMutationDto: {
             /**
-             * @description The id of the carer
-             * @example 1
-             */
-            id?: number;
-            /**
              * @description The name of the carer
              * @example Grandmother
              */
             name?: string;
-            participant?: components["schemas"]["ParticipantDto"];
+            participant?: number;
         };
         LanguageCreationDto: {
             /**

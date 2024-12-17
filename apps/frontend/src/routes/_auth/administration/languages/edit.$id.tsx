@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { components } from "../../../../api.gen";
 import { $api } from "../../../../stores/api";
-import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 import { Button, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
 
@@ -10,11 +10,10 @@ type FormValues = components["schemas"]["LanguageMutationDto"];
 function AdministrationLanguagesEdit() {
   const p = Route.useParams();
   const q = useQueryClient();
-  const carer = useSuspenseQuery(
-    $api.queryOptions("get", "/languages/{id}", {
-      params: { path: { id: p.id } },
-    })
-  );
+  const { data, isSuccess } = $api.useSuspenseQuery("get", "/languages/{id}", {
+    params: { path: { id: p.id } },
+  });
+
   const n = useNavigate();
   const editCarerMutation = $api.useMutation("patch", "/languages/{id}", {
     onSuccess: () => {
@@ -40,9 +39,9 @@ function AdministrationLanguagesEdit() {
   };
 
   useEffect(() => {
-    f.setValues(carer.data ?? {});
+    f.setValues({ ...data, participant: data.participant?.id });
     f.resetDirty();
-  }, [carer.isSuccess, carer.data]);
+  }, [isSuccess, data]);
 
   return (
     <>
@@ -60,10 +59,6 @@ function AdministrationLanguagesEdit() {
 
 export const Route = createFileRoute("/_auth/administration/languages/edit/$id")({
   loader: ({ params, context: { queryClient } }) =>
-    queryClient.ensureQueryData(
-      $api.queryOptions("get", "/languages/{id}", {
-        params: { path: { id: params.id } },
-      })
-    ),
+    queryClient.ensureQueryData($api.queryOptions("get", "/languages/{id}", { params: { path: params } })),
   component: AdministrationLanguagesEdit,
 });
