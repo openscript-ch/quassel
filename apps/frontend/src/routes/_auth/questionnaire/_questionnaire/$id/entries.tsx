@@ -169,13 +169,15 @@ function QuestionnaireEntries() {
               open();
             }}
             eventClick={(args) => {
-              const { carer, entryLanguages, id } = questionnaire.entries?.find((entry) => entry.id.toString() === args.event.id) ?? {};
+              const { carer, entryLanguages, id, weeklyRecurring } =
+                questionnaire.entries?.find((entry) => entry.id.toString() === args.event.id) ?? {};
 
               setEntryDraft({
                 carer: carer?.id,
                 startedAt: getTime(args.event.start!),
                 endedAt: getTime(args.event.end!),
                 entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
+                weeklyRecurring,
               });
               setEntryUpdadingId(id);
               open();
