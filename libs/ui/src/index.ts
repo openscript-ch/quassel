@@ -65,6 +65,7 @@ export {
   Select,
   type SelectProps,
   Stack,
+  Switch,
   Table,
   Text,
   Textarea,
