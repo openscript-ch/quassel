@@ -98,5 +98,4 @@ export {
   IconMinus,
 } from "@tabler/icons-react";
 
-export { DSVImport } from "react-dsv-import";
-export type { ColumnType } from "react-dsv-import";
+export { DSVImport, type ColumnType } from "react-dsv-import";
