@@ -5,6 +5,7 @@ import { useStore } from "@nanostores/react";
 import { $api } from "../../../../../stores/api";
 import { useEffect } from "react";
 import { components } from "../../../../../api.gen";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const messages = i18n("questionnaireRemarks", {
   title: "Add remarks",
@@ -21,6 +22,8 @@ type FormValues = {
 function QuestionnaireRemarks() {
   const n = useNavigate();
   const p = Route.useParams();
+
+  const c = useQueryClient();
 
   const t = useStore(messages);
 
@@ -49,6 +52,9 @@ function QuestionnaireRemarks() {
     if (isSameOrAfter(new Date(Date.parse(questionnaire.endedAt)), new Date(), "month")) {
       n({ to: "/questionnaire/$id/overview", params: p });
     } else {
+      await c.invalidateQueries(
+        $api.queryOptions("get", "/participants/{id}", { params: { path: { id: questionnaire.participant.id.toString() } } })
+      );
       n({ to: "/questionnaire/new" });
     }
   };
