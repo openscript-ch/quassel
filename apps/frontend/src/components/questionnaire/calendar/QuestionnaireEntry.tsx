@@ -1,9 +1,9 @@
 import { EventImpl } from "@fullcalendar/core/internal";
-import { ExtendedEvent } from "../../../routes/_auth/questionnaire/_questionnaire/$id/entries";
 import { IconRepeat, Stack, Text } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { params } from "@nanostores/i18n";
 import { useStore } from "@nanostores/react";
+import { ExtendedEvent } from "./EntryCalendar";
 
 type QuestionnaireEntryProps = {
   event: EventImpl;
