@@ -50,7 +50,7 @@ function QuestionnaireRemarks() {
     await onSave({ ...values, completedAt: new Date().toISOString() });
 
     if (isSameOrAfter(new Date(Date.parse(questionnaire.endedAt)), new Date(), "month")) {
-      n({ to: "/questionnaire/$id/overview", params: p });
+      n({ to: "/questionnaire/completed" });
     } else {
       await c.invalidateQueries(
         $api.queryOptions("get", "/participants/{id}", { params: { path: { id: questionnaire.participant.id.toString() } } })

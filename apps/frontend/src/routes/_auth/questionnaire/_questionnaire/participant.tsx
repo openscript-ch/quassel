@@ -26,7 +26,10 @@ function QuestionnaireParticipant() {
     if (!latestQuestionnaire || latestQuestionnaire.completedAt) {
       n({ to: "/questionnaire/new" });
     } else {
-      n({ to: "/questionnaire/$id/entries", params: { id: latestQuestionnaire.id.toString() } });
+      n({
+        to: "/questionnaire/$id/entries",
+        params: { id: latestQuestionnaire.id.toString() },
+      });
     }
   };
 
