@@ -102,7 +102,12 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
   };
 
   return (
-    <form onSubmit={f.onSubmit(onSave)}>
+    <form
+      onSubmit={(event) => {
+        f.onSubmit(onSave)(event);
+        event.stopPropagation();
+      }}
+    >
       <Stack>
         <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
 
