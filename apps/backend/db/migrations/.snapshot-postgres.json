@@ -156,6 +156,16 @@
           "length": 255,
           "mappedType": "string"
         },
+        "color": {
+          "name": "color",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 255,
+          "mappedType": "string"
+        },
         "participant_id": {
           "name": "participant_id",
           "type": "bigint",
@@ -190,7 +200,14 @@
           "unique": true
         }
       ],
-      "checks": [],
+      "checks": [
+        {
+          "name": "carer_color_check",
+          "expression": "color ~* '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'",
+          "definition": "check ((color ~* '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'))",
+          "columnName": "color"
+        }
+      ],
       "foreignKeys": {
         "carer_participant_id_foreign": {
           "constraintName": "carer_participant_id_foreign",
