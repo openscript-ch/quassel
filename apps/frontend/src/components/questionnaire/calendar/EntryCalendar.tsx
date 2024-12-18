@@ -76,7 +76,8 @@ export function EntryCalendar({
           end: getDateFromTimeAndWeekday(endedAt, weekday),
           title: carer.name,
           extendedProps: { entryLanguages },
-          backgroundColor: theme.colors[theme.primaryColor][4],
+          backgroundColor: carer.color ?? theme.colors[theme.primaryColor][4],
+          borderColor: carer.color ?? theme.colors[theme.primaryColor][4],
         })) ?? []
       );
     }
