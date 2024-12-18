@@ -1,12 +1,12 @@
 import FullCalendar from "@fullcalendar/react";
-import interactionPlugin, { EventResizeStopArg } from "@fullcalendar/interaction";
+import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { EventDropArg, EventInput } from "@fullcalendar/core";
+import { EventChangeArg, EventInput } from "@fullcalendar/core";
 import { formatDate, getDateFromTimeAndWeekday, getTime, isSame, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 
@@ -65,17 +65,27 @@ export function EntryCalendar({
   const [entryUpdatingId, setEntryUpdadingId] = useState<number>();
   const [entryDraft, setEntryDraft] = useState<Partial<EntryFormValues>>();
 
-  const events: ExtendedEvent[] =
-    entries.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
-      id: id.toString(),
-      start: getDateFromTimeAndWeekday(startedAt, weekday),
-      end: getDateFromTimeAndWeekday(endedAt, weekday),
-      title: carer.name,
-      extendedProps: { entryLanguages },
-      backgroundColor: theme.colors[theme.primaryColor][4],
-    })) ?? [];
+  const [events, setEvents] = useState<ExtendedEvent[]>([]);
 
-  const handleMove = ({ event: { id, start, end } }: EventDropArg | EventResizeStopArg) => {
+  useEffect(() => {
+    if (entries) {
+      setEvents(
+        entries.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
+          id: id.toString(),
+          start: getDateFromTimeAndWeekday(startedAt, weekday),
+          end: getDateFromTimeAndWeekday(endedAt, weekday),
+          title: carer.name,
+          extendedProps: { entryLanguages },
+          backgroundColor: theme.colors[theme.primaryColor][4],
+        })) ?? []
+      );
+    }
+  }, [entries]);
+
+  const handleEventChange = ({ event }: EventChangeArg) => {
+    const { id, start, end } = event;
+    setEvents(events.map((e) => (e.id === id ? { ...e, start: start!, end: end! } : e)));
+
     onUpdateEntry(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!) }, start!.getDay());
   };
 
@@ -127,8 +137,7 @@ export function EntryCalendar({
           setEntryUpdadingId(id);
           open();
         }}
-        eventResize={handleMove}
-        eventDrop={handleMove}
+        eventChange={handleEventChange}
         eventContent={({ event }) => <QuestionnaireEntry event={event} />}
       />
     </>
