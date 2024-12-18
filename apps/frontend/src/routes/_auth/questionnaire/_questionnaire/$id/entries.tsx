@@ -9,6 +9,7 @@ import {
   Modal,
   getTime,
   notifications,
+  isSame,
 } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
@@ -162,6 +163,7 @@ function QuestionnaireEntries() {
             plugins={[timeGridPlugin, interactionPlugin]}
             editable
             events={events}
+            selectAllow={({ start, end }) => isSame("day", start, end)}
             selectable
             select={({ start, end }) => {
               setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end) });
