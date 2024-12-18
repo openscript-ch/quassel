@@ -1,9 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Button, TextInput, useForm } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 import { components } from "../../../../api.gen";
-
-type FormValues = components["schemas"]["CarerCreationDto"];
+import { CarerForm } from "../../../../components/CarerForm";
 
 function AdministrationCarersNew() {
   const n = useNavigate();
@@ -12,27 +10,12 @@ function AdministrationCarersNew() {
       n({ to: "/administration/carers" });
     },
   });
-  const f = useForm<FormValues>({
-    mode: "uncontrolled",
-    initialValues: {
-      name: "",
-    },
-  });
-  const handleSubmit = (values: FormValues) => {
+
+  const handleSubmit = (values: components["schemas"]["CarerCreationDto"]) => {
     createCarerMutation.mutate({ body: values });
   };
 
-  return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="text" {...f.getInputProps("name")} required />
-
-        <Button type="submit" fullWidth mt="xl" loading={createCarerMutation.isPending}>
-          Create
-        </Button>
-      </form>
-    </>
-  );
+  return <CarerForm onSave={handleSubmit} loading={createCarerMutation.isPending} />;
 }
 
 export const Route = createFileRoute("/_auth/administration/carers/new")({

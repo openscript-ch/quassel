@@ -54,6 +54,8 @@ export {
   Checkbox,
   Combobox,
   Container,
+  ColorInput,
+  ColorSwatch,
   Divider,
   Flex,
   Group,
@@ -97,6 +99,8 @@ export {
   IconCalendarWeek,
   IconMapSearch,
   IconMinus,
+  IconRepeat,
 } from "@tabler/icons-react";
 
+export { uzhColors } from "./theme/uzh";
 export { DSVImport, type ColumnType } from "react-dsv-import";

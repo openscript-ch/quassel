@@ -1,4 +1,4 @@
-import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
+import { Check, Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Participant } from "../../research/participants/participant.entity";
 import { Entry } from "../../research/entries/entry.entity";
@@ -7,6 +7,10 @@ import { Entry } from "../../research/entries/entry.entity";
 export class Carer extends BaseEntity {
   @Property({ unique: true })
   name!: string;
+
+  @Check<Carer>({ expression: (columns) => `${columns.color} ~* '^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$'` })
+  @Property()
+  color?: string;
 
   @ManyToOne()
   participant?: Participant;

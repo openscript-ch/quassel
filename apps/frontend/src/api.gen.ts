@@ -494,6 +494,11 @@ export interface components {
              * @example Grandmother
              */
             name: string;
+            /**
+             * @description The color used to display entries in the calendar
+             * @example #ffffff
+             */
+            color?: string;
             participant?: number;
         };
         StudyDto: {
@@ -574,6 +579,11 @@ export interface components {
              * @example Grandmother
              */
             name: string;
+            /**
+             * @description The color used to display entries in the calendar
+             * @example #ffffff
+             */
+            color?: string;
             participant?: components["schemas"]["ParticipantDto"];
             entries: number[];
         };
@@ -583,6 +593,11 @@ export interface components {
              * @example Grandmother
              */
             name?: string;
+            /**
+             * @description The color used to display entries in the calendar
+             * @example #ffffff
+             */
+            color?: string;
             participant?: number;
         };
         LanguageCreationDto: {
@@ -758,6 +773,11 @@ export interface components {
              * @example Grandmother
              */
             name: string;
+            /**
+             * @description The color used to display entries in the calendar
+             * @example #ffffff
+             */
+            color?: string;
             participant?: components["schemas"]["ParticipantDto"];
             entries: number[];
         };
