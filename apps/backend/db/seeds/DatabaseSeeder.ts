@@ -58,21 +58,21 @@ export class DatabaseSeeder extends Seeder {
     ];
 
     const carers: CarerCreationDto[] = [
-      { name: "Mutter, Mother" },
-      { name: "Vater, Father" },
-      { name: "Grossmutter, Grandmother" },
-      { name: "Grossvater, Grandfather" },
-      { name: "Schwester, Sister" },
-      { name: "Bruder, Brother" },
-      { name: "Tante, Aunt" },
-      { name: "Onkel, Uncle" },
-      { name: "KiTa, Day care centre" },
-      { name: "Spielgruppe, Playgroup" },
-      { name: "Turnen, Gymnastics" },
-      { name: "Kindergarten, Kindergarten" },
-      { name: "Hort, After-school care" },
-      { name: "Kinderbetreuung, Nanny / Babysitter" },
-      { name: "Nachbar, Neighbour" },
+      { name: "Mutter, Mother", color: "#BF0D3E" },
+      { name: "Vater, Father", color: "#0028A5" },
+      { name: "Grossmutter, Grandmother", color: "#F3537F" },
+      { name: "Grossvater, Grandfather", color: "#3062FF" },
+      { name: "Schwester, Sister", color: "#FBC6D4" },
+      { name: "Bruder, Brother", color: "#BACBFF" },
+      { name: "Tante, Aunt", color: "#8F0A2E" },
+      { name: "Onkel, Uncle", color: "#001E7C" },
+      { name: "KiTa, Day care centre", color: "#FFF4DA" },
+      { name: "Spielgruppe, Playgroup", color: "#ECF6D6" },
+      { name: "Turnen, Gymnastics", color: "#FFE9B5" },
+      { name: "Kindergarten, Kindergarten", color: "#DBEDAD" },
+      { name: "Hort, After-school care", color: "#FFDE8F" },
+      { name: "Kinderbetreuung, Nanny / Babysitter", color: "#FEB799" },
+      { name: "Nachbar, Neighbour", color: "#FC4C02" },
     ];
 
     const languages: LanguageCreationDto[] = [
