@@ -20,9 +20,17 @@ function QuestionnaireParticipant() {
 
   const questionnaire = useStore($questionnaire);
   const birthday = questionnaire?.participant.birthday;
+  const latestQuestionnaire = questionnaire?.participant.latestQuestionnaire;
 
   const handleSubmit = () => {
-    n({ to: "/questionnaire/new" });
+    if (!latestQuestionnaire || latestQuestionnaire.completedAt) {
+      n({ to: "/questionnaire/new" });
+    } else {
+      n({
+        to: "/questionnaire/$id/entries",
+        params: { id: latestQuestionnaire.id.toString() },
+      });
+    }
   };
 
   return (

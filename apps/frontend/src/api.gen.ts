@@ -296,6 +296,23 @@ export interface paths {
         patch: operations["QuestionnairesController_update"];
         trace?: never;
     };
+    "/questionnaires/{id}/complete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Completes the questionnaire by ID */
+        patch: operations["QuestionnairesController_complete"];
+        trace?: never;
+    };
     "/entry-languages": {
         parameters: {
             query?: never;
@@ -503,25 +520,31 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt?: string;
+            startedAt: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt?: string;
+            endedAt: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title?: string;
+            title: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
         };
         ParticipantDto: {
             /**
@@ -698,25 +721,31 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt?: string;
+            startedAt: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt?: string;
+            endedAt: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title?: string;
+            title: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
         };
         CarerDto: {
             /**
@@ -854,23 +883,29 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt?: string;
+            startedAt: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt?: string;
+            endedAt: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title?: string;
+            title: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
             study: number;
             participant: number;
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
@@ -886,25 +921,31 @@ export interface components {
              * @description The starting date of the questionnaire
              * @example 2024-11-01T07:00:00.000Z
              */
-            startedAt?: string;
+            startedAt: string;
             /**
              * Format: date-time
              * @description The ending date of the questionnaire
              * @example 2024-11-01T08:00:00.00Z
              */
-            endedAt?: string;
+            endedAt: string;
             /**
              * @description The title of the questionnaire
              * @example First few months
              */
-            title?: string;
+            title: string;
             /**
              * @description The remark of the questionnaire
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            study?: components["schemas"]["StudyDto"];
-            participant?: components["schemas"]["ParticipantDto"];
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
+            study: components["schemas"]["StudyDto"];
+            participant: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
         };
         QuestionnaireMutationDto: {
@@ -930,6 +971,12 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
             study?: number;
             participant?: number;
@@ -1932,6 +1979,27 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["QuestionnaireResponseDto"];
+                };
+            };
+        };
+    };
+    QuestionnairesController_complete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": Record<string, never>;
                 };
             };
         };

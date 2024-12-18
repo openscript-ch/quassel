@@ -5,6 +5,7 @@ import { PeriodForm, PeriodFormValues } from "../../../../components/questionnai
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { useEffect } from "react";
+import { getNext } from "@quassel/ui";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -33,6 +34,8 @@ function QuestionnaireNew() {
 
   const prevEndDate = questionnaire?.participant.latestQuestionnaire?.endedAt;
 
+  const startDate = prevEndDate ? getNext("month", new Date(prevEndDate)) : participant?.birthday ? new Date(participant.birthday) : undefined;
+
   const onSave = (form: PeriodFormValues) => {
     const {
       title,
@@ -50,7 +53,7 @@ function QuestionnaireNew() {
   return (
     <>
       <h3>{t.title}</h3>
-      <PeriodForm onSave={onSave} prevEndDate={prevEndDate ? new Date(prevEndDate) : undefined} actionLabel={t.formAction} />
+      {startDate && <PeriodForm onSave={onSave} startDate={startDate} actionLabel={t.formAction} />}
     </>
   );
 }

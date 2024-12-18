@@ -283,7 +283,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "length": 6,
           "mappedType": "datetime"
         },
@@ -293,7 +293,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "length": 6,
           "mappedType": "datetime"
         },
@@ -303,7 +303,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "length": 255,
           "mappedType": "string"
         },
@@ -316,13 +316,23 @@
           "nullable": true,
           "mappedType": "text"
         },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 6,
+          "mappedType": "datetime"
+        },
         "study_id": {
           "name": "study_id",
           "type": "int",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "mappedType": "integer"
         },
         "participant_id": {
@@ -331,7 +341,7 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
           "mappedType": "bigint"
         }
       },
@@ -361,7 +371,6 @@
             "id"
           ],
           "referencedTableName": "public.study",
-          "deleteRule": "set null",
           "updateRule": "cascade"
         },
         "questionnaire_participant_id_foreign": {
@@ -374,7 +383,6 @@
             "id"
           ],
           "referencedTableName": "public.participant",
-          "deleteRule": "set null",
           "updateRule": "cascade"
         }
       },

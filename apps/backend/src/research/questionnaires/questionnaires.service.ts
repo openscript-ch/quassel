@@ -1,6 +1,6 @@
 import { EntityRepository, EntityManager, UniqueConstraintViolationException, FilterQuery } from "@mikro-orm/core";
 import { InjectRepository } from "@mikro-orm/nestjs";
-import { Injectable, UnprocessableEntityException } from "@nestjs/common";
+import { BadRequestException, Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { QuestionnaireCreationDto, QuestionnaireMutationDto } from "./questionnaire.dto";
 import { Questionnaire } from "./questionnaire.entity";
 import { Entry } from "../entries/entry.entity";
@@ -20,6 +20,10 @@ export class QuestionnairesService {
     questionnaire.assign(questionnaireCreationDto, { em: this.em });
 
     const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
+
+    if (prevQuestionnaire && !prevQuestionnaire.completedAt)
+      throw new BadRequestException("Complete the previous questionniare before starting a new one.");
+
     this.validateStartDate(questionnaire, prevQuestionnaire);
 
     await prevQuestionnaire?.populate(["entries.entryLanguages"]);
