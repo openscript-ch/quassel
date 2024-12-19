@@ -9,6 +9,7 @@ import { EntityForm, EntryFormValues } from "./EntryForm";
 import { useEffect, useState } from "react";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
+import { GapsPerDay } from "../../../utils/entry";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -27,10 +28,13 @@ const calendarBaseConfig: FullCalendar["props"] = {
   eventLongPressDelay: 400,
 };
 
-export type ExtendedEvent = EventInput & { extendedProps: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][] } };
+export type ExtendedEvent = EventInput & {
+  extendedProps?: { entryLanguages: components["schemas"]["EntryLanguageResponseDto"][]; weeklyRecurring?: number };
+};
 
 export type EntryCalendarProps = {
   entries: components["schemas"]["QuestionnaireEntryDto"][];
+  gaps?: GapsPerDay;
   onAddEntry: (entry: EntryFormValues, weekday: number) => Promise<unknown>;
   onUpdateEntry: (id: number, entry: Partial<EntryFormValues>, weekday: number) => Promise<unknown>;
   onDeleteEntry: (id: number) => Promise<unknown>;
@@ -47,6 +51,7 @@ const messages = i18n("entryCalendar", {
 
 export function EntryCalendar({
   entries,
+  gaps,
   onAddEntry,
   onUpdateEntry,
   onDeleteEntry,
@@ -69,18 +74,26 @@ export function EntryCalendar({
 
   useEffect(() => {
     if (entries) {
-      setEvents(
-        entries.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
+      setEvents([
+        ...entries.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
           id: id.toString(),
           start: getDateFromTimeAndWeekday(startedAt, weekday),
           end: getDateFromTimeAndWeekday(endedAt, weekday),
           title: carer.name,
           extendedProps: { entryLanguages },
           backgroundColor: theme.colors[theme.primaryColor][4],
-        })) ?? []
-      );
+        })),
+        ...(gaps ?? []).flatMap((dailyGaps, index) =>
+          dailyGaps.map((gap) => ({
+            start: getDateFromTimeAndWeekday(gap[0], index),
+            end: getDateFromTimeAndWeekday(gap[1], index),
+            backgroundColor: theme.colors.uzhBerry[4],
+            display: "background",
+          }))
+        ),
+      ]);
     }
-  }, [entries]);
+  }, [entries, gaps]);
 
   const handleEventChange = ({ event }: EventChangeArg) => {
     const { id, start, end } = event;

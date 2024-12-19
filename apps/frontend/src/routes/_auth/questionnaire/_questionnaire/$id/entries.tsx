@@ -6,9 +6,9 @@ import { $api } from "../../../../../stores/api";
 import { EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryCalendar } from "../../../../../components/questionnaire/calendar/EntryCalendar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { components } from "../../../../../api.gen";
-import { resolveGaps } from "../../../../../utils/entry";
+import { GapsPerDay, resolveGaps } from "../../../../../utils/entry";
 
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
@@ -25,20 +25,6 @@ function QuestionnaireEntries() {
   const t = useStore(messages);
 
   const c = useQueryClient();
-
-  const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
-    initialValues: {
-      entries: [],
-    },
-    validate: {
-      entries: (value) => {
-        const gaps = resolveGaps(value);
-        console.log(gaps);
-
-        return !!gaps.length;
-      },
-    },
-  });
 
   const createMutation = $api.useMutation("post", "/entries");
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
@@ -93,6 +79,22 @@ function QuestionnaireEntries() {
     return deleteMutation.mutateAsync({ params: { path: { id: id.toString() } } }, { onSuccess: reloadEntries });
   };
 
+  const [gaps, setGaps] = useState<GapsPerDay>();
+
+  const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
+    initialValues: {
+      entries: [],
+    },
+    validate: {
+      entries: (value) => {
+        const gaps = resolveGaps(value);
+        setGaps(gaps);
+
+        return gaps.some((dailyGaps) => dailyGaps.length);
+      },
+    },
+  });
+
   const handleSubmit = () => {
     n({ to: "/questionnaire/$id/remarks", params: p });
   };
@@ -107,6 +109,7 @@ function QuestionnaireEntries() {
         <Stack>
           <EntryCalendar
             entries={questionnaire.entries ?? []}
+            gaps={gaps}
             onAddEntry={handleCreate}
             onUpdateEntry={handleUpdate}
             onDeleteEntry={handleDelete}
