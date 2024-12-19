@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
-import { EventChangeArg, EventInput } from "@fullcalendar/core";
+import { DateSelectArg, EventChangeArg, EventInput } from "@fullcalendar/core";
 import { formatDate, getDateFromTimeAndWeekday, getTime, isSame, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { GapsPerDay } from "../../../utils/entry";
+import { EventImpl } from "@fullcalendar/core/internal";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -96,6 +97,27 @@ export function EntryCalendar({
     }
   }, [entries, gaps]);
 
+  const setupEntryUpdate = (event: EventImpl) => {
+    const { carer, entryLanguages, id, weekday, ...rest } = entries?.find((entry) => entry.id.toString() === event.id) ?? {};
+
+    setEntryDraft({
+      carer: carer?.id,
+      entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
+      ...rest,
+      startedAt: getTime(event.start!),
+      endedAt: getTime(event.end!),
+    });
+    setSelectedWeekday(weekday);
+    setEntryUpdadingId(id);
+    open();
+  };
+
+  const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
+    setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!) });
+    setSelectedWeekday(start!.getDay());
+    open();
+  };
+
   const handleEventChange = ({ event }: EventChangeArg) => {
     const { id, start, end } = event;
     setEvents(events.map((e) => (e.id === id ? { ...e, start: start!, end: end! } : e)));
@@ -132,24 +154,13 @@ export function EntryCalendar({
         {...calendarBaseConfig}
         plugins={[timeGridPlugin, interactionPlugin]}
         events={events}
-        select={({ start, end }) => {
-          setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end) });
-          setSelectedWeekday(start.getDay());
-          open();
-        }}
+        select={setupEntryCreate}
         eventClick={({ event }) => {
-          const { carer, entryLanguages, id, weekday, ...rest } = entries?.find((entry) => entry.id.toString() === event.id) ?? {};
-
-          setEntryDraft({
-            carer: carer?.id,
-            entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
-            ...rest,
-            startedAt: getTime(event.start!),
-            endedAt: getTime(event.end!),
-          });
-          setSelectedWeekday(weekday);
-          setEntryUpdadingId(id);
-          open();
+          if (event.display === "background") {
+            setupEntryCreate(event);
+          } else {
+            setupEntryUpdate(event);
+          }
         }}
         eventChange={handleEventChange}
         eventContent={({ event }) => <QuestionnaireEntry event={event} />}
