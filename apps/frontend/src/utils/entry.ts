@@ -1,6 +1,6 @@
 import { components } from "../api.gen";
 
-type Entry = components["schemas"]["QuestionnaireEntryDto"];
+export type Entry = components["schemas"]["QuestionnaireEntryDto"];
 export type Gap = [string, string];
 export type GapsPerDay = [Gap[], Gap[], Gap[], Gap[], Gap[], Gap[], Gap[]];
 
@@ -13,7 +13,7 @@ const groupByWeekday = (entries: Entry[]) =>
 export const resolveGaps = (entries: Entry[]) => groupByWeekday(entries).map(resolveGapsInDay) as GapsPerDay;
 
 // inspired by: https://cs.stackexchange.com/questions/133276/algorithm-to-compute-the-gaps-between-a-set-of-intervals
-const resolveGapsInDay = (entriesOfSameDay: Entry[]) => {
+export const resolveGapsInDay = (entriesOfSameDay: Entry[]) => {
   const entriesSortedByStart = entriesOfSameDay.toSorted((a, b) => a.startedAt.localeCompare(b.startedAt));
 
   const gaps: Gap[] = [];
