@@ -1,4 +1,4 @@
-import { Button, Group, Stack, notifications } from "@quassel/ui";
+import { Button, Group, Stack, notifications, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -6,6 +6,9 @@ import { $api } from "../../../../../stores/api";
 import { EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryCalendar } from "../../../../../components/questionnaire/calendar/EntryCalendar";
+import { useEffect } from "react";
+import { components } from "../../../../../api.gen";
+import { resolveGaps } from "../../../../../utils/entry";
 
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
@@ -22,6 +25,20 @@ function QuestionnaireEntries() {
   const t = useStore(messages);
 
   const c = useQueryClient();
+
+  const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
+    initialValues: {
+      entries: [],
+    },
+    validate: {
+      entries: (value) => {
+        const gaps = resolveGaps(value);
+        console.log(gaps);
+
+        return !!gaps.length;
+      },
+    },
+  });
 
   const createMutation = $api.useMutation("post", "/entries");
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
@@ -80,9 +97,13 @@ function QuestionnaireEntries() {
     n({ to: "/questionnaire/$id/remarks", params: p });
   };
 
+  useEffect(() => {
+    f.setValues({ entries: questionnaire.entries });
+  }, [questionnaire]);
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
           <EntryCalendar
             entries={questionnaire.entries ?? []}
