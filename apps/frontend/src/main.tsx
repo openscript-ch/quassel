@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@quassel/ui/style.css";
 import { ThemeProvider } from "@quassel/ui";
@@ -8,6 +8,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 const router = createRouter({ routeTree, context: { queryClient }, defaultPreload: "intent", defaultPreloadStaleTime: 0 });
+const TanStackRouterDevtools =
+  process.env.NODE_ENV === "production"
+    ? () => null
+    : React.lazy(() =>
+        import("@tanstack/router-devtools").then((res) => ({
+          default: res.TanStackRouterDevtools,
+        }))
+      );
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -20,6 +28,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <RouterProvider router={router} />
+        <TanStackRouterDevtools router={router} position="bottom-right" />
       </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>
