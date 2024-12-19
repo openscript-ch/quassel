@@ -1,5 +1,15 @@
 # @quassel/ui
 
+## 0.1.2
+
+### Patch Changes
+
+- f29044f: Introduce color field per carer for calendar entries
+- caa60ae: Add participant csv import
+- 53d5384: Improve questionnaire completion handling
+- faf1343: Allow custom carers and languages per participant
+- 923f6c2: Introduce setting weeklyRecurring for entries
+
 ## 0.1.1
 
 ### Patch Changes

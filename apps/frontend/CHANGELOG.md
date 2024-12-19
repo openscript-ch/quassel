@@ -1,5 +1,24 @@
 # @quassel/frontend
 
+## 0.2.3
+
+### Patch Changes
+
+- 3124f27: Enhance UX of calendar event handling
+- f29044f: Introduce color field per carer for calendar entries
+- caa60ae: Add participant csv import
+- 7e7f2c9: Disable delete for assistants
+- 53d5384: Improve questionnaire completion handling
+- faf1343: Allow custom carers and languages per participant
+- bed152e: Enhance content displayed on calendar entries
+- 923f6c2: Introduce setting weeklyRecurring for entries
+- Updated dependencies [f29044f]
+- Updated dependencies [caa60ae]
+- Updated dependencies [53d5384]
+- Updated dependencies [faf1343]
+- Updated dependencies [923f6c2]
+  - @quassel/ui@0.1.2
+
 ## 0.2.2
 
 ### Patch Changes
