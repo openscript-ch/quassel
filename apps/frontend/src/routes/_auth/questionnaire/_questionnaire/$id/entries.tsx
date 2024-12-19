@@ -1,4 +1,4 @@
-import { Button, Group, Stack, notifications } from "@quassel/ui";
+import { Button, Group, Modal, Stack, notifications, useDisclosure, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -6,6 +6,9 @@ import { $api } from "../../../../../stores/api";
 import { EntryFormValues } from "../../../../../components/questionnaire/calendar/EntryForm";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryCalendar } from "../../../../../components/questionnaire/calendar/EntryCalendar";
+import { useEffect, useState } from "react";
+import { components } from "../../../../../api.gen";
+import { GapsPerDay, resolveGaps } from "../../../../../utils/entry";
 
 const messages = i18n("questionnaireEntries", {
   formAction: "Continue",
@@ -13,6 +16,9 @@ const messages = i18n("questionnaireEntries", {
   addEntityLabel: "Add",
   notificationSuccessCreateLanguage: "Successfully add a new language.",
   notificationSuccessCreateCarer: "Successfully add a new carer.",
+  gapsDialogTitle: "Gaps detected in the calendar",
+  gapsDialogContinueAnyway: "Continue anyway",
+  gapsDialogHighlightGaps: "Highlight gaps",
 });
 
 function QuestionnaireEntries() {
@@ -76,16 +82,57 @@ function QuestionnaireEntries() {
     return deleteMutation.mutateAsync({ params: { path: { id: id.toString() } } }, { onSuccess: reloadEntries });
   };
 
+  const [gaps, setGaps] = useState<GapsPerDay>();
+  const [highlightGaps, setHighlightGaps] = useState(false);
+  const [gapsDialogOpened, { open, close }] = useDisclosure();
+
+  const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
+    initialValues: {
+      entries: [],
+    },
+    validate: {
+      entries: (value) => {
+        const gaps = resolveGaps(value);
+        setGaps(gaps);
+
+        const hasGaps = gaps.some(({ length }) => length);
+        if (hasGaps) open();
+
+        return hasGaps;
+      },
+    },
+  });
+
   const handleSubmit = () => {
     n({ to: "/questionnaire/$id/remarks", params: p });
   };
 
+  useEffect(() => {
+    f.setValues({ entries: questionnaire.entries });
+  }, [questionnaire]);
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
+          <Modal opened={gapsDialogOpened} onClose={close} centered title={t.gapsDialogTitle}>
+            <Group justify="flex-end">
+              <Button onClick={handleSubmit} variant="light" type="submit">
+                {t.gapsDialogContinueAnyway}
+              </Button>
+              <Button
+                onClick={() => {
+                  setHighlightGaps(true);
+                  close();
+                }}
+              >
+                {t.gapsDialogHighlightGaps}
+              </Button>
+            </Group>
+          </Modal>
           <EntryCalendar
             entries={questionnaire.entries ?? []}
+            gaps={highlightGaps ? gaps : undefined}
             onAddEntry={handleCreate}
             onUpdateEntry={handleUpdate}
             onDeleteEntry={handleDelete}
