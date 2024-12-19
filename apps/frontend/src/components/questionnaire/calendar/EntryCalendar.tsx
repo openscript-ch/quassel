@@ -75,12 +75,12 @@ export function EntryCalendar({
   useEffect(() => {
     if (entries) {
       setEvents([
-        ...entries.map(({ startedAt, endedAt, weekday, carer, entryLanguages, id }) => ({
+        ...entries.map(({ startedAt, endedAt, weekday, carer, weeklyRecurring, entryLanguages, id }) => ({
           id: id.toString(),
           start: getDateFromTimeAndWeekday(startedAt, weekday),
           end: getDateFromTimeAndWeekday(endedAt, weekday),
           title: carer.name,
-          extendedProps: { entryLanguages },
+          extendedProps: { entryLanguages, weeklyRecurring },
           backgroundColor: carer.color ?? theme.colors[theme.primaryColor][4],
           borderColor: carer.color ?? theme.colors[theme.primaryColor][4],
         })),
