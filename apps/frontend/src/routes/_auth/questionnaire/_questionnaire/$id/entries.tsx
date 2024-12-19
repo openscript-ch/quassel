@@ -1,4 +1,4 @@
-import { Button, Group, Stack, notifications, useForm } from "@quassel/ui";
+import { Button, Group, Modal, Stack, notifications, useDisclosure, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -16,6 +16,9 @@ const messages = i18n("questionnaireEntries", {
   addEntityLabel: "Add",
   notificationSuccessCreateLanguage: "Successfully add a new language.",
   notificationSuccessCreateCarer: "Successfully add a new carer.",
+  gapsDialogTitle: "Gaps detected in the calendar",
+  gapsDialogContinueAnyway: "Continue anyway",
+  gapsDialogHighlightGaps: "Highlight gaps",
 });
 
 function QuestionnaireEntries() {
@@ -80,6 +83,8 @@ function QuestionnaireEntries() {
   };
 
   const [gaps, setGaps] = useState<GapsPerDay>();
+  const [highlightGaps, setHighlightGaps] = useState(false);
+  const [gapsDialogOpened, { open, close }] = useDisclosure();
 
   const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
     initialValues: {
@@ -90,7 +95,10 @@ function QuestionnaireEntries() {
         const gaps = resolveGaps(value);
         setGaps(gaps);
 
-        return gaps.some((dailyGaps) => dailyGaps.length);
+        const hasGaps = gaps.some(({ length }) => length);
+        if (hasGaps) open();
+
+        return hasGaps;
       },
     },
   });
@@ -107,9 +115,24 @@ function QuestionnaireEntries() {
     <>
       <form onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
+          <Modal opened={gapsDialogOpened} onClose={close} centered title={t.gapsDialogTitle}>
+            <Group justify="flex-end">
+              <Button onClick={handleSubmit} variant="light" type="submit">
+                {t.gapsDialogContinueAnyway}
+              </Button>
+              <Button
+                onClick={() => {
+                  setHighlightGaps(true);
+                  close();
+                }}
+              >
+                {t.gapsDialogHighlightGaps}
+              </Button>
+            </Group>
+          </Modal>
           <EntryCalendar
             entries={questionnaire.entries ?? []}
-            gaps={gaps}
+            gaps={highlightGaps ? gaps : undefined}
             onAddEntry={handleCreate}
             onUpdateEntry={handleUpdate}
             onDeleteEntry={handleDelete}
