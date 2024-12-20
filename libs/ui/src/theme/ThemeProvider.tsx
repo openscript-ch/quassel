@@ -34,7 +34,7 @@ export const theme: MantineThemeOverride = {
     uzhBlack: convertUZHColorsToMantine(uzhColors.uzhBlack),
     uzhWhite: convertUZHColorsToMantine(uzhColors.uzhWhite),
   },
-  primaryColor: "uzhBlue",
+  primaryColor: "uzhGold",
 };
 
 export function ThemeProvider({ children, ...args }: ThemeProviderProps) {
