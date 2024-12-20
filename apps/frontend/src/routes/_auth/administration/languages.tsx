@@ -1,17 +1,11 @@
-import { Title, Paper } from "@quassel/ui";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { i18n } from "../../../stores/i18n";
 
-function AdministrationLanguages() {
-  return (
-    <>
-      <Title>Languages</Title>
-      <Paper my="lg">
-        <Outlet />
-      </Paper>
-    </>
-  );
-}
+const messages = i18n("AdministrationLanguagesRoute", {
+  title: "Languages",
+});
 
 export const Route = createFileRoute("/_auth/administration/languages")({
-  component: AdministrationLanguages,
+  beforeLoad: () => ({ title: messages.get().title }),
+  component: Outlet,
 });

@@ -1,17 +1,11 @@
-import { Title, Paper } from "@quassel/ui";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { i18n } from "../../../stores/i18n";
 
-function AdministrationStudies() {
-  return (
-    <>
-      <Title>Studies</Title>
-      <Paper my="lg">
-        <Outlet />
-      </Paper>
-    </>
-  );
-}
+const messages = i18n("AdministrationStudiesRoute", {
+  title: "Studies",
+});
 
 export const Route = createFileRoute("/_auth/administration/studies")({
-  component: AdministrationStudies,
+  beforeLoad: () => ({ title: messages.get().title }),
+  component: Outlet,
 });

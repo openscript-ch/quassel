@@ -1,10 +1,15 @@
-import { Title } from "@quassel/ui";
 import { createFileRoute } from "@tanstack/react-router";
+import { i18n } from "../../../stores/i18n";
 
-export const Route = createFileRoute("/_auth/administration/")({
-  component: Index,
+const messages = i18n("AdministrationDashboardRoute", {
+  title: "Dashboard",
 });
 
 function Index() {
-  return <Title>Welcome to the administration interface!</Title>;
+  return null;
 }
+
+export const Route = createFileRoute("/_auth/administration/")({
+  beforeLoad: () => ({ title: messages.get().title }),
+  component: Index,
+});
