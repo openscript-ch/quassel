@@ -16,9 +16,10 @@ function AdministrationLayout() {
 
   const matches = useMatches();
   const title = matches[matches.length - 2]?.context.title;
+  const actions = matches[matches.length - 1]?.context.actions;
 
   return (
-    <ContentShell title={title || messages.get().title}>
+    <ContentShell title={title || messages.get().title} actions={actions}>
       <Outlet />
     </ContentShell>
   );

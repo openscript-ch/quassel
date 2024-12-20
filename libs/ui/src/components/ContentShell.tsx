@@ -1,24 +1,19 @@
-import { Paper, Title } from "@mantine/core";
-import { PropsWithChildren, ReactElement, useState } from "react";
-import { ContentActionsContext } from "../contexts/ContentActionContext";
+import { Flex, Paper, Title } from "@mantine/core";
+import { PropsWithChildren, ReactElement } from "react";
 
 type Props = PropsWithChildren<{
   title: string;
+  actions?: ReactElement[];
 }>;
 
-export function ContentShell({ title, children }: Props) {
-  const [actions, setActions] = useState<ReactElement[]>([]);
-
+export function ContentShell({ title, actions, children }: Props) {
   return (
-    <ContentActionsContext.Provider
-      value={{
-        actions,
-        registerActions: setActions,
-      }}
-    >
-      <Title>{title}</Title>
-      {actions}
+    <>
+      <Flex justify="space-between">
+        <Title>{title}</Title>
+        <div>{actions}</div>
+      </Flex>
       <Paper my="lg">{children}</Paper>
-    </ContentActionsContext.Provider>
+    </>
   );
 }
