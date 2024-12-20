@@ -18,12 +18,9 @@
 
 }
 
-.control {
-}
-
 .highlight {
   position: relative;
-  background-color: var(--mantine-color-blue-light);
+  background-color: var(--mantine-primary-color-light);
   border-radius: var(--mantine-radius-sm);
   padding: rem(4px) rem(12px);
 }
