@@ -24,17 +24,15 @@ function AdministrationUsersNew() {
   };
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Email" type="email" {...f.getInputProps("email")} required />
-        <PasswordInput label="Password" {...f.getInputProps("password")} autoComplete="new-password" required />
-        <Select label="Role" {...f.getInputProps("role")} data={userCreationDtoRoleValues} />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Email" type="email" {...f.getInputProps("email")} required />
+      <PasswordInput label="Password" {...f.getInputProps("password")} autoComplete="new-password" required />
+      <Select label="Role" {...f.getInputProps("role")} data={userCreationDtoRoleValues} />
 
-        <Button type="submit" fullWidth mt="xl" loading={createUserMutation.isPending}>
-          Create
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={createUserMutation.isPending}>
+        Create
+      </Button>
+    </form>
   );
 }
 

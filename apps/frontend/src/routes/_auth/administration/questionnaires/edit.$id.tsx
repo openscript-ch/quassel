@@ -40,15 +40,13 @@ function AdministrationQuestionnairesEdit() {
   }, [isSuccess, data]);
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="name" {...f.getInputProps("title")} />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Name" type="name" {...f.getInputProps("title")} />
 
-        <Button type="submit" fullWidth mt="xl" loading={editQuestionnaireMutation.isPending}>
-          Change
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={editQuestionnaireMutation.isPending}>
+        Change
+      </Button>
+    </form>
   );
 }
 

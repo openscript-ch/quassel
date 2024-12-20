@@ -25,16 +25,14 @@ function AdministrationStudiesNew() {
   };
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
-        <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
+      <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={createStudyMutation.isPending}>
-          Create
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={createStudyMutation.isPending}>
+        Create
+      </Button>
+    </form>
   );
 }
 

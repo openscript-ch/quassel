@@ -24,16 +24,14 @@ function AdministrationLanguagesNew() {
   };
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="text" {...f.getInputProps("name")} required />
-        <TextInput label="IETF BCP 47" type="text" {...f.getInputProps("ietfBcp47")} />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Name" type="text" {...f.getInputProps("name")} required />
+      <TextInput label="IETF BCP 47" type="text" {...f.getInputProps("ietfBcp47")} />
 
-        <Button type="submit" fullWidth mt="xl" loading={createLanguageMutation.isPending}>
-          Create
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={createLanguageMutation.isPending}>
+        Create
+      </Button>
+    </form>
   );
 }
 
