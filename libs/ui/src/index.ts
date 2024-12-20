@@ -29,6 +29,7 @@ import "@mantine/core/styles/Title.css";
 import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
+import "@mantine/core/styles/Radio.css";
 
 import "@mantine/dates/styles.css";
 
@@ -65,6 +66,7 @@ export {
   NavLink,
   Paper,
   PasswordInput,
+  Radio,
   Select,
   type SelectProps,
   Stack,
