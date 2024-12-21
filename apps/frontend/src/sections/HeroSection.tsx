@@ -6,7 +6,7 @@ import { useStore } from "@nanostores/react";
 import { Link } from "@tanstack/react-router";
 
 const messages = i18n("heroSection", {
-  title: "Quassel",
+  title: "LEMON",
   subtitle: "Gather language exposure",
   toFormAction: "Questionnaire",
   toAdminAction: "Administration",
@@ -22,7 +22,7 @@ export function HeroSection() {
             <span className={classes.highlight}>{t.title}</span>
           </Title>
           <Text c="dimmed" mt="md">
-            {t.subtitle}
+            <b>L</b>anguage <b>E</b>xposure questionnaire for <b>M</b>ultilinguals <b>On</b>line
           </Text>
 
           <Group mt={30}>
@@ -34,7 +34,7 @@ export function HeroSection() {
             </Button>
           </Group>
         </div>
-        <img src={image} alt="Quassel family" className={classes.image} />
+        <img src={image} alt="Lemon family" className={classes.image} />
       </div>
     </Container>
   );
