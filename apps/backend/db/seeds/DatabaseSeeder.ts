@@ -18,12 +18,12 @@ export class DatabaseSeeder extends Seeder {
       {
         role: UserRole.ADMIN,
         email: "admin@example.com",
-        password: await getPasswordHash("Quassel*1234"),
+        password: await getPasswordHash("Lemon*1234"),
       },
       {
         role: UserRole.ASSISTANT,
         email: "assistant@example.com",
-        password: await getPasswordHash("Quassel*1234"),
+        password: await getPasswordHash("Lemon*1234"),
       },
     ];
 

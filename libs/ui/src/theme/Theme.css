@@ -7,19 +7,25 @@
   --fc-border-color: var(--mantine-color-default-border);
 }
 
-/* Page layout */
+.quassel-Logo {
+  max-height: 4rem;
+  width: auto;
+}
 
+/* Page layout */
 .mantine-AppShell-header,
 .mantine-AppShell-footer {
-  padding: var(--mantine-spacing-xl) var(--quassel-padding-x);
+  display: flex;
+  align-items: center;
+  padding-inline: var(--quassel-padding-x);
+
+  >* {
+    flex: 1;
+  }
 }
 
 [data-admin] :is(.mantine-AppShell-header, .mantine-AppShell-footer) {
-  padding: var(--mantine-spacing-xl) var(--mantine-spacing-sm);
-}
-
-[data-admin] .mantine-AppShell-header .quassel-Logo {
-  width: calc(var(--app-shell-navbar-width) - var(--mantine-spacing-sm) - var(--group-gap));
+  padding-inline: var(--mantine-spacing-xl);
 }
 
 /* Components overrides */

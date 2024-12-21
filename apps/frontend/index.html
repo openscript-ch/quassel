@@ -1,33 +1,36 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quassel</title>
-    <link rel="icon" href="/favicon.ico" />
-    <style>
-      html {
-        height: 100%;
-      }
 
-      body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lemon</title>
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    html {
+      height: 100%;
+    }
 
-      #root {
-        min-height: 100%;
-      }
-    </style>
-    <script type="text/javascript">
-      window.env = {
-        apiUrl: '//REPLACE_WITH_API_URL'
-      };
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    #root {
+      min-height: 100%;
+    }
+  </style>
+  <script type="text/javascript">
+    window.env = {
+      apiUrl: '//REPLACE_WITH_API_URL'
+    };
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

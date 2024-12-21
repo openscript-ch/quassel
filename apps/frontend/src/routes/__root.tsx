@@ -15,6 +15,7 @@ import {
   IconCalendarWeek,
   IconMapSearch,
   Divider,
+  FooterLogos,
 } from "@quassel/ui";
 import { createRootRouteWithContext, Link, Outlet, RouteContext, useNavigate } from "@tanstack/react-router";
 import { version } from "../../package.json";
@@ -53,7 +54,7 @@ function Root() {
   return (
     <>
       <AppShell
-        header={{ height: 118 }}
+        header={{ height: 104 }}
         footer={{ height: 84 }}
         navbar={{ width: 300, breakpoint: "sm", collapsed: { desktop: !layoutStore.admin } }}
         padding="xl"
@@ -67,7 +68,7 @@ function Root() {
             {sessionStore.email && (
               <Group>
                 <Text>{sessionStore.email}</Text>
-                <Button leftSection={<IconLogout />} onClick={handleSignOut}>
+                <Button variant="outline" leftSection={<IconLogout />} onClick={handleSignOut}>
                   Sign out
                 </Button>
               </Group>
@@ -95,10 +96,16 @@ function Root() {
             <NavLink component={Link} to="/administration/users" leftSection={<IconUsers />} label="Users" />
           </AppShell.Navbar>
         )}
+
         <AppShell.Main>
           <Outlet />
         </AppShell.Main>
-        <AppShell.Footer>Version {version}</AppShell.Footer>
+        <AppShell.Footer>
+          <Group justify="space-between">
+            <FooterLogos />
+            Version {version}
+          </Group>
+        </AppShell.Footer>
       </AppShell>
     </>
   );

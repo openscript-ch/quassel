@@ -1,14 +1,15 @@
-import { Divider, Group, Text } from "@mantine/core";
-import Logo from "./Logo.svg?react";
+import { Group, Stack, Title } from "@mantine/core";
+import Logo from "../assets/Logo.svg?react";
 
 export function Brand() {
   return (
-    <Group gap={30}>
+    <Group className="quassel-Brand" gap="md">
       <Logo className="quassel-Logo" />
-      <Divider orientation="vertical" />
-      <Text size="xl" fw={600} c="black">
-        Quassel
-      </Text>
+      <Stack gap={0}>
+        <Title order={2} c="black">
+          LEMON
+        </Title>
+      </Stack>
     </Group>
   );
 }

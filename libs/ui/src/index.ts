@@ -43,6 +43,7 @@ export { formatDate, getTime, getDateFromTimeAndWeekday, getNext, isSameOrAfter,
 // custom components
 export { Brand } from "./components/Brand";
 export { ContentShell } from "./components/ContentShell";
+export { FooterLogos } from "./components/FooterLogos";
 export { ImportInput } from "./components/ImportInput";
 export { ImportPreview } from "./components/ImportPreview";
 export { MonthPicker } from "./components/MonthPicker";
