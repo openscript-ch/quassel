@@ -17,7 +17,6 @@ import {
   Divider,
 } from "@quassel/ui";
 import { createRootRouteWithContext, Link, Outlet, RouteContext, useNavigate } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { version } from "../../package.json";
 import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
@@ -101,7 +100,6 @@ function Root() {
         </AppShell.Main>
         <AppShell.Footer>Version {version}</AppShell.Footer>
       </AppShell>
-      <TanStackRouterDevtools position="top-left" />
     </>
   );
 }
