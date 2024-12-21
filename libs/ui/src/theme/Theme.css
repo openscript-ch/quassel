@@ -24,13 +24,9 @@
   }
 }
 
-
-
 [data-admin] :is(.mantine-AppShell-header, .mantine-AppShell-footer) {
-
   padding-inline: var(--mantine-spacing-xl);
 }
-
 
 /* Components overrides */
 
