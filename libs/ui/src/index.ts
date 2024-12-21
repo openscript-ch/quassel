@@ -62,6 +62,7 @@ export {
   Flex,
   Group,
   InputError,
+  InputLabel,
   Modal,
   NavLink,
   Paper,
