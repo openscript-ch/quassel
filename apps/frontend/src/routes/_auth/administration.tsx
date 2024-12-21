@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { $layout } from "../../stores/layout";
 import { i18n } from "../../stores/i18n";
 import { ContentShell } from "@quassel/ui";
+import { BreadcrumbsNavigation } from "../../components/Breadcrumbs";
 
 const messages = i18n("AdministrationRoute", {
   title: "Administration",
@@ -19,7 +20,7 @@ function AdministrationLayout() {
   const actions = matches[matches.length - 1]?.context.actions;
 
   return (
-    <ContentShell title={title || messages.get().title} actions={actions}>
+    <ContentShell title={title || messages.get().title} breadcrumbs={<BreadcrumbsNavigation />} actions={actions}>
       <Outlet />
     </ContentShell>
   );

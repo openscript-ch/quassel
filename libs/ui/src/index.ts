@@ -52,6 +52,7 @@ export {
   ActionIcon,
   Anchor,
   AppShell,
+  Breadcrumbs,
   Button,
   Checkbox,
   Combobox,
