@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { Entry, resolveGaps, resolveGapsInDay } from "./entry";
+import { Entry, resolveGaps, resolveGapsInDay } from "../../src/utils/entry";
 
 describe("entry utils", () => {
   let entries: Partial<Entry>[];
@@ -9,6 +9,12 @@ describe("entry utils", () => {
       { startedAt: "08:00", endedAt: "10:00", weekday: 1 },
       { startedAt: "12:00", endedAt: "14:00", weekday: 1 },
     ];
+  });
+
+  it("should detect no gaps if there are no entries", () => {
+    const gaps = resolveGapsInDay([]);
+
+    expect(gaps).toEqual([]);
   });
 
   it("should detect gap between two entries", () => {
@@ -54,8 +60,6 @@ describe("entry utils", () => {
     entries.push({ startedAt: "12:00", endedAt: "14:00", weekday: 2 });
 
     const gapsPerDay = resolveGaps(entries as Entry[]);
-
-    console.log(gapsPerDay);
 
     expect(gapsPerDay[1]).toHaveLength(1);
     expect(gapsPerDay[2]).toHaveLength(1);
