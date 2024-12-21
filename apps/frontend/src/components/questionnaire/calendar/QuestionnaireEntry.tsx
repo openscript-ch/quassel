@@ -14,7 +14,7 @@ const messages = i18n("questionnaireEntries", {
 });
 
 export function QuestionnaireEntry({ event }: QuestionnaireEntryProps) {
-  const { entryLanguages, weeklyRecurring } = event.extendedProps as ExtendedEvent["extendedProps"];
+  const { entryLanguages, weeklyRecurring } = (event.extendedProps as ExtendedEvent["extendedProps"]) ?? {};
 
   const t = useStore(messages);
 
@@ -23,7 +23,7 @@ export function QuestionnaireEntry({ event }: QuestionnaireEntryProps) {
       <Text size="sm" fw="bold" truncate>
         {event.title}
       </Text>
-      {entryLanguages.map(({ language }) => language.ietfBcp47).join(", ")}
+      {entryLanguages?.map(({ language }) => language.ietfBcp47).join(", ")}
       {weeklyRecurring && weeklyRecurring > 1 && (
         <Text mt="sm" size="sm">
           <IconRepeat size={13} /> {t.labelRecurringWeekly({ weeks: weeklyRecurring })}
