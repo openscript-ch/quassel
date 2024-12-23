@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { $layout } from "../../stores/layout";
 import { i18n } from "../../stores/i18n";
 import { ContentShell } from "@quassel/ui";
-import { BreadcrumbsNavigation } from "../../components/Breadcrumbs";
+import { BreadcrumbsNavigation } from "../../components/BreadcrumbsNavigation";
 
 const messages = i18n("AdministrationRoute", {
   title: "Administration",

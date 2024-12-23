@@ -1,5 +1,15 @@
 # @quassel/backend
 
+## 0.2.3
+
+### Patch Changes
+
+- f29044f: Introduce color field per carer for calendar entries
+- caa60ae: Add participant csv import
+- 79fb73b: Rebrand quassel to LEMON
+- 53d5384: Improve questionnaire completion handling
+- faf1343: Allow custom carers and languages per participant
+
 ## 0.2.2
 
 ## 0.2.1
