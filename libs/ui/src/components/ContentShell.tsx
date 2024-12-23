@@ -1,4 +1,4 @@
-import { Flex, Paper, Title } from "@mantine/core";
+import { Flex, Group, Paper, Title } from "@mantine/core";
 import { PropsWithChildren, ReactElement } from "react";
 
 type Props = PropsWithChildren<{
@@ -13,7 +13,7 @@ export function ContentShell({ title, breadcrumbs, actions, children }: Props) {
       {breadcrumbs}
       <Flex justify="space-between">
         <Title>{title}</Title>
-        <div>{actions}</div>
+        <Group>{actions}</Group>
       </Flex>
       <Paper my="lg">{children}</Paper>
     </>

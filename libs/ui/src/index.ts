@@ -86,7 +86,7 @@ export {
   useMantineTheme,
 } from "@mantine/core";
 
-export { TimeInput } from "@mantine/dates";
+export { TimeInput, DateInput } from "@mantine/dates";
 
 export { useDisclosure } from "@mantine/hooks";
 

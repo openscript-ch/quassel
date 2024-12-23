@@ -296,23 +296,6 @@ export interface paths {
         patch: operations["QuestionnairesController_update"];
         trace?: never;
     };
-    "/questionnaires/{id}/complete": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** Completes the questionnaire by ID */
-        patch: operations["QuestionnairesController_complete"];
-        trace?: never;
-    };
     "/entry-languages": {
         parameters: {
             query?: never;
@@ -1999,27 +1982,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["QuestionnaireResponseDto"];
-                };
-            };
-        };
-    };
-    QuestionnairesController_complete: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": Record<string, never>;
                 };
             };
         };

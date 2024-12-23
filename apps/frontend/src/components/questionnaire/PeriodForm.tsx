@@ -53,7 +53,7 @@ export function PeriodForm({ onSave, actionLabel, period, startDate }: PeriodFor
   }, [period]);
 
   useEffect(() => {
-    if (startDate) f.reset();
+    if (startDate) f.setValues({ range: [startDate, null] });
   }, [startDate]);
 
   return (
