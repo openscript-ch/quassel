@@ -1,5 +1,13 @@
 # @quassel/frontend
 
+## 0.2.4
+
+### Patch Changes
+
+- aebbeb8: Show more infos for questionnaires in admin
+- af32a09: Make questionnaires editable from admin
+- 8eeaf10: Fix preselecting start date when creating next period
+
 ## 0.2.3
 
 ### Patch Changes

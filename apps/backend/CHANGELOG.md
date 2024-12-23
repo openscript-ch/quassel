@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.2.4
+
+### Patch Changes
+
+- aebbeb8: Show more infos for questionnaires in admin
+
 ## 0.2.3
 
 ### Patch Changes
