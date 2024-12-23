@@ -80,9 +80,14 @@ export class QuestionnairesService {
     const questionnaire = await this.questionnaireRepository.findOneOrFail(id, {
       populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"],
     });
+
+    const prevQuestionnaire = await this.questionnaireRepository.findOne(
+      { participant: questionnaire.participant, endedAt: { $lt: questionnaire.startedAt } },
+      { orderBy: { endedAt: "desc" } }
+    );
+
     questionnaire.assign(questionnaireMutationDto);
 
-    const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
     if (prevQuestionnaire?.id !== id) {
       this.validateStartDate(questionnaire, prevQuestionnaire);
     }
