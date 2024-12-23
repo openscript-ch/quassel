@@ -1,5 +1,11 @@
 # @quassel/mockup
 
+## 0.0.5
+
+### Patch Changes
+
+- 79fb73b: Rebrand quassel to LEMON
+
 ## 0.0.4
 
 ### Patch Changes
