@@ -27,6 +27,7 @@ export default defineConfig({
           "@mantine/dates": "mantineDates",
           "@mantine/hooks": "mantineHooks",
           "@mantine/form": "mantineForm",
+          "@mantine/notifications": "mantineNotifications",
           "@tabler/icons-react/dist/esm/icons/index.mjs": "tablerIconsReact",
           "react-dsv-import": "reactDsvImport",
         },

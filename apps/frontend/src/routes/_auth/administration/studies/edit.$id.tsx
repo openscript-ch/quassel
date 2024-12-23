@@ -40,16 +40,14 @@ function AdministrationStudiesEdit() {
   }, [study.isSuccess, study.data]);
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Id" type="number" {...f.getInputProps("id")} required />
-        <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Id" type="number" {...f.getInputProps("id")} required />
+      <TextInput label="Title" type="text" {...f.getInputProps("title")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={editStudyMutation.isPending}>
-          Change
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={editStudyMutation.isPending}>
+        Change
+      </Button>
+    </form>
   );
 }
 

@@ -24,16 +24,14 @@ function AdministrationParticipantsNew() {
   };
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
-        <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
+      <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={createParticipantMutation.isPending}>
-          Create
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={createParticipantMutation.isPending}>
+        Create
+      </Button>
+    </form>
   );
 }
 

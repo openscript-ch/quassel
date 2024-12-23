@@ -13,48 +13,50 @@ function AdministrationStudiesIndex() {
   });
 
   return (
-    <>
-      <Button variant="default" renderRoot={(props) => <Link to="/administration/studies/new" {...props} />}>
-        New study
-      </Button>
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Id</Table.Th>
-            <Table.Th>Title</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {studies.data?.map((s) => (
-            <Table.Tr key={s.id}>
-              <Table.Td>{s.id}</Table.Td>
-              <Table.Td>{s.title}</Table.Td>
-              <Table.Td>
-                <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
-                  Edit
+    <Table>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th>Id</Table.Th>
+          <Table.Th>Title</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
+        {studies.data?.map((s) => (
+          <Table.Tr key={s.id}>
+            <Table.Td>{s.id}</Table.Td>
+            <Table.Td>{s.title}</Table.Td>
+            <Table.Td>
+              <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
+                Edit
+              </Button>
+              {sessionStore.role === "ADMIN" && (
+                <Button
+                  variant="default"
+                  onClick={() =>
+                    deleteStudyMutation.mutate({
+                      params: { path: { id: s.id.toString() } },
+                    })
+                  }
+                >
+                  Delete
                 </Button>
-                {sessionStore.role === "ADMIN" && (
-                  <Button
-                    variant="default"
-                    onClick={() =>
-                      deleteStudyMutation.mutate({
-                        params: { path: { id: s.id.toString() } },
-                      })
-                    }
-                  >
-                    Delete
-                  </Button>
-                )}
-              </Table.Td>
-            </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
-    </>
+              )}
+            </Table.Td>
+          </Table.Tr>
+        ))}
+      </Table.Tbody>
+    </Table>
   );
 }
 
 export const Route = createFileRoute("/_auth/administration/studies/")({
+  beforeLoad: () => ({
+    actions: [
+      <Button key="new-study" variant="default" renderRoot={(props) => <Link to="/administration/studies/new" {...props} />}>
+        New study
+      </Button>,
+    ],
+  }),
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData($api.queryOptions("get", "/studies")),
   component: () => <AdministrationStudiesIndex />,
 });

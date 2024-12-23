@@ -44,16 +44,14 @@ function AdministrationLanguagesEdit() {
   }, [isSuccess, data]);
 
   return (
-    <>
-      <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Name" type="name" {...f.getInputProps("name")} />
-        <TextInput label="IETF BCP 47" type="text" {...f.getInputProps("ietfBcp47")} />
+    <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
+      <TextInput label="Name" type="name" {...f.getInputProps("name")} />
+      <TextInput label="IETF BCP 47" type="text" {...f.getInputProps("ietfBcp47")} />
 
-        <Button type="submit" fullWidth mt="xl" loading={editCarerMutation.isPending}>
-          Change
-        </Button>
-      </form>
-    </>
+      <Button type="submit" fullWidth mt="xl" loading={editCarerMutation.isPending}>
+        Change
+      </Button>
+    </form>
   );
 }
 

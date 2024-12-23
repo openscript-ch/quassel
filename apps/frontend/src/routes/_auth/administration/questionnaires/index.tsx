@@ -12,40 +12,38 @@ function AdministrationQuestionnairesIndex() {
   });
 
   return (
-    <>
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Id</Table.Th>
-            <Table.Th>Name</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {data?.map((q) => (
-            <Table.Tr key={q.id}>
-              <Table.Td>{q.id}</Table.Td>
-              <Table.Td>
-                <Button variant="default" renderRoot={(props) => <Link to={`/administration/questionnaires/edit/${q.id}`} {...props} />}>
-                  Edit
+    <Table>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th>Id</Table.Th>
+          <Table.Th>Name</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
+        {data?.map((q) => (
+          <Table.Tr key={q.id}>
+            <Table.Td>{q.id}</Table.Td>
+            <Table.Td>
+              <Button variant="default" renderRoot={(props) => <Link to={`/administration/questionnaires/edit/${q.id}`} {...props} />}>
+                Edit
+              </Button>
+              {sessionStore.role === "ADMIN" && (
+                <Button
+                  variant="default"
+                  onClick={() =>
+                    deleteQuestionnaireMutation.mutate({
+                      params: { path: { id: q.id.toString() } },
+                    })
+                  }
+                >
+                  Delete
                 </Button>
-                {sessionStore.role === "ADMIN" && (
-                  <Button
-                    variant="default"
-                    onClick={() =>
-                      deleteQuestionnaireMutation.mutate({
-                        params: { path: { id: q.id.toString() } },
-                      })
-                    }
-                  >
-                    Delete
-                  </Button>
-                )}
-              </Table.Td>
-            </Table.Tr>
-          ))}
-        </Table.Tbody>
-      </Table>
-    </>
+              )}
+            </Table.Td>
+          </Table.Tr>
+        ))}
+      </Table.Tbody>
+    </Table>
   );
 }
 

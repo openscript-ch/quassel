@@ -17,13 +17,18 @@ import {
   Divider,
   FooterLogos,
 } from "@quassel/ui";
-import { createRootRouteWithContext, Link, Outlet, useNavigate } from "@tanstack/react-router";
+import { createRootRouteWithContext, Link, Outlet, RouteContext, useNavigate } from "@tanstack/react-router";
 import { version } from "../../package.json";
 import { $session } from "../stores/session";
 import { useStore } from "@nanostores/react";
 import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
-import { DefaultError, QueryClient, useQueryClient } from "@tanstack/react-query";
+import { DefaultError, useQueryClient } from "@tanstack/react-query";
+import { i18n } from "../stores/i18n";
+
+const messages = i18n("RootRoute", {
+  title: "Home",
+});
 
 function Root() {
   const n = useNavigate();
@@ -106,6 +111,7 @@ function Root() {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRouteWithContext<RouteContext>()({
+  beforeLoad: () => ({ title: messages.get().title }),
   component: Root,
 });
