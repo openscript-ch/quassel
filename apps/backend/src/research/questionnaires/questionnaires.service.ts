@@ -51,17 +51,19 @@ export class QuestionnairesService {
       throw e;
     }
 
-    return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant"])).toObject();
+    return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"])).toObject();
   }
 
   async findAll() {
-    return (await this.questionnaireRepository.findAll()).map((questionnaire) => questionnaire.toObject());
+    return (await this.questionnaireRepository.findAll({ populate: ["study", "participant"] })).map((questionnaire) =>
+      questionnaire.toObject()
+    );
   }
 
   async findOne(id: number) {
     return (
       await this.questionnaireRepository.findOneOrFail(id, {
-        populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant"],
+        populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"],
       })
     ).toObject();
   }
@@ -76,7 +78,7 @@ export class QuestionnairesService {
 
   async update(id: number, questionnaireMutationDto: QuestionnaireMutationDto) {
     const questionnaire = await this.questionnaireRepository.findOneOrFail(id, {
-      populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant"],
+      populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"],
     });
     questionnaire.assign(questionnaireMutationDto);
 

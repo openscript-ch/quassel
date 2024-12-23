@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { Button, DateInput, Divider, Group, Stack, Textarea, TextInput, useForm } from "@quassel/ui";
+import { Button, DateInput, Divider, Group, Stack, Table, Textarea, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
 import { QuestionnaireEntries } from "../../../../components/questionnaire/QuestionnaireEntries";
-import { i18n } from "../../../../stores/i18n";
+import { format, i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 
 type FormValues = {
@@ -19,6 +19,8 @@ const messages = i18n("questionnairesEdit", {
   labelTitle: "Title",
   labelEndedAt: "End date",
   labelStartedAt: "Start date",
+  labelParticipant: "Participant",
+  labelStudy: "Study",
 });
 
 function AdministrationQuestionnairesEdit() {
@@ -27,6 +29,7 @@ function AdministrationQuestionnairesEdit() {
   const q = useQueryClient();
 
   const t = useStore(messages);
+  const { time } = useStore(format);
 
   const { data, isSuccess } = useSuspenseQuery(
     $api.queryOptions("get", "/questionnaires/{id}", {
@@ -60,6 +63,21 @@ function AdministrationQuestionnairesEdit() {
 
   return (
     <Stack gap="xl">
+      <Table>
+        <Table.Tbody>
+          <Table.Tr>
+            <Table.Th>{t.labelParticipant}</Table.Th>
+            <Table.Td>{data.participant.id}</Table.Td>
+            <Table.Td>{data.participant.birthday && time(new Date(data.participant.birthday))}</Table.Td>
+          </Table.Tr>
+          <Table.Tr>
+            <Table.Th>{t.labelStudy}</Table.Th>
+            <Table.Td>{data?.study.id}</Table.Td>
+            <Table.Td>{data?.study.title}</Table.Td>
+          </Table.Tr>
+        </Table.Tbody>
+      </Table>
+
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
           <TextInput {...f.getInputProps("title")} label={t.labelTitle} />
