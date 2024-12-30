@@ -1,5 +1,5 @@
 import { Group, Stack, Title } from "@mantine/core";
-import Logo from "../assets/Logo.svg?react";
+import Logo from "../assets/logo.svg?react";
 
 export function Brand() {
   return (

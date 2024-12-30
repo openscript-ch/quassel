@@ -1,6 +1,6 @@
 import { Group } from "@mantine/core";
-import UZHLogo from "../assets/UZHLogo.svg?react";
-import KleineWeltentdeckerLogo from "../assets/KleineWeltentdeckerLogo.png";
+import UZHLogo from "../assets/uzh-logo.svg?react";
+import WeltentdeckerLogo from "../assets/weltentdecker-logo.png";
 
 export function FooterLogos() {
   return (
@@ -9,7 +9,7 @@ export function FooterLogos() {
         <UZHLogo />
       </a>
       <a href="https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html">
-        <img src={KleineWeltentdeckerLogo} height={50} />
+        <img src={WeltentdeckerLogo} height={50} />
       </a>
     </Group>
   );
