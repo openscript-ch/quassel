@@ -24,8 +24,8 @@
     "@nanostores/persistent": "^0.10.2",
     "@nanostores/react": "^0.8.4",
     "@quassel/ui": "workspace:*",
-    "@tanstack/react-query": "^5.62.8",
-    "@tanstack/react-router": "^1.92.3",
+    "@tanstack/react-query": "^5.62.11",
+    "@tanstack/react-router": "^1.92.11",
     "nanostores": "^0.11.3",
     "openapi-fetch": "0.13.3",
     "openapi-react-query": "0.2.8",
@@ -33,8 +33,8 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@tanstack/router-devtools": "^1.92.3",
-    "@tanstack/router-plugin": "^1.91.1",
+    "@tanstack/router-devtools": "^1.92.11",
+    "@tanstack/router-plugin": "^1.92.11",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
     "@types/react": "^18.3.18",
@@ -45,7 +45,7 @@
     "openapi-typescript": "^7.4.4",
     "openapi-typescript-helpers": "^0.0.15",
     "typescript": "^5.7.2",
-    "vite": "^6.0.5",
+    "vite": "^6.0.6",
     "vitest": "^2.1.8"
   }
 }
