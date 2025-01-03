@@ -40,6 +40,18 @@ export class DatabaseSeeder extends Seeder {
         id: 3000,
         birthday: new Date("2024-09-01"),
       },
+      {
+        id: 4000,
+        birthday: new Date("2022-01-01"),
+      },
+      {
+        id: 5000,
+        birthday: new Date("2022-02-15"),
+      },
+      {
+        id: 6000,
+        birthday: new Date("2022-05-15"),
+      },
     ];
 
     const studies: StudyCreationDto[] = [
@@ -49,7 +61,7 @@ export class DatabaseSeeder extends Seeder {
       },
       {
         id: 800,
-        title: "Herbst 2025",
+        title: "Sommer 2025",
       },
       {
         id: 900,
