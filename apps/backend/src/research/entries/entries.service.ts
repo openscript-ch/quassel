@@ -41,7 +41,7 @@ export class EntriesService {
     return (await this.entryRepository.findOneOrFail(filter, { populate: ["entryLanguages"] })).toObject();
   }
 
-  async findUniqueEntriesByParticipant(participantId: string) {
+  async findTemplatesForParticipant(participantId: string) {
     const uniqueEntryGroups = this.em
       .createQueryBuilder(Entry, "e")
       .select(["e.id"])
@@ -55,8 +55,6 @@ export class EntriesService {
       .createQueryBuilder(Entry, "e")
       .select("*")
       .joinAndSelect("e.entryLanguages", "el")
-      .joinAndSelect("el.language", "l")
-      .joinAndSelect("e.carer", "c")
       .where({ id: { $in: uniqueEntryGroups.getKnexQuery() } })
       .getResultList();
 
