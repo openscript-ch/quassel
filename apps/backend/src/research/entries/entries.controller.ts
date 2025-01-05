@@ -30,6 +30,12 @@ export class EntriesController {
     return this.entriesService.findOne(+id);
   }
 
+  @Get("unique-groups/:participantId")
+  @ApiOperation({ summary: "Get all entries" })
+  uniqueGroups(@Param("participantId") participantId: string): Promise<EntryResponseDto[]> {
+    return this.entriesService.findUniqueEntriesByParticipant(participantId);
+  }
+
   @Patch(":id")
   @ApiOperation({ summary: "Update a entry by ID" })
   update(@Param("id") id: string, @Body() entry: EntryMutationDto): Promise<EntryResponseDto> {
