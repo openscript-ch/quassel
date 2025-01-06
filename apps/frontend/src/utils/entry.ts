@@ -4,7 +4,7 @@ export type Entry = components["schemas"]["QuestionnaireEntryDto"];
 export type Gap = [string, string];
 export type GapsPerDay = [Gap[], Gap[], Gap[], Gap[], Gap[], Gap[], Gap[]];
 
-const groupByWeekday = (entries: Entry[]) =>
+export const groupByWeekday = (entries: Entry[]) =>
   entries.reduce<Entry[][]>((acc, cur) => {
     acc[cur.weekday] = [...(acc[cur.weekday] ?? []), cur];
     return acc;
