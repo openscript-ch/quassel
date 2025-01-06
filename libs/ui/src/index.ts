@@ -10,6 +10,7 @@ import "@mantine/core/styles/CloseButton.css";
 import "@mantine/core/styles/Group.css";
 import "@mantine/core/styles/Loader.css";
 import "@mantine/core/styles/Overlay.css";
+import "@mantine/core/styles/Menu.css";
 import "@mantine/core/styles/ModalBase.css";
 import "@mantine/core/styles/Modal.css";
 import "@mantine/core/styles/Input.css";
@@ -65,6 +66,7 @@ export {
   Group,
   InputError,
   InputLabel,
+  Menu,
   Modal,
   NavLink,
   Paper,
@@ -106,6 +108,7 @@ export {
   IconMapSearch,
   IconMinus,
   IconRepeat,
+  IconChevronDown,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";

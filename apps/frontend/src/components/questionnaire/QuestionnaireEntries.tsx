@@ -28,6 +28,10 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
   const updateMutation = $api.useMutation("patch", "/entries/{id}");
   const deleteMutation = $api.useMutation("delete", "/entries/{id}");
 
+  const { data: templates } = $api.useQuery("get", "/participants/{id}/entry-templates", {
+    params: { path: { id: participantId.toString() } },
+  });
+
   const { data: languages } = $api.useQuery("get", "/languages", { params: { query: { participantId } } });
   const createLanguageMutation = $api.useMutation("post", "/languages", {
     onSuccess() {
@@ -83,6 +87,7 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
       onDeleteEntry={handleDelete}
       carers={carers ?? []}
       languages={languages ?? []}
+      templates={templates ?? []}
       onAddCarer={(name) => createCarerMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
       onAddLanguage={(name) => createLanguageMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
     />

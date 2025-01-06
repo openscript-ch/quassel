@@ -222,6 +222,23 @@ export interface paths {
         patch: operations["ParticipantsController_update"];
         trace?: never;
     };
+    "/participants/{id}/entry-templates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a participant by ID */
+        get: operations["ParticipantsController_entryTemplates"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/entries": {
         parameters: {
             query?: never;
@@ -658,6 +675,61 @@ export interface components {
             carers: number[];
             languages: number[];
         };
+        CarerDto: {
+            /**
+             * @description The id of the carer
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the carer
+             * @example Grandmother
+             */
+            name: string;
+            /**
+             * @description The color used to display entries in the calendar
+             * @example #ffffff
+             */
+            color?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entries: number[];
+        };
+        LanguageDto: {
+            /**
+             * @description The id of the language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The name of the language
+             * @example Deutsch
+             */
+            name: string;
+            /**
+             * @description The IETF BCP 47 code of the language
+             * @example de-DE
+             */
+            ietfBcp47?: string;
+            participant?: components["schemas"]["ParticipantDto"];
+            entryLanguages: number[];
+        };
+        EntryLanguageResponseDto: {
+            /**
+             * @description The id of the entry language
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The ratio in percent of the entry language
+             * @example 50
+             */
+            ratio: number;
+            language: components["schemas"]["LanguageDto"];
+        };
+        EntryTemplateDto: {
+            carer: components["schemas"]["CarerDto"];
+            entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
+        };
         ParticipantMutationDto: {
             /**
              * @description The id of the participant (child id)
@@ -744,57 +816,6 @@ export interface components {
             completedAt?: string;
             study: components["schemas"]["StudyDto"];
             participant: components["schemas"]["ParticipantDto"];
-        };
-        CarerDto: {
-            /**
-             * @description The id of the carer
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the carer
-             * @example Grandmother
-             */
-            name: string;
-            /**
-             * @description The color used to display entries in the calendar
-             * @example #ffffff
-             */
-            color?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entries: number[];
-        };
-        LanguageDto: {
-            /**
-             * @description The id of the language
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the language
-             * @example Deutsch
-             */
-            name: string;
-            /**
-             * @description The IETF BCP 47 code of the language
-             * @example de-DE
-             */
-            ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entryLanguages: number[];
-        };
-        EntryLanguageResponseDto: {
-            /**
-             * @description The id of the entry language
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The ratio in percent of the entry language
-             * @example 50
-             */
-            ratio: number;
-            language: components["schemas"]["LanguageDto"];
         };
         EntryResponseDto: {
             /**
@@ -1750,6 +1771,36 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ParticipantResponseDto"];
+                };
+            };
+        };
+    };
+    ParticipantsController_entryTemplates: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EntryTemplateDto"][];
+                };
+            };
+            /** @description Entity not found exception */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ErrorResponseDto"];
                 };
             };
         };
