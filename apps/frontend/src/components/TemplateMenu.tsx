@@ -19,14 +19,18 @@ export function TemplateMenu({ label, templates, onSelect }: TemplateSelectProps
       </Menu.Target>
 
       <Menu.Dropdown>
-        {templates.map((t) => (
-          <>
+        {templates.map((t) => {
+          const label = `${t.carer.name}: ${t.entryLanguages.map(({ language, ratio }) => `${ratio}% ${language.name}`).join(", ")}`;
+          return (
             <Menu.Item
+              key={label}
               onClick={() => onSelect(t)}
               leftSection={<ColorSwatch size={20} color={t.carer.color ?? theme.colors[theme.primaryColor][4]} />}
-            >{`${t.carer.name}: ${t.entryLanguages.map(({ language, ratio }) => `${ratio} ${language.name}`).join(", ")}`}</Menu.Item>
-          </>
-        ))}
+            >
+              {label}
+            </Menu.Item>
+          );
+        })}
       </Menu.Dropdown>
     </Menu>
   );
