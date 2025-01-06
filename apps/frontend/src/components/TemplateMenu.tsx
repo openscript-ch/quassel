@@ -23,7 +23,7 @@ export function TemplateMenu({ label, templates, onSelect }: TemplateSelectProps
           <>
             <Menu.Item
               onClick={() => onSelect(t)}
-              leftSection={<ColorSwatch color={t.carer.color ?? theme.colors[theme.primaryColor][4]} />}
+              leftSection={<ColorSwatch size={20} color={t.carer.color ?? theme.colors[theme.primaryColor][4]} />}
             >{`${t.carer.name}: ${t.entryLanguages.map(({ language, ratio }) => `${ratio} ${language.name}`).join(", ")}`}</Menu.Item>
           </>
         ))}
