@@ -45,7 +45,7 @@ export class EntriesService {
    * Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant.
    *
    * @param participantId to filter entries.
-   * @returns entry templates.
+   * @returns entry templates of participant.
    */
   async findTemplatesForParticipant(participantId: number) {
     const uniqueEntryGroups = this.em
@@ -61,10 +61,15 @@ export class EntriesService {
       .createQueryBuilder(Entry, "e")
       .select("*")
       .joinAndSelect("e.entryLanguages", "el")
+      .joinAndSelect("e.carer", "c")
+      .joinAndSelect("el.language", "l")
       .where({ id: { $in: uniqueEntryGroups.getKnexQuery() } })
       .getResultList();
 
-    return populatedUniqueEntries.map((entry) => entry.toObject());
+    return populatedUniqueEntries.map((entry) => {
+      const { entryLanguages, carer } = entry.toObject();
+      return { entryLanguages, carer: { ...carer } };
+    });
   }
 
   async update(id: number, entryMutationDto: EntryMutationDto) {
