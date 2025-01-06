@@ -62,6 +62,7 @@ export {
   ColorSwatch,
   Divider,
   Flex,
+  Affix,
   Group,
   InputError,
   InputLabel,
@@ -88,7 +89,7 @@ export {
 
 export { TimeInput, DateInput } from "@mantine/dates";
 
-export { useDisclosure } from "@mantine/hooks";
+export { useDisclosure, useFullscreen } from "@mantine/hooks";
 
 export { notifications } from "@mantine/notifications";
 
@@ -106,6 +107,8 @@ export {
   IconMapSearch,
   IconMinus,
   IconRepeat,
+  IconMaximize,
+  IconMaximizeOff,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";
