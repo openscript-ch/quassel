@@ -54,8 +54,8 @@ function Root() {
   return (
     <>
       <AppShell
-        header={{ height: 104 }}
-        footer={{ height: 84 }}
+        header={{ height: 104, collapsed: layoutStore.fullscreen }}
+        footer={{ height: 84, collapsed: layoutStore.fullscreen }}
         navbar={{ width: 300, breakpoint: "sm", collapsed: { desktop: !layoutStore.admin } }}
         padding="xl"
         mod={{ admin: layoutStore.admin }}
@@ -100,6 +100,7 @@ function Root() {
         <AppShell.Main>
           <Outlet />
         </AppShell.Main>
+
         <AppShell.Footer>
           <Group justify="space-between">
             <FooterLogos />
