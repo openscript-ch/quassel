@@ -115,6 +115,7 @@ export function EntryCalendar({
   const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
     setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!) });
     setSelectedWeekday(start!.getDay());
+    setEntryUpdadingId(undefined);
     open();
   };
 
