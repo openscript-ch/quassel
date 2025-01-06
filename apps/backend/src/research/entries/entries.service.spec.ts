@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { EntriesService } from "./entries.service";
 import { getRepositoryToken } from "@mikro-orm/nestjs";
 import { Entry } from "./entry.entity";
-import { EntityManager } from "@mikro-orm/core";
+import { EntityManager } from "@mikro-orm/postgresql";
 
 describe("EntriesService", () => {
   let service: EntriesService;
