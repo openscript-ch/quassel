@@ -20,17 +20,7 @@ export class EntriesController {
 
   @Get()
   @ApiOperation({ summary: "Get all entries" })
-  @ApiQuery({
-    name: "entryTemplatesForParticipant",
-    required: false,
-    type: String,
-    description:
-      "Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant",
-  })
-  index(@Query("entryTemplatesForParticipant") entryTemplatesForParticipant?: string): Promise<EntryResponseDto[]> {
-    if (entryTemplatesForParticipant) {
-      return this.entriesService.findTemplatesForParticipant(entryTemplatesForParticipant);
-    }
+  index(): Promise<EntryResponseDto[]> {
     return this.entriesService.findAll();
   }
 
