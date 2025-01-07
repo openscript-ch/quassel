@@ -229,7 +229,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get a participant by ID */
+        /** Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant. */
         get: operations["ParticipantsController_entryTemplates"];
         put?: never;
         post?: never;
@@ -544,6 +544,12 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -810,6 +816,12 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -962,6 +974,12 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
             /**
              * Format: date-time
              * @description The date the questionnaire was completed

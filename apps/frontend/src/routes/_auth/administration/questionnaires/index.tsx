@@ -3,8 +3,11 @@ import { $api } from "../../../../stores/api";
 import { Button, Group, Table } from "@quassel/ui";
 import { $session } from "../../../../stores/session";
 import { useStore } from "@nanostores/react";
+import { format } from "../../../../stores/i18n";
 
 function AdministrationQuestionnairesIndex() {
+  const { time } = useStore(format);
+
   const sessionStore = useStore($session);
   const { data, refetch } = $api.useSuspenseQuery("get", "/questionnaires");
   const deleteQuestionnaireMutation = $api.useMutation("delete", "/questionnaires/{id}", {
@@ -19,6 +22,8 @@ function AdministrationQuestionnairesIndex() {
           <Table.Th>Child</Table.Th>
           <Table.Th>Title</Table.Th>
           <Table.Th>Study</Table.Th>
+          <Table.Th>Creation date</Table.Th>
+          <Table.Th>Completion date</Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
@@ -28,6 +33,8 @@ function AdministrationQuestionnairesIndex() {
             <Table.Td>{q.participant.id}</Table.Td>
             <Table.Td>{q.title}</Table.Td>
             <Table.Td>{q.study.title}</Table.Td>
+            <Table.Td>{time(new Date(q.createdAt), { timeStyle: "short", dateStyle: "medium" })}</Table.Td>
+            <Table.Td>{q.completedAt && time(new Date(q.completedAt), { timeStyle: "short", dateStyle: "medium" })}</Table.Td>
             <Table.Td>
               <Group>
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/questionnaires/edit/${q.id}`} {...props} />}>
