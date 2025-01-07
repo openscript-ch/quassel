@@ -71,7 +71,9 @@ export class ParticipantsController {
   }
 
   @Get(":id/entry-templates")
-  @ApiOperation({ summary: "Get a participant by ID" })
+  @ApiOperation({
+    summary: "Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant.",
+  })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
   entryTemplates(@Param("id") id: string): Promise<EntryTemplateDto[]> {
     return this.entriesService.findTemplatesForParticipant(+id);

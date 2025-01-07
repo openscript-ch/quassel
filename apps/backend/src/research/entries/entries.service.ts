@@ -41,12 +41,6 @@ export class EntriesService {
     return (await this.entryRepository.findOneOrFail(filter, { populate: ["entryLanguages"] })).toObject();
   }
 
-  /**
-   * Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant.
-   *
-   * @param participantId to filter entries.
-   * @returns entry templates of participant.
-   */
   async findTemplatesForParticipant(participantId: number) {
     const uniqueEntryGroups = this.em
       .createQueryBuilder(Entry, "e")
