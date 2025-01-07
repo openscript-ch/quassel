@@ -18,7 +18,7 @@ export function TemplateMenu({ label, templates, onSelect }: TemplateSelectProps
         </Button>
       </Menu.Target>
 
-      <Menu.Dropdown>
+      <Menu.Dropdown maw={400}>
         {templates.map((t) => {
           const label = `${t.carer.name}: ${t.entryLanguages.map(({ language, ratio }) => `${ratio}% ${language.name}`).join(", ")}`;
           return (
