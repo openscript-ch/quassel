@@ -9,7 +9,7 @@ import { EntityForm, EntryFormValues } from "./EntryForm";
 import { useEffect, useState } from "react";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { GapsPerDay } from "../../../utils/entry";
+import { GapsPerDay, groupByWeekday } from "../../../utils/entry";
 import { EventImpl } from "@fullcalendar/core/internal";
 
 const calendarBaseConfig: FullCalendar["props"] = {
@@ -87,6 +87,7 @@ export function EntryCalendar({
           backgroundColor: carer.color ?? theme.colors[theme.primaryColor][4],
           borderColor: carer.color ?? theme.colors[theme.primaryColor][4],
         })),
+        // gaps
         ...(gaps ?? []).flatMap((dailyGaps, index) =>
           dailyGaps.map((gap) => ({
             start: getDateFromTimeAndWeekday(gap[0], index),
@@ -95,6 +96,26 @@ export function EntryCalendar({
             display: "background",
           }))
         ),
+        // sleep indications
+        ...groupByWeekday(entries).flatMap((entries, index) => {
+          const minStart = entries.reduce((acc, cur) => (acc.startedAt < cur.startedAt ? acc : cur)).startedAt;
+          const maxEnd = entries.reduce((acc, cur) => (acc.endedAt > cur.endedAt ? acc : cur)).endedAt;
+
+          return [
+            {
+              start: getDateFromTimeAndWeekday("05:00:00", index),
+              end: getDateFromTimeAndWeekday(minStart, index),
+              backgroundColor: theme.colors.uzhBlack[1],
+              display: "background",
+            },
+            {
+              start: getDateFromTimeAndWeekday(maxEnd, index),
+              end: getDateFromTimeAndWeekday("23:00:00", index),
+              backgroundColor: theme.colors.uzhBlack[1],
+              display: "background",
+            },
+          ];
+        }),
       ]);
     }
   }, [entries, gaps]);
@@ -117,6 +138,7 @@ export function EntryCalendar({
   const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
     setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!) });
     setSelectedWeekday(start!.getDay());
+    setEntryUpdadingId(undefined);
     open();
   };
 
