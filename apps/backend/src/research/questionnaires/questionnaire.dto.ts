@@ -49,3 +49,8 @@ export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", 
   participant: number;
 }
 export class QuestionnaireMutationDto extends PartialType(QuestionnaireCreationDto) {}
+
+export enum QuestionnaireSortableField {
+  createdAt = "createdAt",
+  completedAt = "completedAt",
+}

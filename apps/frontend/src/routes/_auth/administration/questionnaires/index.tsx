@@ -4,12 +4,17 @@ import { Button, Group, Table } from "@quassel/ui";
 import { $session } from "../../../../stores/session";
 import { useStore } from "@nanostores/react";
 import { format } from "../../../../stores/i18n";
+import { useSort } from "../../../../hooks/useSort";
+import { paths } from "../../../../api.gen";
 
 function AdministrationQuestionnairesIndex() {
   const { time } = useStore(format);
 
+  const search = Route.useSearch();
+  const { ToggleLink } = useSort(Route);
+
   const sessionStore = useStore($session);
-  const { data, refetch } = $api.useSuspenseQuery("get", "/questionnaires");
+  const { data, refetch } = $api.useSuspenseQuery("get", "/questionnaires", { params: { query: search } });
   const deleteQuestionnaireMutation = $api.useMutation("delete", "/questionnaires/{id}", {
     onSuccess: () => refetch(),
   });
@@ -22,8 +27,18 @@ function AdministrationQuestionnairesIndex() {
           <Table.Th>Child</Table.Th>
           <Table.Th>Title</Table.Th>
           <Table.Th>Study</Table.Th>
-          <Table.Th>Creation date</Table.Th>
-          <Table.Th>Completion date</Table.Th>
+          <Table.Th>
+            <Group>
+              Creation date
+              <ToggleLink sortKey="createdAt" />
+            </Group>
+          </Table.Th>
+          <Table.Th>
+            <Group>
+              Completion date
+              <ToggleLink sortKey="completedAt" />
+            </Group>
+          </Table.Th>
         </Table.Tr>
       </Table.Thead>
       <Table.Tbody>
@@ -64,4 +79,5 @@ function AdministrationQuestionnairesIndex() {
 export const Route = createFileRoute("/_auth/administration/questionnaires/")({
   loader: ({ context: { queryClient } }) => queryClient.ensureQueryData($api.queryOptions("get", "/questionnaires")),
   component: () => <AdministrationQuestionnairesIndex />,
+  validateSearch: (search) => search as NonNullable<paths["/questionnaires"]["get"]["parameters"]["query"]>,
 });

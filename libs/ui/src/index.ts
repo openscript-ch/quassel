@@ -110,6 +110,8 @@ export {
   IconMinus,
   IconRepeat,
   IconChevronDown,
+  IconChevronUp,
+  IconSelector,
   IconMaximize,
   IconMaximizeOff,
 } from "@tabler/icons-react";

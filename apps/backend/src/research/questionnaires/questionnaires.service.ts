@@ -1,4 +1,4 @@
-import { EntityRepository, EntityManager, UniqueConstraintViolationException, FilterQuery } from "@mikro-orm/core";
+import { EntityRepository, EntityManager, UniqueConstraintViolationException, FilterQuery, QueryOrderMap } from "@mikro-orm/core";
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { BadRequestException, Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { QuestionnaireCreationDto, QuestionnaireMutationDto } from "./questionnaire.dto";
@@ -6,6 +6,7 @@ import { Questionnaire } from "./questionnaire.entity";
 import { Entry } from "../entries/entry.entity";
 import { EntryLanguage } from "../entry-languages/entry-language.entity";
 import { addDays, isSameDay } from "date-fns";
+import { SortOrder } from "../../common/dto/sort.dto";
 
 @Injectable()
 export class QuestionnairesService {
@@ -54,9 +55,9 @@ export class QuestionnairesService {
     return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"])).toObject();
   }
 
-  async findAll() {
-    return (await this.questionnaireRepository.findAll({ populate: ["study", "participant"] })).map((questionnaire) =>
-      questionnaire.toObject()
+  async findAll({ sortBy, sortOrder }: { sortBy?: keyof QueryOrderMap<Questionnaire>; sortOrder?: SortOrder }) {
+    return (await this.questionnaireRepository.findAll({ populate: ["study", "participant"], orderBy: sortBy && { [sortBy]: sortOrder } })).map(
+      (questionnaire) => questionnaire.toObject()
     );
   }
 

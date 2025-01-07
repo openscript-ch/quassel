@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse, ApiQuery } from "@nestjs/swagger";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
@@ -9,7 +9,9 @@ import {
   QuestionnaireResponseDto,
   QuestionnaireMutationDto,
   QuestionnaireListResponseDto,
+  QuestionnaireSortableField,
 } from "./questionnaire.dto";
+import { SortOrder } from "../../common/dto/sort.dto";
 
 @ApiTags("Questionnaires")
 @Controller("questionnaires")
@@ -24,9 +26,14 @@ export class QuestionnairesController {
   }
 
   @Get()
+  @ApiQuery({ name: "sortBy", enum: QuestionnaireSortableField, required: false })
+  @ApiQuery({ name: "sortOrder", enum: SortOrder, required: false })
   @ApiOperation({ summary: "Get all questionnairess" })
-  index(): Promise<QuestionnaireListResponseDto[]> {
-    return this.questionnairesService.findAll();
+  index(
+    @Query("sortBy") sortBy?: QuestionnaireSortableField,
+    @Query("sortOrder") sortOrder?: SortOrder
+  ): Promise<QuestionnaireListResponseDto[]> {
+    return this.questionnairesService.findAll({ sortBy, sortOrder });
   }
 
   @Get(":id")
