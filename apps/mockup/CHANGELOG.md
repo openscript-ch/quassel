@@ -1,5 +1,11 @@
 # @quassel/mockup
 
+## 0.0.6
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+
 ## 0.0.5
 
 ### Patch Changes

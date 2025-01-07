@@ -1,5 +1,12 @@
 # @quassel/ui
 
+## 0.1.3
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- e1253c1: Add favicons and manifest to frontend
+
 ## 0.1.2
 
 ### Patch Changes
