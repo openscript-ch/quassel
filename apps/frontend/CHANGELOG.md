@@ -1,5 +1,18 @@
 # @quassel/frontend
 
+## 0.2.5
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- 21c218c: Reset update state when creating new entry
+- e1253c1: Add favicons and manifest to frontend
+- 3c28e6c: Highlight sleep time
+- 7d1d6ba: Introduce fullscreen mode in questionnaire
+- Updated dependencies [7f2ebe1]
+- Updated dependencies [e1253c1]
+  - @quassel/ui@0.1.3
+
 ## 0.2.4
 
 ### Patch Changes

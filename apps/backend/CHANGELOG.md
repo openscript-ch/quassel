@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.2.5
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+
 ## 0.2.4
 
 ### Patch Changes
