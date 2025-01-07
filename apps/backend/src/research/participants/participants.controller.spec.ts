@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { ParticipantsController } from "./participants.controller";
 import { ParticipantsService } from "./participants.service";
 import { QuestionnairesService } from "../questionnaires/questionnaires.service";
+import { EntriesService } from "../entries/entries.service";
 
 describe("ParticipantsController", () => {
   let controller: ParticipantsController;
@@ -16,6 +17,10 @@ describe("ParticipantsController", () => {
         },
         {
           provide: QuestionnairesService,
+          useValue: {},
+        },
+        {
+          provide: EntriesService,
           useValue: {},
         },
       ],

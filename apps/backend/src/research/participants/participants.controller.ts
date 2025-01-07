@@ -15,6 +15,8 @@ import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { QuestionnairesService } from "../questionnaires/questionnaires.service";
 import { OneOrMany } from "../../types";
+import { EntriesService } from "../entries/entries.service";
+import { EntryTemplateDto } from "../entries/entry.dto";
 
 @ApiTags("Participants")
 @ApiExtraModels(ParticipantCreationDto)
@@ -22,7 +24,8 @@ import { OneOrMany } from "../../types";
 export class ParticipantsController {
   constructor(
     private readonly participantService: ParticipantsService,
-    private readonly questionnairesService: QuestionnairesService
+    private readonly questionnairesService: QuestionnairesService,
+    private readonly entriesService: EntriesService
   ) {}
 
   @Post()
@@ -65,6 +68,15 @@ export class ParticipantsController {
     const participant = await this.participantService.findOne(+id);
     const latestQuestionnaire = (await this.questionnairesService.findLatestByParticipant(+id))?.toObject();
     return { ...participant, latestQuestionnaire };
+  }
+
+  @Get(":id/entry-templates")
+  @ApiOperation({
+    summary: "Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant.",
+  })
+  @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
+  entryTemplates(@Param("id") id: string): Promise<EntryTemplateDto[]> {
+    return this.entriesService.findTemplatesForParticipant(+id);
   }
 
   @Patch(":id")

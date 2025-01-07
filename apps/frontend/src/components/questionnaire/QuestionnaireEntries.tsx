@@ -24,9 +24,20 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
 
   const participantId = questionnaire.participant?.id;
 
-  const createMutation = $api.useMutation("post", "/entries");
-  const updateMutation = $api.useMutation("patch", "/entries/{id}");
-  const deleteMutation = $api.useMutation("delete", "/entries/{id}");
+  const invalidateTemplates = () =>
+    c.invalidateQueries(
+      $api.queryOptions("get", "/participants/{id}/entry-templates", {
+        params: { path: { id: participantId.toString() } },
+      })
+    );
+
+  const createMutation = $api.useMutation("post", "/entries", { onSuccess: invalidateTemplates });
+  const updateMutation = $api.useMutation("patch", "/entries/{id}", { onSuccess: invalidateTemplates });
+  const deleteMutation = $api.useMutation("delete", "/entries/{id}", { onSuccess: invalidateTemplates });
+
+  const { data: templates } = $api.useQuery("get", "/participants/{id}/entry-templates", {
+    params: { path: { id: participantId.toString() } },
+  });
 
   const { data: languages } = $api.useQuery("get", "/languages", { params: { query: { participantId } } });
   const createLanguageMutation = $api.useMutation("post", "/languages", {
@@ -83,6 +94,7 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
       onDeleteEntry={handleDelete}
       carers={carers ?? []}
       languages={languages ?? []}
+      templates={templates ?? []}
       onAddCarer={(name) => createCarerMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
       onAddLanguage={(name) => createLanguageMutation.mutateAsync({ body: { name, participant: participantId } }).then(({ id }) => id)}
     />

@@ -1,10 +1,11 @@
-import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, isInRange, isNotEmpty, useForm, Switch } from "@quassel/ui";
+import { Button, Group, Stack, TimeInput, NumberInput, ActionIcon, IconMinus, isInRange, isNotEmpty, useForm, Switch, Flex } from "@quassel/ui";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect, useState } from "react";
 import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
 import { components } from "../../../api.gen";
+import { TemplateMenu } from "../../TemplateMenu";
 
 export type EntryFormValues = {
   carer?: number;
@@ -22,11 +23,11 @@ const messages = i18n("entityForm", {
   actionAddLanguage: "Add language",
   actionAddRecurringRule: "Add recurring rule",
   actionDelete: "Delete",
-
   labelCarer: "Carer",
   labelLanguage: "Language",
   labelRecurringRulePrefix: "Recurs every",
   labelRecurringRuleSuffix: "weeks.",
+  labelTemplate: "From template",
   validationRatio: "Ratio must be between 1 and 100.",
   validationTotalRatio: "Total Ratio must always be 100%.",
   validationNotEmpty: "Field must not be empty.",
@@ -40,10 +41,11 @@ type EntityFormProps = {
   entry?: Partial<EntryFormValues>;
   carers: components["schemas"]["CarerDto"][];
   languages: components["schemas"]["LanguageDto"][];
+  templates: components["schemas"]["EntryTemplateDto"][];
   actionLabel: string;
 };
 
-export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages, templates }: EntityFormProps) {
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
@@ -109,7 +111,19 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
       }}
     >
       <Stack>
-        <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} />
+        <Flex>
+          <CarerSelect data={carers} {...f.getInputProps("carer")} onAddNew={onAddCarer} placeholder={t.labelCarer} flex={1} />
+          <TemplateMenu
+            label={t.labelTemplate}
+            templates={templates}
+            onSelect={({ carer, entryLanguages }) => {
+              f.setValues({
+                carer: carer.id,
+                entryLanguages: entryLanguages.map(({ language, ratio }) => ({ language: language.id, ratio })),
+              });
+            }}
+          />
+        </Flex>
 
         {f.getValues().entryLanguages.map((value, index) => (
           <Group key={value.language ? `l-${value.language}` : `i-${index}`} justify="stretch">

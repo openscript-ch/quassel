@@ -1,4 +1,4 @@
-import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
+import { ApiProperty, OmitType, PartialType, PickType } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { IsOptional, Min, Max, IsMilitaryTime } from "class-validator";
 import { CarerDto } from "../../defaults/carers/carer.dto";
@@ -46,3 +46,5 @@ export class EntryCreationDto extends OmitType(EntryDto, ["id", "carer", "questi
   entryLanguages: Array<EntryLanguageCreationDto>;
 }
 export class EntryMutationDto extends PartialType(EntryCreationDto) {}
+
+export class EntryTemplateDto extends PickType(EntryDto, ["carer", "entryLanguages"]) {}

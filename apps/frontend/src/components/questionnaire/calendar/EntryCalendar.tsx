@@ -41,6 +41,7 @@ export type EntryCalendarProps = {
   onDeleteEntry: (id: number) => Promise<unknown>;
   carers: components["schemas"]["CarerDto"][];
   languages: components["schemas"]["LanguageDto"][];
+  templates: components["schemas"]["EntryTemplateDto"][];
   onAddCarer: (value: string) => Promise<number>;
   onAddLanguage: (value: string) => Promise<number>;
 };
@@ -58,6 +59,7 @@ export function EntryCalendar({
   onDeleteEntry,
   carers,
   languages,
+  templates,
   onAddCarer,
   onAddLanguage,
 }: EntryCalendarProps) {
@@ -169,6 +171,7 @@ export function EntryCalendar({
           entry={entryDraft}
           carers={carers}
           languages={languages}
+          templates={templates}
           actionLabel={entryUpdatingId ? t.actionUpdate : t.actionAdd}
         />
       </Modal>

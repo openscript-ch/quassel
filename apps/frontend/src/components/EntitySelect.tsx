@@ -14,6 +14,7 @@ type StringKeys<T> = { [K in keyof T]-?: T[K] extends string ? K : never }[keyof
 
 type Props<T extends { id: number }> = Omit<EntitySelectProps, "data"> & {
   data?: T[];
+  renderOption?: (item: T) => void;
   onAddNew?: (value: string) => void;
   labelKey: StringKeys<T>;
 };
@@ -24,7 +25,7 @@ const messages = i18n("entitySelect", {
   actionCreateNew: params('Create new "{value}"'),
 });
 
-export function EntitySelect<T extends { id: number }>({ value, onChange, data, labelKey, onAddNew, ...rest }: Props<T>) {
+export function EntitySelect<T extends { id: number }>({ value, onChange, data, labelKey, onAddNew, renderOption, ...rest }: Props<T>) {
   const t = useStore(messages);
 
   const combobox = useCombobox({
@@ -41,7 +42,7 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
 
   const options = filteredOptions?.map((item) => (
     <Combobox.Option key={item.id} value={item.id.toString()}>
-      {item[labelKey] as string}
+      {renderOption?.(item) ?? (item[labelKey] as string)}
     </Combobox.Option>
   ));
 
