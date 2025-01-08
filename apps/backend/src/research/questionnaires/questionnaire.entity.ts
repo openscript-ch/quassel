@@ -18,6 +18,9 @@ export class Questionnaire extends BaseEntity {
   @Property({ columnType: "text" })
   remark?: string;
 
+  @Property({ defaultRaw: "NOW()" })
+  createdAt!: Date;
+
   @Property()
   completedAt?: Date;
 

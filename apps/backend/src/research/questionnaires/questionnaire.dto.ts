@@ -24,6 +24,9 @@ export class QuestionnaireDto {
   @ApiProperty({ example: "We went on holidays for 2 weeks and only spoke Esperanto", description: "The remark of the questionnaire" })
   remark?: string;
 
+  @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The date the questionnaire was created" })
+  createdAt: Date;
+
   @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The date the questionnaire was completed" })
   @IsOptional()
   @IsDateString()
@@ -41,8 +44,13 @@ export class QuestionnaireDto {
 export class QuestionnaireResponseDto extends QuestionnaireDto {}
 export class EntryQuestionnaireDto extends OmitType(QuestionnaireDto, ["entries"]) {}
 export class QuestionnaireListResponseDto extends OmitType(QuestionnaireDto, ["entries"]) {}
-export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", "study", "participant"]) {
+export class QuestionnaireCreationDto extends OmitType(QuestionnaireDto, ["id", "study", "participant", "createdAt"]) {
   study: number;
   participant: number;
 }
 export class QuestionnaireMutationDto extends PartialType(QuestionnaireCreationDto) {}
+
+export enum QuestionnaireSortableField {
+  createdAt = "createdAt",
+  completedAt = "completedAt",
+}
