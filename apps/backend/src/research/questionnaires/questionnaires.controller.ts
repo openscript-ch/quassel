@@ -27,7 +27,7 @@ export class QuestionnairesController {
 
   @Get()
   @ApiQuery({ name: "sortBy", enum: QuestionnaireSortableField, required: false })
-  @ApiQuery({ name: "sortOrder", enum: SortOrder, required: false })
+  @ApiQuery({ name: "sortOrder", enumName: "SortOrder", enum: SortOrder, required: false })
   @ApiQuery({ name: "participantId", required: false })
   @ApiQuery({ name: "studyTitle", required: false })
   @ApiOperation({ summary: "Get all questionnairess" })

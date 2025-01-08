@@ -1,9 +1,9 @@
 import { ActionIcon, IconChevronDown, IconChevronUp, IconSelector } from "@quassel/ui";
-import { SortOrder } from "../hooks/useSort";
+import { components } from "../api.gen";
 
 type SortToggleProps = {
   onToggle?: () => void;
-  sortOrder?: SortOrder;
+  sortOrder?: components["schemas"]["SortOrder"];
 };
 
 export function SortToggle({ onToggle, sortOrder }: SortToggleProps) {

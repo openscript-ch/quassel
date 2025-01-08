@@ -990,6 +990,8 @@ export interface components {
             participant: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
         };
+        /** @enum {string} */
+        SortOrder: "ASC" | "DESC";
         QuestionnaireMutationDto: {
             /**
              * Format: date-time
@@ -1943,7 +1945,7 @@ export interface operations {
         parameters: {
             query?: {
                 sortBy?: "createdAt" | "completedAt";
-                sortOrder?: "ASC" | "DESC";
+                sortOrder?: components["schemas"]["SortOrder"];
                 participantId?: number;
                 studyTitle?: string;
             };
@@ -2308,8 +2310,8 @@ type ReadonlyArray<T> = [
     any[]
 ] ? Readonly<Exclude<T, undefined>> : Readonly<Exclude<T, undefined>[]>;
 export const pathsQuestionnairesGetParametersQuerySortByValues: ReadonlyArray<paths["/questionnaires"]["get"]["parameters"]["query"]["sortBy"]> = ["createdAt", "completedAt"];
-export const pathsQuestionnairesGetParametersQuerySortOrderValues: ReadonlyArray<paths["/questionnaires"]["get"]["parameters"]["query"]["sortOrder"]> = ["ASC", "DESC"];
 export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["UserCreationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const sortOrderValues: ReadonlyArray<components["schemas"]["SortOrder"]> = ["ASC", "DESC"];

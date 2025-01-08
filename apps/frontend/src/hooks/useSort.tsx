@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { SortToggle } from "../components/SortToggle";
 import { FileRoutesById } from "../routeTree.gen";
-
-export type SortOrder = "ASC" | "DESC";
+import { components } from "../api.gen";
 
 export function useSort(route: FileRoutesById[keyof FileRoutesById]) {
   const s = route.useSearch();
@@ -18,7 +17,7 @@ export function useSort(route: FileRoutesById[keyof FileRoutesById]) {
         search={(prev) => {
           const prevSearch = prev as { sortBy: typeof sortBy; sortOrder: typeof sortOrder };
 
-          let sortOrder: SortOrder | undefined;
+          let sortOrder: components["schemas"]["SortOrder"] | undefined;
           if (prevSearch.sortBy !== sortKey) {
             sortOrder = "ASC";
           } else if (prevSearch.sortOrder === "ASC") {
