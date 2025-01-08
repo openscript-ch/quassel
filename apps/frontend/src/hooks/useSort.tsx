@@ -16,16 +16,16 @@ export function useSort(route: FileRoutesById[keyof FileRoutesById]) {
         from={route.fullPath}
         to="."
         search={(prev) => {
-          if (!("sortBy" in prev)) return;
+          const prevSearch = prev as { sortBy: typeof sortBy; sortOrder: typeof sortOrder };
 
           let sortOrder: SortOrder | undefined;
-          if (prev.sortBy !== sortKey) {
+          if (prevSearch.sortBy !== sortKey) {
             sortOrder = "ASC";
-          } else if (prev.sortOrder === "ASC") {
+          } else if (prevSearch.sortOrder === "ASC") {
             sortOrder = "DESC";
           }
 
-          return { ...prev, sortBy: sortOrder && sortKey, sortOrder };
+          return { ...prevSearch, sortBy: sortOrder && sortKey, sortOrder };
         }}
       >
         <SortToggle sortOrder={sortBy === sortKey ? sortOrder : undefined} />
