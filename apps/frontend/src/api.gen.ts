@@ -1944,6 +1944,8 @@ export interface operations {
             query?: {
                 sortBy?: "createdAt" | "completedAt";
                 sortOrder?: "ASC" | "DESC";
+                participantId?: number;
+                studyTitle?: string;
             };
             header?: never;
             path?: never;

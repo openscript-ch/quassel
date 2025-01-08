@@ -114,6 +114,7 @@ export {
   IconSelector,
   IconMaximize,
   IconMaximizeOff,
+  IconFilter,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";

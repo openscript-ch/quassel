@@ -55,10 +55,24 @@ export class QuestionnairesService {
     return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"])).toObject();
   }
 
-  async findAll({ sortBy, sortOrder }: { sortBy?: keyof QueryOrderMap<Questionnaire>; sortOrder?: SortOrder }) {
-    return (await this.questionnaireRepository.findAll({ populate: ["study", "participant"], orderBy: sortBy && { [sortBy]: sortOrder } })).map(
-      (questionnaire) => questionnaire.toObject()
-    );
+  async findAll({
+    sortBy,
+    sortOrder,
+    participantId,
+    studyTitle,
+  }: {
+    sortBy?: keyof QueryOrderMap<Questionnaire>;
+    sortOrder?: SortOrder;
+    participantId?: number;
+    studyTitle?: string;
+  }) {
+    return (
+      await this.questionnaireRepository.findAll({
+        where: { ...(participantId && { participant: participantId }), ...(studyTitle && { study: { title: { $fulltext: studyTitle } } }) },
+        populate: ["study", "participant"],
+        orderBy: sortBy && { [sortBy]: sortOrder },
+      })
+    ).map((questionnaire) => questionnaire.toObject());
   }
 
   async findOne(id: number) {

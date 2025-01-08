@@ -28,12 +28,16 @@ export class QuestionnairesController {
   @Get()
   @ApiQuery({ name: "sortBy", enum: QuestionnaireSortableField, required: false })
   @ApiQuery({ name: "sortOrder", enum: SortOrder, required: false })
+  @ApiQuery({ name: "participantId", required: false })
+  @ApiQuery({ name: "studyTitle", required: false })
   @ApiOperation({ summary: "Get all questionnairess" })
   index(
     @Query("sortBy") sortBy?: QuestionnaireSortableField,
-    @Query("sortOrder") sortOrder?: SortOrder
+    @Query("sortOrder") sortOrder?: SortOrder,
+    @Query("participantId") participantId?: number,
+    @Query("studyTitle") studyTitle?: string
   ): Promise<QuestionnaireListResponseDto[]> {
-    return this.questionnairesService.findAll({ sortBy, sortOrder });
+    return this.questionnairesService.findAll({ sortBy, sortOrder, participantId, studyTitle });
   }
 
   @Get(":id")
