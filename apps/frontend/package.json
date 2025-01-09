@@ -43,7 +43,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/coverage-v8": "2.1.8",
     "favicons": "^7.2.0",
-    "jsdom": "^25.0.1",
+    "jsdom": "^26.0.0",
     "openapi-typescript": "^7.5.2",
     "openapi-typescript-helpers": "^0.0.15",
     "typescript": "^5.7.2",
