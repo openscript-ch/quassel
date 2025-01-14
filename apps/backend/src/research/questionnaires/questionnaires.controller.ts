@@ -26,10 +26,16 @@ export class QuestionnairesController {
   }
 
   @Get()
-  @ApiQuery({ name: "sortBy", enumName: "QuestionnaireSortableField", enum: QuestionnaireSortableField, required: false })
-  @ApiQuery({ name: "sortOrder", enumName: "SortOrder", enum: SortOrder, required: false })
-  @ApiQuery({ name: "participantId", required: false })
-  @ApiQuery({ name: "studyTitle", required: false })
+  @ApiQuery({
+    name: "sortBy",
+    enumName: "QuestionnaireSortableField",
+    enum: QuestionnaireSortableField,
+    required: false,
+    description: "Field to sort by",
+  })
+  @ApiQuery({ name: "sortOrder", enumName: "SortOrder", enum: SortOrder, required: false, description: "Sort order" })
+  @ApiQuery({ name: "participantId", required: false, description: "Filter by participant ID" })
+  @ApiQuery({ name: "studyTitle", required: false, description: "Filter by study title" })
   @ApiOperation({ summary: "Get all questionnairess" })
   index(
     @Query("sortBy") sortBy?: QuestionnaireSortableField,
