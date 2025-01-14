@@ -93,7 +93,7 @@ export { TimeInput, DateInput } from "@mantine/dates";
 
 export { useDisclosure, useFullscreen } from "@mantine/hooks";
 
-export { notifications } from "@mantine/notifications";
+export { notifications, type NotificationData } from "@mantine/notifications";
 
 export { useForm, isInRange, isNotEmpty } from "@mantine/form";
 
