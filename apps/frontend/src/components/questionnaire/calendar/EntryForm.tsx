@@ -125,11 +125,11 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
           />
         </Flex>
 
-        {f.getValues().entryLanguages.map((value, index) => (
+        {f.getValues().entryLanguages.map((value, index, array) => (
           <Group key={value.language ? `l-${value.language}` : `i-${index}`} justify="stretch">
             <NumberInput {...f.getInputProps(`entryLanguages.${index}.ratio`)} max={100} min={1} w={80} rightSection="%" />
             <LanguageSelect
-              data={languages}
+              data={languages.filter(({ id }) => id === value.language || !array.some(({ language }) => language === id))}
               onAddNew={onAddLanguage}
               {...f.getInputProps(`entryLanguages.${index}.language`)}
               flex={1}
