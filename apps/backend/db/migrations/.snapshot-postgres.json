@@ -333,6 +333,17 @@
           "nullable": true,
           "mappedType": "text"
         },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "default": "now()",
+          "mappedType": "datetime"
+        },
         "completed_at": {
           "name": "completed_at",
           "type": "timestamptz",

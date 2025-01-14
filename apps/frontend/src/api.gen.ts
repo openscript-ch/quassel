@@ -229,7 +229,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Get a participant by ID */
+        /** Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant. */
         get: operations["ParticipantsController_entryTemplates"];
         put?: never;
         post?: never;
@@ -544,6 +544,12 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -810,6 +816,12 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -964,6 +976,12 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -972,6 +990,10 @@ export interface components {
             participant: components["schemas"]["ParticipantDto"];
             entries?: components["schemas"]["QuestionnaireEntryDto"][];
         };
+        /** @enum {string} */
+        QuestionnaireSortableField: "createdAt" | "completedAt";
+        /** @enum {string} */
+        SortOrder: "ASC" | "DESC";
         QuestionnaireMutationDto: {
             /**
              * Format: date-time
@@ -1923,7 +1945,12 @@ export interface operations {
     };
     QuestionnairesController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                sortBy?: components["schemas"]["QuestionnaireSortableField"];
+                sortOrder?: components["schemas"]["SortOrder"];
+                participantId?: number;
+                studyTitle?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2288,3 +2315,5 @@ export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["Use
 export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const questionnaireSortableFieldValues: ReadonlyArray<components["schemas"]["QuestionnaireSortableField"]> = ["createdAt", "completedAt"];
+export const sortOrderValues: ReadonlyArray<components["schemas"]["SortOrder"]> = ["ASC", "DESC"];

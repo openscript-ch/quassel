@@ -110,8 +110,11 @@ export {
   IconMinus,
   IconRepeat,
   IconChevronDown,
+  IconChevronUp,
+  IconSelector,
   IconMaximize,
   IconMaximizeOff,
+  IconFilter,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";
