@@ -5,6 +5,7 @@ import { CarerCreationDto, CarerMutationDto, CarerResponseDto } from "./carer.dt
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Carers")
 @Controller("carers")
@@ -14,6 +15,7 @@ export class CarersController {
   @Post()
   @ApiOperation({ summary: "Create a carer" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
+  @Serialize(CarerResponseDto)
   create(@Body() carer: CarerCreationDto): Promise<CarerResponseDto> {
     return this.carersService.create(carer);
   }
@@ -21,18 +23,21 @@ export class CarersController {
   @Get()
   @ApiQuery({ name: "participantId", required: false, type: Number })
   @ApiOperation({ summary: "Get all carers" })
+  @Serialize(CarerResponseDto)
   index(@Query("participantId") participantId?: number): Promise<CarerResponseDto[]> {
     return this.carersService.findAll(participantId);
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a carer by ID" })
+  @Serialize(CarerResponseDto)
   get(@Param("id") id: string): Promise<CarerResponseDto> {
     return this.carersService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a carer by ID" })
+  @Serialize(CarerResponseDto)
   update(@Param("id") id: string, @Body() carer: CarerMutationDto): Promise<CarerResponseDto> {
     return this.carersService.update(+id, carer);
   }

@@ -10,6 +10,7 @@ import {
   QuestionnaireMutationDto,
   QuestionnaireDetailResponseDto,
 } from "./questionnaire.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Questionnaires")
 @Controller("questionnaires")
@@ -19,24 +20,28 @@ export class QuestionnairesController {
   @Post()
   @ApiOperation({ summary: "Create a questionnaires" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
+  @Serialize(QuestionnaireResponseDto)
   create(@Body() questionnaires: QuestionnaireCreationDto): Promise<QuestionnaireResponseDto> {
     return this.questionnairesService.create(questionnaires);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all questionnairess" })
+  @Serialize(QuestionnaireResponseDto)
   index(): Promise<QuestionnaireResponseDto[]> {
     return this.questionnairesService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a questionnaires by ID" })
-  get(@Param("id") id: string): Promise<QuestionnaireDetailResponseDto> {
+  @Serialize(QuestionnaireDetailResponseDto)
+  async get(@Param("id") id: string): Promise<QuestionnaireDetailResponseDto> {
     return this.questionnairesService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a questionnaires by ID" })
+  @Serialize(QuestionnaireResponseDto)
   update(@Param("id") id: string, @Body() questionnaires: QuestionnaireMutationDto): Promise<QuestionnaireResponseDto> {
     return this.questionnairesService.update(+id, questionnaires);
   }

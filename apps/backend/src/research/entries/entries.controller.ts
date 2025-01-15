@@ -5,6 +5,7 @@ import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { EntriesService } from "./entries.service";
 import { EntryCreationDto, EntryResponseDto, EntryMutationDto } from "./entry.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Entries")
 @Controller("entries")
@@ -14,24 +15,28 @@ export class EntriesController {
   @Post()
   @ApiOperation({ summary: "Create a entry" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
+  @Serialize(EntryResponseDto)
   create(@Body() entry: EntryCreationDto): Promise<EntryResponseDto> {
     return this.entriesService.create(entry);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all entries" })
+  @Serialize(EntryResponseDto)
   index(): Promise<EntryResponseDto[]> {
     return this.entriesService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a entry by ID" })
+  @Serialize(EntryResponseDto)
   get(@Param("id") id: string): Promise<EntryResponseDto> {
     return this.entriesService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a entry by ID" })
+  @Serialize(EntryResponseDto)
   update(@Param("id") id: string, @Body() entry: EntryMutationDto): Promise<EntryResponseDto> {
     return this.entriesService.update(+id, entry);
   }
