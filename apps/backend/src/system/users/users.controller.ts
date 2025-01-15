@@ -5,6 +5,7 @@ import { Roles } from "./roles.decorator";
 import { UserRole } from "./user.entity";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { UserCreationDto, UserMutationDto, UserResponseDto } from "./user.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Users")
 @Controller("users")
@@ -14,24 +15,28 @@ export class UsersController {
   @Post()
   @ApiOperation({ summary: "Create a user" })
   @ApiUnprocessableEntityResponse({ description: "Unique email constraint violation", type: ErrorResponseDto })
+  @Serialize(UserResponseDto)
   create(@Body() user: UserCreationDto): Promise<UserResponseDto> {
     return this.usersService.create(user);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all users" })
+  @Serialize(UserResponseDto)
   index(): Promise<UserResponseDto[]> {
     return this.usersService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a user by ID" })
+  @Serialize(UserResponseDto)
   get(@Param("id") id: string): Promise<UserResponseDto> {
     return this.usersService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a user by ID" })
+  @Serialize(UserResponseDto)
   update(@Param("id") id: string, @Body() user: UserMutationDto): Promise<UserResponseDto> {
     return this.usersService.update(+id, user);
   }

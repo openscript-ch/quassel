@@ -1,30 +1,25 @@
-import { ApiProperty, OmitType, PartialType } from "@nestjs/swagger";
-import { Type } from "class-transformer";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { Expose, Type } from "class-transformer";
 import { IsDateString, IsOptional } from "class-validator";
-import { QuestionnaireListResponseDto } from "../questionnaires/questionnaire.dto";
+import { QuestionnaireResponseDto } from "../questionnaires/questionnaire.dto";
 
-export class ParticipantDto {
+class ParticipantBaseDto {
   @ApiProperty({ example: 1, description: "The id of the participant (child id)" })
+  @Expose()
   id: number;
 
   @ApiProperty({ example: "2024-11-01T00:05:02.718Z", description: "The birthday of the participant" })
   @IsDateString()
   @IsOptional()
+  @Expose()
   birthday?: Date;
-
-  @Type(() => QuestionnaireListResponseDto)
-  latestQuestionnaire?: QuestionnaireListResponseDto;
-
-  @Type(() => Array<number>)
-  questionnaires: number[];
-
-  @Type(() => Array<number>)
-  carers: number[];
-
-  @Type(() => Array<number>)
-  languages: number[];
 }
 
-export class ParticipantResponseDto extends ParticipantDto {}
-export class ParticipantCreationDto extends OmitType(ParticipantDto, ["questionnaires", "carers", "languages", "latestQuestionnaire"]) {}
-export class ParticipantMutationDto extends PartialType(ParticipantDto) {}
+export class ParticipantResponseDto extends ParticipantBaseDto {
+  @Type(() => QuestionnaireResponseDto)
+  @Expose()
+  latestQuestionnaire?: QuestionnaireResponseDto;
+}
+
+export class ParticipantCreationDto extends ParticipantBaseDto {}
+export class ParticipantMutationDto extends PartialType(ParticipantBaseDto) {}
