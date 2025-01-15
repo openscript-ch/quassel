@@ -48,15 +48,19 @@ export { FooterLogos } from "./components/FooterLogos";
 export { ImportInput } from "./components/ImportInput";
 export { ImportPreview } from "./components/ImportPreview";
 export { MonthPicker } from "./components/MonthPicker";
+export { ErrorDisplay } from "./components/ErrorDisplay";
 
 // external components
 export {
+  Alert,
   ActionIcon,
   Anchor,
   AppShell,
   Breadcrumbs,
   Button,
+  Box,
   Checkbox,
+  Code,
   Combobox,
   Container,
   ColorInput,
@@ -75,6 +79,7 @@ export {
   Radio,
   Select,
   type SelectProps,
+  Spoiler,
   Stack,
   Switch,
   Table,
