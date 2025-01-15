@@ -1,27 +1,29 @@
-import { ApiProperty, OmitType } from "@nestjs/swagger";
-import { Type } from "class-transformer";
+import { ApiProperty } from "@nestjs/swagger";
+import { Expose, Type } from "class-transformer";
 import { Min, Max } from "class-validator";
-import { LanguageDto } from "../../defaults/languages/language.dto";
-import { QuestionnaireEntryDto } from "../entries/entry.dto";
+import { LanguageResponseDto } from "../../defaults/languages/language.dto";
 
-export class EntryLanguageDto {
-  @ApiProperty({ example: 1, description: "The id of the entry language" })
-  id: number;
-
+export class EntryLanguageBaseDto {
   @ApiProperty({ example: "50", description: "The ratio in percent of the entry language" })
   @Min(1)
   @Max(100)
+  @Expose()
   ratio: number;
-
-  @Type(() => LanguageDto)
-  language: LanguageDto;
-
-  @Type(() => QuestionnaireEntryDto)
-  entry: QuestionnaireEntryDto;
 }
-export class EntryLanguageResponseDto extends OmitType(EntryLanguageDto, ["entry"]) {}
-export class EntryLanguageMutationDto extends OmitType(EntryLanguageDto, ["id", "entry", "language"]) {
-  id?: number;
+export class EntryLanguageResponseDto extends EntryLanguageBaseDto {
+  @ApiProperty({ example: 1, description: "The id of the entry language" })
+  @Expose()
+  id: number;
+
+  @Type(() => LanguageResponseDto)
+  @Expose()
+  language: LanguageResponseDto;
+}
+
+export class EntryLanguageCreationDto extends EntryLanguageBaseDto {
   language?: number;
 }
-export class EntryLanguageCreationDto extends OmitType(EntryLanguageMutationDto, ["id"]) {}
+
+export class EntryLanguageMutationDto extends EntryLanguageCreationDto {
+  id?: number;
+}

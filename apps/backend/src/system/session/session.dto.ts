@@ -1,18 +1,22 @@
-import { ApiProperty, OmitType } from "@nestjs/swagger";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
-import { UserDto } from "../users/user.dto";
+import { Expose } from "class-transformer";
+import { UserResponseDto } from "../users/user.dto";
 
-export class SessionDto {
+class SessionBaseDto {
   @ApiProperty({ example: "admin@example.com", description: "The email of the user" })
   @IsEmail()
   @IsNotEmpty()
+  @Expose()
   email: string;
+}
 
+export class SessionCreationDto extends SessionBaseDto {
   @ApiProperty({ example: "Quassel*1234", description: "The password of the user" })
   @IsString()
   @IsNotEmpty()
+  @Expose()
   password: string;
 }
 
-export class SessionCreationDto extends SessionDto {}
-export class SessionResponseDto extends OmitType(UserDto, ["password"]) {}
+export class SessionResponseDto extends UserResponseDto {}

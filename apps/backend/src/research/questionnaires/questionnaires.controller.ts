@@ -8,7 +8,7 @@ import {
   QuestionnaireCreationDto,
   QuestionnaireResponseDto,
   QuestionnaireMutationDto,
-  QuestionnaireListResponseDto,
+  QuestionnaireDetailResponseDto,
 } from "./questionnaire.dto";
 
 @ApiTags("Questionnaires")
@@ -25,13 +25,13 @@ export class QuestionnairesController {
 
   @Get()
   @ApiOperation({ summary: "Get all questionnairess" })
-  index(): Promise<QuestionnaireListResponseDto[]> {
+  index(): Promise<QuestionnaireResponseDto[]> {
     return this.questionnairesService.findAll();
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a questionnaires by ID" })
-  get(@Param("id") id: string): Promise<QuestionnaireResponseDto> {
+  get(@Param("id") id: string): Promise<QuestionnaireDetailResponseDto> {
     return this.questionnairesService.findOne(+id);
   }
 
