@@ -117,4 +117,5 @@ export const Route = createRootRouteWithContext<RouteContext>()({
   beforeLoad: () => ({ title: messages.get().title }),
   component: Root,
   errorComponent: ErrorDisplay,
+  notFoundComponent: () => <ErrorDisplay title="Page not found" />,
 });
