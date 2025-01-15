@@ -5,6 +5,7 @@ import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { LanguageCreationDto, LanguageResponseDto, LanguageMutationDto } from "./language.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Languages")
 @Controller("languages")
@@ -14,6 +15,7 @@ export class LanguagesController {
   @Post()
   @ApiOperation({ summary: "Create a language" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
+  @Serialize(LanguageResponseDto)
   create(@Body() language: LanguageCreationDto): Promise<LanguageResponseDto> {
     return this.languagesService.create(language);
   }
@@ -21,18 +23,21 @@ export class LanguagesController {
   @Get()
   @ApiQuery({ name: "participantId", required: false, type: Number })
   @ApiOperation({ summary: "Get all languages" })
+  @Serialize(LanguageResponseDto)
   index(@Query("participantId") participantId?: number): Promise<LanguageResponseDto[]> {
     return this.languagesService.findAll(participantId);
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a language by ID" })
+  @Serialize(LanguageResponseDto)
   get(@Param("id") id: string): Promise<LanguageResponseDto> {
     return this.languagesService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a language by ID" })
+  @Serialize(LanguageResponseDto)
   update(@Param("id") id: string, @Body() language: LanguageMutationDto): Promise<LanguageResponseDto> {
     return this.languagesService.update(+id, language);
   }

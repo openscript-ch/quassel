@@ -17,6 +17,7 @@ import { QuestionnairesService } from "../questionnaires/questionnaires.service"
 import { OneOrMany } from "../../types";
 import { EntriesService } from "../entries/entries.service";
 import { EntryTemplateDto } from "../entries/entry.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Participants")
 @ApiExtraModels(ParticipantCreationDto)
@@ -51,12 +52,14 @@ export class ParticipantsController {
       },
     },
   })
+  @Serialize(ParticipantResponseDto)
   create(@Body() participant: OneOrMany<ParticipantCreationDto>): Promise<ParticipantResponseDto[]> {
     return this.participantService.create(participant);
   }
 
   @Get()
   @ApiOperation({ summary: "Get all participants" })
+  @Serialize(ParticipantResponseDto)
   index(): Promise<ParticipantResponseDto[]> {
     return this.participantService.findAll();
   }
@@ -64,6 +67,7 @@ export class ParticipantsController {
   @Get(":id")
   @ApiOperation({ summary: "Get a participant by ID" })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
+  @Serialize(ParticipantResponseDto)
   async get(@Param("id") id: string): Promise<ParticipantResponseDto> {
     const participant = await this.participantService.findOne(+id);
     const latestQuestionnaire = (await this.questionnairesService.findLatestByParticipant(+id))?.toObject();
@@ -75,12 +79,14 @@ export class ParticipantsController {
     summary: "Uniquely grouped entries by ratio, carer and language, that are used as templates when creating new entries for a participant.",
   })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
+  @Serialize(EntryTemplateDto)
   entryTemplates(@Param("id") id: string): Promise<EntryTemplateDto[]> {
     return this.entriesService.findTemplatesForParticipant(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a participant by ID" })
+  @Serialize(ParticipantResponseDto)
   update(@Param("id") id: string, @Body() participant: ParticipantMutationDto): Promise<ParticipantResponseDto> {
     return this.participantService.update(+id, participant);
   }

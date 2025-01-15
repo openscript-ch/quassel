@@ -8,9 +8,10 @@ import {
   QuestionnaireCreationDto,
   QuestionnaireResponseDto,
   QuestionnaireMutationDto,
-  QuestionnaireListResponseDto,
+  QuestionnaireDetailResponseDto,
   QuestionnaireSortableField,
 } from "./questionnaire.dto";
+import { Serialize } from "../../common/decorators/serialize";
 import { SortOrder } from "../../common/dto/sort.dto";
 
 @ApiTags("Questionnaires")
@@ -21,6 +22,7 @@ export class QuestionnairesController {
   @Post()
   @ApiOperation({ summary: "Create a questionnaires" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
+  @Serialize(QuestionnaireResponseDto)
   create(@Body() questionnaires: QuestionnaireCreationDto): Promise<QuestionnaireResponseDto> {
     return this.questionnairesService.create(questionnaires);
   }
@@ -37,23 +39,26 @@ export class QuestionnairesController {
   @ApiQuery({ name: "participantId", required: false, description: "Filter by participant ID" })
   @ApiQuery({ name: "studyTitle", required: false, description: "Filter by study title" })
   @ApiOperation({ summary: "Get all questionnairess" })
+  @Serialize(QuestionnaireResponseDto)
   index(
     @Query("sortBy") sortBy?: QuestionnaireSortableField,
     @Query("sortOrder") sortOrder?: SortOrder,
     @Query("participantId") participantId?: number,
     @Query("studyTitle") studyTitle?: string
-  ): Promise<QuestionnaireListResponseDto[]> {
+  ): Promise<QuestionnaireResponseDto[]> {
     return this.questionnairesService.findAll({ sortBy, sortOrder, participantId, studyTitle });
   }
 
   @Get(":id")
   @ApiOperation({ summary: "Get a questionnaires by ID" })
-  get(@Param("id") id: string): Promise<QuestionnaireResponseDto> {
+  @Serialize(QuestionnaireDetailResponseDto)
+  async get(@Param("id") id: string): Promise<QuestionnaireDetailResponseDto> {
     return this.questionnairesService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOperation({ summary: "Update a questionnaires by ID" })
+  @Serialize(QuestionnaireResponseDto)
   update(@Param("id") id: string, @Body() questionnaires: QuestionnaireMutationDto): Promise<QuestionnaireResponseDto> {
     return this.questionnairesService.update(+id, questionnaires);
   }
