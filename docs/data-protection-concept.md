@@ -43,7 +43,6 @@ This document is intended to provide information on how the users data is handle
 - Measures are in place to ensure the accuracy and completeness of user data.
 - Regular audits and checks are performed to identify and rectify any data inconsistencies.
 
-
 ## Conclusion
 
 The Quassel project is committed to protecting user data and ensuring its secure handling, storage, and processing. By implementing robust data protection measures and respecting user rights, we aim to maintain the trust and confidence of our users.
