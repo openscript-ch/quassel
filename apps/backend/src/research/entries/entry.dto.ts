@@ -36,7 +36,7 @@ export class EntryResponseDto extends EntryBaseDto {
   @Expose()
   carer: CarerBaseDto;
 
-  @Type(() => Array<EntryLanguageResponseDto>)
+  @Type(() => EntryLanguageResponseDto)
   @Expose()
   entryLanguages: Array<EntryLanguageResponseDto>;
 }
@@ -55,7 +55,7 @@ export class EntryTemplateDto {
   @Expose()
   carer: CarerBaseDto;
 
-  @Type(() => Array<EntryLanguageResponseDto>)
+  @Type(() => EntryLanguageResponseDto)
   @Expose()
   entryLanguages: Array<EntryLanguageResponseDto>;
 }

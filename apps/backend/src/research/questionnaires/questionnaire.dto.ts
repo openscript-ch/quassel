@@ -47,7 +47,7 @@ export class QuestionnaireResponseDto extends QuestionnaireBaseDto {
 }
 
 export class QuestionnaireDetailResponseDto extends QuestionnaireResponseDto {
-  @Type(() => Array<EntryResponseDto>)
+  @Type(() => EntryResponseDto)
   @Expose()
   entries: EntryResponseDto[];
 }
