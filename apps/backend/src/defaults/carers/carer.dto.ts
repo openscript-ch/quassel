@@ -3,7 +3,7 @@ import { IsNotEmpty, IsOptional, Matches, MinLength } from "class-validator";
 import { Expose, Type } from "class-transformer";
 import { ParticipantResponseDto } from "../../research/participants/participant.dto";
 
-export class CarerBaseDto {
+class CarerBaseDto {
   @ApiProperty({ example: "Grandmother", description: "The name of the carer" })
   @MinLength(1)
   @IsNotEmpty()

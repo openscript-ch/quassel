@@ -1,7 +1,7 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
 import { IsOptional, Min, Max, IsMilitaryTime } from "class-validator";
-import { CarerBaseDto } from "../../defaults/carers/carer.dto";
+import { CarerResponseDto } from "../../defaults/carers/carer.dto";
 import { EntryLanguageCreationDto, EntryLanguageResponseDto } from "../entry-languages/entry-language.dto";
 
 class EntryBaseDto {
@@ -32,9 +32,9 @@ export class EntryResponseDto extends EntryBaseDto {
   @Expose()
   id: number;
 
-  @Type(() => CarerBaseDto)
+  @Type(() => CarerResponseDto)
   @Expose()
-  carer: CarerBaseDto;
+  carer: CarerResponseDto;
 
   @Type(() => EntryLanguageResponseDto)
   @Expose()
@@ -51,9 +51,9 @@ export class EntryCreationDto extends EntryBaseDto {
 export class EntryMutationDto extends PartialType(EntryCreationDto) {}
 
 export class EntryTemplateDto {
-  @Type(() => CarerBaseDto)
+  @Type(() => CarerResponseDto)
   @Expose()
-  carer: CarerBaseDto;
+  carer: CarerResponseDto;
 
   @Type(() => EntryLanguageResponseDto)
   @Expose()
