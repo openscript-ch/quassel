@@ -22,6 +22,7 @@ export class SessionController {
   async create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
     const user = await this.sessionService.validate(credentials);
     session.set("userId", user.id);
+    session.set("expiresAt", user.expiresAt);
     return user;
   }
 
@@ -33,7 +34,8 @@ export class SessionController {
   async get(@Session() session: FastifySession) {
     try {
       const userId = session.get("userId");
-      return this.sessionService.find(userId);
+      const user = await this.sessionService.find(userId);
+      return { ...user, expiresAt: session.get("expiresAt") };
     } catch {
       session.delete();
       throw new UnauthorizedException();

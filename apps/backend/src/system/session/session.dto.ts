@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Expose } from "class-transformer";
 import { UserResponseDto } from "../users/user.dto";
 
@@ -19,4 +19,9 @@ export class SessionCreationDto extends SessionBaseDto {
   password: string;
 }
 
-export class SessionResponseDto extends UserResponseDto {}
+export class SessionResponseDto extends UserResponseDto {
+  @ApiProperty({ example: "1737029456", description: "Expiration time of authentication" })
+  @IsNumber()
+  @Expose()
+  expiresAt: number;
+}
