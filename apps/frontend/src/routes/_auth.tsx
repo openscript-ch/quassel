@@ -1,6 +1,7 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { $session } from "../stores/session";
 import { $api } from "../stores/api";
+import { ErrorDisplay } from "@quassel/ui";
 
 const clearAndRedirect = (href: string) => {
   $session.set({});
@@ -27,4 +28,5 @@ export const Route = createFileRoute("/_auth")({
     }
   },
   component: () => <Outlet />,
+  errorComponent: ErrorDisplay,
 });

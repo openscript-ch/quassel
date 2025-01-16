@@ -150,7 +150,7 @@ export function EntryCalendar({
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
-    if (!selectedWeekday) return;
+    if (selectedWeekday === undefined) return;
 
     if (!entryUpdatingId) {
       await onAddEntry(entry, selectedWeekday);

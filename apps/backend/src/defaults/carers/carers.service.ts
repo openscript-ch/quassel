@@ -32,6 +32,8 @@ export class CarersService {
     return (
       await this.carerRepository.findAll({
         where: participantId ? { $or: [{ participant: null }, { participant: participantId }] } : { participant: null },
+        populate: ["entriesCount"],
+        orderBy: { entriesCount: "desc" },
       })
     ).map((carer) => carer.toObject());
   }

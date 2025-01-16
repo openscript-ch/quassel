@@ -16,6 +16,7 @@ import {
   IconMapSearch,
   Divider,
   FooterLogos,
+  ErrorDisplay,
 } from "@quassel/ui";
 import { createRootRouteWithContext, Link, Outlet, RouteContext, useNavigate } from "@tanstack/react-router";
 import { version } from "../../package.json";
@@ -116,4 +117,6 @@ function Root() {
 export const Route = createRootRouteWithContext<RouteContext>()({
   beforeLoad: () => ({ title: messages.get().title }),
   component: Root,
+  errorComponent: ErrorDisplay,
+  notFoundComponent: () => <ErrorDisplay title="Page not found" />,
 });
