@@ -34,13 +34,13 @@ export type ExtendedEvent = EventInput & {
 };
 
 export type EntryCalendarProps = {
-  entries: components["schemas"]["QuestionnaireEntryDto"][];
+  entries: components["schemas"]["EntryResponseDto"][];
   gaps?: GapsPerDay;
   onAddEntry: (entry: EntryFormValues, weekday: number) => Promise<unknown>;
   onUpdateEntry: (id: number, entry: Partial<EntryFormValues>, weekday: number) => Promise<unknown>;
   onDeleteEntry: (id: number) => Promise<unknown>;
-  carers: components["schemas"]["CarerDto"][];
-  languages: components["schemas"]["LanguageDto"][];
+  carers: components["schemas"]["CarerResponseDto"][];
+  languages: components["schemas"]["LanguageResponseDto"][];
   templates: components["schemas"]["EntryTemplateDto"][];
   onAddCarer: (value: string) => Promise<number>;
   onAddLanguage: (value: string) => Promise<number>;
