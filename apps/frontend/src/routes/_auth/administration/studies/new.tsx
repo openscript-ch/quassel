@@ -17,7 +17,6 @@ function AdministrationStudiesNew() {
     initialValues: {
       id: 0,
       title: "",
-      questionnaires: [],
     },
   });
   const handleSubmit = (values: FormValues) => {
