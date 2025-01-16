@@ -48,6 +48,7 @@ function Root() {
       signOut();
     }
   };
+
   qc.getQueryCache().config.onError = handleUnauthorized;
   qc.getMutationCache().config.onError = handleUnauthorized;
 

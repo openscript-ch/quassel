@@ -2,7 +2,7 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { FastifyRequest } from "fastify";
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "./public.decorator";
-import { ConfigService } from "@nestjs/config";
+import { ConfigService } from "../../config/config.service";
 import { UsersService } from "../users/users.service";
 
 @Injectable()

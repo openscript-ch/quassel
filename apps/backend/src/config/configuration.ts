@@ -13,7 +13,7 @@ export const configuration = () => ({
   },
   auth: {
     // Time in seconds until an authentication token expires
-    expiry: parseInt(process.env.AUTH_EXPIRY || "") || 24 * 60 * 60,
+    expiry: parseInt(process.env.AUTH_EXPIRY || "") || 60,
   },
   database: {
     host: process.env.DATABASE_HOST || "db",

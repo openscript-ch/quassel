@@ -2,7 +2,7 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { UsersService } from "../users/users.service";
 import { bcryptVerify } from "hash-wasm";
 import { SessionCreationDto } from "./session.dto";
-import { ConfigService } from "@nestjs/config";
+import { ConfigService } from "../../config/config.service";
 
 const INVALID_CREDENTIALS_EXCEPTION = new UnauthorizedException("Provided credentials are invalid", "Unauthorized");
 
