@@ -31,7 +31,7 @@ export function Entries() {
   const [highlightGaps, setHighlightGaps] = useState(false);
   const [gapsDialogOpened, { open, close }] = useDisclosure();
 
-  const f = useForm<{ entries: components["schemas"]["QuestionnaireEntryDto"][] }>({
+  const f = useForm<{ entries: components["schemas"]["EntryResponseDto"][] }>({
     initialValues: {
       entries: [],
     },
