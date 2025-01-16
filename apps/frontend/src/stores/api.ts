@@ -18,6 +18,7 @@ const useApiDownload = <Path extends PathsWithMethod<paths, "get">>(
   init: MaybeOptionalInit<paths[Path], "get">
 ) => {
   return useDownload(fileUrl, fileName, async () => {
+    // Fetch the file as a stream so the fetch client doesn't try to parse it as JSON and we can track the download progress
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const get = await fetchClient.GET(fileUrl, { ...init, parseAs: "stream" } as any);
     return get.response;
