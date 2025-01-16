@@ -1277,6 +1277,7 @@ export interface operations {
         parameters: {
             query?: {
                 type?: components["schemas"]["ExportType"];
+                studyId?: string;
             };
             header?: never;
             path?: never;
@@ -1287,12 +1288,12 @@ export interface operations {
             /** @description Database dump file */
             200: {
                 headers: {
-                    /** @description Attachment dump.sql */
+                    /** @description Attachment dump */
                     "Content-Disposition"?: string;
                     [name: string]: unknown;
                 };
                 content: {
-                    "text/sql": string;
+                    "text/plain": string;
                 };
             };
         };

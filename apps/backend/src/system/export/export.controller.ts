@@ -19,6 +19,7 @@ export class ExportController {
 
   @Get()
   @ApiQuery({ name: "type", enum: ExportType, enumName: "ExportType", required: false })
+  @ApiQuery({ name: "studyId", required: false })
   @ApiOperation({ summary: "Offers the backends data for download" })
   @ApiResponse({
     status: 200,
@@ -35,7 +36,7 @@ export class ExportController {
       },
     },
   })
-  async get(@Response() res: FastifyReply, @Query("type") type: ExportType = ExportType.sql) {
+  async get(@Response() res: FastifyReply, @Query("type") type: ExportType = ExportType.sql, @Query("studyId") studyId: string) {
     try {
       let data: string;
       switch (type) {
@@ -43,7 +44,7 @@ export class ExportController {
           data = await this.exportService.fullDatabaseDump();
           break;
         case ExportType.csv:
-          data = await this.exportService.csvExport();
+          data = await this.exportService.csvExport(+studyId);
           break;
       }
       const buffer = Buffer.from(data, "utf-8");

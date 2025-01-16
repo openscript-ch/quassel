@@ -26,7 +26,7 @@ export class ExportService {
     return this.executeCommand(command);
   }
 
-  async csvExport() {
+  async csvExport(studyId?: number) {
     const user = this.configService.get("database.user");
     const database = this.configService.get("database.name");
     const password = this.configService.get("database.password");
@@ -58,7 +58,8 @@ export class ExportService {
       .join("entry.questionnaire", "questionnaire")
       .join("questionnaire.study", "study")
       .join("questionnaire.participant", "participant")
-      .getQuery();
+      .where({ questionnaire: { study: studyId } })
+      .getFormattedQuery();
 
     const copyCommand = `COPY (${query}) TO STDOUT WITH CSV HEADER DELIMITER ',';`;
 
