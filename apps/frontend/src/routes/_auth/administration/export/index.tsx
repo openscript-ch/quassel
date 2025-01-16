@@ -4,6 +4,7 @@ import { $api } from "../../../../stores/api";
 import { i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { components } from "../../../../api.gen";
 
 const messages = i18n("AdministrationExportIndexRoute", {
   title: "Carers",
@@ -16,7 +17,7 @@ const messages = i18n("AdministrationExportIndexRoute", {
 });
 
 type FormValues = {
-  fileType: "csv" | "sql";
+  fileType: components["schemas"]["ExportType"];
   studyId?: string;
 };
 
@@ -30,7 +31,7 @@ function AdministrationExportIndex() {
   });
 
   const studies = useSuspenseQuery($api.queryOptions("get", "/studies"));
-  const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql");
+  const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql", { query: { type: f.getValues().fileType } });
   return (
     <form onSubmit={f.onSubmit(() => downloadFile())}>
       <Stack>

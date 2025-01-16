@@ -399,23 +399,18 @@ export interface components {
              */
             email: string;
             /**
-             * @description The password of the user
-             * @example Quassel*1234
-             */
-            password: string;
-            /**
              * @description The role of the user
              * @example ADMIN
              * @enum {string}
              */
             role?: "ASSISTANT" | "ADMIN";
+            /**
+             * @description The password of the user
+             * @example Quassel*1234
+             */
+            password: string;
         };
         UserResponseDto: {
-            /**
-             * @description The id of the user
-             * @example 1
-             */
-            id: number;
             /**
              * Format: email
              * @description The email of the user
@@ -428,6 +423,11 @@ export interface components {
              * @enum {string}
              */
             role?: "ASSISTANT" | "ADMIN";
+            /**
+             * @description The id of the user
+             * @example 1
+             */
+            id: number;
         };
         ErrorResponseDto: {
             /** @description Status code of the error */
@@ -445,16 +445,16 @@ export interface components {
              */
             email?: string;
             /**
-             * @description The password of the user
-             * @example Quassel*1234
-             */
-            password?: string;
-            /**
              * @description The role of the user
              * @example ADMIN
              * @enum {string}
              */
             role?: "ASSISTANT" | "ADMIN";
+            /**
+             * @description The password of the user
+             * @example Quassel*1234
+             */
+            password?: string;
         };
         SessionCreationDto: {
             /**
@@ -471,11 +471,6 @@ export interface components {
         };
         SessionResponseDto: {
             /**
-             * @description The id of the user
-             * @example 1
-             */
-            id: number;
-            /**
              * Format: email
              * @description The email of the user
              * @example admin@example.com
@@ -487,7 +482,14 @@ export interface components {
              * @enum {string}
              */
             role?: "ASSISTANT" | "ADMIN";
+            /**
+             * @description The id of the user
+             * @example 1
+             */
+            id: number;
         };
+        /** @enum {string} */
+        ExportType: "csv" | "sql";
         CarerCreationDto: {
             /**
              * @description The name of the carer
@@ -501,7 +503,7 @@ export interface components {
             color?: string;
             participant?: number;
         };
-        StudyDto: {
+        StudyResponseDto: {
             /**
              * @description The id of the study (child id)
              * @example 1
@@ -512,14 +514,8 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires?: number[];
         };
-        QuestionnaireListResponseDto: {
-            /**
-             * @description The id of the questionnaire
-             * @example 1
-             */
-            id: number;
+        QuestionnaireResponseDto: {
             /**
              * Format: date-time
              * @description The starting date of the questionnaire
@@ -554,10 +550,15 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            study: components["schemas"]["StudyResponseDto"];
+            participant: components["schemas"]["ParticipantResponseDto"];
         };
-        ParticipantDto: {
+        ParticipantResponseDto: {
             /**
              * @description The id of the participant (child id)
              * @example 1
@@ -569,17 +570,9 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
-            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
-            questionnaires: number[];
-            carers: number[];
-            languages: number[];
+            latestQuestionnaire?: components["schemas"]["QuestionnaireResponseDto"];
         };
         CarerResponseDto: {
-            /**
-             * @description The id of the carer
-             * @example 1
-             */
-            id: number;
             /**
              * @description The name of the carer
              * @example Grandmother
@@ -590,8 +583,12 @@ export interface components {
              * @example #ffffff
              */
             color?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entries: number[];
+            /**
+             * @description The id of the carer
+             * @example 1
+             */
+            id: number;
+            participant?: components["schemas"]["ParticipantResponseDto"];
         };
         CarerMutationDto: {
             /**
@@ -621,11 +618,6 @@ export interface components {
         };
         LanguageResponseDto: {
             /**
-             * @description The id of the language
-             * @example 1
-             */
-            id: number;
-            /**
              * @description The name of the language
              * @example Deutsch
              */
@@ -635,8 +627,12 @@ export interface components {
              * @example de-DE
              */
             ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entryLanguages: number[];
+            /**
+             * @description The id of the language
+             * @example 1
+             */
+            id: number;
+            participant?: components["schemas"]["ParticipantResponseDto"];
         };
         LanguageMutationDto: {
             /**
@@ -664,76 +660,21 @@ export interface components {
              */
             birthday?: string;
         };
-        ParticipantResponseDto: {
-            /**
-             * @description The id of the participant (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * Format: date-time
-             * @description The birthday of the participant
-             * @example 2024-11-01T00:05:02.718Z
-             */
-            birthday?: string;
-            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
-            questionnaires: number[];
-            carers: number[];
-            languages: number[];
-        };
-        CarerDto: {
-            /**
-             * @description The id of the carer
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the carer
-             * @example Grandmother
-             */
-            name: string;
-            /**
-             * @description The color used to display entries in the calendar
-             * @example #ffffff
-             */
-            color?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entries: number[];
-        };
-        LanguageDto: {
-            /**
-             * @description The id of the language
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The name of the language
-             * @example Deutsch
-             */
-            name: string;
-            /**
-             * @description The IETF BCP 47 code of the language
-             * @example de-DE
-             */
-            ietfBcp47?: string;
-            participant?: components["schemas"]["ParticipantDto"];
-            entryLanguages: number[];
-        };
         EntryLanguageResponseDto: {
-            /**
-             * @description The id of the entry language
-             * @example 1
-             */
-            id: number;
             /**
              * @description The ratio in percent of the entry language
              * @example 50
              */
             ratio: number;
-            language: components["schemas"]["LanguageDto"];
+            /**
+             * @description The id of the entry language
+             * @example 1
+             */
+            id: number;
+            language: components["schemas"]["LanguageResponseDto"];
         };
         EntryTemplateDto: {
-            carer: components["schemas"]["CarerDto"];
+            carer: components["schemas"]["CarerResponseDto"];
             entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
         };
         ParticipantMutationDto: {
@@ -748,10 +689,6 @@ export interface components {
              * @example 2024-11-01T00:05:02.718Z
              */
             birthday?: string;
-            latestQuestionnaire?: components["schemas"]["QuestionnaireListResponseDto"];
-            questionnaires?: number[];
-            carers?: number[];
-            languages?: number[];
         };
         EntryLanguageCreationDto: {
             /**
@@ -786,55 +723,7 @@ export interface components {
             questionnaire: number;
             entryLanguages: components["schemas"]["EntryLanguageCreationDto"][];
         };
-        EntryQuestionnaireDto: {
-            /**
-             * @description The id of the questionnaire
-             * @example 1
-             */
-            id: number;
-            /**
-             * Format: date-time
-             * @description The starting date of the questionnaire
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt: string;
-            /**
-             * Format: date-time
-             * @description The ending date of the questionnaire
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt: string;
-            /**
-             * @description The title of the questionnaire
-             * @example First few months
-             */
-            title: string;
-            /**
-             * @description The remark of the questionnaire
-             * @example We went on holidays for 2 weeks and only spoke Esperanto
-             */
-            remark?: string;
-            /**
-             * Format: date-time
-             * @description The date the questionnaire was created
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            createdAt: string;
-            /**
-             * Format: date-time
-             * @description The date the questionnaire was completed
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            completedAt?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
-        };
         EntryResponseDto: {
-            /**
-             * @description The id of the entry
-             * @example 1
-             */
-            id: number;
             /**
              * @description The starting date of the entry
              * @example 2024-11-01T07:00:00.000Z
@@ -855,8 +744,12 @@ export interface components {
              * @example 1
              */
             weeklyRecurring?: number;
-            questionnaire: components["schemas"]["EntryQuestionnaireDto"];
-            carer: components["schemas"]["CarerDto"];
+            /**
+             * @description The id of the entry
+             * @example 1
+             */
+            id: number;
+            carer: components["schemas"]["CarerResponseDto"];
             entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
         };
         EntryMutationDto: {
@@ -884,74 +777,7 @@ export interface components {
             questionnaire?: number;
             entryLanguages?: components["schemas"]["EntryLanguageCreationDto"][];
         };
-        QuestionnaireEntryDto: {
-            /**
-             * @description The id of the entry
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The starting date of the entry
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt: string;
-            /**
-             * @description The ending date of the entry
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt: string;
-            /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
-             * @example 1
-             */
-            weekday: number;
-            /**
-             * @description The weekly recurring of the entry
-             * @example 1
-             */
-            weeklyRecurring?: number;
-            carer: components["schemas"]["CarerDto"];
-            entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
-        };
         QuestionnaireCreationDto: {
-            /**
-             * Format: date-time
-             * @description The starting date of the questionnaire
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            startedAt: string;
-            /**
-             * Format: date-time
-             * @description The ending date of the questionnaire
-             * @example 2024-11-01T08:00:00.00Z
-             */
-            endedAt: string;
-            /**
-             * @description The title of the questionnaire
-             * @example First few months
-             */
-            title: string;
-            /**
-             * @description The remark of the questionnaire
-             * @example We went on holidays for 2 weeks and only spoke Esperanto
-             */
-            remark?: string;
-            /**
-             * Format: date-time
-             * @description The date the questionnaire was completed
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            completedAt?: string;
-            study: number;
-            participant: number;
-            entries?: components["schemas"]["QuestionnaireEntryDto"][];
-        };
-        QuestionnaireResponseDto: {
-            /**
-             * @description The id of the questionnaire
-             * @example 1
-             */
-            id: number;
             /**
              * Format: date-time
              * @description The starting date of the questionnaire
@@ -986,14 +812,57 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study: components["schemas"]["StudyDto"];
-            participant: components["schemas"]["ParticipantDto"];
-            entries?: components["schemas"]["QuestionnaireEntryDto"][];
+            study: number;
+            participant: number;
         };
         /** @enum {string} */
         QuestionnaireSortableField: "createdAt" | "completedAt";
         /** @enum {string} */
         SortOrder: "ASC" | "DESC";
+        QuestionnaireDetailResponseDto: {
+            /**
+             * Format: date-time
+             * @description The starting date of the questionnaire
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            startedAt: string;
+            /**
+             * Format: date-time
+             * @description The ending date of the questionnaire
+             * @example 2024-11-01T08:00:00.00Z
+             */
+            endedAt: string;
+            /**
+             * @description The title of the questionnaire
+             * @example First few months
+             */
+            title: string;
+            /**
+             * @description The remark of the questionnaire
+             * @example We went on holidays for 2 weeks and only spoke Esperanto
+             */
+            remark?: string;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was completed
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            completedAt?: string;
+            /**
+             * @description The id of the questionnaire
+             * @example 1
+             */
+            id: number;
+            study: components["schemas"]["StudyResponseDto"];
+            participant: components["schemas"]["ParticipantResponseDto"];
+            entries: components["schemas"]["EntryResponseDto"][];
+        };
         QuestionnaireMutationDto: {
             /**
              * Format: date-time
@@ -1019,11 +888,16 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt?: string;
+            /**
+             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            entries?: components["schemas"]["QuestionnaireEntryDto"][];
             study?: number;
             participant?: number;
         };
@@ -1033,8 +907,8 @@ export interface components {
              * @example 50
              */
             ratio: number;
-            id?: number;
             language?: number;
+            id?: number;
         };
         StudyCreationDto: {
             /**
@@ -1047,20 +921,6 @@ export interface components {
              * @example Series 1
              */
             title: string;
-            questionnaires?: number[];
-        };
-        StudyResponseDto: {
-            /**
-             * @description The id of the study (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The title of the study
-             * @example Series 1
-             */
-            title: string;
-            questionnaires?: number[];
         };
         StudyMutationDto: {
             /**
@@ -1073,7 +933,6 @@ export interface components {
              * @example Series 1
              */
             title?: string;
-            questionnaires?: number[];
         };
     };
     responses: never;
@@ -1416,7 +1275,9 @@ export interface operations {
     };
     ExportController_get: {
         parameters: {
-            query?: never;
+            query?: {
+                type?: components["schemas"]["ExportType"];
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1946,9 +1807,13 @@ export interface operations {
     QuestionnairesController_index: {
         parameters: {
             query?: {
+                /** @description Field to sort by */
                 sortBy?: components["schemas"]["QuestionnaireSortableField"];
+                /** @description Sort order */
                 sortOrder?: components["schemas"]["SortOrder"];
+                /** @description Filter by participant ID */
                 participantId?: number;
+                /** @description Filter by study title */
                 studyTitle?: string;
             };
             header?: never;
@@ -1962,7 +1827,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnaireListResponseDto"][];
+                    "application/json": components["schemas"]["QuestionnaireResponseDto"][];
                 };
             };
         };
@@ -2015,7 +1880,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["QuestionnaireResponseDto"];
+                    "application/json": components["schemas"]["QuestionnaireDetailResponseDto"];
                 };
             };
         };
@@ -2315,5 +2180,6 @@ export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["Use
 export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const exportTypeValues: ReadonlyArray<components["schemas"]["ExportType"]> = ["csv", "sql"];
 export const questionnaireSortableFieldValues: ReadonlyArray<components["schemas"]["QuestionnaireSortableField"]> = ["createdAt", "completedAt"];
 export const sortOrderValues: ReadonlyArray<components["schemas"]["SortOrder"]> = ["ASC", "DESC"];
