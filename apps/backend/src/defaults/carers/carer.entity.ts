@@ -1,4 +1,4 @@
-import { Check, Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
+import { Check, Collection, Entity, ManyToOne, OneToMany, Property, Formula } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Participant } from "../../research/participants/participant.entity";
 import { Entry } from "../../research/entries/entry.entity";
@@ -17,4 +17,7 @@ export class Carer extends BaseEntity {
 
   @OneToMany(() => Entry, (entry) => entry.carer)
   entries = new Collection<Entry>(this);
+
+  @Formula((alias) => `(select count(*) from entry e where e.carer_id = ${alias}.id)`, { lazy: true })
+  entriesCount? = 0;
 }

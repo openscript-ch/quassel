@@ -1,4 +1,4 @@
-import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
+import { Collection, Entity, ManyToOne, OneToMany, Property, Formula } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Participant } from "../../research/participants/participant.entity";
 import { EntryLanguage } from "../../research/entry-languages/entry-language.entity";
@@ -16,4 +16,7 @@ export class Language extends BaseEntity {
 
   @OneToMany(() => EntryLanguage, (entryLanguage) => entryLanguage.language)
   entryLanguages = new Collection<EntryLanguage>(this);
+
+  @Formula((alias) => `(select count(*) from entry_language el where el.language_id = ${alias}.id)`, { lazy: true })
+  entryLanguagesCount? = 0;
 }

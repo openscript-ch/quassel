@@ -32,6 +32,8 @@ export class LanguagesService {
     return (
       await this.languageRepository.findAll({
         where: participantId ? { $or: [{ participant: null }, { participant: participantId }] } : { participant: null },
+        populate: ["entryLanguagesCount"],
+        orderBy: { entryLanguagesCount: "desc" },
       })
     ).map((language) => language.toObject());
   }
