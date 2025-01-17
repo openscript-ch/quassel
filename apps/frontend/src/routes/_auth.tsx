@@ -20,7 +20,7 @@ export const Route = createFileRoute("/_auth")({
         if (sessionQuery.expiresAt < Date.now() / 1000) {
           clearAndRedirect(location.href);
         } else {
-          $session.set({ email: sessionQuery.email, role: sessionQuery.role, expiresAt: sessionQuery.expiresAt });
+          $session.set(sessionQuery);
         }
       }
     } catch {

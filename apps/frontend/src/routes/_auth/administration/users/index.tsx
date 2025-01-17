@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
-import { Button, Table } from "@quassel/ui";
+import { Button, Group, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useStore } from "@nanostores/react";
 import { $session } from "../../../../stores/session";
@@ -27,14 +27,16 @@ function AdministrationUsersIndex() {
             <Table.Td>{u.email}</Table.Td>
             <Table.Td>{u.role}</Table.Td>
             <Table.Td>
-              <Button variant="default" renderRoot={(props) => <Link to={`/administration/users/edit/${u.id}`} {...props} />}>
-                Edit
-              </Button>
-              {sessionStore.role === "ADMIN" && (
-                <Button variant="default" onClick={() => deleteUserMutation.mutate({ params: { path: { id: u.id.toString() } } })}>
-                  Delete
+              <Group>
+                <Button variant="default" renderRoot={(props) => <Link to={`/administration/users/edit/${u.id}`} {...props} />}>
+                  Edit
                 </Button>
-              )}
+                {sessionStore.role === "ADMIN" && sessionStore.id !== u.id && (
+                  <Button variant="default" onClick={() => deleteUserMutation.mutate({ params: { path: { id: u.id.toString() } } })}>
+                    Delete
+                  </Button>
+                )}
+              </Group>
             </Table.Td>
           </Table.Tr>
         ))}
