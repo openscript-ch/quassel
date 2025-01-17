@@ -87,7 +87,7 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown>
+      <Combobox.Dropdown styles={{ dropdown: { maxHeight: "30rem", overflow: "auto" } }}>
         <Combobox.Options>
           {onAddNew && !options?.length && (
             <Combobox.Option value={customValueKey}>{t.actionCreateNew({ value: searchValue })}</Combobox.Option>
