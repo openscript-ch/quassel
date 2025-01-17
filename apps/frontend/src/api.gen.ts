@@ -493,6 +493,8 @@ export interface components {
              */
             expiresAt: number;
         };
+        /** @enum {string} */
+        ExportType: "csv" | "sql";
         CarerCreationDto: {
             /**
              * @description The name of the carer
@@ -1266,7 +1268,10 @@ export interface operations {
     };
     ExportController_get: {
         parameters: {
-            query?: never;
+            query?: {
+                type?: components["schemas"]["ExportType"];
+                studyId?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -1276,12 +1281,12 @@ export interface operations {
             /** @description Database dump file */
             200: {
                 headers: {
-                    /** @description Attachment dump.sql */
+                    /** @description Attachment dump */
                     "Content-Disposition"?: string;
                     [name: string]: unknown;
                 };
                 content: {
-                    "text/sql": string;
+                    "text/plain": string;
                 };
             };
         };
@@ -2169,5 +2174,6 @@ export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["Use
 export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
+export const exportTypeValues: ReadonlyArray<components["schemas"]["ExportType"]> = ["csv", "sql"];
 export const questionnaireSortableFieldValues: ReadonlyArray<components["schemas"]["QuestionnaireSortableField"]> = ["createdAt", "completedAt"];
 export const sortOrderValues: ReadonlyArray<components["schemas"]["SortOrder"]> = ["ASC", "DESC"];

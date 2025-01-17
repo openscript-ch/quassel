@@ -4,6 +4,7 @@ import { $api } from "../../../../stores/api";
 import { i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { operations } from "../../../../api.gen";
 
 const messages = i18n("AdministrationExportIndexRoute", {
   title: "Carers",
@@ -15,31 +16,30 @@ const messages = i18n("AdministrationExportIndexRoute", {
   formAction: "Download",
 });
 
-type FormValues = {
-  fileType: "csv" | "sql";
-  studyId?: string;
-};
+type FormValues = NonNullable<operations["ExportController_get"]["parameters"]["query"]>;
 
 function AdministrationExportIndex() {
   const t = useStore(messages);
   const f = useForm<FormValues>({
     mode: "uncontrolled",
     initialValues: {
-      fileType: "csv",
+      type: "csv",
     },
   });
 
   const studies = useSuspenseQuery($api.queryOptions("get", "/studies"));
-  const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql");
+  $api.useQuery("get", "/export");
+  const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql", { params: { query: f.getValues() } });
   return (
     <form onSubmit={f.onSubmit(() => downloadFile())}>
       <Stack>
         <Select
+          {...f.getInputProps("studyId")}
           label={t.studyLabel}
           placeholder={t.studyPlaceholder}
           data={studies.data.map((s) => ({ label: s.title, value: s.id.toString() }))}
         />
-        <Radio.Group label={t.formatLabel} withAsterisk {...f.getInputProps("fileType")}>
+        <Radio.Group label={t.formatLabel} withAsterisk {...f.getInputProps("type")}>
           <Group>
             <Radio checked value="csv" label={t.csvLabel} />
             <Radio value="sql" label={t.sqlLabel} />
