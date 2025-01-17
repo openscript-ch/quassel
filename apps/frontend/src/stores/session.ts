@@ -1,7 +1,7 @@
 import { persistentAtom } from "@nanostores/persistent";
 import { components } from "../api.gen";
 
-type Session = Partial<Omit<components["schemas"]["SessionResponseDto"], "id">>;
+type Session = Partial<components["schemas"]["SessionResponseDto"]>;
 
 export const $session = persistentAtom<Session>(
   "session",
