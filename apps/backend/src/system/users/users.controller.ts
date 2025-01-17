@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Session, BadRequestException } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, Session, BadRequestException, ForbiddenException } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "./roles.decorator";
@@ -46,7 +46,7 @@ export class UsersController {
   @ApiOperation({ summary: "Delete a user by ID" })
   @Roles(UserRole.ADMIN)
   delete(@Param("id") id: string, @Session() session: FastifySession) {
-    if (session.get("userId") === +id) throw new BadRequestException("You cannot delete yourself");
+    if (session.get("userId") === +id) throw new ForbiddenException("You mustn't delete yourself.");
 
     return this.usersService.remove(+id);
   }
