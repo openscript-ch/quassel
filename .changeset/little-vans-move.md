@@ -5,4 +5,4 @@
 "@quassel/ui": patch
 ---
 
-Handle CSV option for export
+Export to CSV
