@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Session, BadRequestException, ForbiddenException } from "@nestjs/common";
+import { Controller, Get, Post, Body, Patch, Param, Delete, Session, ForbiddenException } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { ApiOperation, ApiTags, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { Roles } from "./roles.decorator";
