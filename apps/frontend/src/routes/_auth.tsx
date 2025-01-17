@@ -15,12 +15,12 @@ export const Route = createFileRoute("/_auth")({
     }
     try {
       const expiresAt = $session.get().expiresAt;
-      if (expiresAt && parseInt(expiresAt) < Date.now() / 1000) {
+      if (expiresAt && expiresAt < Date.now() / 1000) {
         const sessionQuery = await context.queryClient.fetchQuery($api.queryOptions("get", "/session"));
         if (sessionQuery.expiresAt < Date.now() / 1000) {
           clearAndRedirect(location.href);
         } else {
-          $session.set({ email: sessionQuery.email, role: sessionQuery.role, expiresAt: sessionQuery.expiresAt.toString() });
+          $session.set({ email: sessionQuery.email, role: sessionQuery.role, expiresAt: sessionQuery.expiresAt });
         }
       }
     } catch {

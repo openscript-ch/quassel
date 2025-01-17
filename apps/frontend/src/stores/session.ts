@@ -1,6 +1,13 @@
-import { persistentMap } from "@nanostores/persistent";
+import { persistentAtom } from "@nanostores/persistent";
 import { components } from "../api.gen";
 
-type Session = Partial<Omit<components["schemas"]["SessionResponseDto"], "id" | "expiresAt">> & { expiresAt?: string };
+type Session = Partial<Omit<components["schemas"]["SessionResponseDto"], "id">>;
 
-export const $session = persistentMap<Session>("session", {});
+export const $session = persistentAtom<Session>(
+  "session",
+  {},
+  {
+    encode: JSON.stringify,
+    decode: JSON.parse,
+  }
+);
