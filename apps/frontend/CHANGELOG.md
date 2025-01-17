@@ -1,5 +1,13 @@
 # @quassel/frontend
 
+## 0.3.1
+
+### Patch Changes
+
+- 472ac90: Format birthday in administration
+- 87e5025: Make dropdown scrollable
+- b218bf4: Use contrast text color for calendar entries
+
 ## 0.3.0
 
 ### Minor Changes
