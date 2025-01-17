@@ -1,5 +1,12 @@
 # @quassel/mockup
 
+## 0.0.6
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- bb9ff22: Export to CSV
+
 ## 0.0.5
 
 ### Patch Changes
