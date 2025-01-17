@@ -45,7 +45,7 @@ export class EntriesService {
     const uniqueEntryGroups = this.em
       .createQueryBuilder(Entry, "e")
       .select(["e.id"])
-      .distinctOn(raw("array_agg(ARRAY[el.language_id, el.ratio] ORDER BY el.language_id)"))
+      .distinctOn(raw("array_agg(ARRAY[el.language_id, el.ratio, e.carer_id] ORDER BY el.language_id)"))
       .join("e.entryLanguages", "el")
       .join("e.questionnaire", "q")
       .where({ "q.participant": participantId })
