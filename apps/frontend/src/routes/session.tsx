@@ -33,7 +33,7 @@ function Session() {
 
   const createSessionMutation = $api.useMutation("post", "/session", {
     onSuccess: (data) => {
-      $session.set({ email: data.email, role: data.role });
+      $session.set({ email: data.email, role: data.role, expiresAt: data.expiresAt });
       n({ to: l.search.redirect || "/" });
     },
   });

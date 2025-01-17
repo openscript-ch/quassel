@@ -39,8 +39,8 @@ type EntityFormProps = {
   onAddCarer: (value: string) => Promise<number>;
   onAddLanguage: (value: string) => Promise<number>;
   entry?: Partial<EntryFormValues>;
-  carers: components["schemas"]["CarerDto"][];
-  languages: components["schemas"]["LanguageDto"][];
+  carers: components["schemas"]["CarerResponseDto"][];
+  languages: components["schemas"]["LanguageResponseDto"][];
   templates: components["schemas"]["EntryTemplateDto"][];
   actionLabel: string;
 };

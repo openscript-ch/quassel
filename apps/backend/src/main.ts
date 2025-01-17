@@ -27,6 +27,7 @@ async function bootstrap() {
     cookie: {
       secure: true,
       sameSite: "none",
+      expires: new Date(Date.now() + configService.get("session.expiry") * 1000),
     },
   });
 

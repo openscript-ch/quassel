@@ -25,9 +25,6 @@ class QuestionnaireBaseDto {
   @Expose()
   remark?: string;
 
-  @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The date the questionnaire was created" })
-  createdAt: Date;
-
   @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The date the questionnaire was completed" })
   @IsOptional()
   @IsDateString()
@@ -39,6 +36,10 @@ export class QuestionnaireResponseDto extends QuestionnaireBaseDto {
   @ApiProperty({ example: 1, description: "The id of the questionnaire" })
   @Expose()
   id: number;
+
+  @ApiProperty({ example: "2024-11-01T07:00:00.000Z", description: "The date the questionnaire was created" })
+  @Expose()
+  createdAt: Date;
 
   @Type(() => StudyResponseDto)
   @Expose()

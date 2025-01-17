@@ -19,8 +19,11 @@ export class SessionController {
   @ApiResponse({ status: 201, description: "Signed in", type: SessionResponseDto })
   @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
   @Serialize(SessionResponseDto)
-  create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
-    return this.sessionService.signIn(credentials, session);
+  async create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
+    const user = await this.sessionService.validate(credentials);
+    session.set("userId", user.id);
+    session.set("expiresAt", user.expiresAt);
+    return user;
   }
 
   @Get()
@@ -28,10 +31,15 @@ export class SessionController {
   @ApiResponse({ status: 200, description: "Current session", type: SessionResponseDto })
   @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
   @Serialize(SessionResponseDto)
-  get(@Session() session: FastifySession) {
-    const userId = session.get("userId");
-    if (!userId) throw new UnauthorizedException();
-    return this.sessionService.whoAmI(userId);
+  async get(@Session() session: FastifySession) {
+    try {
+      const userId = session.get("userId");
+      const user = await this.sessionService.find(userId);
+      return { ...user, expiresAt: session.get("expiresAt") };
+    } catch {
+      session.delete();
+      throw new UnauthorizedException();
+    }
   }
 
   @Delete()

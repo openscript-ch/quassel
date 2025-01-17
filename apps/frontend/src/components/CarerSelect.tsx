@@ -3,7 +3,7 @@ import { components } from "../api.gen";
 import { EntitySelect, EntitySelectProps } from "./EntitySelect";
 
 type CarerSelectProps = EntitySelectProps & {
-  data: components["schemas"]["CarerDto"][];
+  data: components["schemas"]["CarerResponseDto"][];
 };
 
 export function CarerSelect({ value, onChange, onAddNew, data, ...rest }: CarerSelectProps) {

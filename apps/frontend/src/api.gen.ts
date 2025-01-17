@@ -487,6 +487,11 @@ export interface components {
              * @example 1
              */
             id: number;
+            /**
+             * @description Expiration time of authentication
+             * @example 1737029456
+             */
+            expiresAt: number;
         };
         /** @enum {string} */
         ExportType: "csv" | "sql";
@@ -540,12 +545,6 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
-             * @description The date the questionnaire was created
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            createdAt: string;
-            /**
-             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -555,6 +554,12 @@ export interface components {
              * @example 1
              */
             id: number;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
             study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
         };
@@ -802,12 +807,6 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
-             * @description The date the questionnaire was created
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            createdAt: string;
-            /**
-             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -844,12 +843,6 @@ export interface components {
             remark?: string;
             /**
              * Format: date-time
-             * @description The date the questionnaire was created
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            createdAt: string;
-            /**
-             * Format: date-time
              * @description The date the questionnaire was completed
              * @example 2024-11-01T07:00:00.000Z
              */
@@ -859,6 +852,12 @@ export interface components {
              * @example 1
              */
             id: number;
+            /**
+             * Format: date-time
+             * @description The date the questionnaire was created
+             * @example 2024-11-01T07:00:00.000Z
+             */
+            createdAt: string;
             study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
             entries: components["schemas"]["EntryResponseDto"][];
@@ -886,12 +885,6 @@ export interface components {
              * @example We went on holidays for 2 weeks and only spoke Esperanto
              */
             remark?: string;
-            /**
-             * Format: date-time
-             * @description The date the questionnaire was created
-             * @example 2024-11-01T07:00:00.000Z
-             */
-            createdAt?: string;
             /**
              * Format: date-time
              * @description The date the questionnaire was completed
