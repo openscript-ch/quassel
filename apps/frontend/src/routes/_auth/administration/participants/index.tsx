@@ -4,8 +4,10 @@ import { Button, Table } from "@quassel/ui";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { $session } from "../../../../stores/session";
 import { useStore } from "@nanostores/react";
+import { format } from "../../../../stores/i18n";
 
 function AdministrationParticipantsIndex() {
+  const { time } = useStore(format);
   const sessionStore = useStore($session);
   const participants = useSuspenseQuery($api.queryOptions("get", "/participants"));
   const deleteParticipantMutation = $api.useMutation("delete", "/participants/{id}", {
@@ -25,7 +27,7 @@ function AdministrationParticipantsIndex() {
         {participants.data?.map((p) => (
           <Table.Tr key={p.id}>
             <Table.Td>{p.id}</Table.Td>
-            <Table.Td>{p.birthday}</Table.Td>
+            <Table.Td>{p.birthday ? time(new Date(p.birthday)) : ""}</Table.Td>
             <Table.Td>
               <Button variant="default" renderRoot={(props) => <Link to={`/administration/participants/edit/${p.id}`} {...props} />}>
                 Edit
