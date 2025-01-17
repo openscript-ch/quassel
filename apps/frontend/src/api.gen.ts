@@ -487,6 +487,11 @@ export interface components {
              * @example 1
              */
             id: number;
+            /**
+             * @description Expiration time of authentication
+             * @example 1737029456
+             */
+            expiresAt: number;
         };
         CarerCreationDto: {
             /**

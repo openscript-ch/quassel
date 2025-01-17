@@ -1,9 +1,9 @@
 import { SessionData as FastifySessionData } from "@fastify/secure-session";
-import { UserDto } from "./system/users/user.dto";
 
 declare module "@fastify/secure-session" {
   interface SessionData extends FastifySessionData {
-    userId?: number;
+    userId: number;
+    expiresAt: number;
   }
 }
 

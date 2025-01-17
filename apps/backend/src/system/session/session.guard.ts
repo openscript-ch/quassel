@@ -2,13 +2,15 @@ import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from
 import { FastifyRequest } from "fastify";
 import { Reflector } from "@nestjs/core";
 import { IS_PUBLIC_KEY } from "./public.decorator";
+import { ConfigService } from "../../config/config.service";
 import { UsersService } from "../users/users.service";
 
 @Injectable()
 export class SessionGuard implements CanActivate {
   constructor(
-    private usersService: UsersService,
-    private reflector: Reflector
+    private reflector: Reflector,
+    private configService: ConfigService,
+    private usersService: UsersService
   ) {}
 
   async canActivate(context: ExecutionContext) {
@@ -20,8 +22,10 @@ export class SessionGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest<FastifyRequest>();
     const userId = request.session.get("userId");
+    const expiresAt = request.session.get("expiresAt");
 
-    if (!userId) {
+    if (!userId || !expiresAt || expiresAt < Date.now() / 1000) {
+      request.session.delete();
       throw new UnauthorizedException();
     }
 
@@ -29,8 +33,11 @@ export class SessionGuard implements CanActivate {
       const user = await this.usersService.findOne(userId);
       request.user = user;
 
+      request.session.set("expiresAt", Math.floor(Date.now() / 1000) + this.configService.get("auth.expiry"));
+
       return true;
     } catch {
+      request.session.delete();
       throw new UnauthorizedException();
     }
   }
