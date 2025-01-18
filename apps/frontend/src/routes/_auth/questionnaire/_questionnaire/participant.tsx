@@ -51,7 +51,12 @@ function QuestionnaireParticipant() {
             </Table.Tr>
           </Table.Tbody>
         </Table>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            handleSubmit();
+          }}
+        >
           <Button type="submit">{t.formAction}</Button>
         </form>
       </Stack>
