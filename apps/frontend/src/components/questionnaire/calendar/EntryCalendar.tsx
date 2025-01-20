@@ -191,9 +191,7 @@ export function EntryCalendar({
           }
         }}
         eventChange={handleEventChange}
-        eventContent={({ event }) => {
-          return <QuestionnaireEntry event={event} />;
-        }}
+        eventContent={({ event }) => <QuestionnaireEntry event={event} />}
       />
     </>
   );
