@@ -1,5 +1,15 @@
 # @quassel/frontend
 
+## 0.3.2
+
+### Patch Changes
+
+- ed3f052: Improve displaying dropdown options using maximal available space
+- ac27d46: Fix error on redirecting to existing questionnaire
+- 6342a7b: Prevent user from deleting themself
+- Updated dependencies [ed3f052]
+  - @quassel/ui@0.1.4
+
 ## 0.3.1
 
 ### Patch Changes

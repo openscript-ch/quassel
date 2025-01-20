@@ -1,5 +1,12 @@
 # @quassel/backend
 
+## 0.3.2
+
+### Patch Changes
+
+- 165fa8a: Set cookie path to fix authentication problem
+- 6342a7b: Prevent user from deleting themself
+
 ## 0.3.1
 
 ## 0.3.0

@@ -1,5 +1,11 @@
 # @quassel/ui
 
+## 0.1.4
+
+### Patch Changes
+
+- ed3f052: Improve displaying dropdown options using maximal available space
+
 ## 0.1.3
 
 ### Patch Changes
