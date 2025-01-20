@@ -25,6 +25,7 @@ async function bootstrap() {
     secret: configService.get("session.secret"),
     salt: configService.get("session.salt"),
     cookie: {
+      path: "/",
       secure: true,
       sameSite: "none",
       expires: new Date(Date.now() + configService.get("session.expiry") * 1000),
