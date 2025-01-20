@@ -77,6 +77,7 @@ export {
   Paper,
   PasswordInput,
   Radio,
+  ScrollArea,
   Select,
   type SelectProps,
   Spoiler,
@@ -120,6 +121,7 @@ export {
   IconMaximize,
   IconMaximizeOff,
   IconFilter,
+  IconPlus,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";
