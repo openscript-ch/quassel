@@ -11,6 +11,7 @@ import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { GapsPerDay, groupByWeekday } from "../../../utils/entry";
 import { EventImpl } from "@fullcalendar/core/internal";
+import styles from "./EntryCalendar.module.css";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -105,13 +106,15 @@ export function EntryCalendar({
             {
               start: getDateFromTimeAndWeekday("05:00:00", index),
               end: getDateFromTimeAndWeekday(minStart, index),
-              backgroundColor: theme.colors.uzhBlack[1],
+              backgroundColor: theme.colors.uzhBlue[9],
+              className: styles.eventSleepIndicator,
               display: "background",
             },
             {
               start: getDateFromTimeAndWeekday(maxEnd, index),
               end: getDateFromTimeAndWeekday("23:00:00", index),
-              backgroundColor: theme.colors.uzhBlack[1],
+              backgroundColor: theme.colors.uzhBlue[9],
+              className: styles.eventSleepIndicator,
               display: "background",
             },
           ];
@@ -188,7 +191,9 @@ export function EntryCalendar({
           }
         }}
         eventChange={handleEventChange}
-        eventContent={({ event }) => <QuestionnaireEntry event={event} />}
+        eventContent={({ event }) => {
+          return <QuestionnaireEntry event={event} />;
+        }}
       />
     </>
   );
