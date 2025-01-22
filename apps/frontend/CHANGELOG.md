@@ -1,5 +1,52 @@
 # @quassel/frontend
 
+## 0.3.2
+
+### Patch Changes
+
+- ed3f052: Improve displaying dropdown options using maximal available space
+- ac27d46: Fix error on redirecting to existing questionnaire
+- 6342a7b: Prevent user from deleting themself
+- Updated dependencies [ed3f052]
+  - @quassel/ui@0.1.4
+
+## 0.3.1
+
+### Patch Changes
+
+- 472ac90: Format birthday in administration
+- 87e5025: Make dropdown scrollable
+- b218bf4: Use contrast text color for calendar entries
+
+## 0.3.0
+
+### Minor Changes
+
+- 665e8ab: Preparation for release meeting
+
+### Patch Changes
+
+- 0d78e14: Introduce questionnaire creation date
+- c5eafeb: Logout at authentication expiration
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- dd3ce6b: Add global api error handling
+- c9a6899: Introduce sorting and filtering for questionnaires
+- bb9ff22: Export to CSV
+- 21c218c: Reset update state when creating new entry
+- e1253c1: Add favicons and manifest to frontend
+- 4e11ff2: Add global error screen
+- 3c28e6c: Highlight sleep time
+- a01ca79: Fix check for undefined on weekday
+- 7d1d6ba: Introduce fullscreen mode in questionnaire
+- 9170f89: Don't allow to select the same language twice
+- Updated dependencies [7f2ebe1]
+- Updated dependencies [dd3ce6b]
+- Updated dependencies [c9a6899]
+- Updated dependencies [bb9ff22]
+- Updated dependencies [e1253c1]
+- Updated dependencies [4e11ff2]
+  - @quassel/ui@0.1.3
+
 ## 0.2.4
 
 ### Patch Changes

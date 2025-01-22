@@ -32,7 +32,7 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/core/styles/Radio.css";
 
-import "@mantine/dates/styles.css";
+import "@openscript-ch/mantine-dates/styles.css";
 
 import "@mantine/notifications/styles.css";
 
@@ -48,15 +48,19 @@ export { FooterLogos } from "./components/FooterLogos";
 export { ImportInput } from "./components/ImportInput";
 export { ImportPreview } from "./components/ImportPreview";
 export { MonthPicker } from "./components/MonthPicker";
+export { ErrorDisplay } from "./components/ErrorDisplay";
 
 // external components
 export {
+  Alert,
   ActionIcon,
   Anchor,
   AppShell,
   Breadcrumbs,
   Button,
+  Box,
   Checkbox,
+  Code,
   Combobox,
   Container,
   ColorInput,
@@ -73,8 +77,10 @@ export {
   Paper,
   PasswordInput,
   Radio,
+  ScrollArea,
   Select,
   type SelectProps,
+  Spoiler,
   Stack,
   Switch,
   Table,
@@ -89,11 +95,11 @@ export {
   useMantineTheme,
 } from "@mantine/core";
 
-export { TimeInput, DateInput } from "@mantine/dates";
+export { TimeInput, DateInput } from "@openscript-ch/mantine-dates";
 
 export { useDisclosure, useFullscreen } from "@mantine/hooks";
 
-export { notifications } from "@mantine/notifications";
+export { notifications, type NotificationData } from "@mantine/notifications";
 
 export { useForm, isInRange, isNotEmpty } from "@mantine/form";
 
@@ -115,6 +121,7 @@ export {
   IconMaximize,
   IconMaximizeOff,
   IconFilter,
+  IconPlus,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";

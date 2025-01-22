@@ -14,6 +14,7 @@ import { StatusController } from "./status/status.controller";
 import { ExportController } from "./export/export.controller";
 import { ExportService } from "./export/export.service";
 import { ConfigModule } from "../config/config.module";
+import { ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [MikroOrmModule.forFeature([User]), TerminusModule, ConfigModule],
@@ -22,6 +23,7 @@ import { ConfigModule } from "../config/config.module";
     UsersService,
     SessionService,
     ExportService,
+    ConfigService,
     { provide: APP_GUARD, useClass: SessionGuard },
     { provide: APP_GUARD, useClass: RolesGuard },
   ],

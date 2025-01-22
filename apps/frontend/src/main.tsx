@@ -27,7 +27,7 @@ createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} notFoundMode="root" />
         <TanStackRouterDevtools router={router} position="bottom-right" />
       </ThemeProvider>
     </QueryClientProvider>

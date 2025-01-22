@@ -9,7 +9,7 @@ import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 
 type QuestionnaireEntriesProps = {
-  questionnaire: components["schemas"]["QuestionnaireResponseDto"];
+  questionnaire: components["schemas"]["QuestionnaireDetailResponseDto"];
   gaps?: GapsPerDay;
 };
 

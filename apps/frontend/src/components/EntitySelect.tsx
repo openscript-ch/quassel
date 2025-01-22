@@ -1,8 +1,9 @@
-import { Combobox, TextInput, TextInputProps, useCombobox } from "@quassel/ui";
+import { Combobox, Group, IconPlus, ScrollArea, TextInput, TextInputProps, useCombobox } from "@quassel/ui";
 import { useEffect, useState } from "react";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { params } from "@nanostores/i18n";
+import { C } from "../configuration";
 
 export type EntitySelectProps = Omit<TextInputProps, "value" | "onChange"> & {
   value?: number;
@@ -33,6 +34,7 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
   });
 
   const [searchValue, setSearchValue] = useState("");
+  const [availableHeight, setAvailbleHeight] = useState(C.ui.maxDropdownHeight);
 
   const shouldFilterOptions = !data?.some((item) => item[labelKey] === searchValue);
   const filteredOptions =
@@ -73,6 +75,13 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
         onChange?.(id);
         combobox.closeDropdown();
       }}
+      middlewares={{
+        size: {
+          apply: ({ availableHeight }) => {
+            setAvailbleHeight(availableHeight - 15);
+          },
+        },
+      }}
     >
       <Combobox.Target>
         <TextInput
@@ -89,10 +98,17 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
 
       <Combobox.Dropdown>
         <Combobox.Options>
-          {onAddNew && !options?.length && (
-            <Combobox.Option value={customValueKey}>{t.actionCreateNew({ value: searchValue })}</Combobox.Option>
-          )}
-          {options}
+          <ScrollArea.Autosize type="scroll" mah={availableHeight && Math.min(availableHeight, C.ui.maxDropdownHeight)}>
+            {onAddNew && !options?.length && (
+              <Combobox.Option value={customValueKey}>
+                <Group gap="xs">
+                  <IconPlus />
+                  {t.actionCreateNew({ value: searchValue })}
+                </Group>
+              </Combobox.Option>
+            )}
+            {options}
+          </ScrollArea.Autosize>
         </Combobox.Options>
       </Combobox.Dropdown>
     </Combobox>

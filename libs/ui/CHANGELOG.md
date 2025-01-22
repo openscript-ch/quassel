@@ -1,5 +1,22 @@
 # @quassel/ui
 
+## 0.1.4
+
+### Patch Changes
+
+- ed3f052: Improve displaying dropdown options using maximal available space
+
+## 0.1.3
+
+### Patch Changes
+
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- dd3ce6b: Add global api error handling
+- c9a6899: Introduce sorting and filtering for questionnaires
+- bb9ff22: Export to CSV
+- e1253c1: Add favicons and manifest to frontend
+- 4e11ff2: Add global error screen
+
 ## 0.1.2
 
 ### Patch Changes

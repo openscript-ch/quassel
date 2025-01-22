@@ -1,0 +1,3 @@
+.contrastColor {
+  filter: invert(1) grayscale(1) brightness(1.3) contrast(9000);
+}

@@ -11,6 +11,7 @@ import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { GapsPerDay, groupByWeekday } from "../../../utils/entry";
 import { EventImpl } from "@fullcalendar/core/internal";
+import styles from "./EntryCalendar.module.css";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -34,13 +35,13 @@ export type ExtendedEvent = EventInput & {
 };
 
 export type EntryCalendarProps = {
-  entries: components["schemas"]["QuestionnaireEntryDto"][];
+  entries: components["schemas"]["EntryResponseDto"][];
   gaps?: GapsPerDay;
   onAddEntry: (entry: EntryFormValues, weekday: number) => Promise<unknown>;
   onUpdateEntry: (id: number, entry: Partial<EntryFormValues>, weekday: number) => Promise<unknown>;
   onDeleteEntry: (id: number) => Promise<unknown>;
-  carers: components["schemas"]["CarerDto"][];
-  languages: components["schemas"]["LanguageDto"][];
+  carers: components["schemas"]["CarerResponseDto"][];
+  languages: components["schemas"]["LanguageResponseDto"][];
   templates: components["schemas"]["EntryTemplateDto"][];
   onAddCarer: (value: string) => Promise<number>;
   onAddLanguage: (value: string) => Promise<number>;
@@ -105,13 +106,15 @@ export function EntryCalendar({
             {
               start: getDateFromTimeAndWeekday("05:00:00", index),
               end: getDateFromTimeAndWeekday(minStart, index),
-              backgroundColor: theme.colors.uzhBlack[1],
+              backgroundColor: theme.colors.uzhBlue[9],
+              className: styles.eventSleepIndicator,
               display: "background",
             },
             {
               start: getDateFromTimeAndWeekday(maxEnd, index),
               end: getDateFromTimeAndWeekday("23:00:00", index),
-              backgroundColor: theme.colors.uzhBlack[1],
+              backgroundColor: theme.colors.uzhBlue[9],
+              className: styles.eventSleepIndicator,
               display: "background",
             },
           ];
@@ -150,7 +153,7 @@ export function EntryCalendar({
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
-    if (!selectedWeekday) return;
+    if (selectedWeekday === undefined) return;
 
     if (!entryUpdatingId) {
       await onAddEntry(entry, selectedWeekday);

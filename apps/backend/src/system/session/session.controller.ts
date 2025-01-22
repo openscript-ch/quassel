@@ -6,6 +6,7 @@ import { Public } from "./public.decorator";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { CustomApiUnauthorizedResponse } from "../../common/decorators/custom-api-unauthorized-response";
 import { SessionCreationDto, SessionResponseDto } from "./session.dto";
+import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Session")
 @Controller("session")
@@ -17,18 +18,28 @@ export class SessionController {
   @ApiOperation({ summary: "Create a session (sign in, log in, ..)" })
   @ApiResponse({ status: 201, description: "Signed in", type: SessionResponseDto })
   @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
-  create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
-    return this.sessionService.signIn(credentials, session);
+  @Serialize(SessionResponseDto)
+  async create(@Body() credentials: SessionCreationDto, @Session() session: FastifySession) {
+    const user = await this.sessionService.validate(credentials);
+    session.set("userId", user.id);
+    session.set("expiresAt", user.expiresAt);
+    return user;
   }
 
   @Get()
   @ApiOperation({ summary: "Get the current session (who am I, ..)" })
   @ApiResponse({ status: 200, description: "Current session", type: SessionResponseDto })
   @ApiUnauthorizedResponse({ description: "Provided credentials are invalid", type: ErrorResponseDto })
-  get(@Session() session: FastifySession) {
-    const userId = session.get("userId");
-    if (!userId) throw new UnauthorizedException();
-    return this.sessionService.whoAmI(userId);
+  @Serialize(SessionResponseDto)
+  async get(@Session() session: FastifySession) {
+    try {
+      const userId = session.get("userId");
+      const user = await this.sessionService.find(userId);
+      return { ...user, expiresAt: session.get("expiresAt") };
+    } catch {
+      session.delete();
+      throw new UnauthorizedException();
+    }
   }
 
   @Delete()

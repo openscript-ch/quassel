@@ -4,6 +4,7 @@ import { i18n } from "../../../stores/i18n";
 import { params } from "@nanostores/i18n";
 import { useStore } from "@nanostores/react";
 import { ExtendedEvent } from "./EntryCalendar";
+import styles from "./QuestionnaireEntry.module.css";
 
 type QuestionnaireEntryProps = {
   event: EventImpl;
@@ -19,7 +20,7 @@ export function QuestionnaireEntry({ event }: QuestionnaireEntryProps) {
   const t = useStore(messages);
 
   return (
-    <Stack gap={0}>
+    <Stack gap={0} styles={{ root: { color: event.backgroundColor } }} className={styles.contrastColor}>
       <Text size="sm" fw="bold" truncate>
         {event.title}
       </Text>

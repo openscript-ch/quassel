@@ -1,0 +1,5 @@
+.eventSleepIndicator {
+    background-image: url("/public/star.svg") !important;
+    background-repeat: repeat !important;
+    background-size: 25% !important;
+}

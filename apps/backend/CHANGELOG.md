@@ -1,5 +1,30 @@
 # @quassel/backend
 
+## 0.3.2
+
+### Patch Changes
+
+- 165fa8a: Set cookie path to fix authentication problem
+- 6342a7b: Prevent user from deleting themself
+
+## 0.3.1
+
+## 0.3.0
+
+### Minor Changes
+
+- 665e8ab: Preparation for release meeting
+
+### Patch Changes
+
+- 0d78e14: Introduce questionnaire creation date
+- c5eafeb: Logout at authentication expiration
+- 7f2ebe1: Allow selecting templates when entering calendar entries
+- c9a6899: Introduce sorting and filtering for questionnaires
+- bb9ff22: Export to CSV
+- ebf8930: Sort languages and carers by usage
+- 4a54dea: Improve response serialization
+
 ## 0.2.4
 
 ### Patch Changes
