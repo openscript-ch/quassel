@@ -7,7 +7,7 @@ Quassel is the name of the product. Installations of Quassel might live within d
 - **Product name**: Quassel
 - **Product vendor**: openscript GmbH
 - **Organization**: [Organization name] [Organization short name]
-- **Project name**: [Product name]
+- **Project name**: [Project name]
 - **Responsible person and contact**: [Responsible person]
 
 ## System Overview
