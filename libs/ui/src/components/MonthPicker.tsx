@@ -4,7 +4,7 @@ import {
   DateValue,
   MonthPicker as MantineMonthPicker,
   MonthPickerProps as MantineMonthPickerProps,
-} from "@mantine/dates";
+} from "@openscript-ch/mantine-dates";
 import dayjs from "dayjs";
 
 interface MonthPickerProps<Type extends DatePickerType = "default"> extends MantineMonthPickerProps<Type> {
