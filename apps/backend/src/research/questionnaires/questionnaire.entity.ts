@@ -32,4 +32,7 @@ export class Questionnaire extends BaseEntity {
 
   @OneToMany(() => Entry, (entry) => entry.questionnaire)
   entries = new Collection<Entry>(this);
+
+  @Formula((alias) => `(EXTRACT (EPOCH FROM ${alias}.ended_at - ${alias}.started_at))::integer`)
+  duration!: number;
 }

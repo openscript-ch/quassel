@@ -17,6 +17,7 @@ import {
   Divider,
   FooterLogos,
   ErrorDisplay,
+  IconReportAnalytics,
 } from "@quassel/ui";
 import { createRootRouteWithContext, Link, Outlet, RouteContext, useNavigate } from "@tanstack/react-router";
 import { version } from "../../package.json";
@@ -88,13 +89,8 @@ function Root() {
             <NavLink component={Link} to="/administration/languages" leftSection={<IconLanguage />} label="Languages" />
             <NavLink component={Link} to="/administration/carers" leftSection={<IconFriends />} label="Carers" />
             <Divider label="System" />
-            <NavLink
-              component={Link}
-              to="/administration/export"
-              activeOptions={{ exact: true }}
-              leftSection={<IconDatabaseExport />}
-              label="Export"
-            />
+            <NavLink component={Link} to="/administration/export" leftSection={<IconDatabaseExport />} label="Export" />
+            <NavLink component={Link} to="/administration/reports" leftSection={<IconReportAnalytics />} label="Reports" />
             <NavLink component={Link} to="/administration/users" leftSection={<IconUsers />} label="Users" />
           </AppShell.Navbar>
         )}

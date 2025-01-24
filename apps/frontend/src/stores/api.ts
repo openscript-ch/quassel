@@ -35,7 +35,7 @@ const apiClient = createClient(fetchClient);
 const useApiDownload = <Path extends PathsWithMethod<paths, "get">>(
   fileUrl: Path,
   fileName: string,
-  init: MaybeOptionalInit<paths[Path], "get">
+  init?: MaybeOptionalInit<paths[Path], "get">
 ) => {
   return useDownload(fileUrl, fileName, async () => {
     // Fetch the file as a stream so the fetch client doesn't try to parse it as JSON and we can track the download progress
