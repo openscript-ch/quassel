@@ -37,8 +37,8 @@ export type ExtendedEvent = EventInput & {
 export type EntryCalendarProps = {
   entries: components["schemas"]["EntryResponseDto"][];
   gaps?: GapsPerDay;
-  onAddEntry: (entry: EntryFormValues, weekday: number) => Promise<unknown>;
-  onUpdateEntry: (id: number, entry: Partial<EntryFormValues>, weekday: number) => Promise<unknown>;
+  onAddEntry: (entry: EntryFormValues) => Promise<unknown>;
+  onUpdateEntry: (id: number, entry: Partial<EntryFormValues>) => Promise<unknown>;
   onDeleteEntry: (id: number) => Promise<unknown>;
   carers: components["schemas"]["CarerResponseDto"][];
   languages: components["schemas"]["LanguageResponseDto"][];
@@ -70,7 +70,6 @@ export function EntryCalendar({
 
   const [opened, { open, close }] = useDisclosure();
 
-  const [selectedWeekday, setSelectedWeekday] = useState<number>();
   const [entryUpdatingId, setEntryUpdadingId] = useState<number>();
   const [entryDraft, setEntryDraft] = useState<Partial<EntryFormValues>>();
 
@@ -132,15 +131,14 @@ export function EntryCalendar({
       ...rest,
       startedAt: getTime(event.start!),
       endedAt: getTime(event.end!),
+      weekday,
     });
-    setSelectedWeekday(weekday);
     setEntryUpdadingId(id);
     open();
   };
 
   const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
-    setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!) });
-    setSelectedWeekday(start!.getDay());
+    setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
     setEntryUpdadingId(undefined);
     open();
   };
@@ -149,16 +147,14 @@ export function EntryCalendar({
     const { id, start, end } = event;
     setEvents(events.map((e) => (e.id === id ? { ...e, start: start!, end: end! } : e)));
 
-    onUpdateEntry(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!) }, start!.getDay());
+    onUpdateEntry(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
-    if (selectedWeekday === undefined) return;
-
     if (!entryUpdatingId) {
-      await onAddEntry(entry, selectedWeekday);
+      await onAddEntry(entry);
     } else {
-      await onUpdateEntry(entryUpdatingId, entry, selectedWeekday);
+      await onUpdateEntry(entryUpdatingId, entry);
     }
     close();
   };

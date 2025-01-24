@@ -78,6 +78,7 @@ export {
   PasswordInput,
   Radio,
   ScrollArea,
+  SegmentedControl,
   Select,
   type SelectProps,
   Spoiler,
