@@ -28,7 +28,6 @@ function AdministrationExportIndex() {
   });
 
   const studies = useSuspenseQuery($api.queryOptions("get", "/studies"));
-  $api.useQuery("get", "/export");
   const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql", { params: { query: f.getValues() } });
   return (
     <form onSubmit={f.onSubmit(() => downloadFile())}>
