@@ -1,4 +1,4 @@
-import { Button, Group, Modal, Stack, useDisclosure, useForm } from "@quassel/ui";
+import { Button, Group, Modal, Stack, Title, useDisclosure, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -58,24 +58,24 @@ export function Entries() {
 
   return (
     <>
+      <Modal opened={gapsDialogOpened} onClose={close} centered title={t.gapsDialogTitle}>
+        <Group justify="flex-end">
+          <Button onClick={handleSubmit} variant="light" type="submit">
+            {t.gapsDialogContinueAnyway}
+          </Button>
+          <Button
+            onClick={() => {
+              setHighlightGaps(true);
+              close();
+            }}
+          >
+            {t.gapsDialogHighlightGaps}
+          </Button>
+        </Group>
+      </Modal>
       <form onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
-          <Modal opened={gapsDialogOpened} onClose={close} centered title={t.gapsDialogTitle}>
-            <Group justify="flex-end">
-              <Button onClick={handleSubmit} variant="light" type="submit">
-                {t.gapsDialogContinueAnyway}
-              </Button>
-              <Button
-                onClick={() => {
-                  setHighlightGaps(true);
-                  close();
-                }}
-              >
-                {t.gapsDialogHighlightGaps}
-              </Button>
-            </Group>
-          </Modal>
-
+          <Title order={3}>{questionnaire.title}</Title>
           <QuestionnaireEntries gaps={highlightGaps ? gaps : undefined} questionnaire={questionnaire} />
 
           <Group>

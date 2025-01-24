@@ -4,6 +4,7 @@ import { useStore } from "@nanostores/react";
 import { PeriodForm, PeriodFormValues } from "../../../../../components/questionnaire/PeriodForm";
 import { $api } from "../../../../../stores/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { Title } from "@quassel/ui";
 
 export const messages = i18n("questionnairePeriod", {
   title: "Period",
@@ -48,7 +49,7 @@ function QuestionnairePeriod() {
 
   return (
     <>
-      <h3>{t.title}</h3>
+      <Title order={3}>{t.title}</Title>
       <PeriodForm onSave={onSave} startDate={period.range[0]!} period={period} actionLabel={t.formAction} />
     </>
   );

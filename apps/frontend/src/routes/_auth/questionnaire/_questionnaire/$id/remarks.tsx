@@ -1,4 +1,4 @@
-import { Button, Group, isSameOrAfter, Stack, Textarea, useForm } from "@quassel/ui";
+import { Button, Group, isSameOrAfter, Stack, Textarea, Title, useForm } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -69,7 +69,7 @@ function QuestionnaireRemarks() {
   return (
     <form onSubmit={f.onSubmit(handleSubmit)}>
       <Stack>
-        <h3>{t.title}</h3>
+        <Title order={3}>{t.title}</Title>
 
         <Textarea {...f.getInputProps("remark")} description={t.remarkDescription} rows={8} />
 

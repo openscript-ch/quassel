@@ -1,4 +1,4 @@
-import { Button, Stack, TextInput, useForm } from "@quassel/ui";
+import { Button, Stack, TextInput, Title, useForm } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -55,7 +55,7 @@ function Questionnaire() {
 
   return (
     <>
-      <h3>{t.title}</h3>
+      <Title order={3}>{t.title}</Title>
       <form onSubmit={f.onSubmit(handleSubmit)}>
         <Stack>
           <TextInput required label={t.participantIdLabel} {...f.getInputProps("participantId")} />

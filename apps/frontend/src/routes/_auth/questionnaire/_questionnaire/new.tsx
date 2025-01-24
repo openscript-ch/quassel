@@ -5,7 +5,7 @@ import { PeriodForm, PeriodFormValues } from "../../../../components/questionnai
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { useEffect } from "react";
-import { getNext } from "@quassel/ui";
+import { getNext, Title } from "@quassel/ui";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -52,7 +52,7 @@ function QuestionnaireNew() {
 
   return (
     <>
-      <h3>{t.title}</h3>
+      <Title order={3}>{t.title}</Title>
       {startDate && <PeriodForm onSave={onSave} startDate={startDate} actionLabel={t.formAction} />}
     </>
   );
