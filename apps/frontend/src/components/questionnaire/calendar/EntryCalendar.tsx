@@ -2,7 +2,7 @@ import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { DateSelectArg, EventChangeArg, EventInput } from "@fullcalendar/core";
-import { formatDate, getDateFromTimeAndWeekday, getTime, isSame, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
+import { Button, formatDate, getDateFromTimeAndWeekday, getTime, isSame, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
@@ -20,7 +20,6 @@ const calendarBaseConfig: FullCalendar["props"] = {
   slotMaxTime: { hour: 23 },
   slotDuration: { hour: 1 },
   firstDay: 1,
-  dayHeaderContent: ({ date }) => formatDate(date, "dddd"),
   locale: "de",
   expandRows: true,
   editable: true,
@@ -178,6 +177,18 @@ export function EntryCalendar({
         {...calendarBaseConfig}
         plugins={[timeGridPlugin, interactionPlugin]}
         events={events}
+        dayHeaderContent={({ date }) => (
+          <Button
+            variant="subtle"
+            onClick={() => {
+              setEntryDraft({ weekday: date.getDay() });
+              setEntryUpdadingId(undefined);
+              open();
+            }}
+          >
+            {formatDate(date, "dddd")}
+          </Button>
+        )}
         select={setupEntryCreate}
         eventClick={({ event }) => {
           if (event.display === "background") {
