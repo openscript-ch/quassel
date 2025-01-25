@@ -1,7 +1,8 @@
-import { Controller, Get, Query, Response } from "@nestjs/common";
+import { Controller, Get, Query, Response, Request, ForbiddenException } from "@nestjs/common";
 import { ApiOperation, ApiQuery, ApiResponse } from "@nestjs/swagger";
-import { FastifyReply } from "fastify";
+import { FastifyReply, FastifyRequest } from "fastify";
 import { ExportService } from "./export.service";
+import { UserRole } from "../users/user.entity";
 
 enum ExportType {
   csv = "csv",
@@ -36,17 +37,25 @@ export class ExportController {
       },
     },
   })
-  async get(@Response() res: FastifyReply, @Query("type") type: ExportType = ExportType.sql, @Query("studyId") studyId: string) {
+  async get(
+    @Response() res: FastifyReply,
+    @Request() req: FastifyRequest,
+    @Query("type") type: ExportType = ExportType.sql,
+    @Query("studyId") studyId: string
+  ) {
+    let data: string;
+    switch (type) {
+      case ExportType.sql:
+        if (req.user?.role !== UserRole.ADMIN) throw new ForbiddenException("You're not allowed to create a dump of the whole datebase.");
+
+        data = await this.exportService.fullDatabaseDump();
+        break;
+      case ExportType.csv:
+        data = await this.exportService.csvExport(+studyId);
+        break;
+    }
+
     try {
-      let data: string;
-      switch (type) {
-        case ExportType.sql:
-          data = await this.exportService.fullDatabaseDump();
-          break;
-        case ExportType.csv:
-          data = await this.exportService.csvExport(+studyId);
-          break;
-      }
       const buffer = Buffer.from(data, "utf-8");
       const dateTime = new Date().toISOString().replace(/:/g, "-").replace("T", "_").replace(/\..+/, "");
       res.header("Content-Disposition", `attachment; filename="quassel-database-dump-${dateTime}.${type}"`);

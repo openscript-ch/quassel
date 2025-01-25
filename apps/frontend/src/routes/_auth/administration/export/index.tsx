@@ -5,6 +5,7 @@ import { i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { operations } from "../../../../api.gen";
+import { $session } from "../../../../stores/session";
 
 const messages = i18n("AdministrationExportIndexRoute", {
   title: "Carers",
@@ -20,6 +21,9 @@ type FormValues = NonNullable<operations["ExportController_get"]["parameters"]["
 
 function AdministrationExportIndex() {
   const t = useStore(messages);
+
+  const session = useStore($session);
+
   const f = useForm<FormValues>({
     mode: "uncontrolled",
     initialValues: {
@@ -28,8 +32,8 @@ function AdministrationExportIndex() {
   });
 
   const studies = useSuspenseQuery($api.queryOptions("get", "/studies"));
-  $api.useQuery("get", "/export");
   const { isDownloading, downloadFile } = $api.useDownload("/export", "dump.sql", { params: { query: f.getValues() } });
+
   return (
     <form onSubmit={f.onSubmit(() => downloadFile())}>
       <Stack>
@@ -39,12 +43,14 @@ function AdministrationExportIndex() {
           placeholder={t.studyPlaceholder}
           data={studies.data.map((s) => ({ label: s.title, value: s.id.toString() }))}
         />
-        <Radio.Group label={t.formatLabel} withAsterisk {...f.getInputProps("type")}>
-          <Group>
-            <Radio checked value="csv" label={t.csvLabel} />
-            <Radio value="sql" label={t.sqlLabel} />
-          </Group>
-        </Radio.Group>
+        {session.role === "ADMIN" && (
+          <Radio.Group label={t.formatLabel} withAsterisk {...f.getInputProps("type")}>
+            <Group>
+              <Radio checked value="csv" label={t.csvLabel} />
+              <Radio value="sql" label={t.sqlLabel} />
+            </Group>
+          </Radio.Group>
+        )}
         <Button type="submit" loading={isDownloading}>
           {t.formAction}
         </Button>
