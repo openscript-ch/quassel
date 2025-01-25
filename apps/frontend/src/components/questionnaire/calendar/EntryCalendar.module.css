@@ -2,4 +2,14 @@
     background-image: url("/public/star.svg") !important;
     background-repeat: repeat !important;
     background-size: 25% !important;
+    ;
+}
+
+.eventGapIndicator {
+    background-image: repeating-linear-gradient(45deg,
+            var(--mantine-color-uzhBerry-4),
+            var(--mantine-color-uzhBerry-4) 10px,
+            var(--mantine-color-uzhGold-4) 10px,
+            var(--mantine-color-uzhGold-4) 20px) !important;
+    opacity: .6 !important;
 }

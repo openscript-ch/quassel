@@ -91,7 +91,7 @@ export function EntryCalendar({
           dailyGaps.map((gap) => ({
             start: getDateFromTimeAndWeekday(gap[0], index),
             end: getDateFromTimeAndWeekday(gap[1], index),
-            backgroundColor: theme.colors.uzhBerry[4],
+            className: styles.eventGapIndicator,
             display: "background",
           }))
         ),
