@@ -6,15 +6,17 @@ import { CarerSelect } from "../../CarerSelect";
 import { LanguageSelect } from "../../LanguageSelect";
 import { components } from "../../../api.gen";
 import { TemplateMenu } from "../../TemplateMenu";
+import { WeekdayPicker } from "../../WeekdayPicker";
 
 export type EntryFormValues = {
-  carer?: number;
+  carer: number;
   entryLanguages: {
     id?: number;
     ratio: number;
     language?: number;
   }[];
   weeklyRecurring?: number;
+  weekday: number;
   startedAt: string;
   endedAt: string;
 };
@@ -51,11 +53,9 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
     initialValues: {
       startedAt: "",
       endedAt: "",
-      entryLanguages: [
-        {
-          ratio: 100,
-        },
-      ],
+      carer: 0,
+      weekday: 0,
+      entryLanguages: [{ ratio: 100 }],
     },
     validate: {
       startedAt: isNotEmpty(t.validationNotEmpty),
@@ -164,6 +164,9 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
         >
           {t.actionAddLanguage}
         </Button>
+
+        <WeekdayPicker {...f.getInputProps("weekday")} />
+
         <Group>
           <TimeInput flex={1} {...f.getInputProps("startedAt")} />
           -

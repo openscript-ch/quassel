@@ -59,26 +59,14 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
     c.invalidateQueries($api.queryOptions("get", "/questionnaires/{id}", { params: { path: { id: questionnaire.id.toString() } } }));
   };
 
-  const handleCreate = ({ carer, ...rest }: EntryFormValues, weekday: number) => {
-    const entryRequest = {
-      ...rest,
-      carer: carer!,
-      weekday,
-      questionnaire: questionnaire.id,
-    };
+  const handleCreate = (entry: EntryFormValues) => {
+    const entryRequest = { ...entry, questionnaire: questionnaire.id };
 
     return createMutation.mutateAsync({ body: entryRequest }, { onSuccess: reloadEntries });
   };
 
-  const handleUpdate = (id: number, { carer, ...rest }: Partial<EntryFormValues>, weekday: number) => {
-    const entryRequest = {
-      ...rest,
-      carer: carer!,
-      weekday,
-      questionnaire: questionnaire.id,
-    };
-
-    return updateMutation.mutateAsync({ body: entryRequest, params: { path: { id: id.toString() } } }, { onSuccess: reloadEntries });
+  const handleUpdate = (id: number, entry: Partial<EntryFormValues>) => {
+    return updateMutation.mutateAsync({ body: entry, params: { path: { id: id.toString() } } }, { onSuccess: reloadEntries });
   };
 
   const handleDelete = (id: number) => {
