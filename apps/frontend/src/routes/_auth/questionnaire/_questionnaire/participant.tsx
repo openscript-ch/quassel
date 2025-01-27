@@ -1,4 +1,4 @@
-import { Button, Stack, Table } from "@quassel/ui";
+import { Button, Stack, Table, Title } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { format, i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -35,7 +35,7 @@ function QuestionnaireParticipant() {
 
   return (
     <>
-      <h3>{t.title}</h3>
+      <Title order={3}>{t.title}</Title>
       <Stack>
         <Table>
           <Table.Tbody>
