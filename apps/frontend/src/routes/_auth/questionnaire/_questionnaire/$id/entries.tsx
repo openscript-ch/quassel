@@ -41,8 +41,6 @@ export function Entries() {
         setGaps(gaps);
 
         const hasGaps = gaps.some(({ length }) => length);
-        if (hasGaps) open();
-
         return hasGaps;
       },
     },
@@ -54,6 +52,8 @@ export function Entries() {
 
   useEffect(() => {
     f.setValues({ entries: questionnaire.entries });
+
+    if (highlightGaps) f.validate();
   }, [questionnaire]);
 
   return (
@@ -73,7 +73,7 @@ export function Entries() {
           </Button>
         </Group>
       </Modal>
-      <form onSubmit={f.onSubmit(handleSubmit)}>
+      <form onSubmit={f.onSubmit(handleSubmit, open)}>
         <Stack>
           <Title order={3}>{questionnaire.title}</Title>
           <QuestionnaireEntries gaps={highlightGaps ? gaps : undefined} questionnaire={questionnaire} />
