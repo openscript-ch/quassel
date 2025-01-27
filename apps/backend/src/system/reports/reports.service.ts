@@ -48,33 +48,41 @@ export class ReportsService {
       const entriesByWeekday = this.groupByWeekday(questionnaire.entries);
 
       entriesByWeekday.forEach((weekday) => {
-        const timeEntriesMap = this.groupEntriesByStartAndEnd(weekday);
-
-        const sortedTimes = Object.keys(timeEntriesMap).sort((a, b) => a.localeCompare(b));
-        let onGoingEntries: Entry[] = [];
-
-        sortedTimes.forEach((start, index) => {
-          const end = sortedTimes[index + 1];
-
-          if (!end) return;
-
+        this.entriesByInterval(weekday).forEach((entriesInInterval, [start, end]) => {
           const duration = this.durationInSeconds(start, end);
-
-          const entriesInInterval = [...onGoingEntries, ...timeEntriesMap[start]].filter((entry) => entry.endedAt !== start);
-          onGoingEntries = [];
 
           entriesInInterval.forEach((entry) => {
             entry.entryLanguages.map(({ language, ratio }) => {
               acc.set(language, (acc.get(language) ?? 0) + (((ratio / 100) * duration) / entriesInInterval.length) * questionnaire.duration);
             });
-
-            if (entry.endedAt > end) onGoingEntries.push(entry);
           });
         });
       });
 
       return acc;
     }, new Map());
+  }
+
+  private entriesByInterval(entries: Entry[]) {
+    const entriesByInterval = new Map<[string, string], Entry[]>();
+
+    const timeEntriesMap = this.groupEntriesByStartAndEnd(entries);
+
+    const sortedTimes = Object.keys(timeEntriesMap).sort((a, b) => a.localeCompare(b));
+    let ongoingEntries: Entry[] = [];
+
+    sortedTimes.forEach((start, index) => {
+      const end = sortedTimes[index + 1];
+
+      if (!end) return;
+
+      const entriesInInterval = [...ongoingEntries, ...timeEntriesMap[start]].filter((entry) => entry.endedAt !== start);
+      ongoingEntries = entriesInInterval.filter((e) => e.endedAt > end);
+
+      entriesByInterval.set([start, end], entriesInInterval);
+    });
+
+    return entriesByInterval;
   }
 
   private durationInSeconds(start: string, end: string) {
