@@ -32,7 +32,7 @@ import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/core/styles/Radio.css";
 
-import "@openscript-ch/mantine-dates/styles.css";
+import "@mantine/dates/styles.css";
 
 import "@mantine/notifications/styles.css";
 
@@ -96,7 +96,7 @@ export {
   useMantineTheme,
 } from "@mantine/core";
 
-export { TimeInput, DateInput } from "@openscript-ch/mantine-dates";
+export { TimeInput, DateInput } from "@mantine/dates";
 
 export { useDisclosure, useFullscreen } from "@mantine/hooks";
 
