@@ -10,21 +10,46 @@ export const groupByWeekday = (entries: Entry[]) =>
     return acc;
   }, []);
 
+const groupEntriesByStartAndEnd = (entries: Entry[]) => {
+  return entries.reduce<Record<string, Entry[]>>((acc, entry) => {
+    acc[entry.startedAt] = [...(acc[entry.startedAt] ?? []), entry];
+    acc[entry.endedAt] = [...(acc[entry.endedAt] ?? []), entry];
+    return acc;
+  }, {});
+};
+
+const entriesByInterval = (entries: Entry[]) => {
+  const entriesByInterval = new Map<[string, string], Entry[]>();
+
+  const timeEntriesMap = groupEntriesByStartAndEnd(entries);
+
+  const sortedTimes = Object.keys(timeEntriesMap).sort((a, b) => a.localeCompare(b));
+  let onGoingEntries: Entry[] = [];
+
+  sortedTimes.forEach((start, index) => {
+    const end = sortedTimes[index + 1];
+
+    if (!end) return;
+
+    const entriesInInterval = [...onGoingEntries, ...timeEntriesMap[start]].filter((entry) => entry.endedAt !== start);
+    onGoingEntries = entriesInInterval.filter((e) => e.endedAt > end);
+
+    entriesByInterval.set([start, end], entriesInInterval);
+  });
+
+  return entriesByInterval;
+};
+
 export const resolveGaps = (entries: Entry[]) => groupByWeekday(entries).map(resolveGapsInDay) as GapsPerDay;
 
-// inspired by: https://cs.stackexchange.com/questions/133276/algorithm-to-compute-the-gaps-between-a-set-of-intervals
 export const resolveGapsInDay = (entriesOfSameDay: Entry[]) => {
-  const entriesSortedByStart = entriesOfSameDay.toSorted((a, b) => a.startedAt.localeCompare(b.startedAt));
-
   const gaps: Gap[] = [];
-  let lastCoveredTime = entriesSortedByStart[0]?.endedAt;
 
-  for (const entry of entriesSortedByStart) {
-    if (entry.startedAt > lastCoveredTime) {
-      gaps.push([lastCoveredTime, entry.startedAt]);
-    }
-    lastCoveredTime = lastCoveredTime > entry.endedAt ? lastCoveredTime : entry.endedAt;
-  }
+  entriesByInterval(entriesOfSameDay).forEach((entries, [start, end]) => {
+    const supervisonRatio = entries.reduce((acc, entry) => acc + 1 / (entry.weeklyRecurring ?? 1), 0);
+
+    if (supervisonRatio < 1) gaps.push([start, end]);
+  });
 
   return gaps;
 };
