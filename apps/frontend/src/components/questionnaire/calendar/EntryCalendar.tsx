@@ -92,7 +92,8 @@ export function EntryCalendar({
             start: getDateFromTimeAndWeekday(gap[0], index),
             end: getDateFromTimeAndWeekday(gap[1], index),
             className: styles.eventGapIndicator,
-            display: "background",
+            groupId: "gaps",
+            editable: false,
           }))
         ),
         // sleep indications
@@ -191,7 +192,7 @@ export function EntryCalendar({
         )}
         select={setupEntryCreate}
         eventClick={({ event }) => {
-          if (event.display === "background") {
+          if (event.groupId === "gaps") {
             setupEntryCreate(event);
           } else {
             setupEntryUpdate(event);
