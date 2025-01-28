@@ -169,5 +169,22 @@ describe("ReportsService", () => {
       expect(exposure.get(language1)).toEqual(0.6 * 60 * 60);
       expect(exposure.get(language2)).toEqual(0.4 * 60 * 60);
     });
+
+    it("should consider weekly recurring", () => {
+      entry1.weeklyRecurring = 1;
+      entry2.weeklyRecurring = 2;
+
+      entry1.startedAt = "08:00:00";
+      entry2.startedAt = "08:00:00";
+      entry1.endedAt = "09:00:00";
+      entry2.endedAt = "09:00:00";
+
+      questionnaire.entries = new Collection(questionnaire, [entry1, entry2]);
+
+      const exposure = service.getParticipantExposure(participant);
+
+      expect(exposure.get(language1)).toEqual((2 / 3) * 60 * 60);
+      expect(exposure.get(language2)).toEqual((1 / 3) * 60 * 60);
+    });
   });
 });

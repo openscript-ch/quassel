@@ -51,9 +51,13 @@ export class ReportsService {
         this.entriesByInterval(weekday).forEach((entriesInInterval, [start, end]) => {
           const duration = this.durationInSeconds(start, end);
 
+          const intervalFractions = entriesInInterval.reduce((acc, entry) => acc + 1 / (entry.weeklyRecurring ?? 1), 0);
+
           entriesInInterval.forEach((entry) => {
+            const supervisionRatio = 1 / (intervalFractions * (entry.weeklyRecurring ?? 1));
+
             entry.entryLanguages.map(({ language, ratio }) => {
-              acc.set(language, (acc.get(language) ?? 0) + (((ratio / 100) * duration) / entriesInInterval.length) * questionnaire.duration);
+              acc.set(language, (acc.get(language) ?? 0) + (ratio / 100) * duration * supervisionRatio * questionnaire.duration);
             });
           });
         });
