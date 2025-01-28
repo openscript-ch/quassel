@@ -3,15 +3,11 @@ import "./Theme.css";
 import { DatesProvider } from "@openscript-ch/mantine-dates";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import de from "dayjs/locale/de";
 import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { convertUZHColorsToMantine, UZHColor, uzhColors } from "./uzh";
 
 dayjs.extend(utc);
-dayjs.extend(customParseFormat);
-dayjs.locale(de);
 
 type ExtendedCustomColors = UZHColor | DefaultMantineColor;
 

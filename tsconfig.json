@@ -19,6 +19,9 @@
       "@quassel/ui": [
         "./libs/ui/src/index.ts"
       ],
+      "@quassel/utils": [
+        "./libs/utils/src/index.ts"
+      ],
     }
   },
   "exclude": [

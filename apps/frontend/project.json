@@ -10,9 +10,13 @@
         {
           "target": "build",
           "projects": "@quassel/ui"
+        },
+        {
+          "target": "build",
+          "projects": "@quassel/utils"
         }
       ]
     }
   },
-  "implicitDependencies": ["@quassel/ui"]
+  "implicitDependencies": ["@quassel/ui", "@quassel/utils"]
 }

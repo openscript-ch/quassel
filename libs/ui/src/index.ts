@@ -38,9 +38,6 @@ import "@mantine/notifications/styles.css";
 
 export { ThemeProvider } from "./theme/ThemeProvider";
 
-// custom ui helpers
-export { formatDate, getTime, getDateFromTimeAndWeekday, getNext, isSameOrAfter, isSame } from "./utils/date";
-
 // custom components
 export { Brand } from "./components/Brand";
 export { ContentShell } from "./components/ContentShell";
