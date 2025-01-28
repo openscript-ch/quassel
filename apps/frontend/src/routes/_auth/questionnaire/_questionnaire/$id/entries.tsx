@@ -5,7 +5,7 @@ import { useStore } from "@nanostores/react";
 import { $api } from "../../../../../stores/api";
 import { useEffect, useState } from "react";
 import { components } from "../../../../../api.gen";
-import { GapsPerDay, resolveGaps } from "../../../../../utils/entry";
+import { GapsPerDay, resolveGaps } from "@quassel/utils";
 import { QuestionnaireEntries } from "../../../../../components/questionnaire/QuestionnaireEntries";
 
 const messages = i18n("questionnaireEntries", {

@@ -4,7 +4,7 @@ import { EntryCalendar } from "./calendar/EntryCalendar";
 import { useQueryClient } from "@tanstack/react-query";
 import { EntryFormValues } from "./calendar/EntryForm";
 import { components } from "../../api.gen";
-import { GapsPerDay } from "../../utils/entry";
+import { GapsPerDay } from "@quassel/utils";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 

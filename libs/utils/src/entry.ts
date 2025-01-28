@@ -1,6 +1,10 @@
-import { components } from "../api.gen";
+export type Entry = {
+  weekday: number;
+  startedAt: string;
+  endedAt: string;
+  weeklyRecurring?: number;
+};
 
-export type Entry = components["schemas"]["EntryResponseDto"];
 export type Gap = [string, string];
 export type GapsPerDay = [Gap[], Gap[], Gap[], Gap[], Gap[], Gap[], Gap[]];
 
