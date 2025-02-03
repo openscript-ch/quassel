@@ -15,17 +15,21 @@ import { ExportController } from "./export/export.controller";
 import { ExportService } from "./export/export.service";
 import { ConfigModule } from "../config/config.module";
 import { ConfigService } from "@nestjs/config";
+import { ReportsController } from "./reports/reports.controller";
+import { ReportsService } from "./reports/reports.service";
 
 @Module({
   imports: [MikroOrmModule.forFeature([User]), TerminusModule, ConfigModule],
-  controllers: [UsersController, SessionController, HealthController, StatusController, ExportController],
+  controllers: [UsersController, SessionController, HealthController, StatusController, ExportController, ReportsController],
   providers: [
     UsersService,
     SessionService,
     ExportService,
+    ReportsService,
     ConfigService,
     { provide: APP_GUARD, useClass: SessionGuard },
     { provide: APP_GUARD, useClass: RolesGuard },
+    ReportsService,
   ],
 })
 export class SystemModule {}

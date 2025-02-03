@@ -123,6 +123,7 @@ export {
   IconMaximizeOff,
   IconFilter,
   IconPlus,
+  IconReportAnalytics,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";

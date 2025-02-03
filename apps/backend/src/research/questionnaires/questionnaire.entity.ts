@@ -1,4 +1,4 @@
-import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
+import { Collection, Entity, Formula, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Study } from "../studies/study.entity";
 import { Participant } from "../participants/participant.entity";
@@ -32,4 +32,7 @@ export class Questionnaire extends BaseEntity {
 
   @OneToMany(() => Entry, (entry) => entry.questionnaire)
   entries = new Collection<Entry>(this);
+
+  @Formula((alias) => `(EXTRACT (EPOCH FROM ${alias}.ended_at - ${alias}.started_at))::integer`)
+  duration!: number;
 }
