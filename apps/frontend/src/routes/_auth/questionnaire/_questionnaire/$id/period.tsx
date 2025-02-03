@@ -50,7 +50,7 @@ function QuestionnairePeriod() {
   return (
     <>
       <Title order={3}>{t.title}</Title>
-      <PeriodForm onSave={onSave} startDate={period.range[0]!} period={period} actionLabel={t.formAction} />
+      <PeriodForm onSave={onSave} period={period} actionLabel={t.formAction} />
     </>
   );
 }
