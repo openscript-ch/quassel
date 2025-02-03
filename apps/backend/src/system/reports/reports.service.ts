@@ -5,6 +5,7 @@ import { Entry } from "../../research/entries/entry.entity";
 import { differenceInSeconds, parse } from "date-fns";
 import { stringify } from "csv-stringify/sync";
 import { Language } from "../../defaults/languages/language.entity";
+import { entriesByInterval } from "@quassel/utils";
 
 type LanguageExposure = Map<Language, number>;
 
@@ -48,7 +49,7 @@ export class ReportsService {
       const entriesByWeekday = this.groupByWeekday(questionnaire.entries);
 
       entriesByWeekday.forEach((weekday) => {
-        this.entriesByInterval(weekday).forEach((entriesInInterval, [start, end]) => {
+        entriesByInterval(weekday).forEach((entriesInInterval, [start, end]) => {
           const duration = this.durationInSeconds(start, end);
 
           const intervalFractions = entriesInInterval.reduce((acc, entry) => acc + 1 / (entry.weeklyRecurring ?? 1), 0);
@@ -67,38 +68,8 @@ export class ReportsService {
     }, new Map());
   }
 
-  private entriesByInterval(entries: Entry[]) {
-    const entriesByInterval = new Map<[string, string], Entry[]>();
-
-    const timeEntriesMap = this.groupEntriesByStartAndEnd(entries);
-
-    const sortedTimes = Object.keys(timeEntriesMap).sort((a, b) => a.localeCompare(b));
-    let ongoingEntries: Entry[] = [];
-
-    sortedTimes.forEach((start, index) => {
-      const end = sortedTimes[index + 1];
-
-      if (!end) return;
-
-      const entriesInInterval = [...ongoingEntries, ...timeEntriesMap[start]].filter((entry) => entry.endedAt !== start);
-      ongoingEntries = entriesInInterval.filter((e) => e.endedAt > end);
-
-      entriesByInterval.set([start, end], entriesInInterval);
-    });
-
-    return entriesByInterval;
-  }
-
   private durationInSeconds(start: string, end: string) {
     return differenceInSeconds(parse(end, "HH:mm:ss", new Date()), parse(start, "HH:mm:ss", new Date()));
-  }
-
-  private groupEntriesByStartAndEnd(entries: Entry[]) {
-    return entries.reduce<Record<string, Entry[]>>((acc, entry) => {
-      acc[entry.startedAt] = [...(acc[entry.startedAt] ?? []), entry];
-      acc[entry.endedAt] = [...(acc[entry.endedAt] ?? []), entry];
-      return acc;
-    }, {});
   }
 
   private groupByWeekday(entries: Collection<Entry, object>) {
