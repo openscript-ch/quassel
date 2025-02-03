@@ -19,8 +19,6 @@ export default defineConfig({
         globals: {
           dayjs: "dayjs",
           "dayjs/plugin/utc.js": "dayjsPluginUtc",
-          "dayjs/plugin/customParseFormat.js": "dayjsPluginCustomParseFormat",
-          "dayjs/locale/de.js": "dayjsLocaleDe",
           react: "React",
           "react/jsx-runtime": "jsxRuntime",
           "@mantine/core": "mantineCore",

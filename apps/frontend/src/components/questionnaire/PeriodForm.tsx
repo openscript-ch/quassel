@@ -1,4 +1,5 @@
-import { Button, Flex, formatDate, InputError, MonthPicker, Stack, TextInput, useForm } from "@quassel/ui";
+import { Button, Flex, InputError, MonthPicker, Stack, TextInput, useForm } from "@quassel/ui";
+import { formatDate } from "@quassel/utils";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";

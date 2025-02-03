@@ -2,7 +2,6 @@
     background-image: url("/public/star.svg") !important;
     background-repeat: repeat !important;
     background-size: 25% !important;
-    ;
 }
 
 .eventGapIndicator {
@@ -12,4 +11,5 @@
             var(--mantine-color-uzhGold-4) 10px,
             var(--mantine-color-uzhGold-4) 20px) !important;
     opacity: .6 !important;
+    border: none;
 }

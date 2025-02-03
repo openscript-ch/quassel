@@ -5,7 +5,8 @@ import { PeriodForm, PeriodFormValues } from "../../../../components/questionnai
 import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { useEffect } from "react";
-import { getNext, Title } from "@quassel/ui";
+import { Title } from "@quassel/ui";
+import { getNext } from "@quassel/utils";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",

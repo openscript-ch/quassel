@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { Entry, resolveGaps, resolveGapsInDay } from "../../src/utils/entry";
+import { Entry, resolveGaps, resolveGapsInDay } from "../src/entry";
 
 describe("entry utils", () => {
   let entries: Partial<Entry>[];

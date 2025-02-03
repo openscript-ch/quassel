@@ -1,4 +1,4 @@
-import { Button, Group, isSameOrAfter, Stack, Textarea, Title, useForm } from "@quassel/ui";
+import { Button, Group, Stack, Textarea, Title, useForm } from "@quassel/ui";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -6,6 +6,7 @@ import { $api } from "../../../../../stores/api";
 import { useEffect } from "react";
 import { components } from "../../../../../api.gen";
 import { useQueryClient } from "@tanstack/react-query";
+import { isSameOrAfter } from "@quassel/utils";
 
 export const messages = i18n("questionnaireRemarks", {
   actionBack: "Back (Save)",

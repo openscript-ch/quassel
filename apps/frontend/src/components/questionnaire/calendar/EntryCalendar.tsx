@@ -2,14 +2,14 @@ import FullCalendar from "@fullcalendar/react";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { DateSelectArg, EventChangeArg, EventInput } from "@fullcalendar/core";
-import { Button, formatDate, getDateFromTimeAndWeekday, getTime, isSame, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
+import { Button, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
+import { GapsPerDay, getDateFromTimeAndWeekday, getTime, groupByWeekday, isSame } from "@quassel/utils";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
 import { useEffect, useState } from "react";
-import { i18n } from "../../../stores/i18n";
+import { format, i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
-import { GapsPerDay, groupByWeekday } from "../../../utils/entry";
 import { EventImpl } from "@fullcalendar/core/internal";
 import styles from "./EntryCalendar.module.css";
 
@@ -66,6 +66,7 @@ export function EntryCalendar({
   const theme = useMantineTheme();
 
   const t = useStore(messages);
+  const { time } = useStore(format);
 
   const [opened, { open, close }] = useDisclosure();
 
@@ -92,7 +93,8 @@ export function EntryCalendar({
             start: getDateFromTimeAndWeekday(gap[0], index),
             end: getDateFromTimeAndWeekday(gap[1], index),
             className: styles.eventGapIndicator,
-            display: "background",
+            groupId: "gaps",
+            editable: false,
           }))
         ),
         // sleep indications
@@ -186,12 +188,12 @@ export function EntryCalendar({
               open();
             }}
           >
-            {formatDate(date, "dddd")}
+            {time(date, { weekday: "long" })}
           </Button>
         )}
         select={setupEntryCreate}
         eventClick={({ event }) => {
-          if (event.display === "background") {
+          if (event.groupId === "gaps") {
             setupEntryCreate(event);
           } else {
             setupEntryUpdate(event);
