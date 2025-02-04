@@ -54,7 +54,7 @@ function QuestionnaireNew() {
   return (
     <>
       <Title order={3}>{t.title}</Title>
-      {startDate && <PeriodForm onSave={onSave} startDate={startDate} actionLabel={t.formAction} />}
+      {startDate && <PeriodForm onSave={onSave} period={{ range: [startDate, null], title: "" }} actionLabel={t.formAction} />}
     </>
   );
 }

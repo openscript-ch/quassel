@@ -13,7 +13,6 @@ export type PeriodFormValues = {
 type PeriodFormProps = {
   onSave: (form: PeriodFormValues) => void;
   period?: PeriodFormValues;
-  startDate: Date;
   actionLabel: string;
 };
 
@@ -23,17 +22,17 @@ const messages = i18n("periodForm", {
   validationStartDate: "There are no gaps allowed between questionnaires. The questionnaire must start when the previous ended.",
 });
 
-export function PeriodForm({ onSave, actionLabel, period, startDate }: PeriodFormProps) {
+export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
   const t = useStore(messages);
 
   const f = useForm<PeriodFormValues>({
     initialValues: {
-      range: [startDate, null],
+      range: [null, null],
       title: "",
     },
     validate: {
       range([start]) {
-        if (+startDate !== +start!) {
+        if (period?.range[0] && +period.range[0] !== +start!) {
           return t.validationStartDate;
         }
       },
@@ -49,13 +48,9 @@ export function PeriodForm({ onSave, actionLabel, period, startDate }: PeriodFor
 
   useEffect(() => {
     if (period) {
-      f.initialize(period);
+      f.setValues(period);
     }
   }, [period]);
-
-  useEffect(() => {
-    if (startDate) f.setValues({ range: [startDate, null] });
-  }, [startDate]);
 
   return (
     <form onSubmit={f.onSubmit(onSave)}>
@@ -66,9 +61,9 @@ export function PeriodForm({ onSave, actionLabel, period, startDate }: PeriodFor
               {...f.getInputProps("range")}
               size="md"
               type="range"
-              minDate={startDate}
+              minDate={period?.range[0] ?? undefined}
               maxDate={new Date()}
-              defaultDate={startDate}
+              defaultDate={period?.range[0] ?? undefined}
               numberOfColumns={2}
               columnsToScroll={1}
               allowSingleDateInRange
