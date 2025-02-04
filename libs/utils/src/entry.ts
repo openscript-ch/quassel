@@ -14,21 +14,21 @@ export const groupByWeekday = (entries: Entry[]) =>
     return acc;
   }, []);
 
-const groupEntriesByStartAndEnd = (entries: Entry[]) => {
-  return entries.reduce<Record<string, Entry[]>>((acc, entry) => {
+const groupEntriesByStartAndEnd = <E extends Entry>(entries: E[]) => {
+  return entries.reduce<Record<string, E[]>>((acc, entry) => {
     acc[entry.startedAt] = [...(acc[entry.startedAt] ?? []), entry];
     acc[entry.endedAt] = [...(acc[entry.endedAt] ?? []), entry];
     return acc;
   }, {});
 };
 
-const entriesByInterval = (entries: Entry[]) => {
-  const entriesByInterval = new Map<[string, string], Entry[]>();
+export const entriesByInterval = <E extends Entry>(entries: E[]) => {
+  const entriesByInterval = new Map<[string, string], E[]>();
 
   const timeEntriesMap = groupEntriesByStartAndEnd(entries);
 
   const sortedTimes = Object.keys(timeEntriesMap).sort((a, b) => a.localeCompare(b));
-  let onGoingEntries: Entry[] = [];
+  let onGoingEntries: E[] = [];
 
   sortedTimes.forEach((start, index) => {
     const end = sortedTimes[index + 1];
