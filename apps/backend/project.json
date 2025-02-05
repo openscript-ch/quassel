@@ -4,6 +4,14 @@
   "targets": {
     "container": {
       "executor": "@nx-tools/nx-container:build"
+    },
+    "dev": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "@quassel/utils"
+        }
+      ]
     }
   }
 }
