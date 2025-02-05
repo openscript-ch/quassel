@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "nest build",
+    "postbuild": "yes | pnpm install --prod && cp -rL node_modules dist/node_modules",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch --preserveWatchOutput",
