@@ -1,5 +1,13 @@
 # @quassel/ui
 
+## 0.1.5
+
+### Patch Changes
+
+- 85bcbde: Allow manually updating weekday of entry
+- 1c5058a: Upgrade dependencies
+- 04d6993: Patch month picker
+
 ## 0.1.4
 
 ### Patch Changes

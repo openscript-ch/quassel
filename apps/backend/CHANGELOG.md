@@ -1,5 +1,19 @@
 # @quassel/backend
 
+## 0.4.0
+
+### Minor Changes
+
+- d626bef: Add all features from specification
+
+### Patch Changes
+
+- 7455e38: Prevent non admin users from exporting a sql dump
+- 741682f: Add data protection concept
+- 1c5058a: Upgrade dependencies
+- Updated dependencies [1c5058a]
+  - @quassel/utils@0.1.5
+
 ## 0.3.2
 
 ### Patch Changes
