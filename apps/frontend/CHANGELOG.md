@@ -1,5 +1,29 @@
 # @quassel/frontend
 
+## 0.4.0
+
+### Minor Changes
+
+- d626bef: Add all features from specification
+
+### Patch Changes
+
+- ec47e49: Redesign export UI
+- 7455e38: Prevent non admin users from exporting a sql dump
+- 774f40e: Consider weekly reccuring rule for gap detection
+- 85bcbde: Allow manually updating weekday of entry
+- 741682f: Add data protection concept
+- 85bcbde: Allow creating entry from click on calendar header
+- 7951b10: Display questionnaire title above calendar
+- 4118457: Use playfull pattern for highlighting sleeping time
+- 1c5058a: Upgrade dependencies
+- 6bcb468: Fix period form initialization
+- Updated dependencies [85bcbde]
+- Updated dependencies [1c5058a]
+- Updated dependencies [04d6993]
+  - @quassel/ui@0.1.5
+  - @quassel/utils@0.1.5
+
 ## 0.3.2
 
 ### Patch Changes
