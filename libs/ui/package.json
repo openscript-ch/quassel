@@ -18,6 +18,9 @@
     },
     "./style.css": "./dist/style.css"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "nx run-many -t build:dev --output-style stream-without-prefixes",
     "build": "vite build --minify",

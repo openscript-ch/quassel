@@ -6,9 +6,12 @@
   "description": "",
   "author": "openscript GmbH",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "nest build",
-    "postbuild": "pnpm install --prod --filter . --modules-dir dist/node_modules_temp && cp -rL dist/node_modules_temp dist/node_modules && rm -rf dist/node_modules_temp",
+    "postbuild": "pnpm deploy --prod --filter @quassel/backend dist/deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch --preserveWatchOutput",

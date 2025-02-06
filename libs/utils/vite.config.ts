@@ -9,6 +9,15 @@ export default defineConfig({
       entry: "src/index.ts",
       name: packageJson.name,
     },
+    rollupOptions: {
+      output: {
+        globals: {
+          dayjs: "dayjs",
+          "dayjs/plugin/utc.js": "dayjsPluginUtc",
+          "dayjs/plugin/customParseFormat.js": "dayjsPluginCustomParseFormat",
+        },
+      },
+    },
   },
   plugins: [dts({ entryRoot: "src", tsconfigPath: "tsconfig.json" })],
 });
