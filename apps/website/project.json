@@ -1,0 +1,9 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "@quassel/website",
+  "targets": {
+    "container": {
+      "executor": "@nx-tools/nx-container:build"
+    }
+  }
+}

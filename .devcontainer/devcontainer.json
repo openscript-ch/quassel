@@ -11,7 +11,8 @@
         "bierner.markdown-mermaid",
         "GitHub.vscode-pull-request-github",
         "DavidAnson.vscode-markdownlint",
-        "TheUMLetTeam.umlet"
+        "TheUMLetTeam.umlet",
+        "astro-build.astro-vscode"
       ]
     }
   },
