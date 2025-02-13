@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 0.4.2
+
+### Patch Changes
+
+- be02d60: Upgrade dependencies
+
 ## 0.4.1
 
 ### Patch Changes
