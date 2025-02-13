@@ -1,5 +1,5 @@
 {
-  "name": "website",
+  "name": "@quassel/website",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
