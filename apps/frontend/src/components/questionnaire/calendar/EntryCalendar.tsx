@@ -193,7 +193,7 @@ export function EntryCalendar({
         )}
         select={setupEntryCreate}
         eventClick={({ event }) => {
-          if (event.groupId === "gaps") {
+          if (event.groupId === "gaps" || event.display === "background") {
             setupEntryCreate(event);
           } else {
             setupEntryUpdate(event);
