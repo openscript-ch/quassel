@@ -13,6 +13,10 @@ class StudyBaseDto {
   title: string;
 }
 
-export class StudyResponseDto extends StudyBaseDto {}
+export class StudyResponseDto extends StudyBaseDto {
+  @ApiProperty({example: 1, description: "The count of questionnaires tracked to this study"})
+  @Expose()
+  questionnairesCount?: number;
+}
 export class StudyCreationDto extends StudyBaseDto {}
 export class StudyMutationDto extends PartialType(StudyBaseDto) {}

@@ -26,21 +26,23 @@ function AdministrationStudiesIndex() {
             <Table.Td>{s.id}</Table.Td>
             <Table.Td>{s.title}</Table.Td>
             <Table.Td>
-              <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
-                Edit
-              </Button>
-              {sessionStore.role === "ADMIN" && (
-                <Button
-                  variant="default"
-                  onClick={() =>
-                    deleteStudyMutation.mutate({
-                      params: { path: { id: s.id.toString() } },
-                    })
-                  }
-                >
-                  Delete
+              <Button.Group>
+                <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
+                  Edit
                 </Button>
-              )}
+                {sessionStore.role === "ADMIN" && (s.questionnairesCount ?? 0) < 1 && (
+                  <Button
+                    variant="default"
+                    onClick={() =>
+                      deleteStudyMutation.mutate({
+                        params: { path: { id: s.id.toString() } },
+                      })
+                    }
+                  >
+                    Delete
+                  </Button>
+                )}
+              </Button.Group>
             </Table.Td>
           </Table.Tr>
         ))}
