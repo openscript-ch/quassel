@@ -14,7 +14,7 @@ class StudyBaseDto {
 }
 
 export class StudyResponseDto extends StudyBaseDto {
-  @ApiProperty({example: 1, description: "The count of questionnaires tracked to this study"})
+  @ApiProperty({ example: 1, description: "The count of questionnaires tracked to this study" })
   @Expose()
   questionnairesCount?: number;
 }
