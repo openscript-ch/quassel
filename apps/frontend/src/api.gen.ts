@@ -536,6 +536,11 @@ export interface components {
              * @example Series 1
              */
             title: string;
+            /**
+             * @description The count of questionnaires tracked to this study
+             * @example 1
+             */
+            questionnairesCount?: number;
         };
         QuestionnaireResponseDto: {
             /**
@@ -1310,8 +1315,8 @@ export interface operations {
     };
     ReportsController_get: {
         parameters: {
-            query?: {
-                studyId?: string;
+            query: {
+                studyId: string;
             };
             header?: never;
             path?: never;
@@ -1319,10 +1324,10 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Database dump file */
+            /** @description Report file */
             200: {
                 headers: {
-                    /** @description Attachment dump */
+                    /** @description Report */
                     "Content-Disposition"?: string;
                     [name: string]: unknown;
                 };
