@@ -24,7 +24,7 @@ export class ReportsService {
       ],
     });
 
-    const columnKeys = new Set(['participant'])
+    const columnKeys = new Set(["participant"]);
 
     const evaluatedExposurePerParticipant = participants.map((participant) => {
       const exposure = this.getParticipantExposure(participant);
@@ -36,7 +36,10 @@ export class ReportsService {
           acc[`L${index + 1}`] = duration / exposureSum;
           acc[`L${index + 1}_id`] = language.id;
           acc[`L${index + 1}_name`] = language.name;
-          columnKeys.add(`L${index + 1}`).add(`L${index + 1}_id`).add(`L${index + 1}_name`)
+          columnKeys
+            .add(`L${index + 1}`)
+            .add(`L${index + 1}_id`)
+            .add(`L${index + 1}_name`);
 
           return acc;
         },
