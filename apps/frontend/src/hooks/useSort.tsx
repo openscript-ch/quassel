@@ -1,30 +1,34 @@
-import { Link } from "@tanstack/react-router";
+import { Link, ValidateUseSearchResult } from "@tanstack/react-router";
 import { SortToggle } from "../components/SortToggle";
 import { FileRoutesById } from "../routeTree.gen";
 import { components } from "../api.gen";
 
-export function useSort(route: FileRoutesById[keyof FileRoutesById]) {
-  const s = route.useSearch();
+export function useSort<S extends ValidateUseSearchResult<FileRoutesById[keyof FileRoutesById]>>(search: S) {
+  const sortBy = "sortBy" in search ? search.sortBy : undefined;
+  const sortOrder = "sortOrder" in search ? search.sortOrder : undefined;
 
-  const sortBy = "sortBy" in s ? s.sortBy : undefined;
-  const sortOrder = "sortOrder" in s ? s.sortOrder : undefined;
-
-  const ToggleLink = ({ sortKey }: { sortKey: typeof sortBy }) => {
+  const ToggleLink = ({
+    sortKey,
+  }: {
+    sortKey: S extends {
+      sortBy?: string;
+      sortOrder?: string;
+    }
+      ? S["sortBy"]
+      : never;
+  }) => {
     return (
       <Link
-        from={route.fullPath}
         to="."
         search={(prev) => {
-          const prevSearch = prev as { sortBy: typeof sortBy; sortOrder: typeof sortOrder };
-
           let sortOrder: components["schemas"]["SortOrder"] | undefined;
-          if (prevSearch.sortBy !== sortKey) {
+          if (prev.sortBy !== sortKey) {
             sortOrder = "ASC";
-          } else if (prevSearch.sortOrder === "ASC") {
+          } else if (prev.sortOrder === "ASC") {
             sortOrder = "DESC";
           }
 
-          return { ...prevSearch, sortBy: sortOrder && sortKey, sortOrder };
+          return { ...prev, sortBy: sortOrder && (sortKey as typeof sortBy), sortOrder };
         }}
       >
         <SortToggle sortOrder={sortBy === sortKey ? sortOrder : undefined} />

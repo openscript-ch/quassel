@@ -13,7 +13,7 @@ function AdministrationParticipantsIndex() {
   const sessionStore = useStore($session);
 
   const search = Route.useSearch();
-  const { ToggleLink } = useSort(Route);
+  const { ToggleLink } = useSort(search);
 
   const participants = useSuspenseQuery($api.queryOptions("get", "/participants", { params: { query: search } }));
   const deleteParticipantMutation = $api.useMutation("delete", "/participants/{id}", {
