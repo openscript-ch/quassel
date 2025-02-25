@@ -31,12 +31,12 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "nx": "^20.4.6",
-    "typescript-eslint": "^8.24.1"
+    "typescript-eslint": "^8.25.0"
   },
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.4.1",
+  "packageManager": "pnpm@10.5.0",
   "pnpm": {
     "overrides": {
       "sodium-native": "4.2.0"
