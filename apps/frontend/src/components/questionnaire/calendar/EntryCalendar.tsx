@@ -12,6 +12,7 @@ import { format, i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import styles from "./EntryCalendar.module.css";
+import { $layout } from "../../../stores/layout";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
@@ -67,6 +68,8 @@ export function EntryCalendar({
 
   const t = useStore(messages);
   const { time } = useStore(format);
+
+  const { fullscreen, admin } = useStore($layout);
 
   const [opened, { open, close }] = useDisclosure();
 
@@ -179,6 +182,7 @@ export function EntryCalendar({
         {...calendarBaseConfig}
         plugins={[timeGridPlugin, interactionPlugin]}
         events={events}
+        viewClassNames={fullscreen || admin ? styles.spaciousCalendar : undefined}
         dayHeaderContent={({ date }) => (
           <Button
             variant="subtle"
