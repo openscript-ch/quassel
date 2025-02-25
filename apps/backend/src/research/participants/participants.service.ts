@@ -1,9 +1,10 @@
 import { InjectRepository } from "@mikro-orm/nestjs";
 import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { EntityManager, EntityRepository, FilterQuery, UniqueConstraintViolationException } from "@mikro-orm/core";
+import { EntityManager, EntityRepository, FilterQuery, QueryOrderMap, UniqueConstraintViolationException } from "@mikro-orm/core";
 import { ParticipantCreationDto, ParticipantMutationDto } from "./participant.dto";
 import { Participant } from "./participant.entity";
 import { OneOrMany } from "../../types";
+import { SortOrder } from "../../common/dto/sort.dto";
 
 @Injectable()
 export class ParticipantsService {
@@ -34,8 +35,10 @@ export class ParticipantsService {
     return participants.map((p) => p.toObject());
   }
 
-  async findAll() {
-    return (await this.participantRepository.findAll()).map((participant) => participant.toObject());
+  async findAll({ sortBy, sortOrder }: { sortBy?: keyof QueryOrderMap<Participant>; sortOrder?: SortOrder }) {
+    return (await this.participantRepository.findAll({ orderBy: sortBy && { [sortBy]: sortOrder } })).map((participant) =>
+      participant.toObject()
+    );
   }
 
   async findOne(id: number) {

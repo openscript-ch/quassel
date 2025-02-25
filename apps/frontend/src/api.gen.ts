@@ -687,6 +687,10 @@ export interface components {
              */
             birthday?: string;
         };
+        /** @enum {string} */
+        ParticipantSortableField: "id" | "birthday";
+        /** @enum {string} */
+        SortOrder: "ASC" | "DESC";
         EntryLanguageResponseDto: {
             /**
              * @description The ratio in percent of the entry language
@@ -838,8 +842,6 @@ export interface components {
         };
         /** @enum {string} */
         QuestionnaireSortableField: "createdAt" | "completedAt";
-        /** @enum {string} */
-        SortOrder: "ASC" | "DESC";
         QuestionnaireDetailResponseDto: {
             /**
              * Format: date-time
@@ -1575,7 +1577,12 @@ export interface operations {
     };
     ParticipantsController_index: {
         parameters: {
-            query?: never;
+            query?: {
+                /** @description Field to sort by */
+                sortBy?: components["schemas"]["ParticipantSortableField"];
+                /** @description Sort order */
+                sortOrder?: components["schemas"]["SortOrder"];
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -2221,5 +2228,6 @@ export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["Use
 export const userMutationDtoRoleValues: ReadonlyArray<components["schemas"]["UserMutationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const sessionResponseDtoRoleValues: ReadonlyArray<components["schemas"]["SessionResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const exportTypeValues: ReadonlyArray<components["schemas"]["ExportType"]> = ["csv", "sql"];
-export const questionnaireSortableFieldValues: ReadonlyArray<components["schemas"]["QuestionnaireSortableField"]> = ["createdAt", "completedAt"];
+export const participantSortableFieldValues: ReadonlyArray<components["schemas"]["ParticipantSortableField"]> = ["id", "birthday"];
 export const sortOrderValues: ReadonlyArray<components["schemas"]["SortOrder"]> = ["ASC", "DESC"];
+export const questionnaireSortableFieldValues: ReadonlyArray<components["schemas"]["QuestionnaireSortableField"]> = ["createdAt", "completedAt"];
