@@ -18,7 +18,7 @@ function AdministrationQuestionnairesIndex() {
   const n = Route.useNavigate();
   const search = Route.useSearch();
 
-  const { ToggleLink } = useSort(Route);
+  const { ToggleLink } = useSort(search);
 
   const f = useForm<QuestionnaireFilter>({ mode: "uncontrolled" });
   const applyFilters = (values: QuestionnaireFilter) => {
