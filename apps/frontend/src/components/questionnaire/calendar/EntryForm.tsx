@@ -53,14 +53,14 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
     initialValues: {
       startedAt: "",
       endedAt: "",
-      carer: 0,
+      carer: -1,
       weekday: 0,
       entryLanguages: [{ ratio: 100 }],
     },
     validate: {
       startedAt: isNotEmpty(t.validationNotEmpty),
       endedAt: isNotEmpty(t.validationNotEmpty),
-      carer: isNotEmpty(t.validationNotEmpty),
+      carer: (value) => (value === -1 || !value ? t.validationNotEmpty : undefined),
       entryLanguages: {
         ratio: (value) => {
           const fieldError = isInRange({ min: 1, max: 100 }, t.validationRatio)(value);
@@ -69,7 +69,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
           const listError = getTotalRatio() !== 100;
           if (listError) return t.validationTotalRatio;
         },
-        language: isNotEmpty(t.validationNotEmpty),
+        language: (value) => (value === -1 || !value ? t.validationNotEmpty : undefined),
       },
     },
   });
