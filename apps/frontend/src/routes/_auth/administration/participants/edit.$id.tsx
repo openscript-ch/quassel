@@ -1,11 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { components } from "../../../../api.gen";
 import { $api } from "../../../../stores/api";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { Button, TextInput, useForm } from "@quassel/ui";
+import { Button, DateInput, Stack, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
 
-type FormValues = components["schemas"]["ParticipantMutationDto"];
+type FormValues = {
+  id: string;
+  birthday: Date;
+};
 
 function AdministrationParticipantsEdit() {
   const p = Route.useParams();
@@ -27,27 +29,30 @@ function AdministrationParticipantsEdit() {
     },
   });
   const f = useForm<FormValues>();
-  const handleSubmit = (values: FormValues) => {
+  const handleSubmit = ({ id, birthday }: FormValues) => {
     editParticipantMutation.mutate({
-      body: { ...values },
+      body: { id: +id, birthday: birthday.toISOString() },
       params: { path: { id: p.id } },
     });
   };
 
   useEffect(() => {
-    f.setValues(participant.data ?? {});
-    f.resetDirty();
+    const { birthday, id } = participant.data;
+
+    f.setValues({ birthday: new Date(birthday!), id: id.toString() });
   }, [participant.isSuccess, participant.data]);
 
   return (
     <>
       <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
-        <TextInput label="Id" type="text" {...f.getInputProps("id")} required />
-        <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
+        <Stack>
+          <TextInput label="Id" type="text" {...f.getInputProps("id")} required />
+          <DateInput label="Birthday" {...f.getInputProps("birthday")} required />
 
-        <Button type="submit" fullWidth mt="xl" loading={editParticipantMutation.isPending}>
-          Change
-        </Button>
+          <Button type="submit" fullWidth loading={editParticipantMutation.isPending}>
+            Change
+          </Button>
+        </Stack>
       </form>
     </>
   );
