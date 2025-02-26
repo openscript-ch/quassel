@@ -1,4 +1,4 @@
-import { Combobox, Group, IconPlus, ScrollArea, TextInput, TextInputProps, useCombobox } from "@quassel/ui";
+import { ActionIcon, Combobox, Group, IconPlus, IconX, ScrollArea, TextInput, TextInputProps, useCombobox } from "@quassel/ui";
 import { useEffect, useState } from "react";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -88,7 +88,28 @@ export function EntitySelect<T extends { id: number }>({ value, onChange, data, 
           value={searchValue}
           onChange={({ target: { value } }) => {
             setSearchValue(value);
+
+            if (value === "") {
+              combobox.resetSelectedOption();
+              onChange?.(-1);
+            }
           }}
+          readOnly={value !== -1}
+          rightSection={
+            <ActionIcon
+              variant="subtle"
+              color="gray"
+              size="sm"
+              onClick={() => {
+                combobox.resetSelectedOption();
+                onChange?.(-1);
+
+                setSearchValue("");
+              }}
+            >
+              <IconX />
+            </ActionIcon>
+          }
           onClick={() => combobox.openDropdown()}
           onFocus={() => combobox.openDropdown()}
           onBlur={() => combobox.closeDropdown()}

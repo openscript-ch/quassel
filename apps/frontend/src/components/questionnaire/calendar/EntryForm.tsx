@@ -69,7 +69,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
           const listError = getTotalRatio() !== 100;
           if (listError) return t.validationTotalRatio;
         },
-        language: isNotEmpty(t.validationNotEmpty),
+        language: (value) => (value === -1 || !value ? t.validationNotEmpty : undefined),
       },
     },
   });
