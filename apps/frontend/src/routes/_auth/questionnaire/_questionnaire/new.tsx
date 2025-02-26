@@ -6,7 +6,7 @@ import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { useEffect } from "react";
 import { Title } from "@quassel/ui";
-import { getNext } from "@quassel/utils";
+import { getNext, getStartOf } from "@quassel/utils";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -35,7 +35,10 @@ function QuestionnaireNew() {
 
   const prevEndDate = questionnaire?.participant.latestQuestionnaire?.endedAt;
 
-  const startDate = prevEndDate ? getNext("month", new Date(prevEndDate)) : participant?.birthday ? new Date(participant.birthday) : undefined;
+  const startFromBirthday = participant?.birthday ? getStartOf("month", new Date(participant.birthday)) : undefined;
+  const startFromPrevious = prevEndDate ? getNext("month", new Date(prevEndDate)) : undefined;
+
+  const startDate = startFromPrevious ?? startFromBirthday;
 
   const onSave = (form: PeriodFormValues) => {
     const {
