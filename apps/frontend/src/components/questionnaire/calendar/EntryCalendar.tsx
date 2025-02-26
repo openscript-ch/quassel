@@ -13,12 +13,13 @@ import { useStore } from "@nanostores/react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import styles from "./EntryCalendar.module.css";
 import { $layout } from "../../../stores/layout";
+import { C } from "../../../configuration";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
   headerToolbar: false,
-  slotMinTime: { hour: 5 },
-  slotMaxTime: { hour: 23 },
+  slotMinTime: C.calendar.minTime,
+  slotMaxTime: C.calendar.maxTime,
   slotDuration: { hour: 1 },
   firstDay: 1,
   locale: "de",
@@ -149,9 +150,14 @@ export function EntryCalendar({
 
   const handleEventChange = ({ event }: EventChangeArg) => {
     const { id, start, end } = event;
+    if (!start || !end) return;
+
+    const startTime = getTime(start) < C.calendar.minTime ? C.calendar.minTime : getTime(start);
+    const endTime = isSame("day", start, end) ? getTime(end) : C.calendar.maxTime;
+
     setEvents(events.map((e) => (e.id === id ? { ...e, start: start!, end: end! } : e)));
 
-    onUpdateEntry(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
+    onUpdateEntry(parseInt(id), { startedAt: startTime, endedAt: endTime, weekday: start!.getDay() });
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
