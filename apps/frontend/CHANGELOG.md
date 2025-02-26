@@ -1,5 +1,24 @@
 # @quassel/frontend
 
+## 0.4.3
+
+### Patch Changes
+
+- cf77652: Allow sorting participants
+- f1c6a2c: Upgrade dependencies
+- 8e3eb10: Prevent user from deleting study which already is connected to any questionnaires
+- 1143d5f: Fix validation if no carer is selected in Entry form
+- 458ede5: Prevent dragging event over the calendar limits
+- 730e7f2: Allow to drag select new events next to existing events
+- 5025e5f: Upgrade dependencies
+- f82bcd0: Fix always setting start date to start of month
+- e2664f8: Fix prefilling participant form on edit
+- Updated dependencies [f1c6a2c]
+- Updated dependencies [5025e5f]
+- Updated dependencies [f82bcd0]
+  - @quassel/utils@0.1.6
+  - @quassel/ui@0.1.6
+
 ## 0.4.2
 
 ## 0.4.1

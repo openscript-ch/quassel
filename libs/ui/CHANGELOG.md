@@ -1,5 +1,12 @@
 # @quassel/ui
 
+## 0.1.6
+
+### Patch Changes
+
+- f1c6a2c: Upgrade dependencies
+- 5025e5f: Upgrade dependencies
+
 ## 0.1.5
 
 ### Patch Changes
