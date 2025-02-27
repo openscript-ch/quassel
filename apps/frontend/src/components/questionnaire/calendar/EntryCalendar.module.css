@@ -1,3 +1,9 @@
+.spaciousCalendar {
+    :global(.fc-timegrid-col-events) {
+        margin-right: 14%;
+    }
+}
+
 .eventSleepIndicator {
     background-image: url("/public/star.svg") !important;
     background-repeat: repeat !important;

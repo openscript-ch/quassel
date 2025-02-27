@@ -89,6 +89,7 @@ export class DatabaseSeeder extends Seeder {
 
     const languages: LanguageCreationDto[] = [
       { name: "Deutsch (Schweiz), German (Switzerland)", ietfBcp47: "de-CH" },
+      { name: "Deutsch (Deutschland), German (Germany)", ietfBcp47: "de-DE" },
       { name: "Deutsch (Österreich), German (Austria)", ietfBcp47: "de-AT" },
       { name: "Deutsch (Liechtenstein), German (Liechtenstein)", ietfBcp47: "de-LI" },
       { name: "Deutsch (Luxemburg), German (Luxemburg)", ietfBcp47: "de-LU" },

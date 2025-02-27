@@ -12,12 +12,14 @@ import { format, i18n } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import styles from "./EntryCalendar.module.css";
+import { $layout } from "../../../stores/layout";
+import { C } from "../../../configuration";
 
 const calendarBaseConfig: FullCalendar["props"] = {
   allDaySlot: false,
   headerToolbar: false,
-  slotMinTime: { hour: 5 },
-  slotMaxTime: { hour: 23 },
+  slotMinTime: C.calendar.minTime,
+  slotMaxTime: C.calendar.maxTime,
   slotDuration: { hour: 1 },
   firstDay: 1,
   locale: "de",
@@ -67,6 +69,8 @@ export function EntryCalendar({
 
   const t = useStore(messages);
   const { time } = useStore(format);
+
+  const { fullscreen, admin } = useStore($layout);
 
   const [opened, { open, close }] = useDisclosure();
 
@@ -146,9 +150,14 @@ export function EntryCalendar({
 
   const handleEventChange = ({ event }: EventChangeArg) => {
     const { id, start, end } = event;
+    if (!start || !end) return;
+
+    const startTime = getTime(start) < C.calendar.minTime ? C.calendar.minTime : getTime(start);
+    const endTime = isSame("day", start, end) ? getTime(end) : C.calendar.maxTime;
+
     setEvents(events.map((e) => (e.id === id ? { ...e, start: start!, end: end! } : e)));
 
-    onUpdateEntry(parseInt(id), { startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
+    onUpdateEntry(parseInt(id), { startedAt: startTime, endedAt: endTime, weekday: start!.getDay() });
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
@@ -179,6 +188,7 @@ export function EntryCalendar({
         {...calendarBaseConfig}
         plugins={[timeGridPlugin, interactionPlugin]}
         events={events}
+        viewClassNames={fullscreen || admin ? styles.spaciousCalendar : undefined}
         dayHeaderContent={({ date }) => (
           <Button
             variant="subtle"
@@ -193,7 +203,7 @@ export function EntryCalendar({
         )}
         select={setupEntryCreate}
         eventClick={({ event }) => {
-          if (event.groupId === "gaps") {
+          if (event.groupId === "gaps" || event.display === "background") {
             setupEntryCreate(event);
           } else {
             setupEntryUpdate(event);

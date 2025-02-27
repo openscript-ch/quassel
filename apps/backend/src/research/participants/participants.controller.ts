@@ -1,15 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
 import { ParticipantsService } from "./participants.service";
 import {
   ApiBody,
   ApiExtraModels,
   ApiNotFoundResponse,
   ApiOperation,
+  ApiQuery,
   ApiTags,
   ApiUnprocessableEntityResponse,
   getSchemaPath,
 } from "@nestjs/swagger";
-import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto } from "./participant.dto";
+import { ParticipantCreationDto, ParticipantMutationDto, ParticipantResponseDto, ParticipantSortableField } from "./participant.dto";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
@@ -18,6 +19,7 @@ import { OneOrMany } from "../../types";
 import { EntriesService } from "../entries/entries.service";
 import { EntryTemplateDto } from "../entries/entry.dto";
 import { Serialize } from "../../common/decorators/serialize";
+import { SortOrder } from "../../common/dto/sort.dto";
 
 @ApiTags("Participants")
 @ApiExtraModels(ParticipantCreationDto)
@@ -59,9 +61,17 @@ export class ParticipantsController {
 
   @Get()
   @ApiOperation({ summary: "Get all participants" })
+  @ApiQuery({
+    name: "sortBy",
+    enumName: "ParticipantSortableField",
+    enum: ParticipantSortableField,
+    required: false,
+    description: "Field to sort by",
+  })
+  @ApiQuery({ name: "sortOrder", enumName: "SortOrder", enum: SortOrder, required: false, description: "Sort order" })
   @Serialize(ParticipantResponseDto)
-  index(): Promise<ParticipantResponseDto[]> {
-    return this.participantService.findAll();
+  index(@Query("sortBy") sortBy?: ParticipantSortableField, @Query("sortOrder") sortOrder?: SortOrder): Promise<ParticipantResponseDto[]> {
+    return this.participantService.findAll({ sortBy, sortOrder });
   }
 
   @Get(":id")

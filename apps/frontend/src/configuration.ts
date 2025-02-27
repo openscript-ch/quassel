@@ -12,4 +12,8 @@ export const C = {
   ui: {
     maxDropdownHeight: 800,
   },
+  calendar: {
+    minTime: "05:00",
+    maxTime: "23:00",
+  },
 };

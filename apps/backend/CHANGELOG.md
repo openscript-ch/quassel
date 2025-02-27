@@ -1,5 +1,25 @@
 # @quassel/backend
 
+## 0.4.3
+
+### Patch Changes
+
+- b5c8c73: Fix report csv if the amount of langugage varys between participants
+- 30eae85: Fix selecting event in sleep time
+- cf77652: Allow sorting participants
+- f1c6a2c: Upgrade dependencies
+- 8e3eb10: Prevent user from deleting study which already is connected to any questionnaires
+- Updated dependencies [f1c6a2c]
+- Updated dependencies [5025e5f]
+- Updated dependencies [f82bcd0]
+  - @quassel/utils@0.1.6
+
+## 0.4.2
+
+### Patch Changes
+
+- be02d60: Upgrade dependencies
+
 ## 0.4.1
 
 ### Patch Changes

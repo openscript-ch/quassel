@@ -18,25 +18,25 @@
   "author": "openscript GmbH",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.27.12",
-    "@eslint/js": "^9.19.0",
-    "@nestjs/cli": "^11.0.2",
+    "@changesets/cli": "^2.28.1",
+    "@eslint/js": "^9.21.0",
+    "@nestjs/cli": "^11.0.4",
     "@nx-tools/container-metadata": "^6.1.1",
     "@nx-tools/nx-container": "^6.2.0",
-    "eslint": "^9.19.0",
+    "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.18",
-    "globals": "^15.14.0",
-    "nx": "^20.4.0",
-    "typescript-eslint": "^8.23.0"
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "nx": "^20.4.6",
+    "typescript-eslint": "^8.25.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.2.0",
+  "packageManager": "pnpm@10.5.0",
   "pnpm": {
     "overrides": {
       "sodium-native": "4.2.0"

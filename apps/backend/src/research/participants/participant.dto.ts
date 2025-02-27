@@ -23,3 +23,8 @@ export class ParticipantResponseDto extends ParticipantBaseDto {
 
 export class ParticipantCreationDto extends ParticipantBaseDto {}
 export class ParticipantMutationDto extends PartialType(ParticipantBaseDto) {}
+
+export enum ParticipantSortableField {
+  id = "id",
+  birthday = "birthday",
+}
