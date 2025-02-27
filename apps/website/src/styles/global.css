@@ -1,0 +1,71 @@
+:root {
+  --color-primary: #C6E7FF;
+  --color-card: #F4FAFF;
+  --color-highlight-header: #2294CF;
+  --color-default-text: #052204;
+  --color-about-bg: #F0EBE3;
+  --color-lemon: #F3AB00;
+
+  --font-onest: 'Onest Variable', sans-serif;
+  --font-monst: 'Montserrat Variable', sans-serif;
+  --font-size-sm: 20px;
+  --font-size-mid: 30px;
+  --font-size-lg: 40px;
+  --font-weight-lg: 500;
+  --font-weight-mid: 400;
+  --font-weight-sm: 300;
+
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 36px;
+  --spacing-xl: 140px;
+
+  --border-width: 1px;
+  --border-color: #E1E1E1;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+main{
+  width: 66.67%;
+  padding-left: var(--spacing-lg);
+}
+
+/* Header style*/
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 6rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  left: var(--spacing-lg);
+}
+
+.logo {
+  height: 50px;
+}
+
+.main-title {
+  font-family: var(--font-onest);
+  font-size: var(--font-size-mid);
+  font-weight: var(--font-weight-lg);
+  color: var(--color-highlight-header);
+}
+
+.demo-link {
+  color: var(--color-lemon);
+  text-decoration: none;
+  font-weight: var(--font-weight-bold);
+  transition: color var(--transition-normal);
+  right: var(--spacing-lg);
+}

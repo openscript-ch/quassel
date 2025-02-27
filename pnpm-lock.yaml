@@ -284,6 +284,12 @@ importers:
 
   apps/website:
     dependencies:
+      '@fontsource-variable/montserrat':
+        specifier: ^5.1.1
+        version: 5.1.1
+      '@fontsource-variable/onest':
+        specifier: ^5.1.1
+        version: 5.1.1
       astro:
         specifier: ^5.2.6
         version: 5.2.6(@types/node@22.13.5)(jiti@1.21.7)(rollup@4.34.8)(terser@5.39.0)(tsx@4.19.3)(typescript@5.7.3)(yaml@2.7.0)
@@ -1615,6 +1621,12 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@fontsource-variable/montserrat@5.1.1':
+    resolution: {integrity: sha512-eHmSruS3B+4wVaHk6ShNUJj1MbWEohOuriwN/oYR2VY8jRS83a5SKQeG1wu4Eku3v3f5cXTIbfd1tHeQ7GXkiA==}
+
+  '@fontsource-variable/onest@5.1.1':
+    resolution: {integrity: sha512-Lb1hWJL7z7VZ9oDiHp5/O4tq/tzSQ0md1Luv+RPRnw3WalFoRBdjE9Xw9ibgteEeVlv8fYQ3UTR6ALDwdWxgzQ==}
 
   '@fullcalendar/core@6.1.15':
     resolution: {integrity: sha512-BuX7o6ALpLb84cMw1FCB9/cSgF4JbVO894cjJZ6kP74jzbUZNjtwffwRdA+Id8rrLjT30d/7TrkW90k4zbXB5Q==}
@@ -9306,6 +9318,10 @@ snapshots:
       tabbable: 6.2.0
 
   '@floating-ui/utils@0.2.9': {}
+
+  '@fontsource-variable/montserrat@5.1.1': {}
+
+  '@fontsource-variable/onest@5.1.1': {}
 
   '@fullcalendar/core@6.1.15':
     dependencies:
