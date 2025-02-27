@@ -1,0 +1,35 @@
+---
+interface Props {
+  imgSrc: string;
+  title: string;
+  description: string;
+}
+
+const { imgSrc, title, description } = Astro.props;
+
+---
+
+<style>
+
+  .card {
+    display: flex;
+    width: 30rem;
+    padding: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .content {
+  flex-direction: column;
+  margin-left: var(--spacing-sm); /* Space between icon and text */
+  }
+
+</style>
+
+<div class="card">
+  <img src= {imgSrc}/>
+  <div class="content">
+    <h3>{title}</h3>
+  <p class="hidden">{description}</p>
+  </div>
+  
+</div>

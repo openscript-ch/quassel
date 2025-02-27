@@ -1,0 +1,16 @@
+{
+  "name": "@quassel/website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.1.1",
+    "@fontsource-variable/onest": "^5.1.1",
+    "astro": "^5.2.6"
+  }
+}
