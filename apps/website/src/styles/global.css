@@ -1,0 +1,43 @@
+:root {
+  --color-primary: #C6E7FF;
+  --color-card: #F4FAFF;
+  --color-highlight-header: #2294CF;
+  --color-default-text: #052204;
+  --color-about-bg: #F0EBE3;
+  --color-lemon: #F3AB00;
+
+  --font-onest: 'Onest Variable', sans-serif;
+  --font-monst: 'Montserrat Variable', sans-serif;
+
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-gutter: 2.5rem;
+
+  --border-width: 1px;
+  --border-color: #E1E1E1;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  flex-grow: 1;
+}
+
+header, main > section, footer {
+  width: 50rem;
+}
