@@ -1,0 +1,24 @@
+---
+interface Props{
+  imgSrc: string;
+}
+
+const { imgSrc } = Astro.props;
+---
+
+<style>
+  .feature-display {
+    display: flex;
+    width: 30rem;
+    padding: var(--spacing-sm);
+    align-items: flex-start;
+  }
+
+  .feature-display img {
+    width: 30rem;
+  }
+</style>
+
+<div class="feature-display">
+  <img src={imgSrc} alt="Feature Image" />
+</div>
