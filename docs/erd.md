@@ -26,11 +26,17 @@ Study {
     VARCHAR(255) title "NOT NULL"
 }
 
-Study ||--o{ Questionnaire : belongs
+StudyParticipant {
+    SERIAL id PK
+    SERIAL participant_id FK
+    SERIAL study_id FK
+}
+
+Study ||--|{ StudyParticipant : belongs
+Participant ||--|{ StudyParticipant : belongs
 
 Questionnaire {
     SERIAL id PK
-    SERIAL study_id FK "NOT NULL"
     SERIAL participant_id FK "NOT NULL"
     VARCHAR(255) title "NOT NULL"
     DATE started_at "NOT NULL"
