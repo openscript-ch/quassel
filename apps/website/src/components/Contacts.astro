@@ -3,9 +3,10 @@ type Props = {
   imgSrc: string;
   title: string;
   contact_text: string;
+  link: string;
 }
 
-const { imgSrc, title, contact_text } = Astro.props;
+const { imgSrc, title, contact_text, link } = Astro.props;
 ---
 
 <style>
@@ -19,5 +20,5 @@ const { imgSrc, title, contact_text } = Astro.props;
 <div class="contact_card">
   <img src={imgSrc} alt="company icon" />
   <h3>{title}</h3>
-  <a href="{link}">{contact_text}</a>
+  <a href={link}>{contact_text}</a>
 </div>
