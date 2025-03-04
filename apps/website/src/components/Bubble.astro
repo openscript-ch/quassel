@@ -1,0 +1,24 @@
+---
+type Props ={
+  bubble_content: string;
+}
+
+const { bubble_content } = Astro.props;
+---
+<style>
+  .bubble {
+    background-color: var(--color-primary);
+    font-size: small;
+    color: var(--color-white);
+    text-align: center;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-pill);
+    display: inline-block;
+    width: auto;
+    height: 1rem;
+  }
+</style>
+
+<div class="bubble">
+  {bubble_content}
+</div>

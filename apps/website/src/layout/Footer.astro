@@ -1,6 +1,24 @@
 ---
+import Contacts from "../components/Contacts.astro";
 ---
 
-<footer>
-  Footer
+<style>
+  .footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: left;
+  }
+
+  .contacts-container {
+    display: flex;
+    gap: 20px; 
+  }
+</style>
+
+<footer class="footer">
+  <h2>Interested in Using Quassel?</h2>
+  <div class="contacts-container">
+    <Contacts imgSrc="" title="I want to cooperate" contact_text="Speak to Stephanie from project LEMON team"/>
+    <Contacts imgSrc="" title="I need tech support" contact_text="Speak to Robin from openscript"/>
+  </div>
 </footer>

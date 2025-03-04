@@ -1,11 +1,13 @@
 ---
-interface Props {
+type Props = {
   imgSrc: string;
+  iconSrc: string;
   title: string;
   description: string;
+  imgRight?: boolean;
 }
 
-const { imgSrc, title, description } = Astro.props;
+const { imgSrc, iconSrc, title, description, imgRight } = Astro.props;
 
 ---
 
@@ -13,23 +15,28 @@ const { imgSrc, title, description } = Astro.props;
 
   .card {
     display: flex;
-    width: 30rem;
-    padding: var(--spacing-sm);
-    align-items: flex-start;
+    align-items: flex-start; 
   }
 
   .content {
-  flex-direction: column;
-  margin-left: var(--spacing-sm); /* Space between icon and text */
+    flex-direction: column;
+    width: 30rem;
+  }
+
+  .content-title {
+    display: flex;
+    gap: 1rem;
   }
 
 </style>
 
-<div class="card">
-  <img src= {imgSrc}/>
+<div class="card" style={`flex-direction: ${imgRight ? 'row' : 'row-reverse'}`}>
   <div class="content">
-    <h3>{title}</h3>
-  <p class="hidden">{description}</p>
+    <div class="content-title">
+      <img src= {iconSrc}/>
+      <h3>{title}</h3>
+    </div>
+    <p class="hidden">{description}</p>
   </div>
-  
+  <img src= {imgSrc}/>
 </div>
