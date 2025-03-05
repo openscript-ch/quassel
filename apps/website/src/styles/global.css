@@ -9,6 +9,12 @@
   --font-onest: 'Onest Variable', sans-serif;
   --font-monst: 'Montserrat Variable', sans-serif;
 
+  --font-size-xs: 0.75rem; 
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
@@ -17,6 +23,11 @@
 
   --border-width: 1px;
   --border-color: #E1E1E1;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
 }
 
 html {
@@ -40,4 +51,15 @@ main {
 
 header, main > section, footer {
   width: 60rem;
+}
+
+.functions {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.bubbles {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-sm);
 }

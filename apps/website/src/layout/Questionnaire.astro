@@ -11,12 +11,14 @@ import Bubble from '../components/Bubble.astro';
   <Card iconSrc="/assets/icon4.svg" imgSrc="" title="Recurring entries" description="The description for the Recurring entries." imgRight={true}/>
 
   <div>
-    <h5>
+    <div class="functions">
       More functions
-    </h5>
-    <Bubble bubble_content='Optional comments' />
-    <Bubble bubble_content='Customizable carer information' />
-    <Bubble bubble_content='Historical entires are saved' />
+    </div>
+    <div class="bubbles">
+      <Bubble bubble_content='Optional comments' />
+      <Bubble bubble_content='Customizable carer information' />
+      <Bubble bubble_content='Historical entires are saved' />
+    </div>
   </div>
   
 </section>
