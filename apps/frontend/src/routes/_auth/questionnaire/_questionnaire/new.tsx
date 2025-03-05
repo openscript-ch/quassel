@@ -50,7 +50,8 @@ function QuestionnaireNew() {
     const endedAt = localEndedAt!.toISOString();
 
     createQuestionnaireMutation.mutate({
-      body: { title, startedAt, endedAt, study: questionnaire!.study.id, participant: questionnaire!.participant.id },
+      body: { title, startedAt, endedAt, participant: questionnaire!.participant.id },
+      params: { query: { studyId: questionnaire!.study.id } },
     });
   };
 

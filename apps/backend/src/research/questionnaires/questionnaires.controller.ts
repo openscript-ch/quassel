@@ -21,10 +21,11 @@ export class QuestionnairesController {
 
   @Post()
   @ApiOperation({ summary: "Create a questionnaires" })
+  @ApiQuery({ name: "studyId", required: false, type: Number })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
   @Serialize(QuestionnaireResponseDto)
-  create(@Body() questionnaires: QuestionnaireCreationDto): Promise<QuestionnaireResponseDto> {
-    return this.questionnairesService.create(questionnaires);
+  create(@Body() questionnaires: QuestionnaireCreationDto, @Query("studyId") studyId: number): Promise<QuestionnaireResponseDto> {
+    return this.questionnairesService.create(questionnaires, studyId);
   }
 
   @Get()

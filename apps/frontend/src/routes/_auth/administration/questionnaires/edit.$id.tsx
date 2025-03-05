@@ -70,11 +70,6 @@ function AdministrationQuestionnairesEdit() {
             <Table.Td>{data.participant.id}</Table.Td>
             <Table.Td>{data.participant.birthday && time(new Date(data.participant.birthday))}</Table.Td>
           </Table.Tr>
-          <Table.Tr>
-            <Table.Th>{t.labelStudy}</Table.Th>
-            <Table.Td>{data?.study.id}</Table.Td>
-            <Table.Td>{data?.study.title}</Table.Td>
-          </Table.Tr>
         </Table.Tbody>
       </Table>
 
