@@ -16,6 +16,9 @@
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
+  "[astro]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "github.copilot.enable": {
@@ -23,5 +26,5 @@
     "plaintext": false,
     "scminput": false,
     "markdown": true
-  }
+  },
 }
