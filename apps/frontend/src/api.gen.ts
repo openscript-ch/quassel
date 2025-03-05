@@ -935,6 +935,24 @@ export interface components {
              */
             participantsCount?: number;
         };
+        StudyDetailResponseDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            /**
+             * @description The count of participants assigned to this study
+             * @example 1
+             */
+            participantsCount?: number;
+            participants: components["schemas"]["ParticipantResponseDto"][];
+        };
         StudyMutationDto: {
             /**
              * @description The id of the study (child id)
@@ -2157,7 +2175,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudyResponseDto"];
+                    "application/json": components["schemas"]["StudyDetailResponseDto"];
                 };
             };
             /** @description Entity not found exception */
