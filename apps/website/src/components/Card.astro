@@ -5,33 +5,27 @@ type Props = {
   title: string;
   description: string;
   imgRight?: boolean;
-}
+};
 
 const { imgSrc, iconSrc, title, description, imgRight } = Astro.props;
-
 ---
-
 <style>
-
   .card {
     display: flex;
     align-items: flex-start; 
   }
-
   .content {
     flex-direction: column;
     width: 32rem;
     margin: 3rem;
   }
-
   .content-title {
     display: flex;
     gap: 1rem;
   }
-
 </style>
 
-<div class="card" style={`flex-direction: ${imgRight ? 'row' : 'row-reverse'}`}>
+<div class="card" style={`flex-direction: ${imgRight ? "row" : "row-reverse"}`}>
   <div class="content">
     <div class="content-title">
       <img src= {iconSrc}/>
