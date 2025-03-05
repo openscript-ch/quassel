@@ -525,23 +525,6 @@ export interface components {
             color?: string;
             participant?: number;
         };
-        StudyResponseDto: {
-            /**
-             * @description The id of the study (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The title of the study
-             * @example Series 1
-             */
-            title: string;
-            /**
-             * @description The count of questionnaires tracked to this study
-             * @example 1
-             */
-            questionnairesCount?: number;
-        };
         QuestionnaireResponseDto: {
             /**
              * Format: date-time
@@ -582,7 +565,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             createdAt: string;
-            study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
         };
         ParticipantResponseDto: {
@@ -837,7 +819,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study: number;
             participant: number;
         };
         /** @enum {string} */
@@ -882,7 +863,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             createdAt: string;
-            study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
             entries: components["schemas"]["EntryResponseDto"][];
         };
@@ -915,7 +895,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study?: number;
             participant?: number;
         };
         EntryLanguageMutationDto: {
@@ -938,6 +917,23 @@ export interface components {
              * @example Series 1
              */
             title: string;
+        };
+        StudyResponseDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            /**
+             * @description The count of participants assigned to this study
+             * @example 1
+             */
+            participantsCount?: number;
         };
         StudyMutationDto: {
             /**

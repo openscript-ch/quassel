@@ -56,7 +56,6 @@ function AdministrationQuestionnairesIndex() {
             <Table.Th>Id</Table.Th>
             <Table.Th>Child</Table.Th>
             <Table.Th>Title</Table.Th>
-            <Table.Th>Study</Table.Th>
             <Table.Th>
               <Group>
                 Creation date
@@ -77,7 +76,6 @@ function AdministrationQuestionnairesIndex() {
               <Table.Td>{q.id}</Table.Td>
               <Table.Td>{q.participant.id}</Table.Td>
               <Table.Td>{q.title}</Table.Td>
-              <Table.Td>{q.study.title}</Table.Td>
               <Table.Td>{time(new Date(q.createdAt), { timeStyle: "short", dateStyle: "medium" })}</Table.Td>
               <Table.Td>{q.completedAt && time(new Date(q.completedAt), { timeStyle: "short", dateStyle: "medium" })}</Table.Td>
               <Table.Td>

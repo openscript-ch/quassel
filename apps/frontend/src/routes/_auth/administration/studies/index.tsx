@@ -30,7 +30,7 @@ function AdministrationStudiesIndex() {
                 <Button variant="default" renderRoot={(props) => <Link to={`/administration/studies/edit/${s.id}`} {...props} />}>
                   Edit
                 </Button>
-                {sessionStore.role === "ADMIN" && (s.questionnairesCount ?? 0) < 1 && (
+                {sessionStore.role === "ADMIN" && (s.participantsCount ?? 0) < 1 && (
                   <Button
                     variant="default"
                     onClick={() =>

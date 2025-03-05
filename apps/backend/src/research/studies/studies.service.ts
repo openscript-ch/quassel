@@ -33,7 +33,7 @@ export class StudiesService {
   }
 
   async findOne(id: number) {
-    return (await this.studyRepository.findOneOrFail(id)).toObject();
+    return (await this.studyRepository.findOneOrFail(id, { populate: ["participants"] })).toObject();
   }
 
   async findBy(filter: FilterQuery<Study>) {
