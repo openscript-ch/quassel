@@ -21,4 +21,14 @@ export class StudyParticipantsService {
 
     return studyParticipant;
   }
+
+  async delete(studyParticipant: StudyParticipantMutationDto) {
+    const participantRef = this.em.getReference(Participant, studyParticipant.participantId);
+    const study = await this.studyRepository.findOneOrFail(studyParticipant.studyId);
+    study.participants.remove(participantRef);
+
+    await this.em.flush();
+
+    return studyParticipant;
+  }
 }

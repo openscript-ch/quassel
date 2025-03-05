@@ -123,6 +123,7 @@ export {
   IconReportAnalytics,
   IconX,
   IconInfoCircle,
+  IconTrash,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";
