@@ -9,10 +9,11 @@ type Props = {
 
 const { imgSrc, iconSrc, title, description, imgRight } = Astro.props;
 ---
+
 <style>
   .card {
     display: flex;
-    align-items: flex-start; 
+    align-items: flex-start;
   }
   .content {
     flex-direction: column;
@@ -28,10 +29,10 @@ const { imgSrc, iconSrc, title, description, imgRight } = Astro.props;
 <div class="card" style={`flex-direction: ${imgRight ? "row" : "row-reverse"}`}>
   <div class="content">
     <div class="content-title">
-      <img src= {iconSrc}/>
+      <img src={iconSrc} />
       <h3>{title}</h3>
     </div>
     <p class="hidden">{description}</p>
   </div>
-  <img src= {imgSrc}/>
+  <img src={imgSrc} />
 </div>
