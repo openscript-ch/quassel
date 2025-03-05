@@ -14,19 +14,23 @@ const { imgSrc, iconSrc, title, description, imgRight } = Astro.props;
   .card {
     display: flex;
     align-items: flex-start;
+    flex-direction: row-reverse;
   }
   .content {
     flex-direction: column;
-    width: 32rem;
-    margin: 3rem;
+    margin: var(--spacing-lg);
   }
   .content-title {
     display: flex;
     gap: 1rem;
   }
+
+  .right {
+    flex-direction: row;
+  }
 </style>
 
-<div class="card" style={`flex-direction: ${imgRight ? "row" : "row-reverse"}`}>
+<div class:list={["card", { right: imgRight }]}>
   <div class="content">
     <div class="content-title">
       <img src={iconSrc} />
