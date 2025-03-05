@@ -52,7 +52,7 @@ export class QuestionnairesService {
       throw e;
     }
 
-    return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"])).toObject();
+    return (await questionnaire.populate(["entries", "entries.carer", "entries.entryLanguages.language", "participant"])).toObject();
   }
 
   async findAll({
@@ -69,7 +69,7 @@ export class QuestionnairesService {
     return (
       await this.questionnaireRepository.findAll({
         where: { ...(participantId && { participant: participantId }), ...(studyTitle && { study: { title: { $fulltext: studyTitle } } }) },
-        populate: ["study", "participant"],
+        populate: ["participant"],
         orderBy: sortBy && { [sortBy]: sortOrder },
       })
     ).map((questionnaire) => questionnaire.toObject());
@@ -78,7 +78,7 @@ export class QuestionnairesService {
   async findOne(id: number) {
     return (
       await this.questionnaireRepository.findOneOrFail(id, {
-        populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"],
+        populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant"],
       })
     ).toObject();
   }
@@ -93,7 +93,7 @@ export class QuestionnairesService {
 
   async update(id: number, questionnaireMutationDto: QuestionnaireMutationDto) {
     const questionnaire = await this.questionnaireRepository.findOneOrFail(id, {
-      populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant", "study"],
+      populate: ["entries", "entries.carer", "entries.entryLanguages.language", "participant"],
     });
 
     const prevQuestionnaire = await this.questionnaireRepository.findOne(
