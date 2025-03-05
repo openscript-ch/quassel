@@ -1877,7 +1877,9 @@ export interface operations {
     };
     QuestionnairesController_create: {
         parameters: {
-            query?: never;
+            query?: {
+                studyId?: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
