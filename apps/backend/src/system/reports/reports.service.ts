@@ -15,7 +15,7 @@ export class ReportsService {
 
   async evaluatedLanguageExposure(studyId: number) {
     const participants = await this.em.findAll(Participant, {
-      where: { questionnaires: { study: { id: studyId } } },
+      where: { questionnaires: { participant: { studies: { id: studyId } } } },
       populate: [
         "questionnaires",
         "questionnaires.entries",

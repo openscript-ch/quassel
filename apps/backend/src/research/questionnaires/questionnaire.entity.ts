@@ -1,6 +1,5 @@
 import { Collection, Entity, Formula, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Study } from "../studies/study.entity";
 import { Participant } from "../participants/participant.entity";
 import { Entry } from "../entries/entry.entity";
 
@@ -23,9 +22,6 @@ export class Questionnaire extends BaseEntity {
 
   @Property()
   completedAt?: Date;
-
-  @ManyToOne()
-  study: Study;
 
   @ManyToOne()
   participant: Participant;
