@@ -1,4 +1,4 @@
-import { Collection, Entity, ManyToMany, Property } from "@mikro-orm/core";
+import { Collection, Entity, Formula, ManyToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
 import { Participant } from "../participants/participant.entity";
 
@@ -9,4 +9,7 @@ export class Study extends BaseEntity {
 
   @ManyToMany(() => Participant)
   participants = new Collection<Participant>(this);
+
+  @Formula((alias) => `(select count(*) from study_participants where study_id = ${alias}.id)`)
+  participantsCount? = 0;
 }

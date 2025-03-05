@@ -1,6 +1,7 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
-import { Expose } from "class-transformer";
+import { Expose, Type } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
+import { ParticipantResponseDto } from "../participants/participant.dto";
 
 class StudyBaseDto {
   @ApiProperty({ example: 1, description: "The id of the study (child id)" })
@@ -14,9 +15,14 @@ class StudyBaseDto {
 }
 
 export class StudyResponseDto extends StudyBaseDto {
-  @ApiProperty({ example: 1, description: "The count of questionnaires tracked to this study" })
+  @ApiProperty({ example: 1, description: "The count of participants assigned to this study" })
   @Expose()
-  questionnairesCount?: number;
+  participantsCount?: number;
+}
+export class StudyDetailResponseDto extends StudyResponseDto {
+  @Type(() => ParticipantResponseDto)
+  @Expose()
+  participants: ParticipantResponseDto[];
 }
 export class StudyCreationDto extends StudyBaseDto {}
 export class StudyMutationDto extends PartialType(StudyBaseDto) {}
