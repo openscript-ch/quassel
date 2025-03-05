@@ -7,8 +7,6 @@ import { Entry } from "../entries/entry.entity";
 import { EntryLanguage } from "../entry-languages/entry-language.entity";
 import { addDays, isSameDay } from "date-fns";
 import { SortOrder } from "../../common/dto/sort.dto";
-import { Participant } from "../participants/participant.entity";
-import { Study } from "../studies/study.entity";
 
 @Injectable()
 export class QuestionnairesService {
@@ -18,15 +16,9 @@ export class QuestionnairesService {
     private readonly em: EntityManager
   ) {}
 
-  async create(questionnaireCreationDto: QuestionnaireCreationDto, studyId?: number) {
+  async create(questionnaireCreationDto: QuestionnaireCreationDto) {
     const questionnaire = new Questionnaire();
     questionnaire.assign(questionnaireCreationDto, { em: this.em });
-
-    if (studyId) {
-      const studyRef = this.em.getReference(Study, studyId);
-      const participant = await this.em.findOneOrFail(Participant, { id: questionnaireCreationDto.participant }, { populate: ["studies"] });
-      participant.studies.add(studyRef);
-    }
 
     const prevQuestionnaire = await this.findLatestByParticipant(questionnaire.participant!.id);
 

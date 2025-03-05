@@ -404,6 +404,23 @@ export interface paths {
         patch: operations["StudiesController_update"];
         trace?: never;
     };
+    "/study-participants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create a study */
+        post: operations["StudyParticipantsController_create"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -964,6 +981,30 @@ export interface components {
              * @example Series 1
              */
             title?: string;
+        };
+        StudyParticipantMutationDto: {
+            /**
+             * @description The id of the participant
+             * @example 1
+             */
+            participantId: number;
+            /**
+             * @description The id of the study
+             * @example 1
+             */
+            studyId: number;
+        };
+        StudyParticipantResponseDto: {
+            /**
+             * @description The id of the participant
+             * @example 1
+             */
+            participantId: number;
+            /**
+             * @description The id of the study
+             * @example 1
+             */
+            studyId: number;
         };
     };
     responses: never;
@@ -1895,9 +1936,7 @@ export interface operations {
     };
     QuestionnairesController_create: {
         parameters: {
-            query?: {
-                studyId?: number;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -2229,6 +2268,29 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+        };
+    };
+    StudyParticipantsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyParticipantMutationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyParticipantResponseDto"];
                 };
             };
         };

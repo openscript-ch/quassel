@@ -51,7 +51,6 @@ function QuestionnaireNew() {
 
     createQuestionnaireMutation.mutate({
       body: { title, startedAt, endedAt, participant: questionnaire!.participant.id },
-      params: { query: { studyId: questionnaire!.study.id } },
     });
   };
 
