@@ -108,7 +108,7 @@ export function EntryCalendar({
 
           return [
             {
-              start: getDateFromTimeAndWeekday("05:00:00", index),
+              start: getDateFromTimeAndWeekday(C.calendar.minTime, index),
               end: getDateFromTimeAndWeekday(minStart, index),
               backgroundColor: theme.colors.uzhBlue[9],
               className: styles.eventSleepIndicator,
@@ -116,7 +116,7 @@ export function EntryCalendar({
             },
             {
               start: getDateFromTimeAndWeekday(maxEnd, index),
-              end: getDateFromTimeAndWeekday("23:00:00", index),
+              end: getDateFromTimeAndWeekday(C.calendar.maxTime, index),
               backgroundColor: theme.colors.uzhBlue[9],
               className: styles.eventSleepIndicator,
               display: "background",

@@ -19,7 +19,7 @@ export const isSame = (unit: dayjs.ManipulateType, left: Date, right = new Date(
 export const isSameOrAfter = (left: Date, right: Date, unit: dayjs.ManipulateType) => dayjs(left).isAfter(dayjs(right).startOf(unit));
 
 export function getDateFromTimeAndWeekday(time: string, weekday: number) {
-  return dayjs(time, "HH:mm:ss")
+  return dayjs(time, "HH:mm")
     .set("day", weekday)
     .add(weekday === 0 ? 1 : 0, "week")
     .toDate();

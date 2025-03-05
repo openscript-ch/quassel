@@ -14,6 +14,6 @@ export const C = {
   },
   calendar: {
     minTime: "05:00",
-    maxTime: "23:00",
+    maxTime: "23:59",
   },
 };
