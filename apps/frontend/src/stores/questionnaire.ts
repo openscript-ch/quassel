@@ -3,7 +3,7 @@ import { components } from "../api.gen";
 
 type Questionnaire = {
   participant: components["schemas"]["ParticipantResponseDto"];
-  study: components["schemas"]["StudyResponseDto"];
+  study: components["schemas"]["StudyDetailResponseDto"];
 };
 
 export const $questionnaire = persistentAtom<Questionnaire | undefined>("questionnaire", undefined, {

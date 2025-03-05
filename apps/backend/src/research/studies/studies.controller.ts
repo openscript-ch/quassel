@@ -31,7 +31,7 @@ export class StudiesController {
   @ApiOperation({ summary: "Get a study by ID" })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
   @Serialize(StudyDetailResponseDto)
-  get(@Param("id") id: string): Promise<StudyResponseDto> {
+  get(@Param("id") id: string): Promise<StudyDetailResponseDto> {
     return this.studiesService.findOne(+id);
   }
 
