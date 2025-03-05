@@ -413,9 +413,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Create a study */
+        /** Create a study participant association */
         post: operations["StudyParticipantsController_create"];
-        delete?: never;
+        /** Delete a study participant association */
+        delete: operations["StudyParticipantsController_delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -2286,6 +2287,29 @@ export interface operations {
         };
         responses: {
             201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyParticipantResponseDto"];
+                };
+            };
+        };
+    };
+    StudyParticipantsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyParticipantMutationDto"];
+            };
+        };
+        responses: {
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };

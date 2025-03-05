@@ -42,6 +42,9 @@ function AdministrationStudiesIndex() {
                     Delete
                   </Button>
                 )}
+                <Button variant="default" component={Link} to={`/administration/studies/${s.id}`}>
+                  View
+                </Button>
               </Button.Group>
             </Table.Td>
           </Table.Tr>
