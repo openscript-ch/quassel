@@ -1,9 +1,10 @@
-import { Alert, Button, Group, Stack, Table, Title, IconInfoCircle } from "@quassel/ui";
+import { Alert, Button, Group, Stack, Table, Title } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { format, i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { params } from "@nanostores/i18n";
+import { $api } from "../../../../stores/api";
 
 export const messages = i18n("questionnaireParticipant", {
   title: "Participant",
@@ -28,7 +29,15 @@ function QuestionnaireParticipant() {
   const birthday = questionnaire?.participant.birthday;
   const latestQuestionnaire = questionnaire?.participant.latestQuestionnaire;
 
-  const handleSubmit = () => {
+  const isParticipantAssignedToStudy = questionnaire?.study.participants.some((p) => p.id === questionnaire.participant.id);
+
+  const mutation = $api.useMutation("post", "/study-participants");
+
+  const handleSubmit = async () => {
+    if (!isParticipantAssignedToStudy) {
+      await mutation.mutateAsync({ body: { participantId: questionnaire!.participant.id, studyId: questionnaire!.study.id } });
+    }
+
     if (!latestQuestionnaire || latestQuestionnaire.completedAt) {
       n({ to: "/questionnaire/new" });
     } else {
@@ -57,8 +66,8 @@ function QuestionnaireParticipant() {
             </Table.Tr>
           </Table.Tbody>
         </Table>
-        {!questionnaire?.study.participants.some((p) => p.id === questionnaire.participant.id) && (
-          <Alert variant="light" icon={<IconInfoCircle />} title={t.assignStudyInfoTitle}>
+        {!isParticipantAssignedToStudy && (
+          <Alert variant="light" icon={"i"} title={t.assignStudyInfoTitle}>
             {t.assignStudyInfoDescription({ participantId: questionnaire?.participant.id ?? "", studyTitle: questionnaire?.study.title ?? "" })}
           </Alert>
         )}
@@ -73,7 +82,9 @@ function QuestionnaireParticipant() {
             <Button component={Link} to="/questionnaire" variant="light">
               {t.backAction}
             </Button>
-            <Button type="submit">{t.formAction}</Button>
+            <Button type="submit" loading={mutation.isPending}>
+              {t.formAction}
+            </Button>
           </Group>
         </form>
       </Stack>
