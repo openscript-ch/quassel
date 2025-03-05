@@ -9,8 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/montserrat": "^5.1.1",
-    "@fontsource-variable/onest": "^5.1.1",
-    "astro": "^5.2.6"
+    "@fontsource-variable/montserrat": "^5.2.5",
+    "@fontsource-variable/onest": "^5.2.5",
+    "astro": "^5.4.2"
   }
 }
