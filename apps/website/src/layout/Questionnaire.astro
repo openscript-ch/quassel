@@ -1,6 +1,6 @@
 ---
 import Card from "../components/Card.astro";
-import Bubble from "../components/Bubble.astro";
+import Bubbles from "../components/Bubbles.astro";
 ---
 
 <section>
@@ -36,10 +36,6 @@ import Bubble from "../components/Bubble.astro";
 
   <div>
     <div class="functions">More functions</div>
-    <div class="bubbles">
-      <Bubble bubble_content="Optional comments" />
-      <Bubble bubble_content="Customizable carer information" />
-      <Bubble bubble_content="Historical entires are saved" />
-    </div>
+    <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
   </div>
 </section>
