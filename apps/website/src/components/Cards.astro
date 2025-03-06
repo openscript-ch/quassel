@@ -1,0 +1,61 @@
+---
+type CardsProps = {
+  imgSrc: string;
+  iconSrc: string;
+  title: string;
+  description: string;
+  imgRight?: boolean;
+};
+
+type Props = {
+  cards: CardsProps[];
+};
+
+const { cards } = Astro.props;
+---
+
+<style>
+  .cards-list {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  .card {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row-reverse;
+  }
+  .content {
+    flex-direction: column;
+    margin: var(--spacing-lg);
+  }
+  .content-title {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .right {
+    flex-direction: row;
+  }
+</style>
+
+<ul class="cards-list">
+  {
+    cards.map((card) => (
+      <li>
+        <div class:list={["card", { right: card.imgRight }]}>
+          <div class="content">
+            <div class="content-title">
+              <img src={card.iconSrc} />
+              <h3>{card.title}</h3>
+            </div>
+            <p class="hidden">{card.description}</p>
+          </div>
+          <img src={card.imgSrc} />
+        </div>
+      </li>
+    ))
+  }
+</ul>

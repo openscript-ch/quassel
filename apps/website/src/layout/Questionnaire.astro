@@ -1,38 +1,44 @@
 ---
-import Card from "../components/Card.astro";
+import Cards from "../components/Cards.astro";
 import Bubbles from "../components/Bubbles.astro";
+
+const cards = {
+  entries: [
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon5.svg",
+      title: "Entry for studies",
+      description: "The description for Entry for studies.",
+      imgRight: false,
+    },
+    {
+      imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
+      iconSrc: "/assets/icon6.svg",
+      title: "Default data management",
+      description: "Store the data about carers’ background information.",
+      imgRight: false,
+    },
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon7.svg",
+      title: "Export raw data to CSV",
+      description: "The description for Export raw data to CSV.",
+      imgRight: false,
+    },
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon8.svg",
+      title: "Consolidate data into reports",
+      description: "The description for Consolidate data into reports.",
+      imgRight: false,
+    },
+  ],
+};
 ---
 
 <section>
   <h2>Data Collection Features</h2>
-  <Card
-    iconSrc="/assets/icon1.svg"
-    imgSrc=""
-    title="Calendar Interface"
-    description="The description for the calendar interface."
-    imgRight={true}
-  />
-  <Card
-    iconSrc="/assets/icon2.svg"
-    imgSrc="https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24"
-    title="Easy to select time period"
-    description="Accessibility from mobile device and primarily touch-based input via tablets."
-    imgRight={true}
-  />
-  <Card
-    iconSrc="/assets/icon3.svg"
-    imgSrc=""
-    title="Auto detect gaps"
-    description="The description for the Auto detect gaps."
-    imgRight={true}
-  />
-  <Card
-    iconSrc="/assets/icon4.svg"
-    imgSrc=""
-    title="Recurring entries"
-    description="The description for the Recurring entries."
-    imgRight={true}
-  />
+  <Cards cards={cards.entries} />
 
   <div>
     <p>More functions</p>

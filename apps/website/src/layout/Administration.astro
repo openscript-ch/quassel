@@ -1,26 +1,45 @@
 ---
-import Card from "../components/Card.astro";
+import Cards from "../components/Cards.astro";
 import Bubbles from "../components/Bubbles.astro";
+
+const cards = {
+  entries: [
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon5.svg",
+      title: "Entry for studies",
+      description: "The description for Entry for studies.",
+      imgRight: true,
+    },
+    {
+      imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
+      iconSrc: "/assets/icon6.svg",
+      title: "Default data management",
+      description: "Store the data about carers’ background information.",
+      imgRight: true,
+    },
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon7.svg",
+      title: "Export raw data to CSV",
+      description: "The description for Export raw data to CSV.",
+      imgRight: true,
+    },
+    {
+      imgSrc: "",
+      iconSrc: "/assets/icon8.svg",
+      title: "Consolidate data into reports",
+      description: "The description for Consolidate data into reports.",
+      imgRight: true,
+    },
+  ],
+};
 ---
 
 <section>
   <h2>Solution for Administrative Needs</h2>
 
-  <Card iconSrc="/assets/icon5.svg" imgSrc="" title="Entry for studies" description="The description for Entry for studies." />
-  <Card
-    iconSrc="/assets/icon6.svg"
-    imgSrc="https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24"
-    title="Default data management"
-    description="Store the data about carers’ background information."
-    imgRight={false}
-  />
-  <Card iconSrc="/assets/icon7.svg" imgSrc="" title="Export raw data to CSV" description="The description for Export raw data to CSV." />
-  <Card
-    iconSrc="/assets/icon8.svg"
-    imgSrc=""
-    title="Consolidate data into reports"
-    description="The description for Consolidate data into reports."
-  />
+  <Cards cards={cards.entries} />
 
   <div class="text">
     <p>More functions</p>
