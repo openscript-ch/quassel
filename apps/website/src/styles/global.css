@@ -57,9 +57,3 @@ header, main > section, footer {
   font-size: var(--font-size-sm);
   margin-bottom: var(--spacing-sm);
 }
-
-.bubbles {
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-sm);
-}
