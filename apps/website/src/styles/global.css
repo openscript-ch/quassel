@@ -35,7 +35,9 @@ html {
   height: 100%;
 }
 
+
 body {
+  font-family: var(--font-family-text);
   min-height: 100%;
   margin: 0;
   padding: 0;
@@ -45,8 +47,13 @@ body {
   align-items: center;
 }
 
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-family-title);
+}
+
 main {
   flex-grow: 1;
+  overflow: auto; /*limit the width of the video*/
 }
 
 header, main > section, footer {
