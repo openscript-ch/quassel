@@ -60,7 +60,3 @@ header, main > section, footer {
   width: 60rem;
 }
 
-.functions {
-  font-size: var(--font-size-sm);
-  margin-bottom: var(--spacing-sm);
-}
