@@ -6,10 +6,10 @@
   --color-about-bg: #F0EBE3;
   --color-lemon: #F3AB00;
 
-  --font-onest: 'Onest Variable', sans-serif;
-  --font-monst: 'Montserrat Variable', sans-serif;
+  --font-family-title: 'Onest Variable', sans-serif;
+  --font-family-text: 'Montserrat Variable', sans-serif;
 
-  --font-size-xs: 0.75rem; 
+  --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-md: 1rem;
   --font-size-lg: 1.25rem;
