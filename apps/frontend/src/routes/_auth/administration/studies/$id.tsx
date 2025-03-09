@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { $api } from "../../../../stores/api";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
-import { ActionIcon, Stack, Table, Title, IconTrash } from "@quassel/ui";
+import { Stack, Table, Title, Button } from "@quassel/ui";
+import { useStore } from "@nanostores/react";
+import { $session } from "../../../../stores/session";
 
 function AdministrationStudiesEdit() {
+  const sessionStore = useStore($session);
   const p = Route.useParams();
   const q = useQueryClient();
   const study = useSuspenseQuery(
@@ -45,9 +48,14 @@ function AdministrationStudiesEdit() {
             <Table.Td>{p.id}</Table.Td>
             <Table.Td>{p.birthday}</Table.Td>
             <Table.Td>
-              <ActionIcon onClick={() => removeParticipantMutation.mutate({ body: { participantId: p.id, studyId: study.data.id } })}>
-                <IconTrash />
-              </ActionIcon>
+              {sessionStore.role === "ADMIN" && (
+                <Button
+                  variant="default"
+                  onClick={() => removeParticipantMutation.mutate({ body: { participantId: p.id, studyId: study.data.id } })}
+                >
+                  Delete
+                </Button>
+              )}
             </Table.Td>
           </Table.Tr>
         ))}
