@@ -12,6 +12,7 @@ export class StudyParticipantsService {
     private readonly studyRepository: EntityRepository<Study>,
     private readonly em: EntityManager
   ) {}
+
   async create(studyParticipant: StudyParticipantMutationDto) {
     const participantRef = this.em.getReference(Participant, studyParticipant.participantId);
     const study = await this.studyRepository.findOneOrFail(studyParticipant.studyId);

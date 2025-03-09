@@ -27,7 +27,6 @@ Study {
 }
 
 StudyParticipant {
-    SERIAL id PK
     SERIAL participant_id FK
     SERIAL study_id FK
 }
