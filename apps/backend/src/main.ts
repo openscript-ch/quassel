@@ -13,6 +13,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     origin: configService.get("cors.origin"),
+    methods: ["GET", "POST", "PUT", "DELETE"],
     exposedHeaders: ["Content-Disposition"],
   });
   app.enableShutdownHooks();
