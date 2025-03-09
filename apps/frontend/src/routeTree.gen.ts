@@ -40,6 +40,7 @@ import { Route as AuthQuestionnaireQuestionnaireNewImport } from "./routes/_auth
 import { Route as AuthQuestionnaireQuestionnaireCompletedImport } from "./routes/_auth/questionnaire/_questionnaire/completed";
 import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
 import { Route as AuthAdministrationStudiesNewImport } from "./routes/_auth/administration/studies/new";
+import { Route as AuthAdministrationStudiesIdImport } from "./routes/_auth/administration/studies/$id";
 import { Route as AuthAdministrationParticipantsNewImport } from "./routes/_auth/administration/participants/new";
 import { Route as AuthAdministrationParticipantsImportImport } from "./routes/_auth/administration/participants/import";
 import { Route as AuthAdministrationLanguagesNewImport } from "./routes/_auth/administration/languages/new";
@@ -243,6 +244,13 @@ const AuthAdministrationStudiesNewRoute =
   AuthAdministrationStudiesNewImport.update({
     id: "/new",
     path: "/new",
+    getParentRoute: () => AuthAdministrationStudiesRoute,
+  } as any);
+
+const AuthAdministrationStudiesIdRoute =
+  AuthAdministrationStudiesIdImport.update({
+    id: "/$id",
+    path: "/$id",
     getParentRoute: () => AuthAdministrationStudiesRoute,
   } as any);
 
@@ -480,6 +488,13 @@ declare module "@tanstack/react-router" {
       fullPath: "/administration/participants/new";
       preLoaderRoute: typeof AuthAdministrationParticipantsNewImport;
       parentRoute: typeof AuthAdministrationParticipantsImport;
+    };
+    "/_auth/administration/studies/$id": {
+      id: "/_auth/administration/studies/$id";
+      path: "/$id";
+      fullPath: "/administration/studies/$id";
+      preLoaderRoute: typeof AuthAdministrationStudiesIdImport;
+      parentRoute: typeof AuthAdministrationStudiesImport;
     };
     "/_auth/administration/studies/new": {
       id: "/_auth/administration/studies/new";
@@ -749,6 +764,7 @@ const AuthAdministrationReportsRouteWithChildren =
   );
 
 interface AuthAdministrationStudiesRouteChildren {
+  AuthAdministrationStudiesIdRoute: typeof AuthAdministrationStudiesIdRoute;
   AuthAdministrationStudiesNewRoute: typeof AuthAdministrationStudiesNewRoute;
   AuthAdministrationStudiesIndexRoute: typeof AuthAdministrationStudiesIndexRoute;
   AuthAdministrationStudiesEditIdRoute: typeof AuthAdministrationStudiesEditIdRoute;
@@ -756,6 +772,7 @@ interface AuthAdministrationStudiesRouteChildren {
 
 const AuthAdministrationStudiesRouteChildren: AuthAdministrationStudiesRouteChildren =
   {
+    AuthAdministrationStudiesIdRoute: AuthAdministrationStudiesIdRoute,
     AuthAdministrationStudiesNewRoute: AuthAdministrationStudiesNewRoute,
     AuthAdministrationStudiesIndexRoute: AuthAdministrationStudiesIndexRoute,
     AuthAdministrationStudiesEditIdRoute: AuthAdministrationStudiesEditIdRoute,
@@ -892,6 +909,7 @@ export interface FileRoutesByFullPath {
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
   "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
@@ -925,6 +943,7 @@ export interface FileRoutesByTo {
   "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
   "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
   "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
@@ -971,6 +990,7 @@ export interface FileRoutesById {
   "/_auth/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
   "/_auth/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
   "/_auth/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/_auth/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
   "/_auth/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
   "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
   "/_auth/questionnaire/_questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
@@ -1017,6 +1037,7 @@ export interface FileRouteTypes {
     | "/administration/languages/new"
     | "/administration/participants/import"
     | "/administration/participants/new"
+    | "/administration/studies/$id"
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/completed"
@@ -1049,6 +1070,7 @@ export interface FileRouteTypes {
     | "/administration/languages/new"
     | "/administration/participants/import"
     | "/administration/participants/new"
+    | "/administration/studies/$id"
     | "/administration/studies/new"
     | "/administration/users/new"
     | "/questionnaire/completed"
@@ -1093,6 +1115,7 @@ export interface FileRouteTypes {
     | "/_auth/administration/languages/new"
     | "/_auth/administration/participants/import"
     | "/_auth/administration/participants/new"
+    | "/_auth/administration/studies/$id"
     | "/_auth/administration/studies/new"
     | "/_auth/administration/users/new"
     | "/_auth/questionnaire/_questionnaire/completed"
@@ -1234,6 +1257,7 @@ export const routeTree = rootRoute
       "filePath": "_auth/administration/studies.tsx",
       "parent": "/_auth/administration",
       "children": [
+        "/_auth/administration/studies/$id",
         "/_auth/administration/studies/new",
         "/_auth/administration/studies/",
         "/_auth/administration/studies/edit/$id"
@@ -1283,6 +1307,10 @@ export const routeTree = rootRoute
     "/_auth/administration/participants/new": {
       "filePath": "_auth/administration/participants/new.tsx",
       "parent": "/_auth/administration/participants"
+    },
+    "/_auth/administration/studies/$id": {
+      "filePath": "_auth/administration/studies/$id.tsx",
+      "parent": "/_auth/administration/studies"
     },
     "/_auth/administration/studies/new": {
       "filePath": "_auth/administration/studies/new.tsx",

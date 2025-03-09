@@ -4,7 +4,7 @@ import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { Roles } from "../../system/users/roles.decorator";
 import { UserRole } from "../../system/users/user.entity";
 import { StudiesService } from "./studies.service";
-import { StudyCreationDto, StudyResponseDto, StudyMutationDto } from "./study.dto";
+import { StudyCreationDto, StudyResponseDto, StudyMutationDto, StudyDetailResponseDto } from "./study.dto";
 import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Studies")
@@ -30,8 +30,8 @@ export class StudiesController {
   @Get(":id")
   @ApiOperation({ summary: "Get a study by ID" })
   @ApiNotFoundResponse({ description: "Entity not found exception", type: ErrorResponseDto })
-  @Serialize(StudyResponseDto)
-  get(@Param("id") id: string): Promise<StudyResponseDto> {
+  @Serialize(StudyDetailResponseDto)
+  get(@Param("id") id: string): Promise<StudyDetailResponseDto> {
     return this.studiesService.findOne(+id);
   }
 

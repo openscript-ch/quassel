@@ -1,7 +1,6 @@
 import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { Expose, Type } from "class-transformer";
 import { IsDateString, IsNotEmpty, IsOptional } from "class-validator";
-import { StudyResponseDto } from "../studies/study.dto";
 import { EntryResponseDto } from "../entries/entry.dto";
 import { ParticipantResponseDto } from "../participants/participant.dto";
 
@@ -41,10 +40,6 @@ export class QuestionnaireResponseDto extends QuestionnaireBaseDto {
   @Expose()
   createdAt: Date;
 
-  @Type(() => StudyResponseDto)
-  @Expose()
-  study: StudyResponseDto;
-
   @Type(() => ParticipantResponseDto)
   @Expose()
   participant: ParticipantResponseDto;
@@ -57,7 +52,6 @@ export class QuestionnaireDetailResponseDto extends QuestionnaireResponseDto {
 }
 
 export class QuestionnaireCreationDto extends QuestionnaireBaseDto {
-  study: number;
   participant: number;
 }
 export class QuestionnaireMutationDto extends PartialType(QuestionnaireCreationDto) {}
