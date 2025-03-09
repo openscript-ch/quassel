@@ -25,7 +25,7 @@ export class StudyParticipantsService {
 
   async delete(studyParticipant: StudyParticipantMutationDto) {
     const participantRef = this.em.getReference(Participant, studyParticipant.participantId);
-    const study = await this.studyRepository.findOneOrFail(studyParticipant.studyId);
+    const study = await this.studyRepository.findOneOrFail(studyParticipant.studyId, { populate: ["participants"] });
     study.participants.remove(participantRef);
 
     await this.em.flush();
