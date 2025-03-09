@@ -15,6 +15,7 @@ export default defineConfig({
           dayjs: "dayjs",
           "dayjs/plugin/utc.js": "dayjsPluginUtc",
           "dayjs/plugin/customParseFormat.js": "dayjsPluginCustomParseFormat",
+          "dayjs/plugin/isoWeek.js": "dayjsPluginIsoWeek",
         },
       },
     },
