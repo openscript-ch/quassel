@@ -22,10 +22,13 @@ const calendarBaseConfig: FullCalendar["props"] = {
   slotMaxTime: C.calendar.maxTime,
   slotDuration: { hour: 1 },
   firstDay: 1,
-  locale: "de",
+  locale: "en-GB",
   expandRows: true,
   editable: true,
-  selectAllow: ({ start, end }) => isSame("day", start, end),
+  selectAllow: ({ start, end }) => {
+    end.setTime(end.getTime() - 1000);
+    return isSame("day", start, end);
+  },
   selectable: true,
   selectLongPressDelay: 200,
   eventLongPressDelay: 400,
@@ -116,7 +119,7 @@ export function EntryCalendar({
             },
             {
               start: getDateFromTimeAndWeekday(maxEnd, index),
-              end: getDateFromTimeAndWeekday("23:00:00", index),
+              end: getDateFromTimeAndWeekday("23:59:59", index),
               backgroundColor: theme.colors.uzhBlue[9],
               className: styles.eventSleepIndicator,
               display: "background",
@@ -143,7 +146,10 @@ export function EntryCalendar({
   };
 
   const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
-    setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
+    if (!start || !end) return;
+    if (end.getHours() === 0 && end.getMinutes() === 0) end.setTime(end.getTime() - 1000);
+
+    setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end), weekday: start!.getDay() });
     setEntryUpdadingId(undefined);
     open();
   };
