@@ -7,31 +7,27 @@ const cards = {
   entries: [
     {
       imgSrc: "",
-      iconSrc: "/assets/icon5.svg",
+      icon: <IconCalendar />,
       title: "Calendar interface",
       description: "The description for Calendar interface",
-      imgRight: false,
     },
     {
       imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
-      iconSrc: "/assets/icon6.svg",
+      icon: IconCalendar,
       title: "Easy to select time period",
       description: "Accessibility from mobile device and primarily touch-based input via tablets.",
-      imgRight: false,
     },
     {
       imgSrc: "",
-      iconSrc: "/assets/icon7.svg",
+      icon: IconCalendar,
       title: "Auto detect gaps",
       description: "The description for Auto detect gaps.",
-      imgRight: false,
     },
     {
       imgSrc: "",
-      iconSrc: "/assets/icon8.svg",
+      icon: IconCalendar,
       title: "Recurring entries",
       description: "The description for Recurring entries.",
-      imgRight: false,
     },
   ],
 };
@@ -61,7 +57,7 @@ const cards = {
   <div class="questionnaire">
     <h2>Data Collection Features</h2>
     <IconCalendar />
-    <Cards cards={cards.entries} />
+    <Cards imgRight={true} cards={cards.entries} />
     <div>
       <p>More functions</p>
       <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />

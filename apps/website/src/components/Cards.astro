@@ -1,7 +1,7 @@
 ---
 type CardsProps = {
   imgSrc: string;
-  iconSrc: string;
+  icon?: unknown;
   title: string;
   description: string;
 };
@@ -11,7 +11,7 @@ type Props = {
   cards: CardsProps[];
 };
 
-const { cards } = Astro.props;
+const { cards, imgRight = false } = Astro.props;
 ---
 
 <style>
@@ -47,10 +47,10 @@ const { cards } = Astro.props;
   {
     cards.map((card) => (
       <li>
-        <div class:list={["card", { right: card.imgRight }]}>
+        <div class:list={["card", { right: imgRight }]}>
           <div class="content">
             <div class="content-title">
-              <img src={card.iconSrc} />
+              {card.icon && <Fragment>{card.icon}</Fragment>}
               <h3>{card.title}</h3>
             </div>
             <p class="hidden">{card.description}</p>
