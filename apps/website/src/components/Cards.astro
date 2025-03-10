@@ -4,10 +4,10 @@ type CardsProps = {
   iconSrc: string;
   title: string;
   description: string;
-  imgRight?: boolean;
 };
 
 type Props = {
+  imgRight?: boolean;
   cards: CardsProps[];
 };
 
@@ -27,10 +27,12 @@ const { cards } = Astro.props;
     align-items: flex-start;
     flex-direction: row-reverse;
   }
+
   .content {
     flex-direction: column;
     margin: var(--spacing-lg);
   }
+
   .content-title {
     display: flex;
     gap: 1rem;

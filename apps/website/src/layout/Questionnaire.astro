@@ -1,6 +1,7 @@
 ---
 import Cards from "../components/Cards.astro";
 import Bubbles from "../components/Bubbles.astro";
+import IconCalendar from "~icons/tabler/calendar-week";
 
 const cards = {
   entries: [
@@ -59,6 +60,7 @@ const cards = {
 <section>
   <div class="questionnaire">
     <h2>Data Collection Features</h2>
+    <IconCalendar />
     <Cards cards={cards.entries} />
     <div>
       <p>More functions</p>
