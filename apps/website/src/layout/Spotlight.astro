@@ -2,12 +2,61 @@
 
 ---
 
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  section::before {
+    margin-top: var(--spacing-xl);
+    content: "";
+    position: absolute;
+    background: #c6e7ff;
+    filter: blur(125px);
+    width: 60rem;
+    height: 36rem;
+    z-index: -1;
+  }
+
+  h1 {
+    font-size: var(--font-size-xxxl);
+  }
+
+  p {
+    font-size: var(--font-size-lg);
+  }
+
+  .intro {
+    width: 36rem;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .usedBy {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* Two columns: one for h2, one for img */
+    gap: var(--spacing-lg);
+  }
+
+  .usedBy h2 {
+    font-weight: var(--font-weight-medium);
+  }
+</style>
+
 <section>
-  <h1>Gather language exposure data</h1>
-  <p>Efficient documenting children's language exposure by carer giver and time.</p>
+  <div class="intro">
+    <h1>Gather language exposure data</h1>
+    <p>Efficient documenting children's language exposure by carer giver and time.</p>
+  </div>
   <video>
     <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
   </video>
-  <h2>Used by</h2>
-  <img src="/assets/uzh-logo.svg" alt="University of Zurich" />
+  <div class="usedBy">
+    <h2>Used by</h2>
+    <img src="../assets/uzh-logo.svg" alt="University of Zurich" />
+  </div>
 </section>
