@@ -3,7 +3,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { DateSelectArg, EventChangeArg, EventInput } from "@fullcalendar/core";
 import { Button, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
-import { GapsPerDay, getDateFromTimeAndWeekday, getTime, groupByWeekday, isSame } from "@quassel/utils";
+import { GapsPerDay, getDateFromTimeAndWeekday, getNext, getTime, groupByWeekday, isSame } from "@quassel/utils";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
@@ -22,10 +22,13 @@ const calendarBaseConfig: FullCalendar["props"] = {
   slotMaxTime: C.calendar.maxTime,
   slotDuration: { hour: 1 },
   firstDay: 1,
-  locale: "de",
+  locale: "en-GB",
   expandRows: true,
   editable: true,
-  selectAllow: ({ start, end }) => isSame("day", start, end),
+  selectAllow: ({ start, end }) => {
+    end.setTime(end.getTime() - 1000);
+    return isSame("day", start, end);
+  },
   selectable: true,
   selectLongPressDelay: 200,
   eventLongPressDelay: 400,
@@ -116,7 +119,7 @@ export function EntryCalendar({
             },
             {
               start: getDateFromTimeAndWeekday(maxEnd, index),
-              end: getDateFromTimeAndWeekday("23:00:00", index),
+              end: getDateFromTimeAndWeekday("23:59:59", index),
               backgroundColor: theme.colors.uzhBlue[9],
               className: styles.eventSleepIndicator,
               display: "background",
@@ -143,14 +146,20 @@ export function EntryCalendar({
   };
 
   const setupEntryCreate = ({ start, end }: DateSelectArg | EventImpl) => {
-    setEntryDraft({ startedAt: getTime(start!), endedAt: getTime(end!), weekday: start!.getDay() });
+    if (!start || !end) return;
+    if (end.getHours() === 0 && end.getMinutes() === 0) end.setTime(end.getTime() - 1000);
+
+    setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end), weekday: start!.getDay() });
     setEntryUpdadingId(undefined);
     open();
   };
 
-  const handleEventChange = ({ event }: EventChangeArg) => {
-    const { id, start, end } = event;
+  const handleEventChange = ({ event: { id, start, end } }: EventChangeArg) => {
     if (!start || !end) return;
+
+    if (end.getMinutes() === 59 && end.getHours() < 23) {
+      end = getNext("hour", end);
+    }
 
     const startTime = getTime(start) < C.calendar.minTime ? C.calendar.minTime : getTime(start);
     const endTime = isSame("day", start, end) ? getTime(end) : C.calendar.maxTime;

@@ -1,9 +1,11 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import isoWeek from "dayjs/plugin/isoWeek";
 
 dayjs.extend(utc);
 dayjs.extend(customParseFormat);
+dayjs.extend(isoWeek);
 
 export function formatDate(date: Date, dayjsFormatTemplate: string) {
   return dayjs(date).format(dayjsFormatTemplate);
@@ -20,7 +22,6 @@ export const isSameOrAfter = (left: Date, right: Date, unit: dayjs.ManipulateTyp
 
 export function getDateFromTimeAndWeekday(time: string, weekday: number) {
   return dayjs(time, "HH:mm:ss")
-    .set("day", weekday)
-    .add(weekday === 0 ? 1 : 0, "week")
+    .isoWeekday(weekday === 0 ? 7 : weekday)
     .toDate();
 }
