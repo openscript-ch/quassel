@@ -1,5 +1,13 @@
 # @quassel/ui
 
+## 0.1.7
+
+### Patch Changes
+
+- 24a3be3: Improve calendering
+- 4dc1f04: Upgrade dependencies
+- a9cf000: Redesign data model. Allow assigning Participants to multiple studies.
+
 ## 0.1.6
 
 ### Patch Changes
