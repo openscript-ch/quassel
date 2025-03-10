@@ -1,0 +1,28 @@
+---
+type Props = {
+  entries: string[];
+};
+
+const { entries } = Astro.props;
+---
+
+<style>
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-white);
+  }
+
+  li {
+    background-color: var(--color-primary);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+</style>
+
+<ul>
+  {entries.map((entry) => <li>{entry}</li>)}
+</ul>

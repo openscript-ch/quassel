@@ -1,0 +1,66 @@
+---
+import Cards from "../components/Cards.astro";
+import Bubbles from "../components/Bubbles.astro";
+import IconCalendar from "~icons/tabler/calendar-week";
+
+const cards = {
+  entries: [
+    {
+      imgSrc: "",
+      icon: <IconCalendar />,
+      title: "Calendar interface",
+      description: "The description for Calendar interface",
+    },
+    {
+      imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
+      icon: IconCalendar,
+      title: "Easy to select time period",
+      description: "Accessibility from mobile device and primarily touch-based input via tablets.",
+    },
+    {
+      imgSrc: "",
+      icon: IconCalendar,
+      title: "Auto detect gaps",
+      description: "The description for Auto detect gaps.",
+    },
+    {
+      imgSrc: "",
+      icon: IconCalendar,
+      title: "Recurring entries",
+      description: "The description for Recurring entries.",
+    },
+  ],
+};
+---
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  section::before {
+    background: var(--color-primary);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Ensure the height matches the section’s height */
+    width: 100%;
+    z-index: -1; /* Make sure it stays behind the content */
+  }
+</style>
+
+<section>
+  <div class="questionnaire">
+    <h2>Data Collection Features</h2>
+    <IconCalendar />
+    <Cards imgRight={true} cards={cards.entries} />
+    <div>
+      <p>More functions</p>
+      <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
+    </div>
+  </div>
+</section>
