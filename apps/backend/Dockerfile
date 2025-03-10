@@ -4,6 +4,7 @@ ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /usr/src/app
 COPY dist/deploy/ .
+RUN mv dist/db/ .
 RUN chown -R node:node .
 USER node
 EXPOSE 3000
