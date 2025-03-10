@@ -404,6 +404,24 @@ export interface paths {
         patch: operations["StudiesController_update"];
         trace?: never;
     };
+    "/study-participants": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create a study participant association */
+        post: operations["StudyParticipantsController_create"];
+        /** Delete a study participant association */
+        delete: operations["StudyParticipantsController_delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -525,23 +543,6 @@ export interface components {
             color?: string;
             participant?: number;
         };
-        StudyResponseDto: {
-            /**
-             * @description The id of the study (child id)
-             * @example 1
-             */
-            id: number;
-            /**
-             * @description The title of the study
-             * @example Series 1
-             */
-            title: string;
-            /**
-             * @description The count of questionnaires tracked to this study
-             * @example 1
-             */
-            questionnairesCount?: number;
-        };
         QuestionnaireResponseDto: {
             /**
              * Format: date-time
@@ -582,7 +583,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             createdAt: string;
-            study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
         };
         ParticipantResponseDto: {
@@ -837,7 +837,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study: number;
             participant: number;
         };
         /** @enum {string} */
@@ -882,7 +881,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             createdAt: string;
-            study: components["schemas"]["StudyResponseDto"];
             participant: components["schemas"]["ParticipantResponseDto"];
             entries: components["schemas"]["EntryResponseDto"][];
         };
@@ -915,7 +913,6 @@ export interface components {
              * @example 2024-11-01T07:00:00.000Z
              */
             completedAt?: string;
-            study?: number;
             participant?: number;
         };
         EntryLanguageMutationDto: {
@@ -939,6 +936,41 @@ export interface components {
              */
             title: string;
         };
+        StudyResponseDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            /**
+             * @description The count of participants assigned to this study
+             * @example 1
+             */
+            participantsCount?: number;
+        };
+        StudyDetailResponseDto: {
+            /**
+             * @description The id of the study (child id)
+             * @example 1
+             */
+            id: number;
+            /**
+             * @description The title of the study
+             * @example Series 1
+             */
+            title: string;
+            /**
+             * @description The count of participants assigned to this study
+             * @example 1
+             */
+            participantsCount?: number;
+            participants: components["schemas"]["ParticipantResponseDto"][];
+        };
         StudyMutationDto: {
             /**
              * @description The id of the study (child id)
@@ -950,6 +982,30 @@ export interface components {
              * @example Series 1
              */
             title?: string;
+        };
+        StudyParticipantMutationDto: {
+            /**
+             * @description The id of the participant
+             * @example 1
+             */
+            participantId: number;
+            /**
+             * @description The id of the study
+             * @example 1
+             */
+            studyId: number;
+        };
+        StudyParticipantResponseDto: {
+            /**
+             * @description The id of the participant
+             * @example 1
+             */
+            participantId: number;
+            /**
+             * @description The id of the study
+             * @example 1
+             */
+            studyId: number;
         };
     };
     responses: never;
@@ -2159,7 +2215,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["StudyResponseDto"];
+                    "application/json": components["schemas"]["StudyDetailResponseDto"];
                 };
             };
             /** @description Entity not found exception */
@@ -2213,6 +2269,52 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["StudyResponseDto"];
+                };
+            };
+        };
+    };
+    StudyParticipantsController_create: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyParticipantMutationDto"];
+            };
+        };
+        responses: {
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyParticipantResponseDto"];
+                };
+            };
+        };
+    };
+    StudyParticipantsController_delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StudyParticipantMutationDto"];
+            };
+        };
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StudyParticipantResponseDto"];
                 };
             };
         };

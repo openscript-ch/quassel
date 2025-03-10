@@ -122,6 +122,7 @@ export {
   IconPlus,
   IconReportAnalytics,
   IconX,
+  IconInfoCircle,
 } from "@tabler/icons-react";
 
 export { uzhColors } from "./theme/uzh";

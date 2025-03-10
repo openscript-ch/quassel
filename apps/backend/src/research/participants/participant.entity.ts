@@ -1,7 +1,8 @@
-import { BaseEntity, Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { BaseEntity, Collection, Entity, ManyToMany, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
 import { Carer } from "../../defaults/carers/carer.entity";
 import { Language } from "../../defaults/languages/language.entity";
 import { Questionnaire } from "../questionnaires/questionnaire.entity";
+import { Study } from "../studies/study.entity";
 
 @Entity()
 export class Participant extends BaseEntity {
@@ -19,4 +20,7 @@ export class Participant extends BaseEntity {
 
   @OneToMany(() => Language, (language) => language.participant)
   languages = new Collection<Language>(this);
+
+  @ManyToMany(() => Study, (study) => study.participants)
+  studies = new Collection<Study>(this);
 }

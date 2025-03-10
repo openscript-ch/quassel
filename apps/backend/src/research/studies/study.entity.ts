@@ -1,15 +1,15 @@
-import { Collection, Entity, Formula, OneToMany, Property } from "@mikro-orm/core";
+import { Collection, Entity, Formula, ManyToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "../../common/entities/base.entity";
-import { Questionnaire } from "../questionnaires/questionnaire.entity";
+import { Participant } from "../participants/participant.entity";
 
 @Entity()
 export class Study extends BaseEntity {
   @Property()
   title!: string;
 
-  @OneToMany(() => Questionnaire, (questionnaire) => questionnaire.study)
-  questionnaires = new Collection<Questionnaire>(this);
+  @ManyToMany(() => Participant)
+  participants = new Collection<Participant>(this);
 
-  @Formula((alias) => `(select count(*) from questionnaire q where q.study_id = ${alias}.id)`)
-  questionnairesCount? = 0;
+  @Formula((alias) => `(select count(*) from study_participants where study_id = ${alias}.id)`)
+  participantsCount? = 0;
 }
