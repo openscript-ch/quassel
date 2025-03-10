@@ -1,5 +1,16 @@
 # @quassel/backend
 
+## 1.0.0
+
+### Major Changes
+
+- c67fa32: Release version 1
+
+### Patch Changes
+
+- Updated dependencies [c67fa32]
+  - @quassel/utils@1.0.0
+
 ## 0.4.4
 
 ### Patch Changes
