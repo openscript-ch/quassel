@@ -1,7 +1,7 @@
 {
   "name": "@quassel/ui",
   "private": true,
-  "version": "0.1.7",
+  "version": "1.0.0",
   "type": "module",
   "keywords": [],
   "description": "",

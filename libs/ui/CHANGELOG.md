@@ -1,5 +1,11 @@
 # @quassel/ui
 
+## 1.0.0
+
+### Major Changes
+
+- c67fa32: Release version 1
+
 ## 0.1.7
 
 ### Patch Changes
