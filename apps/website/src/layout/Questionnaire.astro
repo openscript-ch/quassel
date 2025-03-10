@@ -36,12 +36,33 @@ const cards = {
 };
 ---
 
-<section>
-  <h2>Data Collection Features</h2>
-  <Cards cards={cards.entries} />
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+  }
+  section::before {
+    background: var(--color-primary);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; /* Ensure the height matches the section’s height */
+    width: 100%;
+    z-index: -1; /* Make sure it stays behind the content */
+  }
+</style>
 
-  <div>
-    <p>More functions</p>
-    <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
+<section>
+  <div class="questionnaire">
+    <h2>Data Collection Features</h2>
+    <Cards cards={cards.entries} />
+    <div>
+      <p>More functions</p>
+      <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
+    </div>
   </div>
 </section>
