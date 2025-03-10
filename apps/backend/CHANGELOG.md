@@ -1,5 +1,15 @@
 # @quassel/backend
 
+## 0.4.4
+
+### Patch Changes
+
+- 24a3be3: Improve calendering
+- 4dc1f04: Upgrade dependencies
+- a9cf000: Redesign data model. Allow assigning Participants to multiple studies.
+- Updated dependencies [24a3be3]
+  - @quassel/utils@0.1.7
+
 ## 0.4.3
 
 ### Patch Changes

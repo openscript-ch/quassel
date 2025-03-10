@@ -1,5 +1,11 @@
 # @quassel/utils
 
+## 0.1.7
+
+### Patch Changes
+
+- 24a3be3: Improve calendering
+
 ## 0.1.6
 
 ### Patch Changes
