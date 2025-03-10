@@ -1,5 +1,12 @@
 # @quassel/frontend
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies [3bcba3b]
+  - @quassel/ui@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

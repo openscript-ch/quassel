@@ -1,5 +1,11 @@
 # @quassel/ui
 
+## 1.0.1
+
+### Patch Changes
+
+- 3bcba3b: Downgrade mantine to 7.17.0 due to regression in dropdowns
+
 ## 1.0.0
 
 ### Major Changes
