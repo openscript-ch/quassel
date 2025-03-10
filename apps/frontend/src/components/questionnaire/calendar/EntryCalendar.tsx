@@ -3,7 +3,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { DateSelectArg, EventChangeArg, EventInput } from "@fullcalendar/core";
 import { Button, Modal, useDisclosure, useMantineTheme } from "@quassel/ui";
-import { GapsPerDay, getDateFromTimeAndWeekday, getTime, groupByWeekday, isSame } from "@quassel/utils";
+import { GapsPerDay, getDateFromTimeAndWeekday, getNext, getTime, groupByWeekday, isSame } from "@quassel/utils";
 import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
@@ -154,9 +154,12 @@ export function EntryCalendar({
     open();
   };
 
-  const handleEventChange = ({ event }: EventChangeArg) => {
-    const { id, start, end } = event;
+  const handleEventChange = ({ event: { id, start, end } }: EventChangeArg) => {
     if (!start || !end) return;
+
+    if (end.getMinutes() === 59 && end.getHours() < 23) {
+      end = getNext("hour", end);
+    }
 
     const startTime = getTime(start) < C.calendar.minTime ? C.calendar.minTime : getTime(start);
     const endTime = isSame("day", start, end) ? getTime(end) : C.calendar.maxTime;
