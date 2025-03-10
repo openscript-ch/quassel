@@ -14,7 +14,7 @@
     margin: 0 var(--spacing-sm) calc(-1 * var(--spacing-sm)) 0;
   }
 
-  .demo {
+  nav {
     margin-left: auto;
     text-decoration: none;
     font-weight: 500;
@@ -25,19 +25,12 @@
     text-decoration: none;
     color: var(--color-highlight-header);
   }
-
-  .arrow {
-    margin-bottom: calc(-0.25 * var(--spacing-sm));
-  }
 </style>
 
 <header>
   <h1>Quassel</h1>
-  <img src="/public/assets/quassel-icon.svg" alt="Quassel logo" />
-  <div class="demo">
-    <a href="">
-      Click to see the demo
-      <img class="arrow" src="/public/assets/arrow.svg" alt="arrow" />
-    </a>
-  </div>
+  <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
+  <nav class="demo">
+    <a href="https://test.quassel.ch/session?redirect=%2F"> Click to see the demo &#9002; </a>
+  </nav>
 </header>
