@@ -5,9 +5,15 @@
 <style>
   header {
     padding: var(--spacing-gutter) 0;
-    align-items: flex-end;
     display: flex;
+    justify-content: space-between;
     color: var(--color-highlight-header);
+    gap: 30rem;
+  }
+
+  .quassel {
+    display: flex;
+    align-items: flex-end;
   }
 
   h1 {
@@ -15,9 +21,10 @@
   }
 
   nav {
-    margin-left: auto;
     text-decoration: none;
     font-weight: var(--font-weight-medium);
+    display: flex;
+    align-items: flex-end;
   }
 
   a,
@@ -28,8 +35,10 @@
 </style>
 
 <header>
-  <h1>Quassel</h1>
-  <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
+  <div class="quassel">
+    <h1>Quassel</h1>
+    <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
+  </div>
   <nav class="demo">
     <a href="https://test.quassel.ch/session?redirect=%2F"> Click to see the demo &#9002; </a>
   </nav>
