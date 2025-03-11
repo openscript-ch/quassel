@@ -34,12 +34,19 @@
     margin-bottom: var(--spacing-lg);
   }
 
+  .quasselVideo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
   .playButton {
     background: none;
+    position: absolute;
     border: none;
     cursor: pointer;
-    position: absolute;
-    top: 52rem;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
@@ -66,6 +73,10 @@
   .usedBy img {
     height: calc(2 * var(--spacing-lg));
   }
+
+  .video {
+    width: 58rem;
+  }
 </style>
 
 <section>
@@ -73,7 +84,7 @@
     <h1>Gather language exposure data</h1>
     <p>Efficient documenting children's language exposure by carer giver and time.</p>
   </div>
-  <div>
+  <div class="quasselVideo">
     <video class="video" muted playsinline>
       <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
     </video>

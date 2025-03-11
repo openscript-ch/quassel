@@ -69,7 +69,8 @@ main {
 }
 
 header, main > section, footer {
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 11rem;
+  padding-right: 11rem;
+
 }
 
