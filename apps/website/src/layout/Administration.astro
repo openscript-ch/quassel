@@ -6,31 +6,23 @@ const cards = {
   entries: [
     {
       imgSrc: "",
-      iconSrc: "/assets/icon5.svg",
       title: "Entry for studies",
       description: "The description for Entry for studies.",
-      imgRight: true,
     },
     {
       imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
-      iconSrc: "/assets/icon6.svg",
       title: "Default data management",
       description: "Store the data about carers’ background information.",
-      imgRight: true,
     },
     {
       imgSrc: "",
-      iconSrc: "/assets/icon7.svg",
       title: "Export raw data to CSV",
       description: "The description for Export raw data to CSV.",
-      imgRight: true,
     },
     {
       imgSrc: "",
-      iconSrc: "/assets/icon8.svg",
       title: "Consolidate data into reports",
       description: "The description for Consolidate data into reports.",
-      imgRight: true,
     },
   ],
 };
@@ -51,10 +43,13 @@ const cards = {
 </style>
 
 <section>
-  <h2>Solution for Administrative Needs</h2>
-  <Cards cards={cards.entries} />
-  <div class="moreFunctions">
-    <p>More functions</p>
-    <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
+  <div class="administration">
+    <h2>Solution for Administrative Needs</h2>
+    <Cards imgRight={false} cards={cards.entries} />
+    <div class="moreFunctions">
+      <p>More functions</p>
+      <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
+    </div>
   </div>
+  
 </section>
