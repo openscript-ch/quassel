@@ -53,14 +53,18 @@
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
     display: grid;
-    grid-template-columns: 1fr 4fr; /* Two columns: one for h2, one for img */
-    gap: var(--spacing-lg);
+    grid-template-columns: 1fr 2fr; /* Two columns: one for h2, one for img */
+    gap: var(--spacing-sm);
   }
 
   .usedBy h2 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-medium);
     align-self: center;
+  }
+
+  .usedBy img {
+    height: calc(2 * var(--spacing-lg));
   }
 </style>
 
