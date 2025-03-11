@@ -34,6 +34,21 @@
     margin-bottom: var(--spacing-lg);
   }
 
+  .playButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 52rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  .playButton :hover {
+    transform: scale(1.1);
+  }
+
   .usedBy {
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-xl);
@@ -54,11 +69,20 @@
     <h1>Gather language exposure data</h1>
     <p>Efficient documenting children's language exposure by carer giver and time.</p>
   </div>
-  <video>
-    <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-  </video>
+  <div>
+    <video class="video" muted playsinline>
+      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+    </video>
+    <button class="playButton">
+      <img src="../assets/play-button.svg" alt="Play button" />
+    </button>
+  </div>
   <div class="usedBy">
     <h2>Used by</h2>
     <img src="../assets/uzh-logo.svg" alt="University of Zurich" />
   </div>
 </section>
+
+<script>
+  import "../scripts/video.ts";
+</script>
