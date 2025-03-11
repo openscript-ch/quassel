@@ -35,5 +35,13 @@ export default tseslint.config(
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   ...pluginAstro.configs.recommended,
-  pluginPrettierRecommended
+  pluginPrettierRecommended,
+  {
+    // Define the configuration for `<script>` tag.
+    // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+    files: ["**/*.astro/*.js", "*.astro/*.js", "**/*.astro/*.ts", "*.astro/*.ts"],
+    rules: {
+      "prettier/prettier": "off",
+    },
+  }
 );
