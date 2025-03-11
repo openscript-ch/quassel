@@ -1,44 +1,43 @@
 ---
-
+import IconChevronRight from "~icons/tabler/chevron-right";
 ---
 
 <style>
   header {
-    padding: var(--spacing-gutter) 0;
     display: flex;
-    color: var(--color-highlight-header);
-    gap: 30rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
   }
 
-  .quassel {
+  .brand {
     display: flex;
+    gap: var(--spacing-md);
+    color: var(--color-highlight);
     align-items: flex-end;
   }
 
   h1 {
-    margin: 0 var(--spacing-sm) calc(-1 * var(--spacing-sm)) 0;
+    margin: 0;
   }
 
-  nav {
-    text-decoration: none;
-    font-weight: var(--font-weight-medium);
+  li a {
     display: flex;
-    align-items: flex-end;
-  }
-
-  a,
-  a:visited {
-    text-decoration: none;
-    color: var(--color-highlight-header);
+    align-items: center;
+    gap: var(--spacing-xs);
+    line-height: 2rem;
   }
 </style>
 
 <header>
-  <div class="quassel">
+  <div class="brand">
     <h1>Quassel</h1>
     <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
   </div>
-  <nav class="demo">
-    <a href="https://test.quassel.ch/session?redirect=%2F"> Click to see the demo &#9002; </a>
+  <nav>
+    <ul>
+      <li><a href="https://test.quassel.ch">Click to see the demo <IconChevronRight /></a></li>
+    </ul>
   </nav>
 </header>

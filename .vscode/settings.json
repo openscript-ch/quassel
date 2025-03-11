@@ -17,7 +17,7 @@
     "editor.defaultFormatter": "vscode.css-language-features"
   },
   "[astro]": {
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
