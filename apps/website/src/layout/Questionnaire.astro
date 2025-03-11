@@ -47,6 +47,10 @@ const cards = {
     width: 100%;
     z-index: -1; /* Make sure it stays behind the content */
   }
+
+  .moreFunctions {
+    text-align: start;
+  }
 </style>
 
 <section>
@@ -54,7 +58,7 @@ const cards = {
     <h2>Data Collection Features</h2>
     <IconCalendar />
     <Cards imgRight={true} cards={cards.entries} />
-    <div>
+    <div class="moreFunctions">
       <p>More functions</p>
       <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
     </div>
