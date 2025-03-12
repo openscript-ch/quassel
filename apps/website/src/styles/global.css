@@ -69,6 +69,7 @@ main {
 
 header, main > section, footer {
   padding: 0 20%;
+  margin-bottom: var(--spacing-lg);
 }
 
 a {
