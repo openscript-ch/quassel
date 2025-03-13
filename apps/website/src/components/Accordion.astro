@@ -1,6 +1,7 @@
 ---
 import LaptopFrame from "../assets/laptop-frame.svg";
 import TabletFrame from "../assets/tablet-frame.svg";
+import { createId } from "../utils/id";
 
 const frames = {
   laptop: {
@@ -21,8 +22,8 @@ type Props = {
 };
 
 const { imageLeft, frame } = Astro.props;
-
 const { frame: Frame, x, y } = frames[frame];
+const id = createId("accordion");
 ---
 
 <style>
@@ -46,10 +47,15 @@ const { frame: Frame, x, y } = frames[frame];
   }
 </style>
 
-<script>
+<script define:vars={{ id }}>
+  const items = document.querySelectorAll(`#${id}`);
+  console.log(items);
+  items.forEach((item) => {
+    item.style.backgroundColor = "blue";
+  });
 </script>
 
-<div class:list={["accordion", { imageLeft }]}>
+<div id={id} class:list={["accordion", { imageLeft }]}>
   <ul>
     <slot />
   </ul>
