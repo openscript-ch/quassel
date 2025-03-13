@@ -1,0 +1,44 @@
+---
+type Props = {
+  title: string;
+  description: string;
+  screenshot: string;
+};
+
+const { title, description, screenshot } = Astro.props;
+
+if (!Astro.slots.has("icon")) {
+  throw new Error("The icon slot is required");
+}
+---
+
+<style>
+  li {
+    display: grid;
+    grid-template-columns: 4rem auto;
+    grid-template-rows: 4rem auto;
+  }
+
+  li :global(*:first-child) {
+    width: 2rem;
+    height: 2rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  h3 {
+    align-self: center;
+    margin: 0;
+  }
+
+  p {
+    grid-column: 2;
+    grid-row: 2;
+  }
+</style>
+
+<li>
+  <slot name="icon" />
+  <h3>{title}</h3>
+  <p>{description}</p>
+</li>

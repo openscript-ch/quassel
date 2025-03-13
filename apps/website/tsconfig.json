@@ -8,8 +8,6 @@
     "types": [
       "unplugin-icons/types/astro"
     ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
   },
   "exclude": [
     "dist"
