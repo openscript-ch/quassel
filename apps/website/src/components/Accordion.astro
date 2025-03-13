@@ -47,17 +47,16 @@ const id = createId("accordion");
   }
 </style>
 
-<script define:vars={{ id }}>
-  const items = document.querySelectorAll(`#${id}`);
-  console.log(items);
-  items.forEach((item) => {
-    item.style.backgroundColor = "blue";
-  });
-</script>
-
 <div id={id} class:list={["accordion", { imageLeft }]}>
   <ul>
     <slot />
   </ul>
   <div class="display"><Frame /></div>
 </div>
+
+<script define:vars={{ id }}>
+  const items = document.querySelectorAll(`#${id} li`);
+  items.forEach((item) => {
+    item.style.backgroundColor = "blue";
+  });
+</script>
