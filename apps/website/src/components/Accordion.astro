@@ -3,6 +3,7 @@ import type { ImageMetadata } from "astro";
 import LaptopFrame from "../assets/frames/laptop-frame.svg";
 import TabletFrame from "../assets/frames/tablet-frame.svg";
 import type { JSX } from "astro/jsx-runtime";
+import { Image } from "astro:assets";
 
 const frames = {
   laptop: {
@@ -32,6 +33,12 @@ const { imageLeft, frame, items } = Astro.props;
 const { frame: Frame, x, y } = frames[frame];
 
 const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/screenshots/*.png");
+const screenshotPath = "/src/assets/screenshots/";
+
+items.forEach((item) => {
+  const path = `${screenshotPath}${item.screenshot}`;
+  if (!screenshots[path]) throw new Error(`"${path}" does not exist in glob: "${screenshotPath}*.png"`);
+});
 ---
 
 <style>
@@ -87,6 +94,10 @@ const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sc
     grid-column: 2;
     grid-row: 2;
   }
+
+  .screenshots img:not(.active) {
+    display: none;
+  }
 </style>
 
 <div class:list={["accordion", { imageLeft }]}>
@@ -106,11 +117,27 @@ const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sc
   </ul>
   <div class="display">
     <Frame />
+    <div class="screenshots">
+      {
+        items.map((item) => {
+          return <Image src={screenshots[`${screenshotPath}${item.screenshot}`]()} alt="" data-screenshot={item.screenshot} />;
+        })
+      }
+    </div>
   </div>
 </div>
 
 <script>
   const items = document.querySelectorAll(`.accordion li`);
+
+  function setScreenshot(item: Element) {
+    const screenshot = item.getAttribute("data-screenshot");
+    const screenshots = item.closest(".accordion")?.querySelectorAll(".screenshots img");
+    if (!screenshots) return;
+    screenshots.forEach((s) => {
+      s.classList.toggle("active", s.getAttribute("data-screenshot") === screenshot);
+    });
+  }
 
   function toggleAccordion(event: Event) {
     const item = event.currentTarget as HTMLLIElement;
@@ -122,6 +149,7 @@ const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sc
         el.classList.remove("active");
       });
       item.classList.add("active");
+      setScreenshot(item);
     }
   }
 
@@ -133,5 +161,6 @@ const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/sc
 
   firstItems.forEach((item) => {
     item.classList.add("active");
+    setScreenshot(item);
   });
 </script>
