@@ -1,37 +1,35 @@
 ---
 import Bubbles from "../components/Bubbles.astro";
 import type { ComponentProps } from "astro/types";
-import AccordionItem from "../components/AccordionItem.astro";
-import type { JSX } from "astro/jsx-runtime";
 import IconCalendar from "~icons/tabler/calendar-week";
 import Accordion from "../components/Accordion.astro";
 
-type AccordionItemProps = ComponentProps<typeof AccordionItem> & { icon: (props: JSX.SVGAttributes) => JSX.Element };
+type AccordionItemsProp = ComponentProps<typeof Accordion>["items"];
 
-const items: AccordionItemProps[] = [
+const items: AccordionItemsProp = [
   {
     icon: IconCalendar,
     title: "Entry for studies",
     description: "The description for Entry for studies.",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
   {
     icon: IconCalendar,
     title: "Default data management",
     description: "Store the data about carers’ background information.",
-    screenshot: "blub",
+    screenshot: "period.png",
   },
   {
     icon: IconCalendar,
     title: "Export raw data to CSV",
     description: "The description for Export raw data to CSV.",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
   {
     icon: IconCalendar,
     title: "Consolidate data into reports",
     description: "The description for Consolidate data into reports.",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
 ];
 ---
@@ -53,18 +51,7 @@ const items: AccordionItemProps[] = [
 <section>
   <div class="administration">
     <h2>Solution for Administrative Needs</h2>
-    <Accordion frame="laptop" imageLeft>
-      {
-        items.map((item) => {
-          const Icon = item.icon;
-          return (
-            <AccordionItem {...item}>
-              <Icon slot="icon" />
-            </AccordionItem>
-          );
-        })
-      }
-    </Accordion>
+    <Accordion frame="laptop" imageLeft items={items} />
     <div class="moreFunctions">
       <p>More functions</p>
       <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />

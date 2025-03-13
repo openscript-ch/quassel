@@ -1,37 +1,35 @@
 ---
-import type { JSX } from "astro/jsx-runtime";
 import type { ComponentProps } from "astro/types";
 import Bubbles from "../components/Bubbles.astro";
 import Accordion from "../components/Accordion.astro";
 import IconCalendar from "~icons/tabler/calendar-week";
-import AccordionItem from "../components/AccordionItem.astro";
 
-type AccordionItemProps = ComponentProps<typeof AccordionItem> & { icon: (props: JSX.SVGAttributes) => JSX.Element };
+type AccordionItemsProp = ComponentProps<typeof Accordion>["items"];
 
-const items: AccordionItemProps[] = [
+const items: AccordionItemsProp = [
   {
     icon: IconCalendar,
     title: "Calendar interface",
     description: "The description for Calendar interface",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
   {
     icon: IconCalendar,
     title: "Easy to select time period",
     description: "Accessibility from mobile device and primarily touch-based input via tablets.",
-    screenshot: "blub",
+    screenshot: "period.png",
   },
   {
     icon: IconCalendar,
     title: "Auto detect gaps",
     description: "The description for Auto detect gaps.",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
   {
     icon: IconCalendar,
     title: "Recurring entries",
     description: "The description for Recurring entries.",
-    screenshot: "blub",
+    screenshot: "calendar.png",
   },
 ];
 ---
@@ -53,18 +51,7 @@ const items: AccordionItemProps[] = [
 
 <section>
   <h2>Data Collection Features</h2>
-  <Accordion frame="tablet">
-    {
-      items.map((item) => {
-        const Icon = item.icon;
-        return (
-          <AccordionItem {...item}>
-            <Icon slot="icon" />
-          </AccordionItem>
-        );
-      })
-    }
-  </Accordion>
+  <Accordion frame="tablet" items={items} />
   <div class="moreFunctions">
     <p>More functions</p>
     <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
