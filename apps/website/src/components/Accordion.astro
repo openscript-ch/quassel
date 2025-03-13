@@ -1,15 +1,37 @@
 ---
-type Props = {
-  imageLeft?: boolean;
-  screenshotFrame: string;
+import LaptopFrame from "../assets/laptop-frame.svg";
+import TabletFrame from "../assets/tablet-frame.svg";
+
+const frames = {
+  laptop: {
+    frame: LaptopFrame,
+    x: 0,
+    y: 0,
+  },
+  tablet: {
+    frame: TabletFrame,
+    x: 0,
+    y: 0,
+  },
 };
 
-const { imageLeft, screenshotFrame } = Astro.props;
+type Props = {
+  imageLeft?: boolean;
+  frame: keyof typeof frames;
+};
+
+const { imageLeft, frame } = Astro.props;
+
+const { frame: Frame, x, y } = frames[frame];
 ---
 
 <style>
   .accordion {
     display: flex;
+  }
+
+  .accordion.imageLeft {
+    flex-direction: row-reverse;
   }
 
   ul {
@@ -27,9 +49,9 @@ const { imageLeft, screenshotFrame } = Astro.props;
 <script>
 </script>
 
-<div class="accordion">
+<div class:list={["accordion", { imageLeft }]}>
   <ul>
     <slot />
   </ul>
-  <div class="display">Display</div>
+  <div class="display"><Frame /></div>
 </div>

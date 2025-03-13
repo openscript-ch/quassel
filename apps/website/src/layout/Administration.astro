@@ -1,40 +1,48 @@
 ---
-import Cards from "../components/Cards.astro";
 import Bubbles from "../components/Bubbles.astro";
+import type { ComponentProps } from "astro/types";
+import AccordionItem from "../components/AccordionItem.astro";
+import type { JSX } from "astro/jsx-runtime";
+import IconCalendar from "~icons/tabler/calendar-week";
+import Accordion from "../components/Accordion.astro";
 
-const cards = {
-  entries: [
-    {
-      imgSrc: "",
-      title: "Entry for studies",
-      description: "The description for Entry for studies.",
-    },
-    {
-      imgSrc: "https://fakeimg.pl/368x470/b4eefa/909090?font=noto-serif&font_size=24",
-      title: "Default data management",
-      description: "Store the data about carers’ background information.",
-    },
-    {
-      imgSrc: "",
-      title: "Export raw data to CSV",
-      description: "The description for Export raw data to CSV.",
-    },
-    {
-      imgSrc: "",
-      title: "Consolidate data into reports",
-      description: "The description for Consolidate data into reports.",
-    },
-  ],
-};
+type AccordionItemProps = ComponentProps<typeof AccordionItem> & { icon: (props: JSX.SVGAttributes) => JSX.Element };
+
+const items: AccordionItemProps[] = [
+  {
+    icon: IconCalendar,
+    title: "Entry for studies",
+    description: "The description for Entry for studies.",
+    screenshot: "blub",
+  },
+  {
+    icon: IconCalendar,
+    title: "Default data management",
+    description: "Store the data about carers’ background information.",
+    screenshot: "blub",
+  },
+  {
+    icon: IconCalendar,
+    title: "Export raw data to CSV",
+    description: "The description for Export raw data to CSV.",
+    screenshot: "blub",
+  },
+  {
+    icon: IconCalendar,
+    title: "Consolidate data into reports",
+    description: "The description for Consolidate data into reports.",
+    screenshot: "blub",
+  },
+];
 ---
 
 <style>
   section {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    position: relative;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 
   .moreFunctions {
@@ -45,7 +53,18 @@ const cards = {
 <section>
   <div class="administration">
     <h2>Solution for Administrative Needs</h2>
-    <Cards imgRight={false} cards={cards.entries} />
+    <Accordion frame="laptop" imageLeft>
+      {
+        items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <AccordionItem {...item}>
+              <Icon slot="icon" />
+            </AccordionItem>
+          );
+        })
+      }
+    </Accordion>
     <div class="moreFunctions">
       <p>More functions</p>
       <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
