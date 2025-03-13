@@ -1,4 +1,6 @@
 ---
+import type { ImageMetadata } from "astro";
+
 type Props = {
   title: string;
   description: string;
@@ -10,6 +12,9 @@ const { title, description, screenshot } = Astro.props;
 if (!Astro.slots.has("icon")) {
   throw new Error("The icon slot is required");
 }
+
+const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/screenshots/*.png");
+if (!screenshots[screenshot]) throw new Error(`"${screenshot}" does not exist in glob: "src/assets/screenshots/*.png"`);
 ---
 
 <style>
@@ -31,8 +36,7 @@ if (!Astro.slots.has("icon")) {
     height: 0;
   }
 
-  li :global(*:first-child),
-  li h3 {
+  li {
     cursor: pointer;
   }
 
@@ -42,6 +46,7 @@ if (!Astro.slots.has("icon")) {
   }
 
   p {
+    cursor: text;
     margin: 0;
     grid-column: 2;
     grid-row: 2;
