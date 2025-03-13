@@ -26,12 +26,23 @@ if (!Astro.slots.has("icon")) {
     justify-self: center;
   }
 
+  li:not(.active) p {
+    visibility: hidden;
+    height: 0;
+  }
+
+  li :global(*:first-child),
+  li h3 {
+    cursor: pointer;
+  }
+
   h3 {
     align-self: center;
     margin: 0;
   }
 
   p {
+    margin: 0;
     grid-column: 2;
     grid-row: 2;
   }

@@ -1,6 +1,6 @@
 ---
-import LaptopFrame from "../assets/laptop-frame.svg";
-import TabletFrame from "../assets/tablet-frame.svg";
+import LaptopFrame from "../assets/frames/laptop-frame.svg";
+import TabletFrame from "../assets/frames/tablet-frame.svg";
 import { createId } from "../utils/id";
 
 const frames = {
@@ -56,7 +56,22 @@ const id = createId("accordion");
 
 <script define:vars={{ id }}>
   const items = document.querySelectorAll(`#${id} li`);
+
+  function toggleAccordion(event) {
+    const item = event.currentTarget;
+    const isActive = item.classList.contains("active");
+
+    if (!isActive) {
+      items.forEach((el) => {
+        el.classList.remove("active");
+      });
+      item.classList.add("active");
+    }
+  }
+
   items.forEach((item) => {
-    item.style.backgroundColor = "blue";
+    item.addEventListener("click", toggleAccordion);
   });
+
+  items[0].classList.add("active");
 </script>
