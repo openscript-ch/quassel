@@ -54,18 +54,16 @@ const items: AccordionItemProps[] = [
 <section>
   <h2>Data Collection Features</h2>
   <Accordion screenshotFrame="bla">
-    <Fragment slot="items">
-      {
-        items.map((item) => {
-          const Icon = item.icon;
-          return (
-            <AccordionItem {...item}>
-              <Icon slot="icon" />
-            </AccordionItem>
-          );
-        })
-      }
-    </Fragment>
+    {
+      items.map((item) => {
+        const Icon = item.icon;
+        return (
+          <AccordionItem {...item}>
+            <Icon slot="icon" />
+          </AccordionItem>
+        );
+      })
+    }
   </Accordion>
   <div class="moreFunctions">
     <p>More functions</p>
