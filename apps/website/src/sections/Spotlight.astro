@@ -1,0 +1,118 @@
+---
+
+---
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(50% 50% at 50% 50%, var(--color-primary) 60%, transparent 100%);
+  }
+
+  h1 {
+    font-size: var(--font-size-xxxl);
+  }
+
+  p {
+    font-size: var(--font-size-lg);
+  }
+
+  .intro {
+    width: 36rem;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .quasselVideo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .playButton {
+    background: none;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  .playButton :hover {
+    transform: scale(1.1);
+  }
+
+  .usedBy {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Two columns: one for h2, one for img */
+    gap: var(--spacing-sm);
+  }
+
+  .usedBy h2 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    align-self: center;
+  }
+
+  .usedBy img {
+    height: calc(2 * var(--spacing-lg));
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementsByClassName("video")[0] as HTMLVideoElement;
+    const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
+    let isPlaying = false;
+
+    myButton.addEventListener("click", () => {
+      if (isPlaying) {
+        video.pause();
+        myButton.style.opacity = "1";
+        isPlaying = false;
+      } else {
+        video.play();
+        myButton.style.opacity = "0";
+        isPlaying = true;
+      }
+    });
+
+    video.addEventListener("click", () => {
+      if (isPlaying) {
+        video.pause();
+        myButton.style.opacity = "1";
+        isPlaying = false;
+      }
+    });
+  });
+</script>
+
+<section>
+  <div class="intro">
+    <h1>Gather language exposure data</h1>
+    <p>Efficient documenting <strong>children's</strong> language exposure by carer giver and time.</p>
+  </div>
+  <div class="quasselVideo">
+    <video class="video" muted playsinline>
+      <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+    </video>
+    <button class="playButton">
+      <img src="../assets/play-button.svg" alt="Play button" />
+    </button>
+  </div>
+  <div class="usedBy">
+    <h2>Used by</h2>
+    <img src="../assets/uzh-logo.svg" alt="University of Zurich" />
+  </div>
+</section>

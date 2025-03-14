@@ -1,0 +1,32 @@
+---
+import Bubbles from "../components/Bubbles.astro";
+import Accordion from "../components/Accordion.astro";
+import { mapFeatures } from "../mapper/features-mapper";
+
+const items = await mapFeatures("administration");
+---
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .moreFunctions {
+    text-align: start;
+  }
+</style>
+
+<section>
+  <div class="administration">
+    <h2>Solution for Administrative Needs</h2>
+    <Accordion frame="laptop" imageLeft items={items} />
+    <div class="moreFunctions">
+      <p>More functions</p>
+      <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
+    </div>
+  </div>
+</section>

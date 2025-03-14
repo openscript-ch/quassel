@@ -1,0 +1,84 @@
+:root {
+  --color-primary: #C6E7FF;
+  --color-card: #F4FAFF;
+  --color-highlight: #2294CF;
+  --color-default-text: #052204;
+  --color-about-bg: #F0EBE3;
+  --color-lemon: #F3AB00;
+
+  --font-family-title: 'Onest Variable', sans-serif;
+  --font-family-text: 'Montserrat Variable', sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+  --font-size-xxxl: 3rem;
+
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+  --spacing-gutter: 2.5rem;
+
+  --border-width: 1px;
+  --border-color: #E1E1E1;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 2rem;
+}
+
+html {
+  font-size: 16px;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family-text);
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-family-title);
+}
+
+main {
+  flex-grow: 1;
+  overflow: auto; /*limit the width of the video*/
+}
+
+header, main > section, footer {
+  padding: 0 20%;
+  margin-bottom: var(--spacing-lg);
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-highlight);
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

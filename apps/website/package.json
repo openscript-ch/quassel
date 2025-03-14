@@ -1,0 +1,23 @@
+{
+  "name": "@quassel/website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.2.5",
+    "@fontsource-variable/onest": "^5.2.5",
+    "astro": "^5.4.3",
+    "reveal.js": "^5.1.0"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.315",
+    "@types/reveal.js": "^5.0.5",
+    "sharp": "^0.33.5",
+    "unplugin-icons": "^22.1.0"
+  }
+}

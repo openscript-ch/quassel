@@ -1,0 +1,24 @@
+---
+import Presentation from "../../layouts/Presentation.astro";
+import "reveal.js/dist/reveal.css";
+import "reveal.js/dist/theme/white.css";
+---
+
+<Presentation>
+  <div class="reveal relative">
+    <div class="slides">
+      <section>Slide 1</section>
+      <section>Slide 2</section>
+    </div>
+  </div>
+</Presentation>
+
+<script>
+  import Reveal from "reveal.js";
+
+  const deck = new Reveal({
+    history: true,
+    plugins: [],
+  });
+  deck.initialize();
+</script>

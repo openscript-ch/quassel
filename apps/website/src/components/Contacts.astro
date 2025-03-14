@@ -1,0 +1,24 @@
+---
+type Props = {
+  imgSrc: string;
+  title: string;
+  contactText: string;
+  link: string;
+};
+
+const { imgSrc, title, contactText, link } = Astro.props;
+---
+
+<style>
+  .contact_card {
+    margin: var(--spacing-sm);
+    align-items: column;
+    background-color: var(--color-card);
+  }
+</style>
+
+<div class="contact_card">
+  <img src={imgSrc} alt="company icon" />
+  <h2>{title}</h2>
+  <a href={link}>{contactText}</a>
+</div>
