@@ -29,7 +29,7 @@
     "@tanstack/react-router": "^1.114.17",
     "nanostores": "^0.11.4",
     "openapi-fetch": "0.13.4",
-    "openapi-react-query": "0.3.0",
+    "openapi-react-query": "0.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
