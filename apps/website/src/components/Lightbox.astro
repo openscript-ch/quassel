@@ -1,0 +1,53 @@
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<style>
+  .lightbox.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .lightbox :global(img) {
+    cursor: zoom-in;
+  }
+
+  .lightbox.active :global(img) {
+    transition: 1s ease-in;
+    cursor: zoom-out;
+    height: 95% !important;
+    width: auto !important;
+  }
+
+  :global(.lightbox-active) {
+    overflow: hidden;
+  }
+</style>
+
+<div class:list={["lightbox", className]} {...rest}>
+  <slot />
+</div>
+
+<script>
+  function openLightbox(event: Event) {
+    const item = event.currentTarget as HTMLElement;
+    item.closest(".lightbox")?.classList.toggle("active");
+    document.body.classList.toggle("lightbox-active");
+  }
+
+  const lightboxes = document.querySelectorAll(".lightbox");
+  lightboxes.forEach((lightbox) => {
+    lightbox.querySelectorAll("img").forEach((img) => {
+      img.addEventListener("click", openLightbox);
+    });
+  });
+</script>

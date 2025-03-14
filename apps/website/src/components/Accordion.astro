@@ -4,6 +4,7 @@ import LaptopFrame from "../assets/frames/laptop-frame.svg";
 import TabletFrame from "../assets/frames/tablet-frame.svg";
 import { Image } from "astro:assets";
 import type { SVGComponent } from "../types";
+import Lightbox from "./Lightbox.astro";
 
 const frames = {
   laptop: {
@@ -97,12 +98,13 @@ items.forEach((item) => {
     display: flex;
     width: 63%;
     position: relative;
-    z-index: 1;
   }
 
   .display svg {
     width: 100%;
     height: auto;
+    pointer-events: none;
+    z-index: 2;
   }
 
   .screenshots {
@@ -111,7 +113,7 @@ items.forEach((item) => {
     right: var(--inlet-right);
     bottom: var(--inlet-bottom);
     left: var(--inlet-left);
-    z-index: -1;
+    z-index: 1;
   }
 
   .screenshots img {
@@ -142,13 +144,13 @@ items.forEach((item) => {
     }
   </ul>
   <div class="display">
-    <div class="screenshots">
+    <Lightbox class="screenshots">
       {
         items.map((item) => {
           return <Image src={screenshots[`${screenshotPath}${item.screenshot}`]()} alt="" data-screenshot={item.screenshot} />;
         })
       }
-    </div>
+    </Lightbox>
     <Frame />
   </div>
 </div>
