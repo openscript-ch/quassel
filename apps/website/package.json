@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.315",
+    "sharp": "^0.33.5",
     "unplugin-icons": "^22.1.0"
   }
 }
