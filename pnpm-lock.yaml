@@ -302,6 +302,9 @@ importers:
       astro:
         specifier: ^5.4.3
         version: 5.4.3(@types/node@22.13.10)(jiti@1.21.7)(rollup@4.35.0)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.2)(yaml@2.7.0)
+      reveal.js:
+        specifier: ^5.1.0
+        version: 5.1.0
     devDependencies:
       '@iconify/json':
         specifier: ^2.2.315
@@ -6687,6 +6690,10 @@ packages:
   reusify@1.1.0:
     resolution: {integrity: sha512-g6QUff04oZpHs0eG5p83rFLhHeV00ug/Yf9nZM6fLeUrPguBTkTQOdpAWWspMh55TZfVQDPaN3NQJfbVRAxdIw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+
+  reveal.js@5.1.0:
+    resolution: {integrity: sha512-KDt7m0+xwKV6nAZt4CNPVFBf42sTKRQapg0bGGKB5PKO5XvChnMfwlZkybydHiQJ7p5+6LbHKRGrhXODdoNIaA==}
+    engines: {node: '>=18.0.0'}
 
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
@@ -15643,6 +15650,8 @@ snapshots:
       unified: 11.0.5
 
   reusify@1.1.0: {}
+
+  reveal.js@5.1.0: {}
 
   rfdc@1.4.1: {}
 

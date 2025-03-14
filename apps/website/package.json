@@ -11,7 +11,8 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.5",
     "@fontsource-variable/onest": "^5.2.5",
-    "astro": "^5.4.3"
+    "astro": "^5.4.3",
+    "reveal.js": "^5.1.0"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.315",
