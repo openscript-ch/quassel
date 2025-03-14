@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.0.2
+
+### Patch Changes
+
+- f23c46a: Allow assistants to delete entries
+
 ## 1.0.1
 
 ## 1.0.0
