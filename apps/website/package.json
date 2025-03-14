@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@iconify/json": "^2.2.315",
+    "@types/reveal.js": "^5.0.5",
     "sharp": "^0.33.5",
     "unplugin-icons": "^22.1.0"
   }
