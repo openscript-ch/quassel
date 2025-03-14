@@ -1,37 +1,9 @@
 ---
-import type { ComponentProps } from "astro/types";
 import Bubbles from "../components/Bubbles.astro";
 import Accordion from "../components/Accordion.astro";
-import IconCalendar from "~icons/tabler/calendar-week";
+import { mapFeatures } from "../mapper/features-mapper";
 
-type AccordionItemsProp = ComponentProps<typeof Accordion>["items"];
-
-const items: AccordionItemsProp = [
-  {
-    icon: IconCalendar,
-    title: "Calendar interface",
-    description: "The description for Calendar interface",
-    screenshot: "calendar.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Easy to select time period",
-    description: "Accessibility from mobile device and primarily touch-based input via tablets.",
-    screenshot: "period.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Auto detect gaps",
-    description: "The description for Auto detect gaps.",
-    screenshot: "calendar.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Recurring entries",
-    description: "The description for Recurring entries.",
-    screenshot: "calendar.png",
-  },
-];
+const items = await mapFeatures("questionnaire");
 ---
 
 <style>

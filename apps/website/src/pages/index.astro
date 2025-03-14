@@ -1,28 +1,20 @@
 ---
-import "../styles/global.css";
+import Site from "../layouts/Site.astro";
 import Header from "../sections/Header.astro";
 import Footer from "../sections/Footer.astro";
 import Spotlight from "../sections/Spotlight.astro";
 import Questionnaire from "../sections/Questionnaire.astro";
 import Administration from "../sections/Administration.astro";
 import About from "../sections/About.astro";
-import "@fontsource-variable/onest";
-import "@fontsource-variable/montserrat";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-  </head>
-  <body>
-    <Header />
-    <main>
-      <Spotlight />
-      <Questionnaire />
-      <Administration />
-      <About />
-    </main>
-    <Footer />
-  </body>
-</html>
+<Site>
+  <Header />
+  <main>
+    <Spotlight />
+    <Questionnaire />
+    <Administration />
+    <About />
+  </main>
+  <Footer />
+</Site>

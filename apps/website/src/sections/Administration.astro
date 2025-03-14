@@ -1,37 +1,9 @@
 ---
 import Bubbles from "../components/Bubbles.astro";
-import type { ComponentProps } from "astro/types";
-import IconCalendar from "~icons/tabler/calendar-week";
 import Accordion from "../components/Accordion.astro";
+import { mapFeatures } from "../mapper/features-mapper";
 
-type AccordionItemsProp = ComponentProps<typeof Accordion>["items"];
-
-const items: AccordionItemsProp = [
-  {
-    icon: IconCalendar,
-    title: "Entry for studies",
-    description: "The description for Entry for studies.",
-    screenshot: "calendar.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Default data management",
-    description: "Store the data about carers’ background information.",
-    screenshot: "period.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Export raw data to CSV",
-    description: "The description for Export raw data to CSV.",
-    screenshot: "calendar.png",
-  },
-  {
-    icon: IconCalendar,
-    title: "Consolidate data into reports",
-    description: "The description for Consolidate data into reports.",
-    screenshot: "calendar.png",
-  },
-];
+const items = await mapFeatures("administration");
 ---
 
 <style>
