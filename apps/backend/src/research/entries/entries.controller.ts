@@ -1,8 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
-import { Roles } from "../../system/users/roles.decorator";
-import { UserRole } from "../../system/users/user.entity";
 import { EntriesService } from "./entries.service";
 import { EntryCreationDto, EntryResponseDto, EntryMutationDto } from "./entry.dto";
 import { Serialize } from "../../common/decorators/serialize";
@@ -43,7 +41,6 @@ export class EntriesController {
 
   @Delete(":id")
   @ApiOperation({ summary: "Delete a entry by ID" })
-  @Roles(UserRole.ADMIN)
   delete(@Param("id") id: string) {
     return this.entriesService.remove(+id);
   }
