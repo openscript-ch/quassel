@@ -164,11 +164,9 @@ items.forEach((item) => {
     const screenshots = item.closest(".accordion")?.querySelectorAll(".screenshots img");
     if (!screenshots) return;
     screenshots.forEach((s) => s.classList.remove(ACTIVE_CLASS));
-    for (const s of screenshots) {
-      if (s.getAttribute("data-screenshot") === screenshot) {
-        s.classList.add(ACTIVE_CLASS);
-        break;
-      }
+    const targetScreenshot = Array.from(screenshots).find((s) => s.getAttribute("data-screenshot") === screenshot);
+    if (targetScreenshot) {
+      targetScreenshot.classList.add(ACTIVE_CLASS);
     }
   }
 
