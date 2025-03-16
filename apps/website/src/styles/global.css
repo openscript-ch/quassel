@@ -67,9 +67,14 @@ main {
   overflow: auto; /*limit the width of the video*/
 }
 
-header, main > section, footer {
+header, footer {
   padding: 0 20%;
   margin-bottom: var(--spacing-lg);
+}
+
+main > section {
+  padding: 0 20%;
+  margin-bottom: var(--spacing-xl);
 }
 
 a {
