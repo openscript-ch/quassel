@@ -27,8 +27,17 @@ import IconChevronRight from "~icons/tabler/chevron-right";
   li a {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: 0.6 * var(--spacing-xs);
     line-height: 2rem;
+    font-weight: var(--font-weight-semi-bold);
+  }
+
+  li a svg {
+    transition: transform 0.2s ease;
+  }
+
+  li a:hover svg {
+    transform: translateX(4px); /* Move the icon to the right */
   }
 </style>
 
@@ -43,3 +52,9 @@ import IconChevronRight from "~icons/tabler/chevron-right";
     </ul>
   </nav>
 </header>
+
+<script>
+  document.querySelectorAll("li a svg path").forEach((path) => {
+    path.setAttribute("stroke-width", "3");
+  });
+</script>
