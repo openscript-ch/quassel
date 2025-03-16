@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.5",
-    "@fontsource-variable/onest": "^5.2.5",
-    "astro": "^5.4.3",
+    "@fontsource-variable/onest": "^5.2.6",
+    "astro": "^5.5.2",
     "reveal.js": "^5.1.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.315",
+    "@iconify/json": "^2.2.317",
     "@types/reveal.js": "^5.0.5",
     "sharp": "^0.33.5",
     "unplugin-icons": "^22.1.0"

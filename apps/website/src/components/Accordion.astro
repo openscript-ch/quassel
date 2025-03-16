@@ -163,11 +163,11 @@ items.forEach((item) => {
     const screenshot = item.getAttribute("data-screenshot");
     const screenshots = item.closest(".accordion")?.querySelectorAll(".screenshots img");
     if (!screenshots) return;
+
     screenshots.forEach((s) => s.classList.remove(ACTIVE_CLASS));
+
     const targetScreenshot = Array.from(screenshots).find((s) => s.getAttribute("data-screenshot") === screenshot);
-    if (targetScreenshot) {
-      targetScreenshot.classList.add(ACTIVE_CLASS);
-    }
+    if (targetScreenshot) targetScreenshot.classList.add(ACTIVE_CLASS);
   }
 
   function toggleAccordion(event: Event) {
