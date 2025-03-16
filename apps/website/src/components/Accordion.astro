@@ -32,11 +32,11 @@ const { imageLeft, frame, items } = Astro.props;
 const { frame: Frame, inlet } = frames[frame];
 
 const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/screenshots/*.png");
-const screenshotPath = "/src/assets/screenshots/";
+const SCREENSHOT_PATH = "/src/assets/screenshots/";
 
 items.forEach((item) => {
-  const path = `${screenshotPath}${item.screenshot}`;
-  if (!screenshots[path]) throw new Error(`"${path}" does not exist in glob: "${screenshotPath}*.png"`);
+  const path = `${SCREENSHOT_PATH}${item.screenshot}`;
+  if (!screenshots[path]) throw new Error(`"${path}" does not exist in glob: "${SCREENSHOT_PATH}*.png"`);
 });
 ---
 
@@ -131,24 +131,21 @@ items.forEach((item) => {
 <div class:list={["accordion", { imageLeft }]}>
   <ul>
     {
-      items.map((item) => {
-        const { icon: Icon, screenshot, title, description } = item;
-        return (
-          <li data-screenshot={screenshot}>
-            <Icon />
-            <h3>{title}</h3>
-            <p>{description}</p>
-          </li>
-        );
-      })
+      items.map(({ icon: Icon, screenshot, title, description }) => (
+        <li data-screenshot={screenshot}>
+          <Icon />
+          <h3>{title}</h3>
+          <p>{description}</p>
+        </li>
+      ))
     }
   </ul>
   <div class="display">
     <Lightbox class="screenshots">
       {
-        items.map((item) => {
-          return <Image src={screenshots[`${screenshotPath}${item.screenshot}`]()} alt="" data-screenshot={item.screenshot} />;
-        })
+        items.map(({ screenshot, title }) => (
+          <Image src={screenshots[`${SCREENSHOT_PATH}${screenshot}`]()} alt={`${title} screenshot`} data-screenshot={screenshot} />
+        ))
       }
     </Lightbox>
     <Frame />
@@ -156,7 +153,7 @@ items.forEach((item) => {
 </div>
 
 <script>
-  const items = document.querySelectorAll(`.accordion li`);
+  const items = document.querySelectorAll(".accordion li");
   const ACTIVE_CLASS = "active";
 
   function setScreenshot(item: Element) {
@@ -186,7 +183,7 @@ items.forEach((item) => {
     item.addEventListener("click", toggleAccordion);
   });
 
-  const firstItems = document.querySelectorAll(`.accordion li:first-child`);
+  const firstItems = document.querySelectorAll(".accordion li:first-child");
 
   firstItems.forEach((item) => {
     item.classList.add(ACTIVE_CLASS);
