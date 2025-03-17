@@ -14,18 +14,24 @@ const items = await mapFeatures("administration");
     margin-inline: 20%;
   }
 
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-lg);
+  }
+
   .moreFunctions {
+    margin: var(--spacing-lg);
     text-align: start;
   }
 </style>
 
 <section>
-  <div class="administration">
-    <h2>Solution for Administrative Needs</h2>
-    <Accordion frame="laptop" imageLeft items={items} />
-    <div class="moreFunctions">
-      <p>More functions</p>
-      <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
-    </div>
+  <h2>Solution for Administrative Needs</h2>
+  <Accordion frame="laptop" imageLeft items={items} />
+  <div class="moreFunctions">
+    <p>More functions</p>
+    <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
   </div>
 </section>
