@@ -1,4 +1,4 @@
-import { Button, Group, IconClearAll, Modal, modals, Stack, Title, useDisclosure, useForm, Text } from "@quassel/ui";
+import { Button, Group, IconClearAll, modals, Stack, Title, useForm, Text } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -14,7 +14,8 @@ const messages = i18n("questionnaireEntries", {
   addEntityLabel: "Add",
   notificationSuccessCreateLanguage: "Successfully add a new language.",
   notificationSuccessCreateCarer: "Successfully add a new carer.",
-  gapsDialogTitle: "Gaps detected in the calendar",
+  gapsDialogTitle: "Continue with gaps?",
+  gapsDialogDescription: "There were gaps detected in the calendar. Do you want to continue anyway or highlight the gaps?",
   gapsDialogContinueAnyway: "Continue anyway",
   gapsDialogHighlightGaps: "Highlight gaps",
   confirmClearDialogTitle: "Clear all entries from this questionnaire?",
@@ -35,7 +36,6 @@ export function Entries() {
 
   const [gaps, setGaps] = useState<GapsPerDay>();
   const [highlightGaps, setHighlightGaps] = useState(false);
-  const [gapsDialogOpened, { open, close }] = useDisclosure();
 
   const f = useForm<{ entries: components["schemas"]["EntryResponseDto"][] }>({
     initialValues: {
@@ -56,6 +56,18 @@ export function Entries() {
     n({ to: "/questionnaire/$id/remarks", params: p });
   };
 
+  const handleGapValidation = () => {
+    modals.openConfirmModal({
+      title: t.gapsDialogTitle,
+      children: <Text size="sm">{t.gapsDialogDescription}</Text>,
+      labels: { cancel: t.gapsDialogHighlightGaps, confirm: t.gapsDialogContinueAnyway },
+      confirmProps: { variant: "light" },
+      cancelProps: { variant: "filled" },
+      onConfirm: handleSubmit,
+      onCancel: () => setHighlightGaps(true),
+    });
+  };
+
   const handleClearEntries = () => {
     modals.openConfirmModal({
       title: t.confirmClearDialogTitle,
@@ -72,41 +84,24 @@ export function Entries() {
   }, [questionnaire]);
 
   return (
-    <>
-      <Modal opened={gapsDialogOpened} onClose={close} centered title={t.gapsDialogTitle}>
-        <Group justify="flex-end">
-          <Button onClick={handleSubmit} variant="light" type="submit">
-            {t.gapsDialogContinueAnyway}
-          </Button>
-          <Button
-            onClick={() => {
-              setHighlightGaps(true);
-              close();
-            }}
-          >
-            {t.gapsDialogHighlightGaps}
+    <form onSubmit={f.onSubmit(handleSubmit, handleGapValidation)}>
+      <Stack>
+        <Group justify="space-between">
+          <Title order={3}>{questionnaire.title}</Title>
+          <Button variant="default" onClick={handleClearEntries} rightSection={<IconClearAll />}>
+            Clear all
           </Button>
         </Group>
-      </Modal>
-      <form onSubmit={f.onSubmit(handleSubmit, open)}>
-        <Stack>
-          <Group justify="space-between">
-            <Title order={3}>{questionnaire.title}</Title>
-            <Button variant="default" onClick={handleClearEntries} rightSection={<IconClearAll />}>
-              Clear all
-            </Button>
-          </Group>
-          <QuestionnaireEntries gaps={highlightGaps ? gaps : undefined} questionnaire={questionnaire} />
+        <QuestionnaireEntries gaps={highlightGaps ? gaps : undefined} questionnaire={questionnaire} />
 
-          <Group>
-            <Link to="/questionnaire/$id/period" params={p}>
-              <Button variant="light">{t.backAction}</Button>
-            </Link>
-            <Button type="submit">{t.formAction}</Button>
-          </Group>
-        </Stack>
-      </form>
-    </>
+        <Group>
+          <Link to="/questionnaire/$id/period" params={p}>
+            <Button variant="light">{t.backAction}</Button>
+          </Link>
+          <Button type="submit">{t.formAction}</Button>
+        </Group>
+      </Stack>
+    </form>
   );
 }
 
