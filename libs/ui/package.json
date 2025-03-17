@@ -33,6 +33,7 @@
     "@mantine/dates": "7.17.2",
     "@mantine/form": "7.17.2",
     "@mantine/hooks": "7.17.2",
+    "@mantine/modals": "^7.17.2",
     "@mantine/notifications": "7.17.2",
     "@tabler/icons-react": "^3.31.0",
     "dayjs": "^1.11.13",

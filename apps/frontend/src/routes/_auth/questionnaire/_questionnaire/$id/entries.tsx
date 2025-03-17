@@ -1,4 +1,4 @@
-import { Button, Group, IconClearAll, Modal, Stack, Title, useDisclosure, useForm } from "@quassel/ui";
+import { Button, Group, IconClearAll, Modal, modals, Stack, Title, useDisclosure, useForm, Text } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -17,6 +17,10 @@ const messages = i18n("questionnaireEntries", {
   gapsDialogTitle: "Gaps detected in the calendar",
   gapsDialogContinueAnyway: "Continue anyway",
   gapsDialogHighlightGaps: "Highlight gaps",
+  confirmClearDialogTitle: "Clear all entries from this questionnaire?",
+  confirmClearDialogDescription: "When confirming, all entries from this questionnaires will be removed. This action can't be undone.",
+  confirmClearDialogCancel: "Cancel",
+  confirmClearDialogConfirm: "Clear all",
 });
 
 export function Entries() {
@@ -53,7 +57,12 @@ export function Entries() {
   };
 
   const handleClearEntries = () => {
-    removeAllEntriesMutation.mutate({ params: { query: { questionnaireId: questionnaire.id } } });
+    modals.openConfirmModal({
+      title: t.confirmClearDialogTitle,
+      children: <Text size="sm">{t.confirmClearDialogDescription}</Text>,
+      labels: { cancel: t.confirmClearDialogCancel, confirm: t.confirmClearDialogConfirm },
+      onConfirm: () => removeAllEntriesMutation.mutate({ params: { query: { questionnaireId: questionnaire.id } } }),
+    });
   };
 
   useEffect(() => {

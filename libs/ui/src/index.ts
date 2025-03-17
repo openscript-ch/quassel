@@ -99,6 +99,8 @@ export { useDisclosure, useFullscreen } from "@mantine/hooks";
 
 export { notifications, type NotificationData } from "@mantine/notifications";
 
+export { modals } from "@mantine/modals";
+
 export { useForm, isInRange, isNotEmpty } from "@mantine/form";
 
 export {
