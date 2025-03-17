@@ -15,13 +15,22 @@ const items = await mapFeatures("questionnaire");
     margin-inline: 20%;
   }
 
+  .questionnaire-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-lg);
+  }
+
   .moreFunctions {
     text-align: start;
   }
 </style>
 
 <section>
-  <h2>Data Collection Features</h2>
+  <div class="questionnaire-title">
+    <h2>Data Collection Features</h2>
+  </div>
   <Accordion frame="tablet" items={items} />
   <div class="moreFunctions">
     <p>More functions</p>

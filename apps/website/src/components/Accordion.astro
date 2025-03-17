@@ -44,6 +44,7 @@ items.forEach((item) => {
   .accordion {
     display: flex;
     gap: var(--spacing-md);
+    justify-content: space-between;
   }
 
   .accordion.imageLeft {
@@ -53,9 +54,9 @@ items.forEach((item) => {
   ul {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: var(--spacing-lg);
     padding: 0;
-    margin: 0;
+    margin: var(--spacing-lg);
     list-style: none;
     flex-grow: 1;
   }
@@ -64,6 +65,7 @@ items.forEach((item) => {
     display: grid;
     grid-template-columns: 4rem auto;
     grid-template-rows: 4rem auto;
+    margin-inline: var(--spacing-md);
   }
 
   li :global(*:first-child) {
@@ -98,6 +100,7 @@ items.forEach((item) => {
     display: flex;
     width: 63%;
     position: relative;
+    margin: var(--spacing-lg);
   }
 
   .display svg {
