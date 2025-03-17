@@ -3,21 +3,49 @@
 ---
 
 <style>
-  .title {
-    text-align: center;
+  section {
+    background-color: var(--color-about-bg);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-inline: 20%;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-lg);
+  }
+
+  .about-content {
+    margin-inline: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .blue {
+    color: var(--color-highlight);
+  }
+
+  .orange {
+    color: var(--color-lemon);
+    font-weight: var(--font-weight-bold);
   }
 </style>
 
 <section>
-  <div class="title">
-    <h2>About</h2>
+  <h2>About</h2>
+  <div class="about-content">
+    <p>
+      <span class="blue">Quassel</span> began as a vision to simplify how researchers document children’s language exposure. Collaborating closely
+      with the University of Zürich, openscript Ltd. brought this vision to life.
+    </p>
+    <p>
+      <span class="blue">Quassel</span> is the tool behind the University of Zürich’s project, <span class="orange">LEMON</span>, which studies
+      multilingual development using real-world data. Designed to fit UZH’s needs, <span class="blue">Quassel</span> is also flexible enough for
+      other research projects.
+    </p>
   </div>
-  <p>
-    Quassel began as a vision to simplify how researchers document children’s language exposure. Collaborating closely with the University of
-    Zürich, openscript Ltd. brought this vision to life.
-  </p>
-  <p>
-    Quassel is the tool behind the University of Zürich’s project, LEMON, which studies multilingual development using real-world data. Designed
-    to fit UZH’s needs, Quassel is also flexible enough for other research projects.
-  </p>
 </section>

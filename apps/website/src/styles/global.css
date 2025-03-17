@@ -1,9 +1,10 @@
 :root {
+  --color-page-bg: #FBFBFB;
   --color-primary: #C6E7FF;
   --color-card: #F4FAFF;
   --color-highlight: #2294CF;
   --color-default-text: #052204;
-  --color-about-bg: #F0EBE3;
+  --color-about-bg: #F5F5F5 ;
   --color-lemon: #F3AB00;
 
   --font-family-title: 'Onest Variable', sans-serif;
@@ -49,6 +50,7 @@ html {
 }
 
 body {
+  background-color: var(--color-page-bg);
   font-family: var(--font-family-text);
   min-height: 100%;
   margin: 0;
