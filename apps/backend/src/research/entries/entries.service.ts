@@ -79,4 +79,8 @@ export class EntriesService {
   remove(id: number) {
     return this.em.remove(this.entryRepository.getReference(id)).flush();
   }
+
+  removeAllFromQuestionnaire(questionnaireId: number) {
+    return this.entryRepository.nativeDelete({ questionnaire: questionnaireId });
+  }
 }

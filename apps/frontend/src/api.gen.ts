@@ -268,7 +268,8 @@ export interface paths {
         put?: never;
         /** Create a entry */
         post: operations["EntriesController_create"];
-        delete?: never;
+        /** Delete all entries of a questionnaire */
+        delete: operations["EntriesController_deleteAll"];
         options?: never;
         head?: never;
         patch?: never;
@@ -1838,6 +1839,27 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ErrorResponseDto"];
+                };
+            };
+        };
+    };
+    EntriesController_deleteAll: {
+        parameters: {
+            query: {
+                questionnaireId: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": number;
                 };
             };
         };

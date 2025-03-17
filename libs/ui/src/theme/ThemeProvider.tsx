@@ -6,6 +6,7 @@ import utc from "dayjs/plugin/utc";
 import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { convertUZHColorsToMantine, UZHColor, uzhColors } from "./uzh";
+import { ModalsProvider } from "@mantine/modals";
 
 dayjs.extend(utc);
 
@@ -37,8 +38,10 @@ export function ThemeProvider({ children, ...args }: ThemeProviderProps) {
   return (
     <DatesProvider settings={{ timezone: "UTC" }}>
       <MantineProvider {...args} theme={theme}>
-        <Notifications />
-        {children}
+        <ModalsProvider>
+          <Notifications />
+          {children}
+        </ModalsProvider>
       </MantineProvider>
     </DatesProvider>
   );

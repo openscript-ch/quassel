@@ -1,5 +1,5 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
-import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from "@nestjs/common";
+import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse, ApiQuery } from "@nestjs/swagger";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { EntriesService } from "./entries.service";
 import { EntryCreationDto, EntryResponseDto, EntryMutationDto } from "./entry.dto";
@@ -43,5 +43,12 @@ export class EntriesController {
   @ApiOperation({ summary: "Delete a entry by ID" })
   delete(@Param("id") id: string) {
     return this.entriesService.remove(+id);
+  }
+
+  @Delete()
+  @ApiQuery({ name: "questionnaireId", required: true, type: Number })
+  @ApiOperation({ summary: "Delete all entries of a questionnaire" })
+  deleteAll(@Query("questionnaireId") questionnaireId: number) {
+    return this.entriesService.removeAllFromQuestionnaire(questionnaireId);
   }
 }
