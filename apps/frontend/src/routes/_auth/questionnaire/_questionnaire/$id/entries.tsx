@@ -1,4 +1,4 @@
-import { Button, Group, Modal, Stack, Title, useDisclosure, useForm } from "@quassel/ui";
+import { Button, Group, IconClearAll, Modal, Stack, Title, useDisclosure, useForm } from "@quassel/ui";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { i18n } from "../../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
@@ -25,7 +25,9 @@ export function Entries() {
 
   const t = useStore(messages);
 
-  const { data: questionnaire } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: p } });
+  const { data: questionnaire, refetch } = $api.useSuspenseQuery("get", "/questionnaires/{id}", { params: { path: p } });
+
+  const removeAllEntriesMutation = $api.useMutation("delete", "/entries", { onSuccess: () => refetch() });
 
   const [gaps, setGaps] = useState<GapsPerDay>();
   const [highlightGaps, setHighlightGaps] = useState(false);
@@ -48,6 +50,10 @@ export function Entries() {
 
   const handleSubmit = () => {
     n({ to: "/questionnaire/$id/remarks", params: p });
+  };
+
+  const handleClearEntries = () => {
+    removeAllEntriesMutation.mutate({ params: { query: { questionnaireId: questionnaire.id } } });
   };
 
   useEffect(() => {
@@ -75,7 +81,12 @@ export function Entries() {
       </Modal>
       <form onSubmit={f.onSubmit(handleSubmit, open)}>
         <Stack>
-          <Title order={3}>{questionnaire.title}</Title>
+          <Group justify="space-between">
+            <Title order={3}>{questionnaire.title}</Title>
+            <Button variant="default" onClick={handleClearEntries} rightSection={<IconClearAll />}>
+              Clear all
+            </Button>
+          </Group>
           <QuestionnaireEntries gaps={highlightGaps ? gaps : undefined} questionnaire={questionnaire} />
 
           <Group>
