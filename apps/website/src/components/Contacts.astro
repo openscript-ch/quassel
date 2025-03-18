@@ -10,7 +10,7 @@ const { imgSrc, title, contactText, link } = Astro.props;
 ---
 
 <style>
-  .contact_card {
+  .contact-card {
     display: flex;
     flex-direction: column;
     padding-inline: var(--spacing-lg);
@@ -33,7 +33,7 @@ const { imgSrc, title, contactText, link } = Astro.props;
   }
 </style>
 
-<div class="contact_card">
+<div class="contact-card">
   <img src={imgSrc} alt="company icon" />
   <h2>{title}</h2>
   <a href={link}>{contactText}</a>
