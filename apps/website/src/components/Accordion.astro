@@ -43,7 +43,6 @@ items.forEach((item) => {
 <style define:vars={{ "inlet-top": inlet.top, "inlet-right": inlet.right, "inlet-bottom": inlet.bottom, "inlet-left": inlet.left }}>
   .accordion {
     display: flex;
-    gap: var(--spacing-md);
     justify-content: center;
     align-items: center;
   }
@@ -59,11 +58,11 @@ items.forEach((item) => {
     padding: 0;
     margin: var(--spacing-xl);
     list-style: none;
-    flex-grow: 1;
     justify-content: space-evenly;
   }
 
   li {
+    width: 100%;
     display: grid;
     grid-template-columns: 4rem auto;
     grid-template-rows: 4rem auto;
@@ -136,6 +135,17 @@ items.forEach((item) => {
 
   .screenshots img:not(.active) {
     display: none;
+  }
+
+  .active {
+    color: var(--color-highlight);
+    background-color: var(--color-card);
+  }
+
+  .active p {
+    color: var(--color-default-text);
+    margin-right: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
   }
 </style>
 
