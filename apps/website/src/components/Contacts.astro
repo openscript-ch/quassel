@@ -11,9 +11,25 @@ const { imgSrc, title, contactText, link } = Astro.props;
 
 <style>
   .contact_card {
-    margin: var(--spacing-sm);
-    align-items: column;
+    display: flex;
+    flex-direction: column;
+    padding-inline: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    align-items: start;
     background-color: var(--color-card);
+    width: 20rem;
+    height: 18rem;
+    gap: var(--spacing-md);
+  }
+
+  h2 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  img {
+    height: 3rem;
+    margin-block: var(--spacing-md);
+    object-fit: contain;
   }
 </style>
 
