@@ -16,7 +16,7 @@ export type EntryFormValues = {
     language?: number;
   }[];
   weeklyRecurring?: number;
-  weekday: number;
+  weekday: number | number[];
   startedAt: string;
   endedAt: string;
 };
@@ -25,6 +25,8 @@ const messages = i18n("entityForm", {
   actionAddLanguage: "Add language",
   actionAddRecurringRule: "Add recurring rule",
   actionDelete: "Delete",
+  actionAdd: "Add",
+  actionUpdate: "Update",
   labelCarer: "Carer",
   labelLanguage: "Language",
   labelRecurringRulePrefix: "Recurs every",
@@ -36,25 +38,27 @@ const messages = i18n("entityForm", {
 });
 
 type EntityFormProps = {
-  onSave: (entity: EntryFormValues) => void;
-  onDelete?: () => void;
   onAddCarer: (value: string) => Promise<number>;
   onAddLanguage: (value: string) => Promise<number>;
-  entry?: Partial<EntryFormValues>;
   carers: components["schemas"]["CarerResponseDto"][];
   languages: components["schemas"]["LanguageResponseDto"][];
   templates: components["schemas"]["EntryTemplateDto"][];
-  actionLabel: string;
+  onSave: (entity: EntryFormValues) => void;
+  entry: Partial<EntryFormValues>;
+  mode: "create" | "update";
+  onDelete?: () => void;
 };
 
-export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages, templates }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, entry, carers, languages, templates, mode }: EntityFormProps) {
+  const isUpdateForm = !!onDelete;
+
   const t = useStore(messages);
   const f = useForm<EntryFormValues>({
     initialValues: {
       startedAt: "",
       endedAt: "",
       carer: -1,
-      weekday: 0,
+      weekday: mode === "update" ? 0 : [],
       entryLanguages: [{ ratio: 100 }],
     },
     validate: {
@@ -165,13 +169,13 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
           {t.actionAddLanguage}
         </Button>
 
-        <WeekdayPicker {...f.getInputProps("weekday")} />
-
         <Group>
           <TimeInput flex={1} {...f.getInputProps("startedAt")} />
           -
           <TimeInput flex={1} {...f.getInputProps("endedAt")} />
         </Group>
+
+        <WeekdayPicker {...f.getInputProps("weekday")} multiple={!isUpdateForm} />
 
         <Switch
           checked={showRecurringRule}
@@ -195,7 +199,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
               {t.actionDelete}
             </Button>
           )}
-          <Button type="submit">{actionLabel}</Button>
+          <Button type="submit">{mode === "update" ? t.actionUpdate : t.actionAdd}</Button>
         </Group>
       </Stack>
     </form>

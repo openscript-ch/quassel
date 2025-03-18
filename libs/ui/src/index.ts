@@ -57,6 +57,7 @@ export {
   Button,
   Box,
   Checkbox,
+  Chip,
   Code,
   Combobox,
   Container,

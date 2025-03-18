@@ -742,15 +742,11 @@ export interface components {
              */
             endedAt: string;
             /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
-             * @example 1
-             */
-            weekday: number;
-            /**
              * @description The weekly recurring of the entry
              * @example 1
              */
             weeklyRecurring?: number;
+            weekday: number[];
             carer: number;
             questionnaire: number;
             entryLanguages: components["schemas"]["EntryLanguageCreationDto"][];
@@ -767,11 +763,6 @@ export interface components {
              */
             endedAt: string;
             /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
-             * @example 1
-             */
-            weekday: number;
-            /**
              * @description The weekly recurring of the entry
              * @example 1
              */
@@ -781,10 +772,15 @@ export interface components {
              * @example 1
              */
             id: number;
+            /**
+             * @description The weekday of the entry (Sunday is 0 like in JS)
+             * @example 1
+             */
+            weekday: number;
             carer: components["schemas"]["CarerResponseDto"];
             entryLanguages: components["schemas"]["EntryLanguageResponseDto"][];
         };
-        EntryMutationDto: {
+        EntryUpdateDto: {
             /**
              * @description The starting date of the entry
              * @example 2024-11-01T07:00:00.000Z
@@ -795,11 +791,6 @@ export interface components {
              * @example 2024-11-01T08:00:00.00Z
              */
             endedAt?: string;
-            /**
-             * @description The weekday of the entry (Sunday is 0 like in JS)
-             * @example 1
-             */
-            weekday?: number;
             /**
              * @description The weekly recurring of the entry
              * @example 1
@@ -1829,7 +1820,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["EntryResponseDto"];
+                    "application/json": number[];
                 };
             };
             /** @description Unique name constraint violation */
@@ -1915,7 +1906,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["EntryMutationDto"];
+                "application/json": components["schemas"]["EntryUpdateDto"];
             };
         };
         responses: {
