@@ -1,5 +1,17 @@
 # @quassel/frontend
 
+## 1.1.0
+
+### Minor Changes
+
+- b199ecb: Allow clearing all entries from a questionnaire
+- c6e6d4b: Allow creating entries for multiple days
+
+### Patch Changes
+
+- Updated dependencies [b199ecb]
+  - @quassel/ui@1.1.0
+
 ## 1.0.2
 
 ## 1.0.1
