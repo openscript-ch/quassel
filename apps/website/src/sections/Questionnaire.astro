@@ -20,17 +20,18 @@ const items = await mapFeatures("questionnaire");
     margin: var(--spacing-lg);
   }
 
-  .moreFunctions {
+  .more-functions {
     margin-inline: var(--spacing-xl);
     margin-bottom: var(--spacing-lg);
     text-align: start;
+    color: var(--color-highlight);
   }
 </style>
 
 <section>
   <h2>Data Collection Features</h2>
   <Accordion frame="tablet" items={items} />
-  <div class="moreFunctions">
+  <div class="more-functions">
     <p>More functions</p>
     <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
   </div>
