@@ -1,7 +1,7 @@
 {
   "name": "@quassel/frontend",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.1.0",
   "type": "module",
   "keywords": [],
   "description": "",
@@ -25,8 +25,8 @@
     "@nanostores/react": "^0.8.4",
     "@quassel/ui": "workspace:*",
     "@quassel/utils": "workspace:*",
-    "@tanstack/react-query": "^5.68.0",
-    "@tanstack/react-router": "^1.114.22",
+    "@tanstack/react-query": "^5.69.0",
+    "@tanstack/react-router": "^1.114.24",
     "nanostores": "^0.11.4",
     "openapi-fetch": "0.13.5",
     "openapi-react-query": "0.3.1",
@@ -35,20 +35,20 @@
   },
   "devDependencies": {
     "@anolilab/unplugin-favicons": "^1.0.5",
-    "@tanstack/router-devtools": "^1.114.22",
-    "@tanstack/router-plugin": "^1.114.22",
+    "@tanstack/router-devtools": "^1.114.24",
+    "@tanstack/router-plugin": "^1.114.24",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
-    "@types/react": "^19.0.10",
+    "@types/react": "^19.0.11",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "3.0.8",
+    "@vitest/coverage-v8": "3.0.9",
     "favicons": "^7.2.0",
     "jsdom": "^26.0.0",
     "openapi-typescript": "^7.6.1",
     "openapi-typescript-helpers": "^0.0.15",
     "typescript": "^5.8.2",
     "vite": "^6.2.2",
-    "vitest": "^3.0.8"
+    "vitest": "^3.0.9"
   }
 }

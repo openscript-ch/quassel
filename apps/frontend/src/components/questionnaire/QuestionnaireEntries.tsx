@@ -62,7 +62,7 @@ export function QuestionnaireEntries({ questionnaire, gaps }: QuestionnaireEntri
   const handleCreate = (entry: EntryFormValues) => {
     const entryRequest = { ...entry, questionnaire: questionnaire.id };
 
-    return createMutation.mutateAsync({ body: entryRequest }, { onSuccess: reloadEntries });
+    return createMutation.mutateAsync({ body: entryRequest as components["schemas"]["EntryCreationDto"] }, { onSuccess: reloadEntries });
   };
 
   const handleUpdate = (id: number, entry: Partial<EntryFormValues>) => {

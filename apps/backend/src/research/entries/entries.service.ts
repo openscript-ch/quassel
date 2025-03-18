@@ -1,7 +1,7 @@
-import { EntityRepository, UniqueConstraintViolationException, FilterQuery } from "@mikro-orm/core";
+import { EntityRepository, FilterQuery } from "@mikro-orm/core";
 import { InjectRepository } from "@mikro-orm/nestjs";
-import { Injectable, UnprocessableEntityException } from "@nestjs/common";
-import { EntryCreationDto, EntryMutationDto } from "./entry.dto";
+import { Injectable } from "@nestjs/common";
+import { EntryCreationDto, EntryUpdateDto } from "./entry.dto";
 import { Entry } from "./entry.entity";
 import { EntityManager, raw } from "@mikro-orm/postgresql";
 
@@ -13,20 +13,15 @@ export class EntriesService {
     private readonly em: EntityManager
   ) {}
 
-  async create(entryCreationDto: EntryCreationDto) {
-    const entry = new Entry();
-    entry.assign(entryCreationDto, { em: this.em });
+  create({ weekday, ...rest }: EntryCreationDto) {
+    return this.entryRepository.insertMany(
+      weekday.map((w) => {
+        const entry = new Entry();
+        entry.assign({ weekday: w, ...rest }, { em: this.em });
 
-    try {
-      await this.em.persist(entry).flush();
-    } catch (e) {
-      if (e instanceof UniqueConstraintViolationException) {
-        throw new UnprocessableEntityException("Entry with this name already exists");
-      }
-      throw e;
-    }
-
-    return (await entry.populate(["entryLanguages"])).toObject();
+        return entry;
+      })
+    );
   }
 
   async findAll() {
@@ -66,7 +61,7 @@ export class EntriesService {
     });
   }
 
-  async update(id: number, entryMutationDto: EntryMutationDto) {
+  async update(id: number, entryMutationDto: EntryUpdateDto) {
     const entry = await this.entryRepository.findOneOrFail(id, { populate: ["entryLanguages"] });
 
     entry.assign(entryMutationDto);
@@ -78,5 +73,9 @@ export class EntriesService {
 
   remove(id: number) {
     return this.em.remove(this.entryRepository.getReference(id)).flush();
+  }
+
+  removeAllFromQuestionnaire(questionnaireId: number) {
+    return this.entryRepository.nativeDelete({ questionnaire: questionnaireId });
   }
 }
