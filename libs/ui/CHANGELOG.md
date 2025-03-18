@@ -1,5 +1,11 @@
 # @quassel/ui
 
+## 1.1.0
+
+### Minor Changes
+
+- b199ecb: Allow clearing all entries from a questionnaire
+
 ## 1.0.1
 
 ### Patch Changes

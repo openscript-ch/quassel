@@ -1,5 +1,12 @@
 # @quassel/backend
 
+## 1.1.0
+
+### Minor Changes
+
+- b199ecb: Allow clearing all entries from a questionnaire
+- c6e6d4b: Allow creating entries for multiple days
+
 ## 1.0.2
 
 ### Patch Changes
