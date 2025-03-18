@@ -15,12 +15,6 @@ class EntryBaseDto {
   @Expose()
   endedAt: string;
 
-  @ApiProperty({ example: 1, description: "The weekday of the entry (Sunday is 0 like in JS)" })
-  @Min(0)
-  @Max(6)
-  @Expose()
-  weekday: number;
-
   @ApiProperty({ example: 1, description: "The weekly recurring of the entry" })
   @Min(1)
   @IsOptional()
@@ -32,6 +26,12 @@ export class EntryResponseDto extends EntryBaseDto {
   @Expose()
   id: number;
 
+  @ApiProperty({ example: 1, description: "The weekday of the entry (Sunday is 0 like in JS)" })
+  @Min(0)
+  @Max(6)
+  @Expose()
+  weekday: number;
+
   @Type(() => CarerResponseDto)
   @Expose()
   carer: CarerResponseDto;
@@ -41,14 +41,17 @@ export class EntryResponseDto extends EntryBaseDto {
   entryLanguages: Array<EntryLanguageResponseDto>;
 }
 
-export class EntryCreationDto extends EntryBaseDto {
+class EntryMutationDto extends EntryBaseDto {
   carer: number;
   questionnaire: number;
 
   @Type(() => EntryLanguageCreationDto)
   entryLanguages: Array<EntryLanguageCreationDto>;
 }
-export class EntryMutationDto extends PartialType(EntryCreationDto) {}
+export class EntryCreationDto extends EntryMutationDto {
+  weekday: number[];
+}
+export class EntryUpdateDto extends PartialType(EntryMutationDto) {}
 
 export class EntryTemplateDto {
   @Type(() => CarerResponseDto)

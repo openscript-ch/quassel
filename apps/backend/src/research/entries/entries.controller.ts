@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/commo
 import { ApiTags, ApiOperation, ApiUnprocessableEntityResponse } from "@nestjs/swagger";
 import { ErrorResponseDto } from "../../common/dto/error.dto";
 import { EntriesService } from "./entries.service";
-import { EntryCreationDto, EntryResponseDto, EntryMutationDto } from "./entry.dto";
+import { EntryCreationDto, EntryResponseDto, EntryUpdateDto } from "./entry.dto";
 import { Serialize } from "../../common/decorators/serialize";
 
 @ApiTags("Entries")
@@ -13,8 +13,7 @@ export class EntriesController {
   @Post()
   @ApiOperation({ summary: "Create a entry" })
   @ApiUnprocessableEntityResponse({ description: "Unique name constraint violation", type: ErrorResponseDto })
-  @Serialize(EntryResponseDto)
-  create(@Body() entry: EntryCreationDto): Promise<EntryResponseDto> {
+  create(@Body() entry: EntryCreationDto): Promise<number[]> {
     return this.entriesService.create(entry);
   }
 
@@ -35,7 +34,7 @@ export class EntriesController {
   @Patch(":id")
   @ApiOperation({ summary: "Update a entry by ID" })
   @Serialize(EntryResponseDto)
-  update(@Param("id") id: string, @Body() entry: EntryMutationDto): Promise<EntryResponseDto> {
+  update(@Param("id") id: string, @Body() entry: EntryUpdateDto): Promise<EntryResponseDto> {
     return this.entriesService.update(+id, entry);
   }
 

@@ -77,8 +77,7 @@ export function EntryCalendar({
 
   const [opened, { open, close }] = useDisclosure();
 
-  const [entryUpdatingId, setEntryUpdadingId] = useState<number>();
-  const [entryDraft, setEntryDraft] = useState<Partial<EntryFormValues>>();
+  const [entryDraft, setEntryDraft] = useState<{ id?: number; value: Partial<EntryFormValues> }>();
 
   const [events, setEvents] = useState<ExtendedEvent[]>([]);
 
@@ -134,14 +133,16 @@ export function EntryCalendar({
     const { carer, entryLanguages, id, weekday, ...rest } = entries?.find((entry) => entry.id.toString() === event.id) ?? {};
 
     setEntryDraft({
-      carer: carer?.id,
-      entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
-      ...rest,
-      startedAt: getTime(event.start!),
-      endedAt: getTime(event.end!),
-      weekday,
+      id,
+      value: {
+        carer: carer?.id,
+        entryLanguages: entryLanguages?.map(({ language, ...rest }) => ({ ...rest, language: language.id })),
+        ...rest,
+        startedAt: getTime(event.start!),
+        endedAt: getTime(event.end!),
+        weekday,
+      },
     });
-    setEntryUpdadingId(id);
     open();
   };
 
@@ -149,8 +150,7 @@ export function EntryCalendar({
     if (!start || !end) return;
     if (end.getHours() === 0 && end.getMinutes() === 0) end.setTime(end.getTime() - 1000);
 
-    setEntryDraft({ startedAt: getTime(start), endedAt: getTime(end), weekday: start!.getDay() });
-    setEntryUpdadingId(undefined);
+    setEntryDraft({ value: { startedAt: getTime(start), endedAt: getTime(end), weekday: [start!.getDay()] } });
     open();
   };
 
@@ -170,28 +170,30 @@ export function EntryCalendar({
   };
 
   const handleOnSave = async (entry: EntryFormValues) => {
-    if (!entryUpdatingId) {
-      await onAddEntry(entry);
+    if (entryDraft?.id) {
+      await onUpdateEntry(entryDraft.id, entry);
     } else {
-      await onUpdateEntry(entryUpdatingId, entry);
+      await onAddEntry(entry);
     }
     close();
   };
 
   return (
     <>
-      <Modal opened={opened} onClose={close} size="md">
-        <EntityForm
-          onAddCarer={onAddCarer}
-          onAddLanguage={onAddLanguage}
-          onSave={handleOnSave}
-          onDelete={entryUpdatingId ? () => onDeleteEntry(entryUpdatingId).then(close) : undefined}
-          entry={entryDraft}
-          carers={carers}
-          languages={languages}
-          templates={templates}
-          actionLabel={entryUpdatingId ? t.actionUpdate : t.actionAdd}
-        />
+      <Modal opened={opened} onClose={close} size="lg">
+        {entryDraft && (
+          <EntityForm
+            onAddCarer={onAddCarer}
+            onAddLanguage={onAddLanguage}
+            onSave={handleOnSave}
+            onDelete={entryDraft?.id ? () => onDeleteEntry(entryDraft.id!).then(close) : undefined}
+            entry={entryDraft.value}
+            carers={carers}
+            languages={languages}
+            templates={templates}
+            actionLabel={entryDraft?.id ? t.actionUpdate : t.actionAdd}
+          />
+        )}
       </Modal>
       <FullCalendar
         {...calendarBaseConfig}
@@ -202,8 +204,7 @@ export function EntryCalendar({
           <Button
             variant="subtle"
             onClick={() => {
-              setEntryDraft({ weekday: date.getDay() });
-              setEntryUpdadingId(undefined);
+              setEntryDraft({ value: { weekday: [date.getDay()] } });
               open();
             }}
           >
