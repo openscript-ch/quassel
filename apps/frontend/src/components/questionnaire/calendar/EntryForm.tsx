@@ -25,6 +25,8 @@ const messages = i18n("entityForm", {
   actionAddLanguage: "Add language",
   actionAddRecurringRule: "Add recurring rule",
   actionDelete: "Delete",
+  actionAdd: "Add",
+  actionUpdate: "Update",
   labelCarer: "Carer",
   labelLanguage: "Language",
   labelRecurringRulePrefix: "Recurs every",
@@ -41,13 +43,13 @@ type EntityFormProps = {
   carers: components["schemas"]["CarerResponseDto"][];
   languages: components["schemas"]["LanguageResponseDto"][];
   templates: components["schemas"]["EntryTemplateDto"][];
-  actionLabel: string;
   onSave: (entity: EntryFormValues) => void;
   entry: Partial<EntryFormValues>;
+  mode: "create" | "update";
   onDelete?: () => void;
 };
 
-export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, actionLabel, entry, carers, languages, templates }: EntityFormProps) {
+export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, entry, carers, languages, templates, mode }: EntityFormProps) {
   const isUpdateForm = !!onDelete;
 
   const t = useStore(messages);
@@ -56,7 +58,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
       startedAt: "",
       endedAt: "",
       carer: -1,
-      weekday: isUpdateForm ? 0 : [],
+      weekday: mode === "update" ? 0 : [],
       entryLanguages: [{ ratio: 100 }],
     },
     validate: {
@@ -197,7 +199,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, action
               {t.actionDelete}
             </Button>
           )}
-          <Button type="submit">{actionLabel}</Button>
+          <Button type="submit">{mode === "update" ? t.actionUpdate : t.actionAdd}</Button>
         </Group>
       </Stack>
     </form>

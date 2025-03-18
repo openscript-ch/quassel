@@ -8,7 +8,7 @@ import { QuestionnaireEntry } from "./QuestionnaireEntry";
 import { components } from "../../../api.gen";
 import { EntityForm, EntryFormValues } from "./EntryForm";
 import { useEffect, useState } from "react";
-import { format, i18n } from "../../../stores/i18n";
+import { format } from "../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { EventImpl } from "@fullcalendar/core/internal";
 import styles from "./EntryCalendar.module.css";
@@ -51,11 +51,6 @@ export type EntryCalendarProps = {
   onAddLanguage: (value: string) => Promise<number>;
 };
 
-const messages = i18n("entryCalendar", {
-  actionAdd: "Add",
-  actionUpdate: "Update",
-});
-
 export function EntryCalendar({
   entries,
   gaps,
@@ -69,8 +64,6 @@ export function EntryCalendar({
   onAddLanguage,
 }: EntryCalendarProps) {
   const theme = useMantineTheme();
-
-  const t = useStore(messages);
   const { time } = useStore(format);
 
   const { fullscreen, admin } = useStore($layout);
@@ -191,7 +184,7 @@ export function EntryCalendar({
             carers={carers}
             languages={languages}
             templates={templates}
-            actionLabel={entryDraft?.id ? t.actionUpdate : t.actionAdd}
+            mode={entryDraft?.id ? "update" : "create"}
           />
         )}
       </Modal>
