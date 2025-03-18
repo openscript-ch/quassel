@@ -38,10 +38,10 @@ export function WeekdayPicker({ onChange, value, multiple }: WeekdayPickerProps)
 
   if (multiple)
     return (
-      <Chip.Group multiple value={value?.map((v) => v.toString())} onChange={(values) => onChange?.(values.map(Number))}>
+      <Chip.Group multiple value={value?.map(String)} onChange={(values) => onChange?.(values.map(Number))}>
         <Group gap={"xs"}>
           {weekdayOptions.map(({ value, short }) => (
-            <Chip key={value} value={value.toString()}>
+            <Chip key={value} value={value}>
               {short}
             </Chip>
           ))}
