@@ -97,6 +97,13 @@ items.forEach((item) => {
     grid-row: 2;
   }
 
+  ul,
+  slot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .display {
     display: flex;
     width: 63%;
@@ -133,17 +140,20 @@ items.forEach((item) => {
 </style>
 
 <div class:list={["accordion", { imageLeft }]}>
-  <ul>
-    {
-      items.map(({ icon: Icon, screenshot, title, description }) => (
-        <li data-screenshot={screenshot}>
-          <Icon />
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="accordian-features">
+    <ul>
+      {
+        items.map(({ icon: Icon, screenshot, title, description }) => (
+          <li data-screenshot={screenshot}>
+            <Icon />
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <slot />
+  </div>
   <div class="display">
     <Lightbox class="screenshots">
       {
@@ -186,9 +196,8 @@ items.forEach((item) => {
   items.forEach((item) => {
     item.addEventListener("click", toggleAccordion);
   });
-
-  const firstItems = document.querySelectorAll(".accordion li:first-child");
-
+  const firstItems = document.querySelectorAll(".accordion li:first-child:not(.bubbles-list li");
+  console.log(firstItems);
   firstItems.forEach((item) => {
     item.classList.add(ACTIVE_CLASS);
     setScreenshot(item);

@@ -28,9 +28,10 @@ const items = await mapFeatures("administration");
 
 <section>
   <h2>Solution for Administrative Needs</h2>
-  <Accordion frame="laptop" imageLeft items={items} />
-  <div class="moreFunctions">
-    <p>More functions</p>
-    <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
-  </div>
+  <Accordion frame="laptop" imageLeft items={items}>
+    <div class="moreFunctions">
+      <p>More functions</p>
+      <Bubbles entries={["User management", "Data import", "Historical entires are saved"]} />
+    </div>
+  </Accordion>
 </section>
