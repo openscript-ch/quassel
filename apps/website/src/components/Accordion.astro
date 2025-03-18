@@ -197,7 +197,7 @@ items.forEach((item) => {
     item.addEventListener("click", toggleAccordion);
   });
   const firstItems = document.querySelectorAll(".accordion li:first-child:not(.bubbles-list li");
-  console.log(firstItems);
+
   firstItems.forEach((item) => {
     item.classList.add(ACTIVE_CLASS);
     setScreenshot(item);
