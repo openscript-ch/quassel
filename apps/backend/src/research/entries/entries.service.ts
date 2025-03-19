@@ -13,15 +13,18 @@ export class EntriesService {
     private readonly em: EntityManager
   ) {}
 
-  create({ weekday, ...rest }: EntryCreationDto) {
-    return this.entryRepository.insertMany(
-      weekday.map((w) => {
-        const entry = new Entry();
-        entry.assign({ weekday: w, ...rest }, { em: this.em });
+  async create({ weekday, ...rest }: EntryCreationDto) {
+    const entries = weekday.map((w) => {
+      const entry = new Entry();
+      entry.assign({ ...rest, weekday: w }, { em: this.em });
 
-        return entry;
-      })
-    );
+      this.em.persist(entry);
+      return entry;
+    });
+
+    await this.em.flush();
+
+    return entries.map((entries) => entries.toObject().id);
   }
 
   async findAll() {
