@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.1.1
+
+### Patch Changes
+
+- 1780a8d: Fix creating language entries when creating for multiple days
+
 ## 1.1.0
 
 ### Minor Changes
