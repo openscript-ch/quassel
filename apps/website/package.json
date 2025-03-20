@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev --host",
+    "prebuild": "astro check",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -15,9 +16,11 @@
     "reveal.js": "^5.2.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@iconify/json": "^2.2.318",
     "@types/reveal.js": "^5.0.5",
     "sharp": "^0.33.5",
+    "typescript": "^5.8.2",
     "unplugin-icons": "^22.1.0"
   }
 }
