@@ -7,6 +7,16 @@ const { entries } = Astro.props;
 ---
 
 <style>
+  div {
+    margin-inline: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-highlight);
+  }
+
+  p {
+    font-weight: bold;
+  }
+
   ul {
     padding: 0;
     list-style: none;
@@ -22,6 +32,9 @@ const { entries } = Astro.props;
   }
 </style>
 
-<ul class="bubbles-list">
-  {entries.map((entry) => <li>{entry}</li>)}
-</ul>
+<div>
+  <p>More functions</p>
+  <ul class="bubbles-list">
+    {entries.map((entry) => <li>{entry}</li>)}
+  </ul>
+</div>
