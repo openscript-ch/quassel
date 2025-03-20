@@ -11,11 +11,11 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.5",
     "@fontsource-variable/onest": "^5.2.6",
-    "astro": "^5.5.2",
-    "reveal.js": "^5.1.0"
+    "astro": "^5.5.3",
+    "reveal.js": "^5.2.0"
   },
   "devDependencies": {
-    "@iconify/json": "^2.2.317",
+    "@iconify/json": "^2.2.318",
     "@types/reveal.js": "^5.0.5",
     "sharp": "^0.33.5",
     "unplugin-icons": "^22.1.0"
