@@ -1,49 +1,51 @@
----
-import Contacts from "../components/Contacts.astro";
----
-
 <style>
-  .footer {
-    display: flex;
-    flex-direction: column;
+  footer {
+    display: grid;
+    gap: 0 var(--spacing-xl);
+    grid-template-columns: 1fr 1fr;
     background-color: var(--color-primary);
-    padding: 0;
     margin-inline: 20%;
-    margin-bottom: 0;
-    padding-bottom: var(--spacing-xl);
+    padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
   }
 
   h2 {
+    grid-column: 1 / 3;
     text-align: center;
     margin: var(--spacing-lg) 0;
   }
 
-  .contacts-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-xl);
+  img {
+    width: 10rem;
+    height: 5rem;
   }
 
-  .contacts-container > :first-child img {
-    height: 10rem !important;
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--color-card);
+    padding: var(--spacing-lg);
+  }
+
+  .contact img {
+    grid-row: 1 / 3;
+    grid-column: 2 / 3;
+    align-self: center;
+    justify-self: center;
   }
 </style>
 
-<footer class="footer">
+<footer>
   <h2>Interested in Using Quassel?</h2>
-  <div class="contacts-container">
-    <Contacts
-      link="https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker/Forschungsschwerpunkt-Mehrsprachigkeit-und-Kommunikation.html"
-      imgSrc="../assets/uzh-logo.svg"
-      title="I want to cooperate"
-      contactText="Speak to Stephanie from project LEMON team"
-    />
-    <Contacts
-      link="https://openscript.ch/en/"
-      imgSrc="../assets/openscript-logo.svg"
-      title="I need tech support"
-      contactText="Speak to Robin from openscript"
-    />
+  <div class="contact">
+    <img src="../assets/uzh-logo.svg" alt="University of Zurich logo" />
+    <h3>Research collaboration</h3>
+    <a href="https://www.psychology.uzh.ch/en/areas/dev/devpsy/Weltentdecker/Research-area-Multilingualism-and-Communication.html">
+      Reach out to <strong>Stephanie</strong> from University of Zurich
+    </a>
+  </div>
+  <div class="contact">
+    <img src="../assets/openscript-logo.svg" alt="openscript Ltd. logo" />
+    <h3>Tech collaboration</h3>
+    <a href="https://openscript.ch/en/">Contact <strong>Robin</strong> from openscript Ltd.</a>
   </div>
 </footer>

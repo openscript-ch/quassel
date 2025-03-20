@@ -69,7 +69,7 @@ main {
   overflow: auto; /*limit the width of the video*/
 }
 
-header, footer {
+header {
   padding: 0 20%;
   margin-bottom: var(--spacing-lg);
 }
