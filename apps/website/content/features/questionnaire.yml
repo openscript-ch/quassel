@@ -12,5 +12,5 @@
   screenshot: "gap-detect.png"
 - icon: "recurring-entries"
   title: "Recurring entries"
-  description: "Ability to create recrring entries for reglar langage exposre events on weekly bases only (e.g. every second week)."
+  description: "Ability to create recurring entries for regular langage exposure events on weekly bases only (e.g. every second week)."
   screenshot: "recurring-entry.png"
