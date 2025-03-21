@@ -7,8 +7,8 @@ const { class: className, ...rest } = Astro.props;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     display: flex;
@@ -19,13 +19,15 @@ const { class: className, ...rest } = Astro.props;
 
   .lightbox :global(img) {
     cursor: zoom-in;
+    background-color: transparent;
   }
 
   .lightbox.active :global(img) {
     transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     cursor: zoom-out;
-    height: 95% !important;
-    width: auto !important;
+    height: 97% !important;
+    width: 97% !important;
+    object-fit: contain !important;
   }
 
   :global(.lightbox-active) {
@@ -58,5 +60,15 @@ const { class: className, ...rest } = Astro.props;
     lightbox.querySelectorAll("img").forEach((img) => {
       img.addEventListener("click", toggleClosestLightbox);
     });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      lightboxes.forEach((lightbox) => {
+        if (lightbox.classList.contains("active")) {
+          toggleLightbox(lightbox);
+        }
+      });
+    }
   });
 </script>
