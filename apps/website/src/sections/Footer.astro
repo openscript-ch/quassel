@@ -2,10 +2,15 @@
   footer {
     display: grid;
     gap: 0 var(--spacing-xl);
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
     background-color: var(--color-primary);
     margin-bottom: 0;
     padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   h2 {

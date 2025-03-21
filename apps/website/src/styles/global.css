@@ -33,7 +33,6 @@
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
-  --spacing-gutter: 2.5rem;
 
   --border-width: 1px;
   --border-color: #E1E1E1;
@@ -44,9 +43,24 @@
   --radius-xl: 2rem;
 }
 
+
+@media (max-width: 640px) {
+  :root {
+    --spacing-xs: 0.1rem;
+    --spacing-sm: 0.2rem;
+    --spacing-md: 0.5rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 2rem;
+  }
+}
+
 html {
   font-size: 16px;
   height: 100%;
+
+  @media (max-width: 640px) {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -70,14 +84,20 @@ h5 {
 
 main {
   flex-grow: 1;
-  overflow: auto;
-  /*limit the width of the video*/
 }
 
 header,
 footer,
 main>section {
-  margin: 0 20% var(--spacing-xl) 20%;
+  box-sizing: border-box;
+  margin: 0 auto var(--spacing-xl) auto;
+  max-width: 1200px;
+  width: 1200px;
+
+  @media (max-width: 1200px) {
+    margin: 0 var(--spacing-lg) var(--spacing-xl) var(--spacing-lg);
+    width: auto;
+  }
 }
 
 a {
