@@ -60,23 +60,24 @@ body {
   flex-direction: column;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-family: var(--font-family-title);
 }
 
 main {
   flex-grow: 1;
-  overflow: auto; /*limit the width of the video*/
+  overflow: auto;
+  /*limit the width of the video*/
 }
 
-header {
-  padding: 0 20%;
-  margin-bottom: var(--spacing-lg);
-}
-
-main > section {
-  padding: 0 20%;
-  margin-bottom: var(--spacing-xl);
+header,
+footer,
+main>section {
+  margin: 0 20% var(--spacing-xl) 20%;
 }
 
 a {
