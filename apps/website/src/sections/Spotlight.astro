@@ -32,7 +32,7 @@ import videoUrl from "../assets/video/quassel.mp4";
     width: 100%;
   }
 
-  .video {
+  video {
     width: 100%;
     height: auto;
     box-shadow: 0 0 4rem var(--color-card);
@@ -62,7 +62,7 @@ import videoUrl from "../assets/video/quassel.mp4";
   .used-by {
     margin-top: var(--spacing-xl);
     display: grid;
-    grid-template-columns: 1fr 2fr; /* Two columns: one for h2, one for img */
+    grid-template-columns: 1fr 2fr;
     gap: var(--spacing-sm);
   }
 
@@ -83,7 +83,7 @@ import videoUrl from "../assets/video/quassel.mp4";
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    const video = document.getElementsByClassName("video")[0] as HTMLVideoElement;
+    const video = document.querySelector("video") as HTMLVideoElement;
     const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
     let isPlaying = false;
 
@@ -103,7 +103,7 @@ import videoUrl from "../assets/video/quassel.mp4";
     <p>Efficient documenting <strong>children's</strong> language exposure by carer giver and time.</p>
   </div>
   <div class="quassel-video">
-    <video controls class="video" poster="./assets/poster.png" muted playsinline>
+    <video controls poster="./assets/poster.png" muted playsinline>
       <source src={videoUrl} type="video/mp4" />
     </video>
     <button class="playButton">
