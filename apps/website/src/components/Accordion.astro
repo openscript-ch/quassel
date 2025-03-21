@@ -45,6 +45,7 @@ items.forEach((item) => {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 45rem;
   }
 
   .accordion.imageLeft {
@@ -56,7 +57,7 @@ items.forEach((item) => {
     flex-direction: column;
     gap: var(--spacing-lg);
     padding: 0;
-    margin: var(--spacing-xl);
+    margin: 0 var(--spacing-xl);
     list-style: none;
     justify-content: space-evenly;
   }
@@ -66,6 +67,7 @@ items.forEach((item) => {
     display: grid;
     grid-template-columns: 4rem auto;
     grid-template-rows: 4rem auto;
+    cursor: pointer;
   }
 
   li :global(*:first-child) {
@@ -78,10 +80,6 @@ items.forEach((item) => {
   li:not(.active) p {
     visibility: hidden;
     height: 0;
-  }
-
-  li {
-    cursor: pointer;
   }
 
   h3 {
@@ -103,9 +101,12 @@ items.forEach((item) => {
     align-items: flex-start;
   }
 
+  .accordion > div {
+    width: 100%;
+  }
+
   .display {
     display: flex;
-    width: 63vw;
     position: relative;
     margin: var(--spacing-xl);
   }
@@ -144,13 +145,19 @@ items.forEach((item) => {
 
   .active p {
     color: var(--color-default-text);
-    margin-right: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    margin-inline-end: var(--spacing-md);
+    margin-block-end: var(--spacing-md);
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
   }
 </style>
 
 <div class:list={["accordion", { imageLeft }]}>
-  <div>
+  <div class="features">
     <ul>
       {
         items.map(({ icon: Icon, screenshot, title, description }) => (
