@@ -182,7 +182,12 @@ items.forEach((item) => {
     <Lightbox class="screenshots">
       {
         items.map(({ screenshot, title }) => (
-          <Image src={screenshots[`${SCREENSHOT_PATH}${screenshot}`]()} alt={`${title} screenshot`} data-screenshot={screenshot} />
+          <Image
+            src={screenshots[`${SCREENSHOT_PATH}${screenshot}`]()}
+            alt={`${title} screenshot`}
+            loading="eager"
+            data-screenshot={screenshot}
+          />
         ))
       }
     </Lightbox>
