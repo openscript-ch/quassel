@@ -1,0 +1,39 @@
+---
+type Props = {
+  entries: string[];
+};
+
+const { entries } = Astro.props;
+---
+
+<style>
+  div {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-highlight);
+  }
+
+  p {
+    font-weight: bold;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    font-size: var(--font-size-sm);
+    gap: var(--spacing-md);
+  }
+
+  li {
+    background-color: var(--color-card);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+</style>
+
+<div>
+  <p>More functions</p>
+  <ul class="bubbles-list">
+    {entries.map((entry) => <li>{entry}</li>)}
+  </ul>
+</div>

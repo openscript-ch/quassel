@@ -1,0 +1,27 @@
+---
+import Bubbles from "../components/Bubbles.astro";
+import Accordion from "../components/Accordion.astro";
+import { mapFeatures } from "../mapper/features-mapper";
+
+const items = await mapFeatures("questionnaire");
+---
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+  }
+
+  h2 {
+    text-align: center;
+    margin: var(--spacing-lg);
+  }
+</style>
+
+<section>
+  <h2>Data Collection Features</h2>
+  <Accordion frame="tablet" items={items}>
+    <Bubbles entries={["Optional comments", "Customizable carer information", "Historical entires are saved"]} />
+  </Accordion>
+</section>

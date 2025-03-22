@@ -5,22 +5,23 @@ import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import pluginReactRefresh from "eslint-plugin-react-refresh";
 import pluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+import pluginAstro from "eslint-plugin-astro";
 
 export default tseslint.config(
   {
     ignores: ["**/dist", "**/*.gen.ts", "apps/mockup/", "apps/backend/db/migrations"],
   },
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
     languageOptions: { ecmaVersion: 2020, parserOptions: { ecmaFeatures: { jsx: true } }, globals: { ...globals.browser, ...globals.node } },
-    settings: { react: { version: "18.3" } },
+    settings: { react: { version: "19.0" } },
     plugins: {
       react: pluginReact,
       "react-hooks": pluginReactHooks,
       "react-refresh": pluginReactRefresh,
     },
     rules: {
-      "no-unused-vars": "off",
+      "react/no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn", // or "error"
         {
@@ -33,7 +34,14 @@ export default tseslint.config(
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  pluginReact.configs.flat.recommended,
-  pluginReact.configs.flat["jsx-runtime"],
-  pluginPrettierRecommended
+  ...pluginAstro.configs.recommended,
+  pluginPrettierRecommended,
+  {
+    // Define the configuration for `<script>` tag.
+    // Script in `<script>` is assigned a virtual file name with the `.js` extension.
+    files: ["**/*.astro/*.js", "*.astro/*.js", "**/*.astro/*.ts", "*.astro/*.ts"],
+    rules: {
+      "prettier/prettier": "off",
+    },
+  }
 );

@@ -1,0 +1,57 @@
+<style>
+  footer {
+    display: grid;
+    gap: 0 var(--spacing-xl);
+    grid-template-columns: repeat(2, 1fr);
+    background-color: var(--color-primary);
+    margin-bottom: 0;
+    padding: 0 var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  h2 {
+    grid-column: 1 / 3;
+    text-align: center;
+    margin: var(--spacing-lg) 0;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: var(--color-card);
+    padding: var(--spacing-lg);
+  }
+
+  .contact img {
+    width: 10rem;
+    height: 100%;
+    grid-row: 1 / 3;
+    grid-column: 2 / 3;
+    align-self: center;
+    justify-self: center;
+  }
+</style>
+
+<footer>
+  <h2>Interested in Using Quassel?</h2>
+  <div class="contact">
+    <img src="../assets/uzh-logo.svg" alt="University of Zurich logo" />
+    <h3>Research collaboration</h3>
+    <a href="https://www.psychology.uzh.ch/en/areas/dev/devpsy/Weltentdecker/Research-area-Multilingualism-and-Communication.html">
+      Reach out to <strong>Stephanie</strong> from University of Zurich
+    </a>
+  </div>
+  <div class="contact">
+    <img src="../assets/openscript-logo.svg" alt="openscript Ltd. logo" />
+    <h3>Tech collaboration</h3>
+    <a href="https://openscript.ch/en/">Contact <strong>Robin</strong> from openscript Ltd.</a>
+  </div>
+</footer>

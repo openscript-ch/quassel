@@ -1,0 +1,59 @@
+---
+import IconChevronRight from "~icons/tabler/chevron-right";
+---
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .brand {
+    display: flex;
+    gap: var(--spacing-md);
+    color: var(--color-highlight);
+    align-items: baseline;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  li a {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    line-height: 2rem;
+    font-weight: var(--font-weight-semi-bold);
+  }
+
+  li a svg {
+    transition: transform 0.2s ease;
+  }
+
+  li a:hover svg {
+    transform: translateX(var(--spacing-xs));
+  }
+
+  li a svg :global(path) {
+    stroke-width: 3;
+  }
+
+  img {
+    height: 4rem;
+  }
+</style>
+
+<header>
+  <div class="brand">
+    <h1>Quassel</h1>
+    <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="https://test.quassel.ch">Click to see the demo <IconChevronRight /></a></li>
+    </ul>
+  </nav>
+</header>

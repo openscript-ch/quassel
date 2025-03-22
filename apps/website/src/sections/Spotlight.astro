@@ -1,0 +1,117 @@
+---
+import videoUrl from "../assets/video/quassel.mp4";
+---
+
+<style>
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: radial-gradient(50% 50% at 50% 50%, var(--color-primary) 60%, transparent 100%);
+  }
+
+  h1 {
+    font-size: var(--font-size-xxxl);
+  }
+
+  p {
+    font-size: var(--font-size-lg);
+  }
+
+  .intro {
+    width: 36rem;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .quassel-video {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 4rem var(--color-card);
+    margin-inline: var(--spacing-xl);
+  }
+
+  video::-webkit-media-controls-panel {
+    background-image: none;
+    filter: brightness(0.2);
+  }
+
+  .playButton {
+    background: none;
+    position: absolute;
+    border: none;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  .playButton :hover {
+    transform: scale(1.1);
+  }
+
+  .used-by {
+    margin-top: var(--spacing-xl);
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-sm);
+  }
+
+  .used-by h2 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    align-self: center;
+  }
+
+  .used-by img {
+    height: calc(2 * var(--spacing-lg));
+  }
+
+  .used-by a :hover {
+    transform: scale(1.03);
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const video = document.querySelector("video") as HTMLVideoElement;
+    const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
+    let isPlaying = false;
+
+    myButton.addEventListener("click", () => {
+      if (!isPlaying) {
+        video.play();
+        myButton.style.visibility = "hidden";
+        isPlaying = true;
+      }
+    });
+  });
+</script>
+
+<section>
+  <div class="intro">
+    <h1>Gather language exposure data</h1>
+    <p>Efficient documenting <strong>children's</strong> language exposure by carer giver and time.</p>
+  </div>
+  <div class="quassel-video">
+    <video controls poster="./assets/poster.png" muted playsinline>
+      <source src={videoUrl} type="video/mp4" />
+    </video>
+    <button class="playButton">
+      <img src="../assets/play-button.svg" alt="Play button" />
+    </button>
+  </div>
+  <div class="used-by">
+    <h2>Used by</h2>
+    <a href="https://www.uzh.ch/en.html"><img src="../assets/uzh-logo.svg" alt="University of Zurich" /></a>
+  </div>
+</section>

@@ -1,0 +1,234 @@
+---
+import type { ImageMetadata } from "astro";
+import LaptopFrame from "../assets/frames/laptop-frame.svg";
+import TabletFrame from "../assets/frames/tablet-frame.svg";
+import { Image } from "astro:assets";
+import type { SVGComponent } from "../types";
+import Lightbox from "./Lightbox.astro";
+
+const frames = {
+  laptop: {
+    frame: LaptopFrame,
+    inlet: { top: "6%", right: "11%", bottom: "9%", left: "11%" },
+  },
+  tablet: {
+    frame: TabletFrame,
+    inlet: { top: "7%", right: "3%", bottom: "3.5%", left: "3%" },
+  },
+};
+
+type Props = {
+  imageLeft?: boolean;
+  frame: keyof typeof frames;
+  items: {
+    icon: SVGComponent;
+    title: string;
+    description: string;
+    screenshot: string;
+  }[];
+};
+
+const { imageLeft, frame, items } = Astro.props;
+const { frame: Frame, inlet } = frames[frame];
+
+const screenshots = import.meta.glob<{ default: ImageMetadata }>("/src/assets/screenshots/*.png");
+const SCREENSHOT_PATH = "/src/assets/screenshots/";
+
+items.forEach((item) => {
+  const path = `${SCREENSHOT_PATH}${item.screenshot}`;
+  if (!screenshots[path]) throw new Error(`"${path}" does not exist in glob: "${SCREENSHOT_PATH}*.png"`);
+});
+---
+
+<style define:vars={{ "inlet-top": inlet.top, "inlet-right": inlet.right, "inlet-bottom": inlet.bottom, "inlet-left": inlet.left }}>
+  .accordion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 45rem;
+    padding: 0 var(--spacing-xl);
+  }
+
+  .accordion.imageLeft {
+    flex-direction: row-reverse;
+  }
+
+  @media (max-width: 1200px) {
+    .accordion,
+    .accordion.imageLeft {
+      flex-direction: column-reverse;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: 0;
+    list-style: none;
+    justify-content: space-evenly;
+  }
+
+  li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4rem auto;
+    grid-template-rows: 4rem auto;
+    cursor: pointer;
+  }
+
+  li :global(*:first-child) {
+    width: 2rem;
+    height: 2rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  li:not(.active) p {
+    visibility: hidden;
+    height: 0;
+  }
+
+  h3 {
+    align-self: center;
+    margin: 0;
+  }
+
+  p {
+    cursor: text;
+    margin: 0;
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  ul,
+  slot {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .accordion > div {
+    width: 100%;
+  }
+
+  .display {
+    display: flex;
+    position: relative;
+    margin: var(--spacing-xl);
+  }
+
+  .display svg {
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .screenshots {
+    position: absolute;
+    top: var(--inlet-top);
+    right: var(--inlet-right);
+    bottom: var(--inlet-bottom);
+    left: var(--inlet-left);
+    z-index: 1;
+  }
+
+  .screenshots img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .screenshots img:not(.active) {
+    display: none;
+  }
+
+  .active {
+    color: var(--color-highlight);
+    background-color: var(--color-card);
+  }
+
+  .active p {
+    color: var(--color-default-text);
+    margin-inline-end: var(--spacing-md);
+    margin-block-end: var(--spacing-md);
+  }
+
+  .features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+</style>
+
+<div class:list={["accordion", { imageLeft }]}>
+  <div class="features">
+    <ul>
+      {
+        items.map(({ icon: Icon, screenshot, title, description }) => (
+          <li data-screenshot={screenshot}>
+            <Icon />
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </li>
+        ))
+      }
+    </ul>
+    <slot />
+  </div>
+  <div class="display">
+    <Lightbox class="screenshots">
+      {
+        items.map(({ screenshot, title }) => (
+          <Image
+            src={screenshots[`${SCREENSHOT_PATH}${screenshot}`]()}
+            alt={`${title} screenshot`}
+            loading="eager"
+            data-screenshot={screenshot}
+          />
+        ))
+      }
+    </Lightbox>
+    <Frame />
+  </div>
+</div>
+
+<script>
+  const items = document.querySelectorAll(".accordion li");
+  const ACTIVE_CLASS = "active";
+
+  function setScreenshot(item: Element) {
+    const screenshot = item.getAttribute("data-screenshot");
+    const screenshots = item.closest(".accordion")?.querySelectorAll(".screenshots img");
+    if (!screenshots) return;
+
+    screenshots.forEach((s) => s.classList.remove(ACTIVE_CLASS));
+
+    const targetScreenshot = Array.from(screenshots).find((s) => s.getAttribute("data-screenshot") === screenshot);
+    if (targetScreenshot) targetScreenshot.classList.add(ACTIVE_CLASS);
+  }
+
+  function toggleAccordion(event: Event) {
+    const item = event.currentTarget as HTMLLIElement;
+    const siblings = item.closest(".accordion")?.querySelectorAll("li");
+    const isActive = item.classList.contains(ACTIVE_CLASS);
+
+    if (!isActive && siblings) {
+      siblings.forEach((el) => el.classList.remove(ACTIVE_CLASS));
+      item.classList.add(ACTIVE_CLASS);
+      setScreenshot(item);
+    }
+  }
+
+  items.forEach((item) => {
+    item.addEventListener("click", toggleAccordion);
+  });
+  const firstItems = document.querySelectorAll(".accordion li:first-child:not(.bubbles-list li");
+
+  firstItems.forEach((item) => {
+    item.classList.add(ACTIVE_CLASS);
+    setScreenshot(item);
+  });
+</script>

@@ -31,5 +31,6 @@ All parts of the project live inside this monorepo.
   - [`backend`](./apps/backend/)
   - [`frontend`](./apps/frontend/)
   - [`mockup`](./apps/mockup/)
+  - [`website`](./apps/website/)
 - Libs
   - [`ui`](./libs/ui/)
