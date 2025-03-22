@@ -42,6 +42,7 @@ services:
     environment:
       LANG: C.UTF-8
       TZ: UTC
+      DATABASE_URL: "postgresql://postgres:secret@database/quassel_production"
       CORS_ORIGIN: https://test.example.com
       SESSION_SECRET: secret
       SESSION_SALT: salt
@@ -61,7 +62,7 @@ services:
       - "traefik.http.services.backend-http-service.loadbalancer.server.port=3000"
 
   database:
-    image: postgres:17.2-alpine
+    image: postgres:17.0-alpine
     restart: unless-stopped
     volumes:
       - database:/var/lib/postgresql/data
@@ -87,6 +88,25 @@ services:
       - "traefik.http.routers.frontend-https-service=frontend-http-service"
       - "traefik.http.services.frontend-http-service.loadbalancer.server.port=80"
 
+  website:
+    image: ghcr.io/openscript-ch/quassel-website:latest
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.website-redirect-to-www.redirectregex.regex=^https?://example.com(.*)"
+      - "traefik.http.middlewares.website-redirect-to-www.redirectregex.replacement=https://www.example.com$${1}"
+      - "traefik.http.middlewares.website-redirect-to-www.redirectregex.permanent=true"
+      - "traefik.http.middlewares.website-redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.website-redirect-to-https.redirectscheme.permanent=true"
+      - "traefik.http.routers.website-http.middlewares=website-redirect-to-www,website-redirect-to-https"
+      - "traefik.http.routers.website-http.rule=Host(`example.com`) || Host(`www.example.com`)"
+      - "traefik.http.routers.website-http.entrypoints=http"
+      - "traefik.http.routers.website-https.rule=Host(`www.example.com`)"
+      - "traefik.http.routers.website-https.entrypoints=https"
+      - "traefik.http.routers.website-https.tls.certresolver=defaultResolver"
+      - "traefik.http.services.website-http-service.loadbalancer.server.port=80"
+
   mockup:
     image: ghcr.io/openscript-ch/quassel-mockup:latest
     restart: unless-stopped
@@ -103,7 +123,7 @@ services:
       - "traefik.http.routers.mockup-https-service=mockup-http-service"
       - "traefik.http.services.mockup-http-service.loadbalancer.server.port=80"
 
-  updates:
+  watchtower:
     image: containrrr/watchtower
     restart: unless-stopped
     volumes:
@@ -120,6 +140,33 @@ services:
     image: grafana/agent:v0.43.3
     restart: unless-stopped
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./grafana-agent.yaml:/etc/grafana-agent.yaml
     command:
       - --config.file=/etc/grafana-agent.yaml
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro,rslave
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro,rslave
+    command:
+      - --path.procfs=/host/proc
+      - --path.rootfs=/rootfs
+      - --path.sysfs=/host/sys
+      - --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)
+      - --no-collector.arp
+      - --no-collector.btrfs
+      - --no-collector.infiniband
+      - --no-collector.xfs
+      - --no-collector.zfs
