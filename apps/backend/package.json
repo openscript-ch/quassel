@@ -70,7 +70,7 @@
     "typescript": "^5.8.2"
   },
   "overrides": {
-    "sodium-native": "4.2.0"
+    "sodium-native": "4.3.3"
   },
   "jest": {
     "moduleFileExtensions": [
