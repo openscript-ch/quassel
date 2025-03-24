@@ -1,5 +1,9 @@
 ---
+import { Image } from "astro:assets";
+import UzhLogo from "../assets/logos/uzh-logo.svg";
 import videoUrl from "../assets/video/quassel.mp4";
+import Poster from "../assets/video/video-assets/poster.png";
+import PlayButton from "../assets/video/video-assets/play-button.svg";
 ---
 
 <style>
@@ -103,15 +107,15 @@ import videoUrl from "../assets/video/quassel.mp4";
     <p>Efficient documenting <strong>children's</strong> language exposure by carer giver and time.</p>
   </div>
   <div class="quassel-video">
-    <video controls poster="./assets/poster.png" muted playsinline>
+    <video controls poster={Poster.src} muted playsinline>
       <source src={videoUrl} type="video/mp4" />
     </video>
     <button class="playButton">
-      <img src="../assets/play-button.svg" alt="Play button" />
+      <Image src={PlayButton} alt="Play button" />
     </button>
   </div>
   <div class="used-by">
     <h2>Used by</h2>
-    <a href="https://www.uzh.ch/en.html"><img src="../assets/uzh-logo.svg" alt="University of Zurich" /></a>
+    <a href="https://www.uzh.ch/en.html"><Image src={UzhLogo} alt="University of Zurich" /></a>
   </div>
 </section>

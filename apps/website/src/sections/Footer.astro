@@ -1,3 +1,9 @@
+---
+import { Image } from "astro:assets";
+import UzhLogo from "../assets/logos/uzh-logo.svg";
+import OpenScriptLogo from "../assets/logos/openscript-logo.svg";
+---
+
 <style>
   footer {
     display: grid;
@@ -43,14 +49,14 @@
 <footer>
   <h2>Interested in Using Quassel?</h2>
   <div class="contact">
-    <img src="../assets/uzh-logo.svg" alt="University of Zurich logo" />
+    <Image src={UzhLogo} alt="University of Zurich logo" />
     <h3>Research collaboration</h3>
     <a href="https://www.psychology.uzh.ch/en/areas/dev/devpsy/Weltentdecker/Research-area-Multilingualism-and-Communication.html">
       Reach out to <strong>Stephanie</strong> from University of Zurich
     </a>
   </div>
   <div class="contact">
-    <img src="../assets/openscript-logo.svg" alt="openscript Ltd. logo" />
+    <Image src={OpenScriptLogo} alt="openscript Ltd. logo" />
     <h3>Tech collaboration</h3>
     <a href="https://openscript.ch/en/">Contact <strong>Robin</strong> from openscript Ltd.</a>
   </div>
