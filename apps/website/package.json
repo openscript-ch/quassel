@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.5",
-    "@fontsource-variable/onest": "^5.2.7",
-    "astro": "^5.5.4",
+    "@fontsource-variable/onest": "^5.2.6",
+    "astro": "^5.5.3",
     "reveal.js": "^5.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@iconify/json": "^2.2.320",
+    "@iconify/json": "^2.2.318",
     "@types/reveal.js": "^5.0.5",
     "sharp": "^0.33.5",
     "typescript": "^5.8.2",
