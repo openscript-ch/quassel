@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.0.6
+
+### Patch Changes
+
+- 4befcb1: Fix bubble and play button odd behaviours, and insert metadata into <html> tags.
+
 ## 0.0.5
 
 ### Patch Changes
