@@ -1,4 +1,5 @@
 ---
+import Head from "../components/Head.astro";
 import Site from "../layouts/Site.astro";
 import Header from "../sections/Header.astro";
 import Footer from "../sections/Footer.astro";
@@ -8,11 +9,7 @@ import Administration from "../sections/Administration.astro";
 import About from "../sections/About.astro";
 ---
 
-<head>
-  <meta charset="utf-8" />
-  <link rel="icon" type="image/svg+xml" href="/assets/quassel-icon.svg" />
-  <title>Quassel</title>
-</head>
+<Head title="Quassel" />
 <Site>
   <Header />
   <main>

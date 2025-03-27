@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import QuasselLogo from "../assets/logos/quassel-icon.svg";
 import IconChevronRight from "~icons/tabler/chevron-right";
 ---
 
@@ -12,7 +14,7 @@ import IconChevronRight from "~icons/tabler/chevron-right";
 
   .brand {
     display: flex;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
     color: var(--color-highlight);
     align-items: baseline;
   }
@@ -41,7 +43,7 @@ import IconChevronRight from "~icons/tabler/chevron-right";
     stroke-width: 3;
   }
 
-  img {
+  .brand img {
     height: 4rem;
   }
 </style>
@@ -49,7 +51,7 @@ import IconChevronRight from "~icons/tabler/chevron-right";
 <header>
   <div class="brand">
     <h1>Quassel</h1>
-    <img src="../assets/quassel-icon.svg" alt="Quassel logo" />
+    <Image src={QuasselLogo} alt="Quassel logo" />
   </div>
   <nav>
     <ul>

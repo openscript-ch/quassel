@@ -1,5 +1,9 @@
 ---
-import videoUrl from "../assets/video/quassel.mp4";
+import { Image } from "astro:assets";
+import UzhLogo from "../assets/logos/uzh-logo.svg";
+import videoUrl from "../assets/videos/quassel.mp4";
+import Poster from "../assets/videos/poster.png";
+import PlayButton from "../assets/videos/play-button.svg";
 ---
 
 <style>
@@ -19,9 +23,10 @@ import videoUrl from "../assets/video/quassel.mp4";
   }
 
   .intro {
-    width: 36rem;
     text-align: center;
     margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    max-width: 37rem;
   }
 
   .quassel-video {
@@ -52,18 +57,25 @@ import videoUrl from "../assets/video/quassel.mp4";
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
   }
 
   .playButton :hover {
     transform: scale(1.1);
   }
 
+  .playButton img {
+    width: clamp(3rem, 10vw, 6rem);
+  }
+
   .used-by {
     margin-top: var(--spacing-xl);
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: var(--spacing-sm);
+    display: flex;
+    gap: var(--spacing-lg);
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      gap: 0;
+    }
   }
 
   .used-by h2 {
@@ -73,7 +85,7 @@ import videoUrl from "../assets/video/quassel.mp4";
   }
 
   .used-by img {
-    height: calc(2 * var(--spacing-lg));
+    max-height: 4rem;
   }
 
   .used-by a :hover {
@@ -103,15 +115,15 @@ import videoUrl from "../assets/video/quassel.mp4";
     <p>Efficient documenting <strong>children's</strong> language exposure by carer giver and time.</p>
   </div>
   <div class="quassel-video">
-    <video controls poster="./assets/poster.png" muted playsinline>
+    <video controls poster={Poster.src} muted playsinline>
       <source src={videoUrl} type="video/mp4" />
     </video>
     <button class="playButton">
-      <img src="../assets/play-button.svg" alt="Play button" />
+      <Image src={PlayButton} alt="Play button" />
     </button>
   </div>
   <div class="used-by">
     <h2>Used by</h2>
-    <a href="https://www.uzh.ch/en.html"><img src="../assets/uzh-logo.svg" alt="University of Zurich" /></a>
+    <a href="https://www.uzh.ch/en.html"><Image src={UzhLogo} alt="University of Zurich" /></a>
   </div>
 </section>
