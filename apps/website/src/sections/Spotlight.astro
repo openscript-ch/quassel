@@ -44,6 +44,10 @@ import PlayButton from "../assets/videos/play-button.svg";
     margin-inline: var(--spacing-xl);
   }
 
+  .video-not-interactive {
+    pointer-events: none;
+  }
+
   video::-webkit-media-controls-panel {
     background-image: none;
     filter: brightness(0.2);
@@ -57,6 +61,11 @@ import PlayButton from "../assets/videos/play-button.svg";
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    visibility: visible;
+  }
+
+  .playButton-invisible {
+    visibility: hidden;
   }
 
   .playButton :hover {
@@ -99,20 +108,20 @@ import PlayButton from "../assets/videos/play-button.svg";
     const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
     let isPlaying = false;
 
-    video.style.pointerEvents = "none";
+    video.classList.add("video-not-interactive");
 
     myButton.addEventListener("click", () => {
       video.play();
       isPlaying = true;
-      myButton.style.visibility = "hidden";
-      video.style.pointerEvents = "auto";
+      myButton.classList.add("playButton-invisible");
+      video.classList.remove("video-not-interactive");
     });
 
     video.addEventListener("pause", () => {
       if (isPlaying) {
         isPlaying = false;
-        myButton.style.visibility = "visible";
-        video.style.pointerEvents = "none";
+        myButton.classList.remove("playButton-invisible");
+        video.classList.add("video-not-interactive");
       }
     });
   });
