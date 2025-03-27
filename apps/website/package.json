@@ -1,7 +1,7 @@
 {
   "name": "@quassel/website",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": {
     "dev": "astro dev --host",
     "prebuild": "astro check",
