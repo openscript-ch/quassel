@@ -99,11 +99,20 @@ import PlayButton from "../assets/videos/play-button.svg";
     const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
     let isPlaying = false;
 
+    video.style.pointerEvents = "none";
+
     myButton.addEventListener("click", () => {
-      if (!isPlaying) {
-        video.play();
-        myButton.style.visibility = "hidden";
-        isPlaying = true;
+      video.play();
+      isPlaying = true;
+      myButton.style.visibility = "hidden";
+      video.style.pointerEvents = "auto";
+    });
+
+    video.addEventListener("pause", () => {
+      if (isPlaying) {
+        isPlaying = false;
+        myButton.style.visibility = "visible";
+        video.style.pointerEvents = "none";
       }
     });
   });
