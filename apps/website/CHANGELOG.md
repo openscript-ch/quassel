@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.0.5
+
+### Patch Changes
+
+- 75dfa6f: Fix assets root path
+
 ## 0.0.4
 
 ### Patch Changes
