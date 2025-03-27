@@ -1,5 +1,6 @@
 ---
 const { title } = Astro.props;
+const ogImageUrl = "/opengraph.png";
 ---
 
 <head>
@@ -16,12 +17,16 @@ const { title } = Astro.props;
     name="description"
     content="Quassel is a web-based application designed to aid researchers in collecting and analyzing data on children's language exposure."
   />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.quassel.ch/" />
+  <meta property="og:title" content={title} />
   <meta
     property="og:description"
     content="Quassel (previously Language Exposure Questionnaire) is a web-based application designed to aid researchers in collecting and analyzing data on children's language exposure. "
   />
+  <meta property="og:image" content={ogImageUrl} />
+  <meta property="og:image:alt" content="Quassel Application Display" />
   <meta
     name="keywords"
     content="Quassel, children, calendar-like interface, language, langauge exposure, web application, periods of life, data entry personnel, UZH, openscript, open source"
