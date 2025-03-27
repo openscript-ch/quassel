@@ -105,22 +105,22 @@ import PlayButton from "../assets/videos/play-button.svg";
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector("video") as HTMLVideoElement;
-    const myButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
+    const playButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
     let isPlaying = false;
 
     video.classList.add("video-not-interactive");
 
-    myButton.addEventListener("click", () => {
+    playButton.addEventListener("click", () => {
       video.play();
       isPlaying = true;
-      myButton.classList.add("playButton-invisible");
+      playButton.classList.add("playButton-invisible");
       video.classList.remove("video-not-interactive");
     });
 
     video.addEventListener("pause", () => {
       if (isPlaying) {
         isPlaying = false;
-        myButton.classList.remove("playButton-invisible");
+        playButton.classList.remove("playButton-invisible");
         video.classList.add("video-not-interactive");
       }
     });
