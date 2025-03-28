@@ -210,13 +210,13 @@ importers:
         version: 0.8.4(nanostores@0.11.4)(react@19.0.0)
       '@quassel/ui':
         specifier: workspace:*
-        version: link:../../libs/ui
+        version: file:libs/ui(@types/react@19.0.12)
       '@quassel/utils':
         specifier: workspace:*
         version: link:../../libs/utils
       '@tanstack/react-query':
         specifier: ^5.69.0
-        version: 5.69.0(react@19.0.0)
+        version: 5.70.0(react@19.0.0)
       '@tanstack/react-router':
         specifier: ^1.114.27
         version: 1.114.27(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -228,7 +228,7 @@ importers:
         version: 0.13.5
       openapi-react-query:
         specifier: 0.3.1
-        version: 0.3.1(@tanstack/react-query@5.69.0(react@19.0.0))(openapi-fetch@0.13.5)
+        version: 0.3.1(@tanstack/react-query@5.70.0(react@19.0.0))(openapi-fetch@0.13.5)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -2030,6 +2030,14 @@ packages:
       react: ^18.x || ^19.x
       react-dom: ^18.x || ^19.x
 
+  '@mantine/modals@7.17.3':
+    resolution: {integrity: sha512-ZwNDTmfqyVRPUNl+vtBDbgZ9aVeQw6H+KLDSZxEsIYjc8p6u7FgCQ/FaBpsJOf//Oc7gHTLF0al27AqvW8jmOA==}
+    peerDependencies:
+      '@mantine/core': 7.17.3
+      '@mantine/hooks': 7.17.3
+      react: ^18.x || ^19.x
+      react-dom: ^18.x || ^19.x
+
   '@mantine/notifications@7.17.2':
     resolution: {integrity: sha512-vg0L8cmihz0ODg4WJ9MAyK06WPt/6g67ksIUFxd4F8RfdJbIMLTsNG9yWoSfuhtXenUg717KaA917IWLjDSaqw==}
     peerDependencies:
@@ -2549,6 +2557,9 @@ packages:
     resolution: {integrity: sha512-vsJDAkYR6qCPu+ioGScGiMYR7LvZYIXh/dlQeviqoTWNCVfKTLYD/LkNWH4Mxsv2a5vpIRc77FN5DnmK1eBggQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
 
+  '@quassel/ui@file:libs/ui':
+    resolution: {directory: libs/ui, type: directory}
+
   '@redocly/ajv@8.11.2':
     resolution: {integrity: sha512-io1JpnwtIcvojV7QKDUSIuMN/ikdOUd1ReEnUnMKGfDVridQZ31J0MmIuqwuRjWDZfmvr+Q0MqCcfHM2gTivOg==}
 
@@ -2828,11 +2839,11 @@ packages:
     resolution: {integrity: sha512-CNwKraj/Xa8H7DUyzrFBQC3wL96JzIxT4i9CW0hxqFNNmLDyUcMJr8264iqqfxC0u1lFSG96URad08T2Qhadpw==}
     engines: {node: '>=12'}
 
-  '@tanstack/query-core@5.69.0':
-    resolution: {integrity: sha512-Kn410jq6vs1P8Nm+ZsRj9H+U3C0kjuEkYLxbiCyn3MDEiYor1j2DGVULqAz62SLZtUZ/e9Xt6xMXiJ3NJ65WyQ==}
+  '@tanstack/query-core@5.70.0':
+    resolution: {integrity: sha512-ZkkjQAZjI6nS5OyAmaSQafQXK180Xvp0lZYk4BzrnskkTV8On3zSJUxOIXnh0h/8EgqRkCA9i879DiJovA1kGw==}
 
-  '@tanstack/react-query@5.69.0':
-    resolution: {integrity: sha512-Ift3IUNQqTcaFa1AiIQ7WCb/PPy8aexZdq9pZWLXhfLcLxH0+PZqJ2xFImxCpdDZrFRZhLJrh76geevS5xjRhA==}
+  '@tanstack/react-query@5.70.0':
+    resolution: {integrity: sha512-z0tx1zz2CQ6nTm+fCaOp93FqsFjNgXtOy+4mC5ifQ4B+rJiMD0AGfJrYSGh/OuefhrzTYDAbkGUAGw6JzkWy8g==}
     peerDependencies:
       react: ^18 || ^19
 
@@ -10178,6 +10189,13 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
+  '@mantine/modals@7.17.3(@mantine/core@7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.17.2(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@mantine/core': 7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@mantine/hooks': 7.17.2(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+
   '@mantine/notifications@7.17.2(@mantine/core@7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.17.2(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@mantine/core': 7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -10777,6 +10795,22 @@ snapshots:
 
   '@pkgr/core@0.2.0': {}
 
+  '@quassel/ui@file:libs/ui(@types/react@19.0.12)':
+    dependencies:
+      '@mantine/core': 7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@mantine/dates': 7.17.2(@mantine/core@7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.17.2(react@19.0.0))(dayjs@1.11.13)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@mantine/form': 7.17.2(react@19.0.0)
+      '@mantine/hooks': 7.17.2(react@19.0.0)
+      '@mantine/modals': 7.17.3(@mantine/core@7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.17.2(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@mantine/notifications': 7.17.2(@mantine/core@7.17.2(@mantine/hooks@7.17.2(react@19.0.0))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@mantine/hooks@7.17.2(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@tabler/icons-react': 3.31.0(react@19.0.0)
+      dayjs: 1.11.13
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      react-dsv-import: 0.4.10(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+    transitivePeerDependencies:
+      - '@types/react'
+
   '@redocly/ajv@8.11.2':
     dependencies:
       fast-deep-equal: 3.1.3
@@ -11063,11 +11097,11 @@ snapshots:
 
   '@tanstack/history@1.114.22': {}
 
-  '@tanstack/query-core@5.69.0': {}
+  '@tanstack/query-core@5.70.0': {}
 
-  '@tanstack/react-query@5.69.0(react@19.0.0)':
+  '@tanstack/react-query@5.70.0(react@19.0.0)':
     dependencies:
-      '@tanstack/query-core': 5.69.0
+      '@tanstack/query-core': 5.70.0
       react: 19.0.0
 
   '@tanstack/react-router-devtools@1.114.27(@tanstack/react-router@1.114.27(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@tanstack/router-core@1.114.25)(csstype@3.1.3)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(tiny-invariant@1.3.3)':
@@ -15171,9 +15205,9 @@ snapshots:
     dependencies:
       openapi-typescript-helpers: 0.0.15
 
-  openapi-react-query@0.3.1(@tanstack/react-query@5.69.0(react@19.0.0))(openapi-fetch@0.13.5):
+  openapi-react-query@0.3.1(@tanstack/react-query@5.70.0(react@19.0.0))(openapi-fetch@0.13.5):
     dependencies:
-      '@tanstack/react-query': 5.69.0(react@19.0.0)
+      '@tanstack/react-query': 5.70.0(react@19.0.0)
       openapi-fetch: 0.13.5
       openapi-typescript-helpers: 0.0.15
 
