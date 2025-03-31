@@ -53,7 +53,18 @@ import PlayButton from "../assets/videos/play-button.svg";
     filter: brightness(0.2);
   }
 
-  .playButton {
+  /* 隐藏所有浏览器的原生播放按钮 */
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-start-playback-button,
+  video::-moz-media-controls-play-button {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .play-button {
     background: none;
     position: absolute;
     border: none;
@@ -64,15 +75,15 @@ import PlayButton from "../assets/videos/play-button.svg";
     visibility: visible;
   }
 
-  .playButton-invisible {
+  .play-button-invisible {
     visibility: hidden;
   }
 
-  .playButton :hover {
+  .play-button :hover {
     transform: scale(1.1);
   }
 
-  .playButton img {
+  .play-button img {
     width: clamp(3rem, 10vw, 6rem);
   }
 
@@ -105,7 +116,7 @@ import PlayButton from "../assets/videos/play-button.svg";
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector("video") as HTMLVideoElement;
-    const playButton = document.getElementsByClassName("playButton")[0] as HTMLButtonElement;
+    const playButton = document.getElementsByClassName("play-button")[0] as HTMLButtonElement;
     let isPlaying = false;
 
     video.classList.add("video-not-interactive");
@@ -113,14 +124,14 @@ import PlayButton from "../assets/videos/play-button.svg";
     playButton.addEventListener("click", () => {
       video.play();
       isPlaying = true;
-      playButton.classList.add("playButton-invisible");
+      playButton.classList.add("play-button-invisible");
       video.classList.remove("video-not-interactive");
     });
 
     video.addEventListener("pause", () => {
       if (isPlaying) {
         isPlaying = false;
-        playButton.classList.remove("playButton-invisible");
+        playButton.classList.remove("play-button-invisible");
         video.classList.add("video-not-interactive");
       }
     });
@@ -136,7 +147,7 @@ import PlayButton from "../assets/videos/play-button.svg";
     <video controls poster={Poster.src} muted playsinline>
       <source src={videoUrl} type="video/mp4" />
     </video>
-    <button class="playButton">
+    <button class="play-button">
       <Image src={PlayButton} alt="Play button" />
     </button>
   </div>
