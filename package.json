@@ -40,10 +40,19 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.5.0",
+  "packageManager": "pnpm@10.7.0",
   "pnpm": {
     "overrides": {
       "sodium-native": "4.2.0"
-    }
+    },
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@scarf/scarf",
+      "core-js-pure",
+      "esbuild",
+      "nx",
+      "sharp",
+      "sodium-native"
+    ]
   }
 }
