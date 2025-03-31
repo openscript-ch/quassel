@@ -42,9 +42,6 @@
   },
   "packageManager": "pnpm@10.7.0",
   "pnpm": {
-    "overrides": {
-      "sodium-native": "4.2.0"
-    },
     "onlyBuiltDependencies": [
       "@nestjs/core",
       "@scarf/scarf",
