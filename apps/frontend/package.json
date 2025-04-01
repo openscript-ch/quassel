@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@anolilab/unplugin-favicons": "^1.0.5",
-    "@tanstack/router-devtools": "^1.114.29",
-    "@tanstack/router-plugin": "^1.114.30",
+    "@tanstack/router-devtools": "^1.114.31",
+    "@tanstack/router-plugin": "^1.114.31",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.12",
