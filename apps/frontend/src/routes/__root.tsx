@@ -99,7 +99,7 @@ function Root() {
           <Outlet />
         </AppShell.Main>
 
-        <AppShell.Footer>
+        <AppShell.Footer zIndex={1000}>
           <Group justify="space-between">
             <FooterLogos />
             Version {version}
