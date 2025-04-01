@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.1.0
+
+### Minor Changes
+
+- edeacaa: Update play button class name, video ratio and controls effect
+
 ## 0.0.7
 
 ### Patch Changes
