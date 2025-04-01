@@ -53,16 +53,6 @@ import PlayButton from "../assets/videos/play-button.svg";
     filter: brightness(0.2);
   }
 
-  video::-webkit-media-controls-play-button,
-  video::-webkit-media-controls-start-playback-button,
-  video::-moz-media-controls-play-button {
-    display: none !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
-
   .play-button {
     background: none;
     position: absolute;
@@ -116,23 +106,36 @@ import PlayButton from "../assets/videos/play-button.svg";
   document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector("video") as HTMLVideoElement;
     const playButton = document.getElementsByClassName("play-button")[0] as HTMLButtonElement;
-    let isPlaying = false;
+    let isUserPause = false;
 
+    video.removeAttribute("controls");
     video.classList.add("video-not-interactive");
 
     playButton.addEventListener("click", () => {
       video.play();
-      isPlaying = true;
       playButton.classList.add("play-button-invisible");
       video.classList.remove("video-not-interactive");
+      video.setAttribute("controls", "true");
+      isUserPause = true;
     });
 
     video.addEventListener("pause", () => {
-      if (isPlaying) {
-        isPlaying = false;
+      if (isUserPause == true) {
         playButton.classList.remove("play-button-invisible");
         video.classList.add("video-not-interactive");
+        video.removeAttribute("controls");
       }
+    });
+
+    video.addEventListener("click", (e) => {
+      const target = e.target as HTMLVideoElement;
+      if (target === video && video.hasAttribute("controls")) {
+        isUserPause = true;
+      }
+    });
+
+    video.addEventListener("seeking", () => {
+      isUserPause = false;
     });
   });
 </script>
