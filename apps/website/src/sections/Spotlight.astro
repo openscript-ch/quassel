@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import UzhLogo from "../assets/logos/uzh-logo.svg";
-import videoUrl from "../assets/videos/quassel.mp4";
+import Video from "../assets/videos/quassel.mp4";
 import Poster from "../assets/videos/poster.png";
-import PlayButton from "../assets/videos/play-button.svg";
+import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
 ---
 
 <style>
@@ -12,14 +12,17 @@ import PlayButton from "../assets/videos/play-button.svg";
     flex-direction: column;
     align-items: center;
     background: radial-gradient(50% 50% at 50% 50%, var(--color-primary) 60%, transparent 100%);
+    font-size: var(--font-size-lg);
   }
 
   h1 {
     font-size: var(--font-size-xxxl);
   }
 
-  p {
+  h2 {
     font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    align-self: center;
   }
 
   .intro {
@@ -29,7 +32,7 @@ import PlayButton from "../assets/videos/play-button.svg";
     max-width: 37rem;
   }
 
-  .quassel-video {
+  .video-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,26 +57,21 @@ import PlayButton from "../assets/videos/play-button.svg";
   }
 
   .play-button {
-    background: none;
     position: absolute;
-    border: none;
     cursor: pointer;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    visibility: visible;
+    translate: -50% -50%;
+    transform-origin: center center;
+    width: clamp(3rem, 10vw, 6rem);
   }
 
-  .play-button-invisible {
+  .play-button.hidden {
     visibility: hidden;
   }
 
-  .play-button :hover {
+  .play-button:hover {
     transform: scale(1.1);
-  }
-
-  .play-button img {
-    width: clamp(3rem, 10vw, 6rem);
   }
 
   .used-by {
@@ -85,12 +83,6 @@ import PlayButton from "../assets/videos/play-button.svg";
       flex-direction: column;
       gap: 0;
     }
-  }
-
-  .used-by h2 {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-    align-self: center;
   }
 
   .used-by img {
@@ -105,38 +97,26 @@ import PlayButton from "../assets/videos/play-button.svg";
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector("video") as HTMLVideoElement;
-    const playButton = document.getElementsByClassName("play-button")[0] as HTMLButtonElement;
-    let isUserPause = false;
+    const playButton = document.querySelector(".play-button") as HTMLButtonElement;
+    let wasSeeking = false;
 
-    video.removeAttribute("controls");
-    video.classList.add("video-not-interactive");
-
-    playButton.addEventListener("click", () => {
-      video.play();
-      playButton.classList.add("play-button-invisible");
-      video.classList.remove("video-not-interactive");
-      video.setAttribute("controls", "true");
-      isUserPause = true;
-    });
-
-    video.addEventListener("pause", () => {
-      if (isUserPause == true) {
-        playButton.classList.remove("play-button-invisible");
-        video.classList.add("video-not-interactive");
-        video.removeAttribute("controls");
+    const togglePlayButton = () => {
+      if (!video.seeking && !wasSeeking) {
+        playButton.classList.toggle("hidden");
+        if (video.getAttribute("controls")) {
+          video.removeAttribute("controls");
+        } else {
+          video.setAttribute("controls", "true");
+        }
+      } else {
+        wasSeeking = !wasSeeking;
       }
-    });
+    };
 
-    video.addEventListener("click", (e) => {
-      const target = e.target as HTMLVideoElement;
-      if (target === video && video.hasAttribute("controls")) {
-        isUserPause = true;
-      }
-    });
-
-    video.addEventListener("seeking", () => {
-      isUserPause = false;
-    });
+    playButton.addEventListener("click", () => video.play());
+    video.addEventListener("play", togglePlayButton);
+    video.addEventListener("pause", togglePlayButton);
+    video.addEventListener("click", togglePlayButton);
   });
 </script>
 
@@ -145,13 +125,11 @@ import PlayButton from "../assets/videos/play-button.svg";
     <h1>Gather language exposure data</h1>
     <p>Efficient documenting <strong>children's</strong> language exposure by carer, language and time.</p>
   </div>
-  <div class="quassel-video">
-    <video controls poster={Poster.src} muted playsinline>
-      <source src={videoUrl} type="video/mp4" />
+  <div class="video-wrapper">
+    <video poster={Poster.src} muted playsinline>
+      <source src={Video} type="video/mp4" />
     </video>
-    <button class="play-button">
-      <Image src={PlayButton} alt="Play button" />
-    </button>
+    <Image class="play-button" src={PlayButtonSymbol} alt="Play button symbol" />
   </div>
   <div class="used-by">
     <h2>Used by</h2>
