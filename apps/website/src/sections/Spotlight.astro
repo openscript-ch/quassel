@@ -103,11 +103,7 @@ import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
     const togglePlayButton = () => {
       if (!video.seeking && !wasSeeking) {
         playButton.classList.toggle("hidden");
-        if (video.getAttribute("controls")) {
-          video.removeAttribute("controls");
-        } else {
-          video.setAttribute("controls", "true");
-        }
+        video.toggleAttribute("controls");
       } else {
         wasSeeking = !wasSeeking;
       }
