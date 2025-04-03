@@ -36,7 +36,8 @@ import "@mantine/dates/styles.css";
 
 import "@mantine/notifications/styles.css";
 
-export { ThemeProvider } from "./theme/ThemeProvider";
+export { uzhColors } from "./theme/uzh";
+export { ThemeProvider, defaultTheme } from "./theme/ThemeProvider";
 
 // custom components
 export { Brand } from "./components/Brand";
@@ -70,6 +71,7 @@ export {
   InputError,
   InputLabel,
   Menu,
+  mergeThemeOverrides,
   Modal,
   NavLink,
   Paper,
@@ -129,5 +131,4 @@ export {
   IconClearAll,
 } from "@tabler/icons-react";
 
-export { uzhColors } from "./theme/uzh";
 export { DSVImport, type ColumnType } from "react-dsv-import";

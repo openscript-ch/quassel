@@ -1,4 +1,4 @@
-import { MantineProvider, MantineThemeOverride, MantineProviderProps } from "@mantine/core";
+import { MantineProvider, MantineThemeOverride, MantineProviderProps, createTheme } from "@mantine/core";
 import "./Theme.css";
 import { DatesProvider } from "@mantine/dates";
 import dayjs from "dayjs";
@@ -10,7 +10,7 @@ import { ModalsProvider } from "@mantine/modals";
 
 dayjs.extend(utc);
 
-type ExtendedCustomColors = UZHColor | DefaultMantineColor;
+type ExtendedCustomColors = "quassel" | UZHColor | DefaultMantineColor;
 
 declare module "@mantine/core" {
   export interface MantineThemeColorsOverride {
@@ -20,8 +20,9 @@ declare module "@mantine/core" {
 
 type ThemeProviderProps = MantineProviderProps;
 
-export const theme: MantineThemeOverride = {
+export const defaultTheme: MantineThemeOverride = createTheme({
   colors: {
+    quassel: ["#e5f9ff", "#d3edfb", "#a9d9f1", "#7cc3e8", "#58b1e1", "#40a6dd", "#30a0dc", "#1f8cc4", "#0b7cb0", "#006c9c"],
     uzhBlue: convertUZHColorsToMantine(uzhColors.uzhBlue),
     uzhCyan: convertUZHColorsToMantine(uzhColors.uzhCyan),
     uzhGreen: convertUZHColorsToMantine(uzhColors.uzhGreen),
@@ -32,12 +33,12 @@ export const theme: MantineThemeOverride = {
     uzhWhite: convertUZHColorsToMantine(uzhColors.uzhWhite),
   },
   primaryColor: "uzhGold",
-};
+});
 
 export function ThemeProvider({ children, ...args }: ThemeProviderProps) {
   return (
     <DatesProvider settings={{ timezone: "UTC" }}>
-      <MantineProvider {...args} theme={theme}>
+      <MantineProvider theme={defaultTheme} {...args}>
         <ModalsProvider>
           <Notifications />
           {children}

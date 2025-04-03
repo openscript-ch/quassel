@@ -75,6 +75,7 @@ services:
     restart: unless-stopped
     environment:
       API_URL: https://api.test.example.com
+      THEME_COLOR: uzhGold
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
