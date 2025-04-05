@@ -25,6 +25,8 @@ declare global {
   interface Window {
     env?: {
       apiUrl?: string;
+      themeColor?: string;
+      title?: string;
     };
   }
 }
