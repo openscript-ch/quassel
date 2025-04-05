@@ -26,6 +26,7 @@ declare global {
     env?: {
       apiUrl?: string;
       themeColor?: string;
+      title?: string;
     };
   }
 }

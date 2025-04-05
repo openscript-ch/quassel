@@ -27,6 +27,7 @@ import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
 import { DefaultError, useQueryClient } from "@tanstack/react-query";
 import { i18n } from "../stores/i18n";
+import { C } from "../configuration";
 
 const messages = i18n("RootRoute", {
   title: "Home",
@@ -66,7 +67,7 @@ function Root() {
         <AppShell.Header>
           <Group justify="space-between">
             <Link to="/">
-              <Brand />
+              <Brand title={C.env.title} />
             </Link>
             {sessionStore.email && (
               <Group>

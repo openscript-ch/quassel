@@ -3,9 +3,9 @@ import { Button, Container, Group, Hero, Text, Title } from "@quassel/ui";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { Link } from "@tanstack/react-router";
+import { C } from "../configuration";
 
 const messages = i18n("heroSection", {
-  title: "LEMON",
   subtitle: "Gather language exposure",
   toFormAction: "Questionnaire",
   toAdminAction: "Administration",
@@ -18,7 +18,7 @@ export function HeroSection() {
       <div className={classes.inner}>
         <div className={classes.content}>
           <Title className={classes.title}>
-            <span className={classes.highlight}>{t.title}</span>
+            <span className={classes.highlight}>{C.env.title}</span>
           </Title>
           <Text c="dimmed" mt="md">
             <b>L</b>anguage <b>E</b>xposure questionnaire for <b>M</b>ultilinguals <b>On</b>line

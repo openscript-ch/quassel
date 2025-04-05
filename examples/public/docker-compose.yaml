@@ -76,6 +76,7 @@ services:
     environment:
       API_URL: https://api.test.example.com
       THEME_COLOR: uzhGold
+      TITLE: LEMON
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"

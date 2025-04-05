@@ -25,6 +25,7 @@ declare module "@tanstack/react-router" {
 }
 
 const currentTheme = mergeThemeOverrides(defaultTheme, { primaryColor: C.env.themeColor });
+if (import.meta.env.DEV) document.title = C.env.title;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
