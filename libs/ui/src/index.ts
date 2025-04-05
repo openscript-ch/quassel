@@ -43,6 +43,7 @@ export { ThemeProvider, defaultTheme } from "./theme/ThemeProvider";
 export { Brand } from "./components/Brand";
 export { ContentShell } from "./components/ContentShell";
 export { FooterLogos } from "./components/FooterLogos";
+export { Hero } from "./components/Hero";
 export { ImportInput } from "./components/ImportInput";
 export { ImportPreview } from "./components/ImportPreview";
 export { MonthPicker } from "./components/MonthPicker";

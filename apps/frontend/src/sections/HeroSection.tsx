@@ -1,6 +1,5 @@
-import image from "./HeroSection.svg";
 import classes from "./HeroSection.module.css";
-import { Button, Container, Group, Text, Title } from "@quassel/ui";
+import { Button, Container, Group, Hero, Text, Title } from "@quassel/ui";
 import { i18n } from "../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { Link } from "@tanstack/react-router";
@@ -34,7 +33,7 @@ export function HeroSection() {
             </Button>
           </Group>
         </div>
-        <img src={image} alt="Lemon family" className={classes.image} />
+        <Hero />
       </div>
     </Container>
   );
