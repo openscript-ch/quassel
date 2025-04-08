@@ -16,7 +16,7 @@ export default defineConfig({
     react(),
     TanStackRouterVite({ quoteStyle: "double", semicolons: true }),
     unpluginFavicons({
-      logo: "/public/logo.svg",
+      logo: "./public/logo.svg",
       inject: true,
       appName: "LEMON",
       appShortName: "LEMON",
