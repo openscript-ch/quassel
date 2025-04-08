@@ -10,6 +10,7 @@ export const C = {
     apiUrl: getEnv("apiUrl") || import.meta.env.VITE_API_URL,
     themeColor: getEnv("themeColor") || import.meta.env.VITE_THEME_COLOR,
     title: getEnv("title") || import.meta.env.VITE_TITLE,
+    logoUrl: getEnv("logoUrl") || import.meta.env.VITE_LOGO_URL,
   },
   ui: {
     maxDropdownHeight: 800,

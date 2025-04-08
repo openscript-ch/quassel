@@ -1,14 +1,14 @@
-import { Group, Stack, Title } from "@mantine/core";
-import Logo from "../assets/logo.svg?react";
+import { Group, Stack, Title, Image } from "@mantine/core";
 
 type Props = {
   title: string;
+  logoUrl: string;
 };
 
-export function Brand({ title }: Props) {
+export function Brand({ title, logoUrl }: Props) {
   return (
     <Group className="quassel-Brand" gap="md">
-      <Logo className="quassel-Logo" />
+      <Image src={logoUrl} className="quassel-Logo" />
       <Stack gap={0}>
         <Title order={2} c="black">
           {title}
