@@ -78,7 +78,7 @@ services:
       THEME_COLOR: uzhGold
       TITLE: LEMON
     volumes:
-      - LOGO_URL: ../public/logo.svg
+      - logo.svg:/usr/share/nginx/logo.svg
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"

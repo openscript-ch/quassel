@@ -67,7 +67,7 @@ function Root() {
         <AppShell.Header>
           <Group justify="space-between">
             <Link to="/">
-              <Brand title={C.env.title} logoUrl={C.env.logoUrl} />
+              <Brand title={C.env.title} />
             </Link>
             {sessionStore.email && (
               <Group>

@@ -27,7 +27,6 @@ declare global {
       apiUrl?: string;
       themeColor?: string;
       title?: string;
-      logoUrl?: string;
     };
   }
 }
