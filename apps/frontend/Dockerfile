@@ -1,6 +1,7 @@
 FROM docker.io/nginx:stable-alpine
 
 COPY dist/ /usr/share/nginx/html/
+RUN cp /usr/share/nginx/html/index.html /usr/share/nginx/html/index.template.html
 COPY ./.docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./.docker/entrypoint.sh /
 

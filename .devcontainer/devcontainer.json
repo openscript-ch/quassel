@@ -16,6 +16,12 @@
       ]
     }
   },
+  "forwardPorts": [
+    3000,
+    3001,
+    3002,
+    3003
+  ],
   "features": {
     // "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   }

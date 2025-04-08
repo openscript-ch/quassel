@@ -27,6 +27,7 @@ import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
 import { DefaultError, useQueryClient } from "@tanstack/react-query";
 import { i18n } from "../stores/i18n";
+import { C } from "../configuration";
 
 const messages = i18n("RootRoute", {
   title: "Home",
@@ -66,7 +67,7 @@ function Root() {
         <AppShell.Header>
           <Group justify="space-between">
             <Link to="/">
-              <Brand />
+              <Brand title={C.env.title} />
             </Link>
             {sessionStore.email && (
               <Group>
@@ -101,7 +102,21 @@ function Root() {
 
         <AppShell.Footer>
           <Group justify="space-between">
-            <FooterLogos />
+            <FooterLogos
+              logos={[
+                {
+                  src: "../public/uzh-logo.svg",
+                  href: "https://uzh.ch",
+                  alt: "UZH Logo",
+                },
+                {
+                  src: "../public/weltentdecker-logo.png",
+                  href: "https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html",
+                  alt: "Weltentdecker Logo",
+                  height: 50,
+                },
+              ]}
+            />
             Version {version}
           </Group>
         </AppShell.Footer>
