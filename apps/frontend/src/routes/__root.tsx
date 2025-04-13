@@ -102,21 +102,7 @@ function Root() {
 
         <AppShell.Footer>
           <Group justify="space-between">
-            <FooterLogos
-              logos={[
-                {
-                  src: "../public/uzh-logo.svg",
-                  href: "https://uzh.ch",
-                  alt: "UZH Logo",
-                },
-                {
-                  src: "../public/weltentdecker-logo.png",
-                  href: "https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html",
-                  alt: "Weltentdecker Logo",
-                  height: 50,
-                },
-              ]}
-            />
+            <FooterLogos />
             Version {version}
           </Group>
         </AppShell.Footer>
