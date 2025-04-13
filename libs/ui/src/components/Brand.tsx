@@ -1,11 +1,12 @@
 import { Group, Stack, Title } from "@mantine/core";
-import Logo from "../../../../apps/frontend/public/logo.svg?react";
+import React, { ComponentType } from "react";
 
 type Props = {
   title: string;
+  Logo: ComponentType<React.SVGProps<SVGSVGElement> | React.ImgHTMLAttributes<HTMLImageElement>>;
 };
 
-export function Brand({ title }: Props) {
+export function Brand({ title, Logo }: Props) {
   return (
     <Group className="quassel-Brand" gap="md">
       <Logo className="quassel-Logo" />
