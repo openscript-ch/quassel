@@ -34,6 +34,8 @@ const messages = i18n("RootRoute", {
   title: "Home",
 });
 
+const logos = JSON.parse(C.env.logos);
+
 function Root() {
   const n = useNavigate();
   const sessionStore = useStore($session);
@@ -103,7 +105,7 @@ function Root() {
 
         <AppShell.Footer>
           <Group justify="space-between">
-            <FooterLogos />
+            <FooterLogos logos={logos} />
             Version {version}
           </Group>
         </AppShell.Footer>
