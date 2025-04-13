@@ -77,8 +77,10 @@ services:
       API_URL: https://api.test.example.com
       THEME_COLOR: uzhGold
       TITLE: LEMON
+      LOGOS: "[{\"path\": \"/logos/uzh-logo.svg\", \"alt\": \"University of Zurich Logo\", \"url\": \"https://uzh.ch\"}, {\"path\": \"/logos/weltentdecker-logo.png\", \"alt\": \"Kleine Weltentdecker Logo\", \"url\": \"https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html\"}]"
     volumes:
       - ./logo.svg:/usr/share/nginx/html/logo.svg
+      - ./logos/:/usr/share/nginx/html/logos/
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
