@@ -13,7 +13,8 @@
     "coverage": "vitest --coverage",
     "dev": "vite --host",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "generate:icons": "pwa-asset-generator ./public/logo.svg ./public --type png --opaque false --favicon --maskable --manifest ./manifest.json --index ./index.html"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",

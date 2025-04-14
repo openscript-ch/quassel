@@ -1,16 +1,23 @@
 import { Group } from "@mantine/core";
-import UZHLogo from "../assets/uzh-logo.svg?react";
-import WeltentdeckerLogo from "../assets/weltentdecker-logo.png";
 
-export function FooterLogos() {
+type LogoItem = {
+  path: string;
+  alt: string;
+  url: string;
+};
+
+type Props = {
+  logos: LogoItem[];
+};
+
+export function FooterLogos({ logos }: Props) {
   return (
     <Group>
-      <a href="https://uzh.ch">
-        <UZHLogo />
-      </a>
-      <a href="https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html">
-        <img src={WeltentdeckerLogo} height={50} />
-      </a>
+      {logos.map((logo) => (
+        <a href={logo.url} key={logo.path}>
+          <img src={logo.path} alt={logo.alt} height={50} />
+        </a>
+      ))}
     </Group>
   );
 }
