@@ -34,7 +34,6 @@
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@anolilab/unplugin-favicons": "^1.0.5",
     "@tanstack/router-devtools": "^1.114.31",
     "@tanstack/router-plugin": "^1.114.31",
     "@testing-library/jest-dom": "^6.6.3",
