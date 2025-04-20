@@ -5,4 +5,8 @@ set -xe
 
 envsubst < /usr/share/nginx/html/index.template.html > /usr/share/nginx/html/index.html
 
+if [ -d /usr/share/nginx/html/icons ]; then
+  cp /usr/share/nginx/html/icons/* /usr/share/nginx/html
+fi
+
 exec "$@"

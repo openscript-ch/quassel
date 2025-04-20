@@ -81,6 +81,7 @@ services:
     volumes:
       - ./logo.svg:/usr/share/nginx/html/logo.svg
       - ./logos/:/usr/share/nginx/html/logos/
+      - ./icons/:/usr/share/nginx/html/icons/
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
       - "traefik.enable=true"
