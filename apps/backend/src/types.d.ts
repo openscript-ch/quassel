@@ -1,3 +1,4 @@
+import "@fastify/secure-session";
 import { SessionData as FastifySessionData } from "@fastify/secure-session";
 import { UserResponseDto } from "./system/users/user.dto";
 

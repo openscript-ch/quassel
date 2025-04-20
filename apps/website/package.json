@@ -12,15 +12,15 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.5",
     "@fontsource-variable/onest": "^5.2.7",
-    "astro": "^5.5.6",
+    "astro": "^5.7.4",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@iconify/json": "^2.2.322",
+    "@iconify/json": "^2.2.329",
     "@types/reveal.js": "^5.0.5",
-    "sharp": "^0.33.5",
-    "typescript": "^5.8.2",
+    "sharp": "^0.34.1",
+    "typescript": "^5.8.3",
     "unplugin-icons": "^22.1.0"
   }
 }
