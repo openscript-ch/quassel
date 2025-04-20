@@ -99,7 +99,7 @@ import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
     const video = document.querySelector("video") as HTMLVideoElement;
     const playButton = document.querySelector(".play-button") as HTMLButtonElement;
 
-    let ignoreNextClick = false
+    let ignoreNextClick = false;
     let videoPlaying = false;
     video.controls = false;
 
@@ -114,9 +114,9 @@ import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
       video.controls = true;
       videoPlaying = true;
       video.play();
-    })
+    });
 
-    if (videoPlaying){
+    if (videoPlaying) {
       video.addEventListener("click", () => {
         if (ignoreNextClick) {
           ignoreNextClick = false;
@@ -129,14 +129,13 @@ import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
         } else {
           video.pause();
         }
-      })
+      });
     }
 
     video.addEventListener("play", updatePlayButtonVisibility);
     video.addEventListener("pause", updatePlayButtonVisibility);
     video.addEventListener("seeking", updatePlayButtonVisibility);
     video.addEventListener("seeked", updatePlayButtonVisibility);
-    
     updatePlayButtonVisibility();
   });
 </script>
