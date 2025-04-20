@@ -1,4 +1,4 @@
-FROM docker.io/node:22-alpine
+FROM docker.io/node:22-slim
 RUN apk add --no-cache dumb-init curl postgresql17-client
 ENV NODE_ENV=production
 ENV PORT=3000
