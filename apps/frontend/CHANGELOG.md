@@ -1,5 +1,16 @@
 # @quassel/frontend
 
+## 1.2.0
+
+### Minor Changes
+
+- 042fb21: Make frontend themeable
+
+### Patch Changes
+
+- Updated dependencies [042fb21]
+  - @quassel/ui@1.2.0
+
 ## 1.1.1
 
 ## 1.1.0
