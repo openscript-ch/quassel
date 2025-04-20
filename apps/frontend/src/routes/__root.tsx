@@ -29,17 +29,20 @@ import { DefaultError, useQueryClient } from "@tanstack/react-query";
 import { i18n } from "../stores/i18n";
 import { C } from "../configuration";
 import logo from "/logo.svg";
+import { LogosConfig, logosConfigSchema } from "../schemas/logosConfigSchema";
+import { Value } from "@sinclair/typebox/value";
 
 const messages = i18n("RootRoute", {
   title: "Home",
 });
 
-let logos;
+let logos: LogosConfig;
+
 try {
-  logos = JSON.parse(C.env.logos);
+  logos = Value.Parse(logosConfigSchema, JSON.parse(C.env.logos));
 } catch (error) {
   console.error("Failed to parse C.env.logos:", error);
-  logos = []; // Default fallback value
+  logos = [];
 }
 
 function Root() {

@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@anolilab/unplugin-favicons": "^1.0.5",
+    "@sinclair/typebox": "^0.34.33",
     "@tanstack/router-devtools": "^1.114.31",
     "@tanstack/router-plugin": "^1.114.31",
     "@testing-library/jest-dom": "^6.6.3",
