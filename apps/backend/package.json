@@ -69,9 +69,6 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.3"
   },
-  "overrides": {
-    "sodium-native": "4.2.0"
-  },
   "jest": {
     "moduleFileExtensions": [
       "js",
