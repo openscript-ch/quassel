@@ -34,7 +34,13 @@ const messages = i18n("RootRoute", {
   title: "Home",
 });
 
-const logos = JSON.parse(C.env.logos);
+let logos;
+try {
+  logos = JSON.parse(C.env.logos);
+} catch (error) {
+  console.error("Failed to parse C.env.logos:", error);
+  logos = []; // Default fallback value
+}
 
 function Root() {
   const n = useNavigate();
