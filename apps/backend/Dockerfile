@@ -1,5 +1,5 @@
 FROM docker.io/node:22-slim
-RUN apk add --no-cache dumb-init curl postgresql17-client
+RUN apt-get update && apt-get install -y --no-install-recommends dumb-init curl postgresql-client-17 && apt-get clean && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /usr/src/app
