@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.2.3
+
+### Patch Changes
+
+- d60b6c9: Fix backend build
+
 ## 1.2.2
 
 ### Patch Changes
