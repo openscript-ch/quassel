@@ -1,7 +1,5 @@
-FROM docker.io/node:22-slim
-RUN apt update && apt install -y --no-install-recommends postgresql-common
-RUN YES=yes /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
-RUN apt install -y --no-install-recommends dumb-init curl postgresql-client-17 && apt clean && rm -rf /var/lib/apt/lists/*
+FROM docker.io/node:22-alpine
+RUN apk add --no-cache dumb-init curl postgresql17-client
 ENV NODE_ENV=production
 ENV PORT=3000
 WORKDIR /usr/src/app
