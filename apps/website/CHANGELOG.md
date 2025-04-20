@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.1.1
+
+### Patch Changes
+
+- 4818845: Clean up legacy problems
+
 ## 0.1.0
 
 ### Minor Changes
