@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.2.1
+
+### Patch Changes
+
+- 17b9e9d: Update sodium native
+
 ## 1.2.0
 
 ## 1.1.1
