@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.2.4
+
+### Patch Changes
+
+- b7dafff: Use sodium-native 4.2.0
+
 ## 1.2.3
 
 ### Patch Changes
