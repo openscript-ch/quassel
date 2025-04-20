@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.2.2
+
+### Patch Changes
+
+- 1158de5: Update Dockerfile
+
 ## 1.2.1
 
 ### Patch Changes
