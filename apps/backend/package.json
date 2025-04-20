@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "build": "nest build",
-    "postbuild": "pnpm deploy --prod --filter @quassel/backend dist/deploy",
+    "postbuild": "pnpm --filter @quassel/backend deploy --prod dist/deploy",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch --preserveWatchOutput",

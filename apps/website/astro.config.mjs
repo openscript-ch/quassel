@@ -8,9 +8,7 @@ export default defineConfig({
     port: 3003,
   },
 
-  experimental: {
-    svg: true,
-  },
+  experimental: {},
 
   vite: {
     plugins: [Icons({ compiler: "astro" })],
