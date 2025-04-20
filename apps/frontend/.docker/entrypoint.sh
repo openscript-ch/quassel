@@ -3,6 +3,10 @@ set -xe
 
 : "${API_URL?Define the api endpoint}"
 
-sed -i "s|//REPLACE_WITH_API_URL|$API_URL|g" /usr/share/nginx/html/index.html
+envsubst < /usr/share/nginx/html/index.template.html > /usr/share/nginx/html/index.html
+
+if [ -d /usr/share/nginx/html/icons ]; then
+  cp /usr/share/nginx/html/icons/* /usr/share/nginx/html
+fi
 
 exec "$@"

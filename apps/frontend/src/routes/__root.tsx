@@ -27,10 +27,23 @@ import { $layout } from "../stores/layout";
 import { $api } from "../stores/api";
 import { DefaultError, useQueryClient } from "@tanstack/react-query";
 import { i18n } from "../stores/i18n";
+import { C } from "../configuration";
+import logo from "/logo.svg";
+import { LogosConfig, logosConfigSchema } from "../schemas/logosConfigSchema";
+import { Value } from "@sinclair/typebox/value";
 
 const messages = i18n("RootRoute", {
   title: "Home",
 });
+
+let logos: LogosConfig;
+
+try {
+  logos = Value.Parse(logosConfigSchema, JSON.parse(C.env.logos));
+} catch (error) {
+  console.error("Failed to parse C.env.logos:", error);
+  logos = [];
+}
 
 function Root() {
   const n = useNavigate();
@@ -66,7 +79,7 @@ function Root() {
         <AppShell.Header>
           <Group justify="space-between">
             <Link to="/">
-              <Brand />
+              <Brand title={C.env.title} logoPath={logo} />
             </Link>
             {sessionStore.email && (
               <Group>
@@ -101,7 +114,7 @@ function Root() {
 
         <AppShell.Footer>
           <Group justify="space-between">
-            <FooterLogos />
+            <FooterLogos logos={logos} />
             Version {version}
           </Group>
         </AppShell.Footer>
