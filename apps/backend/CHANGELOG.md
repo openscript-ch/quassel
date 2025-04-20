@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.2.5
+
+### Patch Changes
+
+- 4818845: Clean up legacy problems
+
 ## 1.2.4
 
 ### Patch Changes
