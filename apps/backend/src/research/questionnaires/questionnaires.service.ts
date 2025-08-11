@@ -68,7 +68,10 @@ export class QuestionnairesService {
   }) {
     return (
       await this.questionnaireRepository.findAll({
-        where: { ...(participantId && { participant: participantId }), ...(studyTitle && { study: { title: { $fulltext: studyTitle } } }) },
+        where: {
+          ...(participantId && { participant: participantId }),
+          ...(studyTitle && { participant: { studies: { $some: { title: { $fulltext: studyTitle } } } } }),
+        },
         populate: ["participant"],
         orderBy: sortBy && { [sortBy]: sortOrder },
       })
