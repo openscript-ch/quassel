@@ -49,16 +49,14 @@ export class ExportService {
         "questionnaire.remark as questionnaire_remark",
         "participant.id as participant_id",
         "participant.birthday",
-        "study.id as study_id",
-        "study.title as study_title",
       ])
+      .distinct()
       .join("carer", "carer")
       .join("entryLanguages", "entryLanguages")
       .join("entryLanguages.language", "language")
       .join("entry.questionnaire", "questionnaire")
-      .join("questionnaire.study", "study")
       .join("questionnaire.participant", "participant")
-      .where({ questionnaire: { study: studyId } })
+      .where({ questionnaire: { participant: { studies: { $some: { id: studyId } } } } })
       .getFormattedQuery();
 
     const copyCommand = `COPY (${query}) TO STDOUT WITH CSV HEADER DELIMITER ',';`;
