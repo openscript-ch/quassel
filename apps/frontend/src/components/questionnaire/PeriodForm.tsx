@@ -1,5 +1,5 @@
 import { Button, Flex, InputError, MonthPicker, Stack, TextInput, useForm } from "@quassel/ui";
-import { formatDate } from "@quassel/utils";
+import { formatDate, getStartOf, isSame } from "@quassel/utils";
 import { i18n } from "../../stores/i18n";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
@@ -7,7 +7,7 @@ import { params } from "@nanostores/i18n";
 
 export type PeriodFormValues = {
   title: string;
-  range: [Date | null, Date | null];
+  range: [string | null, string | null];
 };
 
 type PeriodFormProps = {
@@ -32,7 +32,7 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
     },
     validate: {
       range([start]) {
-        if (period?.range[0] && +period.range[0] !== +start!) {
+        if (period?.range[0] && !isSame("day", new Date(period.range[0]), new Date(start!))) {
           return t.validationStartDate;
         }
       },
@@ -41,14 +41,19 @@ export function PeriodForm({ onSave, actionLabel, period }: PeriodFormProps) {
       const [newStart, newEnd] = newValues.range ?? [];
       const [prevStart, prevEnd] = prevValues.range ?? [];
       if ((!prevStart || !prevEnd) && newStart && newEnd) {
-        f.setFieldValue("title", t.defaultTitle({ start: formatDate(newStart, "M/YY"), end: formatDate(newEnd, "M/YY") }));
+        f.setFieldValue("title", t.defaultTitle({ start: formatDate(new Date(newStart), "M/YY"), end: formatDate(new Date(newEnd), "M/YY") }));
       }
     },
   });
 
   useEffect(() => {
     if (period) {
-      f.setValues(period);
+      const [start, end] = period.range;
+
+      f.setValues({
+        ...period,
+        range: [start, end ? getStartOf("day", new Date(end)).toISOString() : null],
+      });
     }
   }, [period]);
 

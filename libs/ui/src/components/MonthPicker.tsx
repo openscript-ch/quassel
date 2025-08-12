@@ -18,7 +18,7 @@ export function MonthPicker<Type extends DatePickerType = "default">({ selectEnd
   const onChange: MonthPickerProps<Type>["onChange"] = (date) => {
     if (rest.type === "range" && isRangeValue(date) && selectEndOfMonth) {
       const [start, end] = date;
-      const newDate = [start, end ? dayjs(end).utc().endOf("month").toDate() : undefined];
+      const newDate = [start, end ? dayjs(end).endOf("month").format("YYYY-MM-DD") : undefined];
       date = newDate as typeof date;
     }
     rest.onChange!(date);
