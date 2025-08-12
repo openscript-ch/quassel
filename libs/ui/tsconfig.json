@@ -12,7 +12,7 @@
     "target": "ES6",
     "resolveJsonModule": true,
     "noEmit": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
   }
 }
