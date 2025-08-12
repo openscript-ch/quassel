@@ -1,7 +1,6 @@
 import {
   DatePickerType,
   DatesRangeValue,
-  DateValue,
   MonthPicker as MantineMonthPicker,
   MonthPickerProps as MantineMonthPickerProps,
 } from "@mantine/dates";
@@ -11,7 +10,7 @@ interface MonthPickerProps<Type extends DatePickerType = "default"> extends Mant
   selectEndOfMonth?: boolean;
 }
 
-function isRangeValue(date: DateValue | DatesRangeValue | Date[]): date is DatesRangeValue {
+function isRangeValue(date: string | DatesRangeValue | string[] | null): date is DatesRangeValue {
   return Array.isArray(date) && date.length === 2;
 }
 

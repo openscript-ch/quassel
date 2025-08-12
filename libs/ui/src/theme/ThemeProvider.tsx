@@ -1,6 +1,5 @@
 import { MantineProvider, MantineThemeOverride, MantineProviderProps, createTheme } from "@mantine/core";
 import "./Theme.css";
-import { DatesProvider } from "@mantine/dates";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { DefaultMantineColor, MantineColorsTuple } from "@mantine/core";
@@ -37,13 +36,11 @@ export const defaultTheme: MantineThemeOverride = createTheme({
 
 export function ThemeProvider({ children, ...args }: ThemeProviderProps) {
   return (
-    <DatesProvider settings={{ timezone: "UTC" }}>
-      <MantineProvider theme={defaultTheme} {...args}>
-        <ModalsProvider>
-          <Notifications />
-          {children}
-        </ModalsProvider>
-      </MantineProvider>
-    </DatesProvider>
+    <MantineProvider theme={defaultTheme} {...args}>
+      <ModalsProvider>
+        <Notifications />
+        {children}
+      </ModalsProvider>
+    </MantineProvider>
   );
 }
