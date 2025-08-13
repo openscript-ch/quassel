@@ -21,6 +21,6 @@
     "@types/reveal.js": "^5.0.5",
     "sharp": "^0.34.1",
     "typescript": "^5.8.3",
-    "unplugin-icons": "^22.1.0"
+    "unplugin-icons": "^22.2.0"
   }
 }

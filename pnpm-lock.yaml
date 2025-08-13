@@ -325,7 +325,7 @@ importers:
         specifier: ^5.8.3
         version: 5.9.2
       unplugin-icons:
-        specifier: ^22.1.0
+        specifier: ^22.2.0
         version: 22.2.0(@svgr/core@8.1.0(typescript@5.9.2))
 
   libs/ui:
