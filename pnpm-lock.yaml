@@ -325,8 +325,8 @@ importers:
         specifier: ^5.8.3
         version: 5.9.2
       unplugin-icons:
-        specifier: ^22.2.0
-        version: 22.2.0(@svgr/core@8.1.0(typescript@5.9.2))
+        specifier: 22.1.0
+        version: 22.1.0(@svgr/core@8.1.0(typescript@5.9.2))
 
   libs/ui:
     dependencies:
@@ -7724,8 +7724,8 @@ packages:
     resolution: {integrity: sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==}
     engines: {node: '>= 10.0.0'}
 
-  unplugin-icons@22.2.0:
-    resolution: {integrity: sha512-OdrXCiXexC1rFd0QpliAgcd4cMEEEQtoCf2WIrRIGu4iW6auBPpQKMCBeWxoe55phYdRyZLUWNOtzyTX+HOFSA==}
+  unplugin-icons@22.1.0:
+    resolution: {integrity: sha512-ect2ZNtk1Zgwb0NVHd0C1IDW/MV+Jk/xaq4t8o6rYdVS3+L660ZdD5kTSQZvsgdwCvquRw+/wYn75hsweRjoIA==}
     peerDependencies:
       '@svgr/core': '>=7.0.0'
       '@svgx/core': ^1.0.1
@@ -17187,7 +17187,7 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  unplugin-icons@22.2.0(@svgr/core@8.1.0(typescript@5.9.2)):
+  unplugin-icons@22.1.0(@svgr/core@8.1.0(typescript@5.9.2)):
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@iconify/utils': 2.3.0
