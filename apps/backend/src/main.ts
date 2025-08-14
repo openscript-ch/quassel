@@ -19,8 +19,9 @@ async function bootstrap() {
   app.enableShutdownHooks();
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
-
-  await app.register(fastifySecureSession, {
+  // TODO: Remove `as any` when type definitions of "@fastify/secure-session" package are fixed
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  await app.register(fastifySecureSession as any, {
     expiry: configService.get("session.expiry"),
     cookieName: configService.get("session.cookieName"),
     secret: configService.get("session.secret"),

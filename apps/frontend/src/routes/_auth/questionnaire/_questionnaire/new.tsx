@@ -6,7 +6,7 @@ import { $api } from "../../../../stores/api";
 import { $questionnaire } from "../../../../stores/questionnaire";
 import { useEffect } from "react";
 import { Title } from "@quassel/ui";
-import { getNext, getStartOf } from "@quassel/utils";
+import { getEndOf, getNext, getStartOf } from "@quassel/utils";
 
 const messages = i18n("questionnaireNew", {
   title: "Create new period of life",
@@ -38,16 +38,13 @@ function QuestionnaireNew() {
   const startFromBirthday = participant?.birthday ? getStartOf("month", new Date(participant.birthday)) : undefined;
   const startFromPrevious = prevEndDate ? getNext("month", new Date(prevEndDate)) : undefined;
 
-  const startDate = startFromPrevious ?? startFromBirthday;
+  const startDate = (startFromPrevious ?? startFromBirthday)?.toISOString();
 
-  const onSave = (form: PeriodFormValues) => {
-    const {
-      title,
-      range: [localStartedAt, localEndedAt],
-    } = form;
+  const onSave = async ({ title, range: [startedAt, endedAt] }: PeriodFormValues) => {
+    if (!startedAt || !endedAt) return;
 
-    const startedAt = localStartedAt!.toISOString();
-    const endedAt = localEndedAt!.toISOString();
+    startedAt = getStartOf("day", new Date(startedAt)).toISOString();
+    endedAt = getEndOf("day", new Date(endedAt)).toISOString();
 
     createQuestionnaireMutation.mutate({
       body: { title, startedAt, endedAt, participant: questionnaire!.participant.id },

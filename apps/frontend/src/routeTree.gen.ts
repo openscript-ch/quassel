@@ -8,652 +8,856 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as SessionRouteImport } from "./routes/session";
+import { Route as AuthRouteImport } from "./routes/_auth";
+import { Route as AuthIndexRouteImport } from "./routes/_auth/index";
+import { Route as AuthQuestionnaireRouteImport } from "./routes/_auth/questionnaire";
+import { Route as AuthAdministrationRouteImport } from "./routes/_auth/administration";
+import { Route as AuthQuestionnaireIndexRouteImport } from "./routes/_auth/questionnaire/index";
+import { Route as AuthAdministrationIndexRouteImport } from "./routes/_auth/administration/index";
+import { Route as AuthQuestionnaireQuestionnaireRouteImport } from "./routes/_auth/questionnaire/_questionnaire";
+import { Route as AuthAdministrationUsersRouteImport } from "./routes/_auth/administration/users";
+import { Route as AuthAdministrationStudiesRouteImport } from "./routes/_auth/administration/studies";
+import { Route as AuthAdministrationReportsRouteImport } from "./routes/_auth/administration/reports";
+import { Route as AuthAdministrationQuestionnairesRouteImport } from "./routes/_auth/administration/questionnaires";
+import { Route as AuthAdministrationParticipantsRouteImport } from "./routes/_auth/administration/participants";
+import { Route as AuthAdministrationLanguagesRouteImport } from "./routes/_auth/administration/languages";
+import { Route as AuthAdministrationExportRouteImport } from "./routes/_auth/administration/export";
+import { Route as AuthAdministrationCarersRouteImport } from "./routes/_auth/administration/carers";
+import { Route as AuthAdministrationUsersIndexRouteImport } from "./routes/_auth/administration/users/index";
+import { Route as AuthAdministrationStudiesIndexRouteImport } from "./routes/_auth/administration/studies/index";
+import { Route as AuthAdministrationReportsIndexRouteImport } from "./routes/_auth/administration/reports/index";
+import { Route as AuthAdministrationQuestionnairesIndexRouteImport } from "./routes/_auth/administration/questionnaires/index";
+import { Route as AuthAdministrationParticipantsIndexRouteImport } from "./routes/_auth/administration/participants/index";
+import { Route as AuthAdministrationLanguagesIndexRouteImport } from "./routes/_auth/administration/languages/index";
+import { Route as AuthAdministrationExportIndexRouteImport } from "./routes/_auth/administration/export/index";
+import { Route as AuthAdministrationCarersIndexRouteImport } from "./routes/_auth/administration/carers/index";
+import { Route as AuthQuestionnaireQuestionnaireParticipantRouteImport } from "./routes/_auth/questionnaire/_questionnaire/participant";
+import { Route as AuthQuestionnaireQuestionnaireNewRouteImport } from "./routes/_auth/questionnaire/_questionnaire/new";
+import { Route as AuthQuestionnaireQuestionnaireCompletedRouteImport } from "./routes/_auth/questionnaire/_questionnaire/completed";
+import { Route as AuthAdministrationUsersNewRouteImport } from "./routes/_auth/administration/users/new";
+import { Route as AuthAdministrationStudiesNewRouteImport } from "./routes/_auth/administration/studies/new";
+import { Route as AuthAdministrationStudiesIdRouteImport } from "./routes/_auth/administration/studies/$id";
+import { Route as AuthAdministrationParticipantsNewRouteImport } from "./routes/_auth/administration/participants/new";
+import { Route as AuthAdministrationParticipantsImportRouteImport } from "./routes/_auth/administration/participants/import";
+import { Route as AuthAdministrationLanguagesNewRouteImport } from "./routes/_auth/administration/languages/new";
+import { Route as AuthAdministrationCarersNewRouteImport } from "./routes/_auth/administration/carers/new";
+import { Route as AuthQuestionnaireQuestionnaireIdRemarksRouteImport } from "./routes/_auth/questionnaire/_questionnaire/$id/remarks";
+import { Route as AuthQuestionnaireQuestionnaireIdPeriodRouteImport } from "./routes/_auth/questionnaire/_questionnaire/$id/period";
+import { Route as AuthQuestionnaireQuestionnaireIdEntriesRouteImport } from "./routes/_auth/questionnaire/_questionnaire/$id/entries";
+import { Route as AuthAdministrationUsersEditIdRouteImport } from "./routes/_auth/administration/users/edit.$id";
+import { Route as AuthAdministrationStudiesEditIdRouteImport } from "./routes/_auth/administration/studies/edit.$id";
+import { Route as AuthAdministrationQuestionnairesEditIdRouteImport } from "./routes/_auth/administration/questionnaires/edit.$id";
+import { Route as AuthAdministrationParticipantsEditIdRouteImport } from "./routes/_auth/administration/participants/edit.$id";
+import { Route as AuthAdministrationLanguagesEditIdRouteImport } from "./routes/_auth/administration/languages/edit.$id";
+import { Route as AuthAdministrationCarersEditIdRouteImport } from "./routes/_auth/administration/carers/edit.$id";
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as SessionImport } from "./routes/session";
-import { Route as AuthImport } from "./routes/_auth";
-import { Route as AuthIndexImport } from "./routes/_auth/index";
-import { Route as AuthQuestionnaireImport } from "./routes/_auth/questionnaire";
-import { Route as AuthAdministrationImport } from "./routes/_auth/administration";
-import { Route as AuthQuestionnaireIndexImport } from "./routes/_auth/questionnaire/index";
-import { Route as AuthAdministrationIndexImport } from "./routes/_auth/administration/index";
-import { Route as AuthQuestionnaireQuestionnaireImport } from "./routes/_auth/questionnaire/_questionnaire";
-import { Route as AuthAdministrationUsersImport } from "./routes/_auth/administration/users";
-import { Route as AuthAdministrationStudiesImport } from "./routes/_auth/administration/studies";
-import { Route as AuthAdministrationReportsImport } from "./routes/_auth/administration/reports";
-import { Route as AuthAdministrationQuestionnairesImport } from "./routes/_auth/administration/questionnaires";
-import { Route as AuthAdministrationParticipantsImport } from "./routes/_auth/administration/participants";
-import { Route as AuthAdministrationLanguagesImport } from "./routes/_auth/administration/languages";
-import { Route as AuthAdministrationExportImport } from "./routes/_auth/administration/export";
-import { Route as AuthAdministrationCarersImport } from "./routes/_auth/administration/carers";
-import { Route as AuthAdministrationUsersIndexImport } from "./routes/_auth/administration/users/index";
-import { Route as AuthAdministrationStudiesIndexImport } from "./routes/_auth/administration/studies/index";
-import { Route as AuthAdministrationReportsIndexImport } from "./routes/_auth/administration/reports/index";
-import { Route as AuthAdministrationQuestionnairesIndexImport } from "./routes/_auth/administration/questionnaires/index";
-import { Route as AuthAdministrationParticipantsIndexImport } from "./routes/_auth/administration/participants/index";
-import { Route as AuthAdministrationLanguagesIndexImport } from "./routes/_auth/administration/languages/index";
-import { Route as AuthAdministrationExportIndexImport } from "./routes/_auth/administration/export/index";
-import { Route as AuthAdministrationCarersIndexImport } from "./routes/_auth/administration/carers/index";
-import { Route as AuthQuestionnaireQuestionnaireParticipantImport } from "./routes/_auth/questionnaire/_questionnaire/participant";
-import { Route as AuthQuestionnaireQuestionnaireNewImport } from "./routes/_auth/questionnaire/_questionnaire/new";
-import { Route as AuthQuestionnaireQuestionnaireCompletedImport } from "./routes/_auth/questionnaire/_questionnaire/completed";
-import { Route as AuthAdministrationUsersNewImport } from "./routes/_auth/administration/users/new";
-import { Route as AuthAdministrationStudiesNewImport } from "./routes/_auth/administration/studies/new";
-import { Route as AuthAdministrationStudiesIdImport } from "./routes/_auth/administration/studies/$id";
-import { Route as AuthAdministrationParticipantsNewImport } from "./routes/_auth/administration/participants/new";
-import { Route as AuthAdministrationParticipantsImportImport } from "./routes/_auth/administration/participants/import";
-import { Route as AuthAdministrationLanguagesNewImport } from "./routes/_auth/administration/languages/new";
-import { Route as AuthAdministrationCarersNewImport } from "./routes/_auth/administration/carers/new";
-import { Route as AuthQuestionnaireQuestionnaireIdRemarksImport } from "./routes/_auth/questionnaire/_questionnaire/$id/remarks";
-import { Route as AuthQuestionnaireQuestionnaireIdPeriodImport } from "./routes/_auth/questionnaire/_questionnaire/$id/period";
-import { Route as AuthQuestionnaireQuestionnaireIdEntriesImport } from "./routes/_auth/questionnaire/_questionnaire/$id/entries";
-import { Route as AuthAdministrationUsersEditIdImport } from "./routes/_auth/administration/users/edit.$id";
-import { Route as AuthAdministrationStudiesEditIdImport } from "./routes/_auth/administration/studies/edit.$id";
-import { Route as AuthAdministrationQuestionnairesEditIdImport } from "./routes/_auth/administration/questionnaires/edit.$id";
-import { Route as AuthAdministrationParticipantsEditIdImport } from "./routes/_auth/administration/participants/edit.$id";
-import { Route as AuthAdministrationLanguagesEditIdImport } from "./routes/_auth/administration/languages/edit.$id";
-import { Route as AuthAdministrationCarersEditIdImport } from "./routes/_auth/administration/carers/edit.$id";
-
-// Create/Update Routes
-
-const SessionRoute = SessionImport.update({
+const SessionRoute = SessionRouteImport.update({
   id: "/session",
   path: "/session",
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const AuthRoute = AuthImport.update({
+const AuthRoute = AuthRouteImport.update({
   id: "/_auth",
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const AuthIndexRoute = AuthIndexImport.update({
+const AuthIndexRoute = AuthIndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => AuthRoute,
 } as any);
-
-const AuthQuestionnaireRoute = AuthQuestionnaireImport.update({
+const AuthQuestionnaireRoute = AuthQuestionnaireRouteImport.update({
   id: "/questionnaire",
   path: "/questionnaire",
   getParentRoute: () => AuthRoute,
 } as any);
-
-const AuthAdministrationRoute = AuthAdministrationImport.update({
+const AuthAdministrationRoute = AuthAdministrationRouteImport.update({
   id: "/administration",
   path: "/administration",
   getParentRoute: () => AuthRoute,
 } as any);
-
-const AuthQuestionnaireIndexRoute = AuthQuestionnaireIndexImport.update({
+const AuthQuestionnaireIndexRoute = AuthQuestionnaireIndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => AuthQuestionnaireRoute,
 } as any);
-
-const AuthAdministrationIndexRoute = AuthAdministrationIndexImport.update({
+const AuthAdministrationIndexRoute = AuthAdministrationIndexRouteImport.update({
   id: "/",
   path: "/",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
-
 const AuthQuestionnaireQuestionnaireRoute =
-  AuthQuestionnaireQuestionnaireImport.update({
+  AuthQuestionnaireQuestionnaireRouteImport.update({
     id: "/_questionnaire",
     getParentRoute: () => AuthQuestionnaireRoute,
   } as any);
-
-const AuthAdministrationUsersRoute = AuthAdministrationUsersImport.update({
+const AuthAdministrationUsersRoute = AuthAdministrationUsersRouteImport.update({
   id: "/users",
   path: "/users",
   getParentRoute: () => AuthAdministrationRoute,
 } as any);
-
-const AuthAdministrationStudiesRoute = AuthAdministrationStudiesImport.update({
-  id: "/studies",
-  path: "/studies",
-  getParentRoute: () => AuthAdministrationRoute,
-} as any);
-
-const AuthAdministrationReportsRoute = AuthAdministrationReportsImport.update({
-  id: "/reports",
-  path: "/reports",
-  getParentRoute: () => AuthAdministrationRoute,
-} as any);
-
+const AuthAdministrationStudiesRoute =
+  AuthAdministrationStudiesRouteImport.update({
+    id: "/studies",
+    path: "/studies",
+    getParentRoute: () => AuthAdministrationRoute,
+  } as any);
+const AuthAdministrationReportsRoute =
+  AuthAdministrationReportsRouteImport.update({
+    id: "/reports",
+    path: "/reports",
+    getParentRoute: () => AuthAdministrationRoute,
+  } as any);
 const AuthAdministrationQuestionnairesRoute =
-  AuthAdministrationQuestionnairesImport.update({
+  AuthAdministrationQuestionnairesRouteImport.update({
     id: "/questionnaires",
     path: "/questionnaires",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
-
 const AuthAdministrationParticipantsRoute =
-  AuthAdministrationParticipantsImport.update({
+  AuthAdministrationParticipantsRouteImport.update({
     id: "/participants",
     path: "/participants",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
-
 const AuthAdministrationLanguagesRoute =
-  AuthAdministrationLanguagesImport.update({
+  AuthAdministrationLanguagesRouteImport.update({
     id: "/languages",
     path: "/languages",
     getParentRoute: () => AuthAdministrationRoute,
   } as any);
-
-const AuthAdministrationExportRoute = AuthAdministrationExportImport.update({
-  id: "/export",
-  path: "/export",
-  getParentRoute: () => AuthAdministrationRoute,
-} as any);
-
-const AuthAdministrationCarersRoute = AuthAdministrationCarersImport.update({
-  id: "/carers",
-  path: "/carers",
-  getParentRoute: () => AuthAdministrationRoute,
-} as any);
-
+const AuthAdministrationExportRoute =
+  AuthAdministrationExportRouteImport.update({
+    id: "/export",
+    path: "/export",
+    getParentRoute: () => AuthAdministrationRoute,
+  } as any);
+const AuthAdministrationCarersRoute =
+  AuthAdministrationCarersRouteImport.update({
+    id: "/carers",
+    path: "/carers",
+    getParentRoute: () => AuthAdministrationRoute,
+  } as any);
 const AuthAdministrationUsersIndexRoute =
-  AuthAdministrationUsersIndexImport.update({
+  AuthAdministrationUsersIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationUsersRoute,
   } as any);
-
 const AuthAdministrationStudiesIndexRoute =
-  AuthAdministrationStudiesIndexImport.update({
+  AuthAdministrationStudiesIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationStudiesRoute,
   } as any);
-
 const AuthAdministrationReportsIndexRoute =
-  AuthAdministrationReportsIndexImport.update({
+  AuthAdministrationReportsIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationReportsRoute,
   } as any);
-
 const AuthAdministrationQuestionnairesIndexRoute =
-  AuthAdministrationQuestionnairesIndexImport.update({
+  AuthAdministrationQuestionnairesIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationQuestionnairesRoute,
   } as any);
-
 const AuthAdministrationParticipantsIndexRoute =
-  AuthAdministrationParticipantsIndexImport.update({
+  AuthAdministrationParticipantsIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationParticipantsRoute,
   } as any);
-
 const AuthAdministrationLanguagesIndexRoute =
-  AuthAdministrationLanguagesIndexImport.update({
+  AuthAdministrationLanguagesIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationLanguagesRoute,
   } as any);
-
 const AuthAdministrationExportIndexRoute =
-  AuthAdministrationExportIndexImport.update({
+  AuthAdministrationExportIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationExportRoute,
   } as any);
-
 const AuthAdministrationCarersIndexRoute =
-  AuthAdministrationCarersIndexImport.update({
+  AuthAdministrationCarersIndexRouteImport.update({
     id: "/",
     path: "/",
     getParentRoute: () => AuthAdministrationCarersRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireParticipantRoute =
-  AuthQuestionnaireQuestionnaireParticipantImport.update({
+  AuthQuestionnaireQuestionnaireParticipantRouteImport.update({
     id: "/participant",
     path: "/participant",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireNewRoute =
-  AuthQuestionnaireQuestionnaireNewImport.update({
+  AuthQuestionnaireQuestionnaireNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireCompletedRoute =
-  AuthQuestionnaireQuestionnaireCompletedImport.update({
+  AuthQuestionnaireQuestionnaireCompletedRouteImport.update({
     id: "/completed",
     path: "/completed",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
-const AuthAdministrationUsersNewRoute = AuthAdministrationUsersNewImport.update(
-  {
+const AuthAdministrationUsersNewRoute =
+  AuthAdministrationUsersNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationUsersRoute,
-  } as any,
-);
-
+  } as any);
 const AuthAdministrationStudiesNewRoute =
-  AuthAdministrationStudiesNewImport.update({
+  AuthAdministrationStudiesNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationStudiesRoute,
   } as any);
-
 const AuthAdministrationStudiesIdRoute =
-  AuthAdministrationStudiesIdImport.update({
+  AuthAdministrationStudiesIdRouteImport.update({
     id: "/$id",
     path: "/$id",
     getParentRoute: () => AuthAdministrationStudiesRoute,
   } as any);
-
 const AuthAdministrationParticipantsNewRoute =
-  AuthAdministrationParticipantsNewImport.update({
+  AuthAdministrationParticipantsNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationParticipantsRoute,
   } as any);
-
 const AuthAdministrationParticipantsImportRoute =
-  AuthAdministrationParticipantsImportImport.update({
+  AuthAdministrationParticipantsImportRouteImport.update({
     id: "/import",
     path: "/import",
     getParentRoute: () => AuthAdministrationParticipantsRoute,
   } as any);
-
 const AuthAdministrationLanguagesNewRoute =
-  AuthAdministrationLanguagesNewImport.update({
+  AuthAdministrationLanguagesNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationLanguagesRoute,
   } as any);
-
 const AuthAdministrationCarersNewRoute =
-  AuthAdministrationCarersNewImport.update({
+  AuthAdministrationCarersNewRouteImport.update({
     id: "/new",
     path: "/new",
     getParentRoute: () => AuthAdministrationCarersRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireIdRemarksRoute =
-  AuthQuestionnaireQuestionnaireIdRemarksImport.update({
+  AuthQuestionnaireQuestionnaireIdRemarksRouteImport.update({
     id: "/$id/remarks",
     path: "/$id/remarks",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireIdPeriodRoute =
-  AuthQuestionnaireQuestionnaireIdPeriodImport.update({
+  AuthQuestionnaireQuestionnaireIdPeriodRouteImport.update({
     id: "/$id/period",
     path: "/$id/period",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
 const AuthQuestionnaireQuestionnaireIdEntriesRoute =
-  AuthQuestionnaireQuestionnaireIdEntriesImport.update({
+  AuthQuestionnaireQuestionnaireIdEntriesRouteImport.update({
     id: "/$id/entries",
     path: "/$id/entries",
     getParentRoute: () => AuthQuestionnaireQuestionnaireRoute,
   } as any);
-
 const AuthAdministrationUsersEditIdRoute =
-  AuthAdministrationUsersEditIdImport.update({
+  AuthAdministrationUsersEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationUsersRoute,
   } as any);
-
 const AuthAdministrationStudiesEditIdRoute =
-  AuthAdministrationStudiesEditIdImport.update({
+  AuthAdministrationStudiesEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationStudiesRoute,
   } as any);
-
 const AuthAdministrationQuestionnairesEditIdRoute =
-  AuthAdministrationQuestionnairesEditIdImport.update({
+  AuthAdministrationQuestionnairesEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationQuestionnairesRoute,
   } as any);
-
 const AuthAdministrationParticipantsEditIdRoute =
-  AuthAdministrationParticipantsEditIdImport.update({
+  AuthAdministrationParticipantsEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationParticipantsRoute,
   } as any);
-
 const AuthAdministrationLanguagesEditIdRoute =
-  AuthAdministrationLanguagesEditIdImport.update({
+  AuthAdministrationLanguagesEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationLanguagesRoute,
   } as any);
-
 const AuthAdministrationCarersEditIdRoute =
-  AuthAdministrationCarersEditIdImport.update({
+  AuthAdministrationCarersEditIdRouteImport.update({
     id: "/edit/$id",
     path: "/edit/$id",
     getParentRoute: () => AuthAdministrationCarersRoute,
   } as any);
 
-// Populate the FileRoutesByPath interface
+export interface FileRoutesByFullPath {
+  "/session": typeof SessionRoute;
+  "/administration": typeof AuthAdministrationRouteWithChildren;
+  "/questionnaire": typeof AuthQuestionnaireQuestionnaireRouteWithChildren;
+  "/": typeof AuthIndexRoute;
+  "/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
+  "/administration/export": typeof AuthAdministrationExportRouteWithChildren;
+  "/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
+  "/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
+  "/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
+  "/administration/reports": typeof AuthAdministrationReportsRouteWithChildren;
+  "/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
+  "/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
+  "/administration/": typeof AuthAdministrationIndexRoute;
+  "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
+  "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
+  "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
+  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
+  "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
+  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
+  "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
+  "/questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
+  "/questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
+  "/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
+  "/administration/export/": typeof AuthAdministrationExportIndexRoute;
+  "/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
+  "/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
+  "/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
+  "/administration/reports/": typeof AuthAdministrationReportsIndexRoute;
+  "/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
+  "/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
+  "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
+  "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
+  "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
+  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
+  "/questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
+  "/questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
+}
+export interface FileRoutesByTo {
+  "/session": typeof SessionRoute;
+  "/": typeof AuthIndexRoute;
+  "/questionnaire": typeof AuthQuestionnaireIndexRoute;
+  "/administration": typeof AuthAdministrationIndexRoute;
+  "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
+  "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
+  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
+  "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
+  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
+  "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
+  "/questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
+  "/questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
+  "/administration/carers": typeof AuthAdministrationCarersIndexRoute;
+  "/administration/export": typeof AuthAdministrationExportIndexRoute;
+  "/administration/languages": typeof AuthAdministrationLanguagesIndexRoute;
+  "/administration/participants": typeof AuthAdministrationParticipantsIndexRoute;
+  "/administration/questionnaires": typeof AuthAdministrationQuestionnairesIndexRoute;
+  "/administration/reports": typeof AuthAdministrationReportsIndexRoute;
+  "/administration/studies": typeof AuthAdministrationStudiesIndexRoute;
+  "/administration/users": typeof AuthAdministrationUsersIndexRoute;
+  "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
+  "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
+  "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
+  "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
+  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
+  "/questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
+  "/questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
+}
+export interface FileRoutesById {
+  __root__: typeof rootRouteImport;
+  "/_auth": typeof AuthRouteWithChildren;
+  "/session": typeof SessionRoute;
+  "/_auth/administration": typeof AuthAdministrationRouteWithChildren;
+  "/_auth/questionnaire": typeof AuthQuestionnaireRouteWithChildren;
+  "/_auth/": typeof AuthIndexRoute;
+  "/_auth/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
+  "/_auth/administration/export": typeof AuthAdministrationExportRouteWithChildren;
+  "/_auth/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
+  "/_auth/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
+  "/_auth/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
+  "/_auth/administration/reports": typeof AuthAdministrationReportsRouteWithChildren;
+  "/_auth/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
+  "/_auth/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
+  "/_auth/questionnaire/_questionnaire": typeof AuthQuestionnaireQuestionnaireRouteWithChildren;
+  "/_auth/administration/": typeof AuthAdministrationIndexRoute;
+  "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
+  "/_auth/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
+  "/_auth/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
+  "/_auth/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
+  "/_auth/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
+  "/_auth/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
+  "/_auth/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
+  "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
+  "/_auth/questionnaire/_questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
+  "/_auth/questionnaire/_questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
+  "/_auth/questionnaire/_questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
+  "/_auth/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
+  "/_auth/administration/export/": typeof AuthAdministrationExportIndexRoute;
+  "/_auth/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
+  "/_auth/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
+  "/_auth/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
+  "/_auth/administration/reports/": typeof AuthAdministrationReportsIndexRoute;
+  "/_auth/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
+  "/_auth/administration/users/": typeof AuthAdministrationUsersIndexRoute;
+  "/_auth/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
+  "/_auth/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
+  "/_auth/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
+  "/_auth/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
+  "/_auth/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
+  "/_auth/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
+  "/_auth/questionnaire/_questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
+  "/_auth/questionnaire/_questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
+  "/_auth/questionnaire/_questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
+}
+export interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths:
+    | "/session"
+    | "/administration"
+    | "/questionnaire"
+    | "/"
+    | "/administration/carers"
+    | "/administration/export"
+    | "/administration/languages"
+    | "/administration/participants"
+    | "/administration/questionnaires"
+    | "/administration/reports"
+    | "/administration/studies"
+    | "/administration/users"
+    | "/administration/"
+    | "/questionnaire/"
+    | "/administration/carers/new"
+    | "/administration/languages/new"
+    | "/administration/participants/import"
+    | "/administration/participants/new"
+    | "/administration/studies/$id"
+    | "/administration/studies/new"
+    | "/administration/users/new"
+    | "/questionnaire/completed"
+    | "/questionnaire/new"
+    | "/questionnaire/participant"
+    | "/administration/carers/"
+    | "/administration/export/"
+    | "/administration/languages/"
+    | "/administration/participants/"
+    | "/administration/questionnaires/"
+    | "/administration/reports/"
+    | "/administration/studies/"
+    | "/administration/users/"
+    | "/administration/carers/edit/$id"
+    | "/administration/languages/edit/$id"
+    | "/administration/participants/edit/$id"
+    | "/administration/questionnaires/edit/$id"
+    | "/administration/studies/edit/$id"
+    | "/administration/users/edit/$id"
+    | "/questionnaire/$id/entries"
+    | "/questionnaire/$id/period"
+    | "/questionnaire/$id/remarks";
+  fileRoutesByTo: FileRoutesByTo;
+  to:
+    | "/session"
+    | "/"
+    | "/questionnaire"
+    | "/administration"
+    | "/administration/carers/new"
+    | "/administration/languages/new"
+    | "/administration/participants/import"
+    | "/administration/participants/new"
+    | "/administration/studies/$id"
+    | "/administration/studies/new"
+    | "/administration/users/new"
+    | "/questionnaire/completed"
+    | "/questionnaire/new"
+    | "/questionnaire/participant"
+    | "/administration/carers"
+    | "/administration/export"
+    | "/administration/languages"
+    | "/administration/participants"
+    | "/administration/questionnaires"
+    | "/administration/reports"
+    | "/administration/studies"
+    | "/administration/users"
+    | "/administration/carers/edit/$id"
+    | "/administration/languages/edit/$id"
+    | "/administration/participants/edit/$id"
+    | "/administration/questionnaires/edit/$id"
+    | "/administration/studies/edit/$id"
+    | "/administration/users/edit/$id"
+    | "/questionnaire/$id/entries"
+    | "/questionnaire/$id/period"
+    | "/questionnaire/$id/remarks";
+  id:
+    | "__root__"
+    | "/_auth"
+    | "/session"
+    | "/_auth/administration"
+    | "/_auth/questionnaire"
+    | "/_auth/"
+    | "/_auth/administration/carers"
+    | "/_auth/administration/export"
+    | "/_auth/administration/languages"
+    | "/_auth/administration/participants"
+    | "/_auth/administration/questionnaires"
+    | "/_auth/administration/reports"
+    | "/_auth/administration/studies"
+    | "/_auth/administration/users"
+    | "/_auth/questionnaire/_questionnaire"
+    | "/_auth/administration/"
+    | "/_auth/questionnaire/"
+    | "/_auth/administration/carers/new"
+    | "/_auth/administration/languages/new"
+    | "/_auth/administration/participants/import"
+    | "/_auth/administration/participants/new"
+    | "/_auth/administration/studies/$id"
+    | "/_auth/administration/studies/new"
+    | "/_auth/administration/users/new"
+    | "/_auth/questionnaire/_questionnaire/completed"
+    | "/_auth/questionnaire/_questionnaire/new"
+    | "/_auth/questionnaire/_questionnaire/participant"
+    | "/_auth/administration/carers/"
+    | "/_auth/administration/export/"
+    | "/_auth/administration/languages/"
+    | "/_auth/administration/participants/"
+    | "/_auth/administration/questionnaires/"
+    | "/_auth/administration/reports/"
+    | "/_auth/administration/studies/"
+    | "/_auth/administration/users/"
+    | "/_auth/administration/carers/edit/$id"
+    | "/_auth/administration/languages/edit/$id"
+    | "/_auth/administration/participants/edit/$id"
+    | "/_auth/administration/questionnaires/edit/$id"
+    | "/_auth/administration/studies/edit/$id"
+    | "/_auth/administration/users/edit/$id"
+    | "/_auth/questionnaire/_questionnaire/$id/entries"
+    | "/_auth/questionnaire/_questionnaire/$id/period"
+    | "/_auth/questionnaire/_questionnaire/$id/remarks";
+  fileRoutesById: FileRoutesById;
+}
+export interface RootRouteChildren {
+  AuthRoute: typeof AuthRouteWithChildren;
+  SessionRoute: typeof SessionRoute;
+}
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/_auth": {
-      id: "/_auth";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof AuthImport;
-      parentRoute: typeof rootRoute;
-    };
     "/session": {
       id: "/session";
       path: "/session";
       fullPath: "/session";
-      preLoaderRoute: typeof SessionImport;
-      parentRoute: typeof rootRoute;
+      preLoaderRoute: typeof SessionRouteImport;
+      parentRoute: typeof rootRouteImport;
     };
-    "/_auth/administration": {
-      id: "/_auth/administration";
-      path: "/administration";
-      fullPath: "/administration";
-      preLoaderRoute: typeof AuthAdministrationImport;
-      parentRoute: typeof AuthImport;
-    };
-    "/_auth/questionnaire": {
-      id: "/_auth/questionnaire";
-      path: "/questionnaire";
-      fullPath: "/questionnaire";
-      preLoaderRoute: typeof AuthQuestionnaireImport;
-      parentRoute: typeof AuthImport;
+    "/_auth": {
+      id: "/_auth";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthRouteImport;
+      parentRoute: typeof rootRouteImport;
     };
     "/_auth/": {
       id: "/_auth/";
       path: "/";
       fullPath: "/";
-      preLoaderRoute: typeof AuthIndexImport;
-      parentRoute: typeof AuthImport;
+      preLoaderRoute: typeof AuthIndexRouteImport;
+      parentRoute: typeof AuthRoute;
     };
-    "/_auth/administration/carers": {
-      id: "/_auth/administration/carers";
-      path: "/carers";
-      fullPath: "/administration/carers";
-      preLoaderRoute: typeof AuthAdministrationCarersImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/export": {
-      id: "/_auth/administration/export";
-      path: "/export";
-      fullPath: "/administration/export";
-      preLoaderRoute: typeof AuthAdministrationExportImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/languages": {
-      id: "/_auth/administration/languages";
-      path: "/languages";
-      fullPath: "/administration/languages";
-      preLoaderRoute: typeof AuthAdministrationLanguagesImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/participants": {
-      id: "/_auth/administration/participants";
-      path: "/participants";
-      fullPath: "/administration/participants";
-      preLoaderRoute: typeof AuthAdministrationParticipantsImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/questionnaires": {
-      id: "/_auth/administration/questionnaires";
-      path: "/questionnaires";
-      fullPath: "/administration/questionnaires";
-      preLoaderRoute: typeof AuthAdministrationQuestionnairesImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/reports": {
-      id: "/_auth/administration/reports";
-      path: "/reports";
-      fullPath: "/administration/reports";
-      preLoaderRoute: typeof AuthAdministrationReportsImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/studies": {
-      id: "/_auth/administration/studies";
-      path: "/studies";
-      fullPath: "/administration/studies";
-      preLoaderRoute: typeof AuthAdministrationStudiesImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/administration/users": {
-      id: "/_auth/administration/users";
-      path: "/users";
-      fullPath: "/administration/users";
-      preLoaderRoute: typeof AuthAdministrationUsersImport;
-      parentRoute: typeof AuthAdministrationImport;
-    };
-    "/_auth/questionnaire/_questionnaire": {
-      id: "/_auth/questionnaire/_questionnaire";
-      path: "";
+    "/_auth/questionnaire": {
+      id: "/_auth/questionnaire";
+      path: "/questionnaire";
       fullPath: "/questionnaire";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireImport;
-      parentRoute: typeof AuthQuestionnaireImport;
+      preLoaderRoute: typeof AuthQuestionnaireRouteImport;
+      parentRoute: typeof AuthRoute;
     };
-    "/_auth/administration/": {
-      id: "/_auth/administration/";
-      path: "/";
-      fullPath: "/administration/";
-      preLoaderRoute: typeof AuthAdministrationIndexImport;
-      parentRoute: typeof AuthAdministrationImport;
+    "/_auth/administration": {
+      id: "/_auth/administration";
+      path: "/administration";
+      fullPath: "/administration";
+      preLoaderRoute: typeof AuthAdministrationRouteImport;
+      parentRoute: typeof AuthRoute;
     };
     "/_auth/questionnaire/": {
       id: "/_auth/questionnaire/";
       path: "/";
       fullPath: "/questionnaire/";
-      preLoaderRoute: typeof AuthQuestionnaireIndexImport;
-      parentRoute: typeof AuthQuestionnaireImport;
+      preLoaderRoute: typeof AuthQuestionnaireIndexRouteImport;
+      parentRoute: typeof AuthQuestionnaireRoute;
     };
-    "/_auth/administration/carers/new": {
-      id: "/_auth/administration/carers/new";
-      path: "/new";
-      fullPath: "/administration/carers/new";
-      preLoaderRoute: typeof AuthAdministrationCarersNewImport;
-      parentRoute: typeof AuthAdministrationCarersImport;
-    };
-    "/_auth/administration/languages/new": {
-      id: "/_auth/administration/languages/new";
-      path: "/new";
-      fullPath: "/administration/languages/new";
-      preLoaderRoute: typeof AuthAdministrationLanguagesNewImport;
-      parentRoute: typeof AuthAdministrationLanguagesImport;
-    };
-    "/_auth/administration/participants/import": {
-      id: "/_auth/administration/participants/import";
-      path: "/import";
-      fullPath: "/administration/participants/import";
-      preLoaderRoute: typeof AuthAdministrationParticipantsImportImport;
-      parentRoute: typeof AuthAdministrationParticipantsImport;
-    };
-    "/_auth/administration/participants/new": {
-      id: "/_auth/administration/participants/new";
-      path: "/new";
-      fullPath: "/administration/participants/new";
-      preLoaderRoute: typeof AuthAdministrationParticipantsNewImport;
-      parentRoute: typeof AuthAdministrationParticipantsImport;
-    };
-    "/_auth/administration/studies/$id": {
-      id: "/_auth/administration/studies/$id";
-      path: "/$id";
-      fullPath: "/administration/studies/$id";
-      preLoaderRoute: typeof AuthAdministrationStudiesIdImport;
-      parentRoute: typeof AuthAdministrationStudiesImport;
-    };
-    "/_auth/administration/studies/new": {
-      id: "/_auth/administration/studies/new";
-      path: "/new";
-      fullPath: "/administration/studies/new";
-      preLoaderRoute: typeof AuthAdministrationStudiesNewImport;
-      parentRoute: typeof AuthAdministrationStudiesImport;
-    };
-    "/_auth/administration/users/new": {
-      id: "/_auth/administration/users/new";
-      path: "/new";
-      fullPath: "/administration/users/new";
-      preLoaderRoute: typeof AuthAdministrationUsersNewImport;
-      parentRoute: typeof AuthAdministrationUsersImport;
-    };
-    "/_auth/questionnaire/_questionnaire/completed": {
-      id: "/_auth/questionnaire/_questionnaire/completed";
-      path: "/completed";
-      fullPath: "/questionnaire/completed";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireCompletedImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
-    };
-    "/_auth/questionnaire/_questionnaire/new": {
-      id: "/_auth/questionnaire/_questionnaire/new";
-      path: "/new";
-      fullPath: "/questionnaire/new";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireNewImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
-    };
-    "/_auth/questionnaire/_questionnaire/participant": {
-      id: "/_auth/questionnaire/_questionnaire/participant";
-      path: "/participant";
-      fullPath: "/questionnaire/participant";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireParticipantImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
-    };
-    "/_auth/administration/carers/": {
-      id: "/_auth/administration/carers/";
+    "/_auth/administration/": {
+      id: "/_auth/administration/";
       path: "/";
-      fullPath: "/administration/carers/";
-      preLoaderRoute: typeof AuthAdministrationCarersIndexImport;
-      parentRoute: typeof AuthAdministrationCarersImport;
+      fullPath: "/administration/";
+      preLoaderRoute: typeof AuthAdministrationIndexRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
-    "/_auth/administration/export/": {
-      id: "/_auth/administration/export/";
-      path: "/";
-      fullPath: "/administration/export/";
-      preLoaderRoute: typeof AuthAdministrationExportIndexImport;
-      parentRoute: typeof AuthAdministrationExportImport;
+    "/_auth/questionnaire/_questionnaire": {
+      id: "/_auth/questionnaire/_questionnaire";
+      path: "";
+      fullPath: "/questionnaire";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireRouteImport;
+      parentRoute: typeof AuthQuestionnaireRoute;
     };
-    "/_auth/administration/languages/": {
-      id: "/_auth/administration/languages/";
-      path: "/";
-      fullPath: "/administration/languages/";
-      preLoaderRoute: typeof AuthAdministrationLanguagesIndexImport;
-      parentRoute: typeof AuthAdministrationLanguagesImport;
+    "/_auth/administration/users": {
+      id: "/_auth/administration/users";
+      path: "/users";
+      fullPath: "/administration/users";
+      preLoaderRoute: typeof AuthAdministrationUsersRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
-    "/_auth/administration/participants/": {
-      id: "/_auth/administration/participants/";
-      path: "/";
-      fullPath: "/administration/participants/";
-      preLoaderRoute: typeof AuthAdministrationParticipantsIndexImport;
-      parentRoute: typeof AuthAdministrationParticipantsImport;
+    "/_auth/administration/studies": {
+      id: "/_auth/administration/studies";
+      path: "/studies";
+      fullPath: "/administration/studies";
+      preLoaderRoute: typeof AuthAdministrationStudiesRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
-    "/_auth/administration/questionnaires/": {
-      id: "/_auth/administration/questionnaires/";
-      path: "/";
-      fullPath: "/administration/questionnaires/";
-      preLoaderRoute: typeof AuthAdministrationQuestionnairesIndexImport;
-      parentRoute: typeof AuthAdministrationQuestionnairesImport;
+    "/_auth/administration/reports": {
+      id: "/_auth/administration/reports";
+      path: "/reports";
+      fullPath: "/administration/reports";
+      preLoaderRoute: typeof AuthAdministrationReportsRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
-    "/_auth/administration/reports/": {
-      id: "/_auth/administration/reports/";
-      path: "/";
-      fullPath: "/administration/reports/";
-      preLoaderRoute: typeof AuthAdministrationReportsIndexImport;
-      parentRoute: typeof AuthAdministrationReportsImport;
+    "/_auth/administration/questionnaires": {
+      id: "/_auth/administration/questionnaires";
+      path: "/questionnaires";
+      fullPath: "/administration/questionnaires";
+      preLoaderRoute: typeof AuthAdministrationQuestionnairesRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
-    "/_auth/administration/studies/": {
-      id: "/_auth/administration/studies/";
-      path: "/";
-      fullPath: "/administration/studies/";
-      preLoaderRoute: typeof AuthAdministrationStudiesIndexImport;
-      parentRoute: typeof AuthAdministrationStudiesImport;
+    "/_auth/administration/participants": {
+      id: "/_auth/administration/participants";
+      path: "/participants";
+      fullPath: "/administration/participants";
+      preLoaderRoute: typeof AuthAdministrationParticipantsRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
+    };
+    "/_auth/administration/languages": {
+      id: "/_auth/administration/languages";
+      path: "/languages";
+      fullPath: "/administration/languages";
+      preLoaderRoute: typeof AuthAdministrationLanguagesRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
+    };
+    "/_auth/administration/export": {
+      id: "/_auth/administration/export";
+      path: "/export";
+      fullPath: "/administration/export";
+      preLoaderRoute: typeof AuthAdministrationExportRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
+    };
+    "/_auth/administration/carers": {
+      id: "/_auth/administration/carers";
+      path: "/carers";
+      fullPath: "/administration/carers";
+      preLoaderRoute: typeof AuthAdministrationCarersRouteImport;
+      parentRoute: typeof AuthAdministrationRoute;
     };
     "/_auth/administration/users/": {
       id: "/_auth/administration/users/";
       path: "/";
       fullPath: "/administration/users/";
-      preLoaderRoute: typeof AuthAdministrationUsersIndexImport;
-      parentRoute: typeof AuthAdministrationUsersImport;
+      preLoaderRoute: typeof AuthAdministrationUsersIndexRouteImport;
+      parentRoute: typeof AuthAdministrationUsersRoute;
     };
-    "/_auth/administration/carers/edit/$id": {
-      id: "/_auth/administration/carers/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/carers/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationCarersEditIdImport;
-      parentRoute: typeof AuthAdministrationCarersImport;
+    "/_auth/administration/studies/": {
+      id: "/_auth/administration/studies/";
+      path: "/";
+      fullPath: "/administration/studies/";
+      preLoaderRoute: typeof AuthAdministrationStudiesIndexRouteImport;
+      parentRoute: typeof AuthAdministrationStudiesRoute;
     };
-    "/_auth/administration/languages/edit/$id": {
-      id: "/_auth/administration/languages/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/languages/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationLanguagesEditIdImport;
-      parentRoute: typeof AuthAdministrationLanguagesImport;
+    "/_auth/administration/reports/": {
+      id: "/_auth/administration/reports/";
+      path: "/";
+      fullPath: "/administration/reports/";
+      preLoaderRoute: typeof AuthAdministrationReportsIndexRouteImport;
+      parentRoute: typeof AuthAdministrationReportsRoute;
     };
-    "/_auth/administration/participants/edit/$id": {
-      id: "/_auth/administration/participants/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/participants/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationParticipantsEditIdImport;
-      parentRoute: typeof AuthAdministrationParticipantsImport;
+    "/_auth/administration/questionnaires/": {
+      id: "/_auth/administration/questionnaires/";
+      path: "/";
+      fullPath: "/administration/questionnaires/";
+      preLoaderRoute: typeof AuthAdministrationQuestionnairesIndexRouteImport;
+      parentRoute: typeof AuthAdministrationQuestionnairesRoute;
     };
-    "/_auth/administration/questionnaires/edit/$id": {
-      id: "/_auth/administration/questionnaires/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/questionnaires/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationQuestionnairesEditIdImport;
-      parentRoute: typeof AuthAdministrationQuestionnairesImport;
+    "/_auth/administration/participants/": {
+      id: "/_auth/administration/participants/";
+      path: "/";
+      fullPath: "/administration/participants/";
+      preLoaderRoute: typeof AuthAdministrationParticipantsIndexRouteImport;
+      parentRoute: typeof AuthAdministrationParticipantsRoute;
     };
-    "/_auth/administration/studies/edit/$id": {
-      id: "/_auth/administration/studies/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/studies/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationStudiesEditIdImport;
-      parentRoute: typeof AuthAdministrationStudiesImport;
+    "/_auth/administration/languages/": {
+      id: "/_auth/administration/languages/";
+      path: "/";
+      fullPath: "/administration/languages/";
+      preLoaderRoute: typeof AuthAdministrationLanguagesIndexRouteImport;
+      parentRoute: typeof AuthAdministrationLanguagesRoute;
     };
-    "/_auth/administration/users/edit/$id": {
-      id: "/_auth/administration/users/edit/$id";
-      path: "/edit/$id";
-      fullPath: "/administration/users/edit/$id";
-      preLoaderRoute: typeof AuthAdministrationUsersEditIdImport;
-      parentRoute: typeof AuthAdministrationUsersImport;
+    "/_auth/administration/export/": {
+      id: "/_auth/administration/export/";
+      path: "/";
+      fullPath: "/administration/export/";
+      preLoaderRoute: typeof AuthAdministrationExportIndexRouteImport;
+      parentRoute: typeof AuthAdministrationExportRoute;
     };
-    "/_auth/questionnaire/_questionnaire/$id/entries": {
-      id: "/_auth/questionnaire/_questionnaire/$id/entries";
-      path: "/$id/entries";
-      fullPath: "/questionnaire/$id/entries";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdEntriesImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
+    "/_auth/administration/carers/": {
+      id: "/_auth/administration/carers/";
+      path: "/";
+      fullPath: "/administration/carers/";
+      preLoaderRoute: typeof AuthAdministrationCarersIndexRouteImport;
+      parentRoute: typeof AuthAdministrationCarersRoute;
     };
-    "/_auth/questionnaire/_questionnaire/$id/period": {
-      id: "/_auth/questionnaire/_questionnaire/$id/period";
-      path: "/$id/period";
-      fullPath: "/questionnaire/$id/period";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdPeriodImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
+    "/_auth/questionnaire/_questionnaire/participant": {
+      id: "/_auth/questionnaire/_questionnaire/participant";
+      path: "/participant";
+      fullPath: "/questionnaire/participant";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireParticipantRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/questionnaire/_questionnaire/new": {
+      id: "/_auth/questionnaire/_questionnaire/new";
+      path: "/new";
+      fullPath: "/questionnaire/new";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireNewRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/questionnaire/_questionnaire/completed": {
+      id: "/_auth/questionnaire/_questionnaire/completed";
+      path: "/completed";
+      fullPath: "/questionnaire/completed";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireCompletedRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/administration/users/new": {
+      id: "/_auth/administration/users/new";
+      path: "/new";
+      fullPath: "/administration/users/new";
+      preLoaderRoute: typeof AuthAdministrationUsersNewRouteImport;
+      parentRoute: typeof AuthAdministrationUsersRoute;
+    };
+    "/_auth/administration/studies/new": {
+      id: "/_auth/administration/studies/new";
+      path: "/new";
+      fullPath: "/administration/studies/new";
+      preLoaderRoute: typeof AuthAdministrationStudiesNewRouteImport;
+      parentRoute: typeof AuthAdministrationStudiesRoute;
+    };
+    "/_auth/administration/studies/$id": {
+      id: "/_auth/administration/studies/$id";
+      path: "/$id";
+      fullPath: "/administration/studies/$id";
+      preLoaderRoute: typeof AuthAdministrationStudiesIdRouteImport;
+      parentRoute: typeof AuthAdministrationStudiesRoute;
+    };
+    "/_auth/administration/participants/new": {
+      id: "/_auth/administration/participants/new";
+      path: "/new";
+      fullPath: "/administration/participants/new";
+      preLoaderRoute: typeof AuthAdministrationParticipantsNewRouteImport;
+      parentRoute: typeof AuthAdministrationParticipantsRoute;
+    };
+    "/_auth/administration/participants/import": {
+      id: "/_auth/administration/participants/import";
+      path: "/import";
+      fullPath: "/administration/participants/import";
+      preLoaderRoute: typeof AuthAdministrationParticipantsImportRouteImport;
+      parentRoute: typeof AuthAdministrationParticipantsRoute;
+    };
+    "/_auth/administration/languages/new": {
+      id: "/_auth/administration/languages/new";
+      path: "/new";
+      fullPath: "/administration/languages/new";
+      preLoaderRoute: typeof AuthAdministrationLanguagesNewRouteImport;
+      parentRoute: typeof AuthAdministrationLanguagesRoute;
+    };
+    "/_auth/administration/carers/new": {
+      id: "/_auth/administration/carers/new";
+      path: "/new";
+      fullPath: "/administration/carers/new";
+      preLoaderRoute: typeof AuthAdministrationCarersNewRouteImport;
+      parentRoute: typeof AuthAdministrationCarersRoute;
     };
     "/_auth/questionnaire/_questionnaire/$id/remarks": {
       id: "/_auth/questionnaire/_questionnaire/$id/remarks";
       path: "/$id/remarks";
       fullPath: "/questionnaire/$id/remarks";
-      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdRemarksImport;
-      parentRoute: typeof AuthQuestionnaireQuestionnaireImport;
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdRemarksRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/questionnaire/_questionnaire/$id/period": {
+      id: "/_auth/questionnaire/_questionnaire/$id/period";
+      path: "/$id/period";
+      fullPath: "/questionnaire/$id/period";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdPeriodRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/questionnaire/_questionnaire/$id/entries": {
+      id: "/_auth/questionnaire/_questionnaire/$id/entries";
+      path: "/$id/entries";
+      fullPath: "/questionnaire/$id/entries";
+      preLoaderRoute: typeof AuthQuestionnaireQuestionnaireIdEntriesRouteImport;
+      parentRoute: typeof AuthQuestionnaireQuestionnaireRoute;
+    };
+    "/_auth/administration/users/edit/$id": {
+      id: "/_auth/administration/users/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/users/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationUsersEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationUsersRoute;
+    };
+    "/_auth/administration/studies/edit/$id": {
+      id: "/_auth/administration/studies/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/studies/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationStudiesEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationStudiesRoute;
+    };
+    "/_auth/administration/questionnaires/edit/$id": {
+      id: "/_auth/administration/questionnaires/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/questionnaires/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationQuestionnairesEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationQuestionnairesRoute;
+    };
+    "/_auth/administration/participants/edit/$id": {
+      id: "/_auth/administration/participants/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/participants/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationParticipantsEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationParticipantsRoute;
+    };
+    "/_auth/administration/languages/edit/$id": {
+      id: "/_auth/administration/languages/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/languages/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationLanguagesEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationLanguagesRoute;
+    };
+    "/_auth/administration/carers/edit/$id": {
+      id: "/_auth/administration/carers/edit/$id";
+      path: "/edit/$id";
+      fullPath: "/administration/carers/edit/$id";
+      preLoaderRoute: typeof AuthAdministrationCarersEditIdRouteImport;
+      parentRoute: typeof AuthAdministrationCarersRoute;
     };
   }
 }
-
-// Create and export the route tree
 
 interface AuthAdministrationCarersRouteChildren {
   AuthAdministrationCarersNewRoute: typeof AuthAdministrationCarersNewRoute;
@@ -889,517 +1093,10 @@ const AuthRouteChildren: AuthRouteChildren = {
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
-export interface FileRoutesByFullPath {
-  "": typeof AuthRouteWithChildren;
-  "/session": typeof SessionRoute;
-  "/administration": typeof AuthAdministrationRouteWithChildren;
-  "/questionnaire": typeof AuthQuestionnaireQuestionnaireRouteWithChildren;
-  "/": typeof AuthIndexRoute;
-  "/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
-  "/administration/export": typeof AuthAdministrationExportRouteWithChildren;
-  "/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
-  "/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
-  "/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
-  "/administration/reports": typeof AuthAdministrationReportsRouteWithChildren;
-  "/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
-  "/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
-  "/administration/": typeof AuthAdministrationIndexRoute;
-  "/questionnaire/": typeof AuthQuestionnaireIndexRoute;
-  "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
-  "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
-  "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
-  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
-  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
-  "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
-  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
-  "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
-  "/questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
-  "/questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
-  "/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
-  "/administration/export/": typeof AuthAdministrationExportIndexRoute;
-  "/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
-  "/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
-  "/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
-  "/administration/reports/": typeof AuthAdministrationReportsIndexRoute;
-  "/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
-  "/administration/users/": typeof AuthAdministrationUsersIndexRoute;
-  "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
-  "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
-  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
-  "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
-  "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
-  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
-  "/questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
-  "/questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
-  "/questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
-}
-
-export interface FileRoutesByTo {
-  "/session": typeof SessionRoute;
-  "/": typeof AuthIndexRoute;
-  "/questionnaire": typeof AuthQuestionnaireIndexRoute;
-  "/administration": typeof AuthAdministrationIndexRoute;
-  "/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
-  "/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
-  "/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
-  "/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
-  "/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
-  "/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
-  "/administration/users/new": typeof AuthAdministrationUsersNewRoute;
-  "/questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
-  "/questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
-  "/questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
-  "/administration/carers": typeof AuthAdministrationCarersIndexRoute;
-  "/administration/export": typeof AuthAdministrationExportIndexRoute;
-  "/administration/languages": typeof AuthAdministrationLanguagesIndexRoute;
-  "/administration/participants": typeof AuthAdministrationParticipantsIndexRoute;
-  "/administration/questionnaires": typeof AuthAdministrationQuestionnairesIndexRoute;
-  "/administration/reports": typeof AuthAdministrationReportsIndexRoute;
-  "/administration/studies": typeof AuthAdministrationStudiesIndexRoute;
-  "/administration/users": typeof AuthAdministrationUsersIndexRoute;
-  "/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
-  "/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
-  "/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
-  "/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
-  "/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
-  "/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
-  "/questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
-  "/questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
-  "/questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
-}
-
-export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/_auth": typeof AuthRouteWithChildren;
-  "/session": typeof SessionRoute;
-  "/_auth/administration": typeof AuthAdministrationRouteWithChildren;
-  "/_auth/questionnaire": typeof AuthQuestionnaireRouteWithChildren;
-  "/_auth/": typeof AuthIndexRoute;
-  "/_auth/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
-  "/_auth/administration/export": typeof AuthAdministrationExportRouteWithChildren;
-  "/_auth/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
-  "/_auth/administration/participants": typeof AuthAdministrationParticipantsRouteWithChildren;
-  "/_auth/administration/questionnaires": typeof AuthAdministrationQuestionnairesRouteWithChildren;
-  "/_auth/administration/reports": typeof AuthAdministrationReportsRouteWithChildren;
-  "/_auth/administration/studies": typeof AuthAdministrationStudiesRouteWithChildren;
-  "/_auth/administration/users": typeof AuthAdministrationUsersRouteWithChildren;
-  "/_auth/questionnaire/_questionnaire": typeof AuthQuestionnaireQuestionnaireRouteWithChildren;
-  "/_auth/administration/": typeof AuthAdministrationIndexRoute;
-  "/_auth/questionnaire/": typeof AuthQuestionnaireIndexRoute;
-  "/_auth/administration/carers/new": typeof AuthAdministrationCarersNewRoute;
-  "/_auth/administration/languages/new": typeof AuthAdministrationLanguagesNewRoute;
-  "/_auth/administration/participants/import": typeof AuthAdministrationParticipantsImportRoute;
-  "/_auth/administration/participants/new": typeof AuthAdministrationParticipantsNewRoute;
-  "/_auth/administration/studies/$id": typeof AuthAdministrationStudiesIdRoute;
-  "/_auth/administration/studies/new": typeof AuthAdministrationStudiesNewRoute;
-  "/_auth/administration/users/new": typeof AuthAdministrationUsersNewRoute;
-  "/_auth/questionnaire/_questionnaire/completed": typeof AuthQuestionnaireQuestionnaireCompletedRoute;
-  "/_auth/questionnaire/_questionnaire/new": typeof AuthQuestionnaireQuestionnaireNewRoute;
-  "/_auth/questionnaire/_questionnaire/participant": typeof AuthQuestionnaireQuestionnaireParticipantRoute;
-  "/_auth/administration/carers/": typeof AuthAdministrationCarersIndexRoute;
-  "/_auth/administration/export/": typeof AuthAdministrationExportIndexRoute;
-  "/_auth/administration/languages/": typeof AuthAdministrationLanguagesIndexRoute;
-  "/_auth/administration/participants/": typeof AuthAdministrationParticipantsIndexRoute;
-  "/_auth/administration/questionnaires/": typeof AuthAdministrationQuestionnairesIndexRoute;
-  "/_auth/administration/reports/": typeof AuthAdministrationReportsIndexRoute;
-  "/_auth/administration/studies/": typeof AuthAdministrationStudiesIndexRoute;
-  "/_auth/administration/users/": typeof AuthAdministrationUsersIndexRoute;
-  "/_auth/administration/carers/edit/$id": typeof AuthAdministrationCarersEditIdRoute;
-  "/_auth/administration/languages/edit/$id": typeof AuthAdministrationLanguagesEditIdRoute;
-  "/_auth/administration/participants/edit/$id": typeof AuthAdministrationParticipantsEditIdRoute;
-  "/_auth/administration/questionnaires/edit/$id": typeof AuthAdministrationQuestionnairesEditIdRoute;
-  "/_auth/administration/studies/edit/$id": typeof AuthAdministrationStudiesEditIdRoute;
-  "/_auth/administration/users/edit/$id": typeof AuthAdministrationUsersEditIdRoute;
-  "/_auth/questionnaire/_questionnaire/$id/entries": typeof AuthQuestionnaireQuestionnaireIdEntriesRoute;
-  "/_auth/questionnaire/_questionnaire/$id/period": typeof AuthQuestionnaireQuestionnaireIdPeriodRoute;
-  "/_auth/questionnaire/_questionnaire/$id/remarks": typeof AuthQuestionnaireQuestionnaireIdRemarksRoute;
-}
-
-export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths:
-    | ""
-    | "/session"
-    | "/administration"
-    | "/questionnaire"
-    | "/"
-    | "/administration/carers"
-    | "/administration/export"
-    | "/administration/languages"
-    | "/administration/participants"
-    | "/administration/questionnaires"
-    | "/administration/reports"
-    | "/administration/studies"
-    | "/administration/users"
-    | "/administration/"
-    | "/questionnaire/"
-    | "/administration/carers/new"
-    | "/administration/languages/new"
-    | "/administration/participants/import"
-    | "/administration/participants/new"
-    | "/administration/studies/$id"
-    | "/administration/studies/new"
-    | "/administration/users/new"
-    | "/questionnaire/completed"
-    | "/questionnaire/new"
-    | "/questionnaire/participant"
-    | "/administration/carers/"
-    | "/administration/export/"
-    | "/administration/languages/"
-    | "/administration/participants/"
-    | "/administration/questionnaires/"
-    | "/administration/reports/"
-    | "/administration/studies/"
-    | "/administration/users/"
-    | "/administration/carers/edit/$id"
-    | "/administration/languages/edit/$id"
-    | "/administration/participants/edit/$id"
-    | "/administration/questionnaires/edit/$id"
-    | "/administration/studies/edit/$id"
-    | "/administration/users/edit/$id"
-    | "/questionnaire/$id/entries"
-    | "/questionnaire/$id/period"
-    | "/questionnaire/$id/remarks";
-  fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/session"
-    | "/"
-    | "/questionnaire"
-    | "/administration"
-    | "/administration/carers/new"
-    | "/administration/languages/new"
-    | "/administration/participants/import"
-    | "/administration/participants/new"
-    | "/administration/studies/$id"
-    | "/administration/studies/new"
-    | "/administration/users/new"
-    | "/questionnaire/completed"
-    | "/questionnaire/new"
-    | "/questionnaire/participant"
-    | "/administration/carers"
-    | "/administration/export"
-    | "/administration/languages"
-    | "/administration/participants"
-    | "/administration/questionnaires"
-    | "/administration/reports"
-    | "/administration/studies"
-    | "/administration/users"
-    | "/administration/carers/edit/$id"
-    | "/administration/languages/edit/$id"
-    | "/administration/participants/edit/$id"
-    | "/administration/questionnaires/edit/$id"
-    | "/administration/studies/edit/$id"
-    | "/administration/users/edit/$id"
-    | "/questionnaire/$id/entries"
-    | "/questionnaire/$id/period"
-    | "/questionnaire/$id/remarks";
-  id:
-    | "__root__"
-    | "/_auth"
-    | "/session"
-    | "/_auth/administration"
-    | "/_auth/questionnaire"
-    | "/_auth/"
-    | "/_auth/administration/carers"
-    | "/_auth/administration/export"
-    | "/_auth/administration/languages"
-    | "/_auth/administration/participants"
-    | "/_auth/administration/questionnaires"
-    | "/_auth/administration/reports"
-    | "/_auth/administration/studies"
-    | "/_auth/administration/users"
-    | "/_auth/questionnaire/_questionnaire"
-    | "/_auth/administration/"
-    | "/_auth/questionnaire/"
-    | "/_auth/administration/carers/new"
-    | "/_auth/administration/languages/new"
-    | "/_auth/administration/participants/import"
-    | "/_auth/administration/participants/new"
-    | "/_auth/administration/studies/$id"
-    | "/_auth/administration/studies/new"
-    | "/_auth/administration/users/new"
-    | "/_auth/questionnaire/_questionnaire/completed"
-    | "/_auth/questionnaire/_questionnaire/new"
-    | "/_auth/questionnaire/_questionnaire/participant"
-    | "/_auth/administration/carers/"
-    | "/_auth/administration/export/"
-    | "/_auth/administration/languages/"
-    | "/_auth/administration/participants/"
-    | "/_auth/administration/questionnaires/"
-    | "/_auth/administration/reports/"
-    | "/_auth/administration/studies/"
-    | "/_auth/administration/users/"
-    | "/_auth/administration/carers/edit/$id"
-    | "/_auth/administration/languages/edit/$id"
-    | "/_auth/administration/participants/edit/$id"
-    | "/_auth/administration/questionnaires/edit/$id"
-    | "/_auth/administration/studies/edit/$id"
-    | "/_auth/administration/users/edit/$id"
-    | "/_auth/questionnaire/_questionnaire/$id/entries"
-    | "/_auth/questionnaire/_questionnaire/$id/period"
-    | "/_auth/questionnaire/_questionnaire/$id/remarks";
-  fileRoutesById: FileRoutesById;
-}
-
-export interface RootRouteChildren {
-  AuthRoute: typeof AuthRouteWithChildren;
-  SessionRoute: typeof SessionRoute;
-}
-
 const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   SessionRoute: SessionRoute,
 };
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/_auth",
-        "/session"
-      ]
-    },
-    "/_auth": {
-      "filePath": "_auth.tsx",
-      "children": [
-        "/_auth/administration",
-        "/_auth/questionnaire",
-        "/_auth/"
-      ]
-    },
-    "/session": {
-      "filePath": "session.tsx"
-    },
-    "/_auth/administration": {
-      "filePath": "_auth/administration.tsx",
-      "parent": "/_auth",
-      "children": [
-        "/_auth/administration/carers",
-        "/_auth/administration/export",
-        "/_auth/administration/languages",
-        "/_auth/administration/participants",
-        "/_auth/administration/questionnaires",
-        "/_auth/administration/reports",
-        "/_auth/administration/studies",
-        "/_auth/administration/users",
-        "/_auth/administration/"
-      ]
-    },
-    "/_auth/questionnaire": {
-      "filePath": "_auth/questionnaire.tsx",
-      "parent": "/_auth",
-      "children": [
-        "/_auth/questionnaire/_questionnaire",
-        "/_auth/questionnaire/"
-      ]
-    },
-    "/_auth/": {
-      "filePath": "_auth/index.tsx",
-      "parent": "/_auth"
-    },
-    "/_auth/administration/carers": {
-      "filePath": "_auth/administration/carers.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/carers/new",
-        "/_auth/administration/carers/",
-        "/_auth/administration/carers/edit/$id"
-      ]
-    },
-    "/_auth/administration/export": {
-      "filePath": "_auth/administration/export.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/export/"
-      ]
-    },
-    "/_auth/administration/languages": {
-      "filePath": "_auth/administration/languages.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/languages/new",
-        "/_auth/administration/languages/",
-        "/_auth/administration/languages/edit/$id"
-      ]
-    },
-    "/_auth/administration/participants": {
-      "filePath": "_auth/administration/participants.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/participants/import",
-        "/_auth/administration/participants/new",
-        "/_auth/administration/participants/",
-        "/_auth/administration/participants/edit/$id"
-      ]
-    },
-    "/_auth/administration/questionnaires": {
-      "filePath": "_auth/administration/questionnaires.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/questionnaires/",
-        "/_auth/administration/questionnaires/edit/$id"
-      ]
-    },
-    "/_auth/administration/reports": {
-      "filePath": "_auth/administration/reports.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/reports/"
-      ]
-    },
-    "/_auth/administration/studies": {
-      "filePath": "_auth/administration/studies.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/studies/$id",
-        "/_auth/administration/studies/new",
-        "/_auth/administration/studies/",
-        "/_auth/administration/studies/edit/$id"
-      ]
-    },
-    "/_auth/administration/users": {
-      "filePath": "_auth/administration/users.tsx",
-      "parent": "/_auth/administration",
-      "children": [
-        "/_auth/administration/users/new",
-        "/_auth/administration/users/",
-        "/_auth/administration/users/edit/$id"
-      ]
-    },
-    "/_auth/questionnaire/_questionnaire": {
-      "filePath": "_auth/questionnaire/_questionnaire.tsx",
-      "parent": "/_auth/questionnaire",
-      "children": [
-        "/_auth/questionnaire/_questionnaire/completed",
-        "/_auth/questionnaire/_questionnaire/new",
-        "/_auth/questionnaire/_questionnaire/participant",
-        "/_auth/questionnaire/_questionnaire/$id/entries",
-        "/_auth/questionnaire/_questionnaire/$id/period",
-        "/_auth/questionnaire/_questionnaire/$id/remarks"
-      ]
-    },
-    "/_auth/administration/": {
-      "filePath": "_auth/administration/index.tsx",
-      "parent": "/_auth/administration"
-    },
-    "/_auth/questionnaire/": {
-      "filePath": "_auth/questionnaire/index.tsx",
-      "parent": "/_auth/questionnaire"
-    },
-    "/_auth/administration/carers/new": {
-      "filePath": "_auth/administration/carers/new.tsx",
-      "parent": "/_auth/administration/carers"
-    },
-    "/_auth/administration/languages/new": {
-      "filePath": "_auth/administration/languages/new.tsx",
-      "parent": "/_auth/administration/languages"
-    },
-    "/_auth/administration/participants/import": {
-      "filePath": "_auth/administration/participants/import.tsx",
-      "parent": "/_auth/administration/participants"
-    },
-    "/_auth/administration/participants/new": {
-      "filePath": "_auth/administration/participants/new.tsx",
-      "parent": "/_auth/administration/participants"
-    },
-    "/_auth/administration/studies/$id": {
-      "filePath": "_auth/administration/studies/$id.tsx",
-      "parent": "/_auth/administration/studies"
-    },
-    "/_auth/administration/studies/new": {
-      "filePath": "_auth/administration/studies/new.tsx",
-      "parent": "/_auth/administration/studies"
-    },
-    "/_auth/administration/users/new": {
-      "filePath": "_auth/administration/users/new.tsx",
-      "parent": "/_auth/administration/users"
-    },
-    "/_auth/questionnaire/_questionnaire/completed": {
-      "filePath": "_auth/questionnaire/_questionnaire/completed.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    },
-    "/_auth/questionnaire/_questionnaire/new": {
-      "filePath": "_auth/questionnaire/_questionnaire/new.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    },
-    "/_auth/questionnaire/_questionnaire/participant": {
-      "filePath": "_auth/questionnaire/_questionnaire/participant.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    },
-    "/_auth/administration/carers/": {
-      "filePath": "_auth/administration/carers/index.tsx",
-      "parent": "/_auth/administration/carers"
-    },
-    "/_auth/administration/export/": {
-      "filePath": "_auth/administration/export/index.tsx",
-      "parent": "/_auth/administration/export"
-    },
-    "/_auth/administration/languages/": {
-      "filePath": "_auth/administration/languages/index.tsx",
-      "parent": "/_auth/administration/languages"
-    },
-    "/_auth/administration/participants/": {
-      "filePath": "_auth/administration/participants/index.tsx",
-      "parent": "/_auth/administration/participants"
-    },
-    "/_auth/administration/questionnaires/": {
-      "filePath": "_auth/administration/questionnaires/index.tsx",
-      "parent": "/_auth/administration/questionnaires"
-    },
-    "/_auth/administration/reports/": {
-      "filePath": "_auth/administration/reports/index.tsx",
-      "parent": "/_auth/administration/reports"
-    },
-    "/_auth/administration/studies/": {
-      "filePath": "_auth/administration/studies/index.tsx",
-      "parent": "/_auth/administration/studies"
-    },
-    "/_auth/administration/users/": {
-      "filePath": "_auth/administration/users/index.tsx",
-      "parent": "/_auth/administration/users"
-    },
-    "/_auth/administration/carers/edit/$id": {
-      "filePath": "_auth/administration/carers/edit.$id.tsx",
-      "parent": "/_auth/administration/carers"
-    },
-    "/_auth/administration/languages/edit/$id": {
-      "filePath": "_auth/administration/languages/edit.$id.tsx",
-      "parent": "/_auth/administration/languages"
-    },
-    "/_auth/administration/participants/edit/$id": {
-      "filePath": "_auth/administration/participants/edit.$id.tsx",
-      "parent": "/_auth/administration/participants"
-    },
-    "/_auth/administration/questionnaires/edit/$id": {
-      "filePath": "_auth/administration/questionnaires/edit.$id.tsx",
-      "parent": "/_auth/administration/questionnaires"
-    },
-    "/_auth/administration/studies/edit/$id": {
-      "filePath": "_auth/administration/studies/edit.$id.tsx",
-      "parent": "/_auth/administration/studies"
-    },
-    "/_auth/administration/users/edit/$id": {
-      "filePath": "_auth/administration/users/edit.$id.tsx",
-      "parent": "/_auth/administration/users"
-    },
-    "/_auth/questionnaire/_questionnaire/$id/entries": {
-      "filePath": "_auth/questionnaire/_questionnaire/$id/entries.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    },
-    "/_auth/questionnaire/_questionnaire/$id/period": {
-      "filePath": "_auth/questionnaire/_questionnaire/$id/period.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    },
-    "/_auth/questionnaire/_questionnaire/$id/remarks": {
-      "filePath": "_auth/questionnaire/_questionnaire/$id/remarks.tsx",
-      "parent": "/_auth/questionnaire/_questionnaire"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

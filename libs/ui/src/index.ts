@@ -31,6 +31,7 @@ import "@mantine/core/styles/ActionIcon.css";
 import "@mantine/core/styles/Combobox.css";
 import "@mantine/core/styles/Stack.css";
 import "@mantine/core/styles/Radio.css";
+import "@mantine/core/styles/Container.css";
 
 import "@mantine/dates/styles.css";
 

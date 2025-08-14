@@ -8,8 +8,8 @@ import { format, i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
 
 type FormValues = {
-  startedAt: Date;
-  endedAt: Date;
+  startedAt: string;
+  endedAt: string;
   title: string;
   remark?: string;
 };
@@ -49,16 +49,15 @@ function AdministrationQuestionnairesEdit() {
   });
 
   const f = useForm<FormValues>();
-  const handleSubmit = ({ startedAt, endedAt, ...rest }: FormValues) => {
+  const handleSubmit = (values: FormValues) => {
     editQuestionnaireMutation.mutate({
-      body: { ...rest, startedAt: startedAt.toISOString(), endedAt: endedAt.toISOString() },
+      body: values,
       params: { path: { id: p.id } },
     });
   };
 
   useEffect(() => {
-    const { title, remark, startedAt, endedAt } = data;
-    f.initialize({ title, remark, startedAt: new Date(startedAt), endedAt: new Date(endedAt) });
+    f.initialize(data);
   }, [isSuccess, data]);
 
   return (

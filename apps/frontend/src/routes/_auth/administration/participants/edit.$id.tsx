@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 type FormValues = {
   id: string;
-  birthday: Date;
+  birthday: string;
 };
 
 function AdministrationParticipantsEdit() {
@@ -31,7 +31,7 @@ function AdministrationParticipantsEdit() {
   const f = useForm<FormValues>();
   const handleSubmit = ({ id, birthday }: FormValues) => {
     editParticipantMutation.mutate({
-      body: { id: +id, birthday: birthday.toISOString() },
+      body: { id: +id, birthday },
       params: { path: { id: p.id } },
     });
   };
@@ -39,7 +39,7 @@ function AdministrationParticipantsEdit() {
   useEffect(() => {
     const { birthday, id } = participant.data;
 
-    f.setValues({ birthday: new Date(birthday!), id: id.toString() });
+    f.setValues({ birthday, id: id.toString() });
   }, [participant.isSuccess, participant.data]);
 
   return (

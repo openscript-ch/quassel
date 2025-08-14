@@ -5,6 +5,7 @@ import { PeriodForm, PeriodFormValues } from "../../../../../components/question
 import { $api } from "../../../../../stores/api";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { Title } from "@quassel/ui";
+import { getStartOf, getEndOf } from "@quassel/utils";
 
 export const messages = i18n("questionnairePeriod", {
   title: "Period",
@@ -17,27 +18,23 @@ function QuestionnairePeriod() {
 
   const t = useStore(messages);
 
-  const { data: questionnaire } = useSuspenseQuery(
+  const {
+    data: { title, startedAt, endedAt },
+  } = useSuspenseQuery(
     $api.queryOptions("get", "/questionnaires/{id}", {
       params: { path: { id } },
     })
   );
 
-  const period: PeriodFormValues = {
-    title: questionnaire.title!,
-    range: [new Date(Date.parse(questionnaire.startedAt!)), new Date(Date.parse(questionnaire.endedAt!))],
-  };
+  const period: PeriodFormValues = { title, range: [startedAt, endedAt] };
 
   const updateQuestionnaireMutation = $api.useMutation("patch", "/questionnaires/{id}");
 
-  const onSave = async (form: PeriodFormValues) => {
-    const {
-      title,
-      range: [localStartedAt, localEndedAt],
-    } = form;
+  const onSave = async ({ title, range: [startedAt, endedAt] }: PeriodFormValues) => {
+    if (!startedAt || !endedAt) return;
 
-    const startedAt = localStartedAt!.toISOString();
-    const endedAt = localEndedAt!.toISOString();
+    startedAt = getStartOf("day", new Date(startedAt)).toISOString();
+    endedAt = getEndOf("day", new Date(endedAt)).toISOString();
 
     await updateQuestionnaireMutation.mutateAsync({
       params: { path: { id } },

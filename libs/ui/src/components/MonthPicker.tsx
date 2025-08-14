@@ -1,7 +1,6 @@
 import {
   DatePickerType,
   DatesRangeValue,
-  DateValue,
   MonthPicker as MantineMonthPicker,
   MonthPickerProps as MantineMonthPickerProps,
 } from "@mantine/dates";
@@ -11,7 +10,7 @@ interface MonthPickerProps<Type extends DatePickerType = "default"> extends Mant
   selectEndOfMonth?: boolean;
 }
 
-function isRangeValue(date: DateValue | DatesRangeValue | Date[]): date is DatesRangeValue {
+function isRangeValue(date: string | DatesRangeValue | string[] | null): date is DatesRangeValue {
   return Array.isArray(date) && date.length === 2;
 }
 
@@ -19,7 +18,7 @@ export function MonthPicker<Type extends DatePickerType = "default">({ selectEnd
   const onChange: MonthPickerProps<Type>["onChange"] = (date) => {
     if (rest.type === "range" && isRangeValue(date) && selectEndOfMonth) {
       const [start, end] = date;
-      const newDate = [start, end ? dayjs(end).utc().endOf("month").toDate() : undefined];
+      const newDate = [start, end ? dayjs(end).endOf("month").format("YYYY-MM-DD") : undefined];
       date = newDate as typeof date;
     }
     rest.onChange!(date);
