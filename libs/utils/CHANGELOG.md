@@ -1,5 +1,11 @@
 # @quassel/utils
 
+## 1.0.1
+
+### Patch Changes
+
+- 0415be2: Upgrade dependencies
+
 ## 1.0.0
 
 ### Major Changes
