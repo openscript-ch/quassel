@@ -1,5 +1,14 @@
 # @quassel/frontend
 
+## 1.3.1
+
+### Patch Changes
+
+- 293ee42: Enhance timezone handling
+- 2bcdfaa: Fix overriding calendar entries on saving questionnaire
+- Updated dependencies [293ee42]
+  - @quassel/utils@1.0.2
+
 ## 1.3.0
 
 ### Minor Changes
