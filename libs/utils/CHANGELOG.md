@@ -1,5 +1,11 @@
 # @quassel/utils
 
+## 1.0.2
+
+### Patch Changes
+
+- 293ee42: Enhance timezone handling
+
 ## 1.0.1
 
 ### Patch Changes
