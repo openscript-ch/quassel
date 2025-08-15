@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { QuestionnaireEntries } from "../../../../components/questionnaire/QuestionnaireEntries";
 import { format, i18n } from "../../../../stores/i18n";
 import { useStore } from "@nanostores/react";
+import { toMantineUTCDate } from "@quassel/utils";
 
 type FormValues = {
   startedAt: string;
@@ -58,7 +59,7 @@ function AdministrationQuestionnairesEdit() {
 
   useEffect(() => {
     const { startedAt, endedAt, title, remark } = data;
-    f.initialize({ startedAt, endedAt, title, remark });
+    f.initialize({ startedAt: toMantineUTCDate(startedAt), endedAt: toMantineUTCDate(endedAt), title, remark });
   }, [isSuccess, data]);
 
   return (
@@ -68,7 +69,7 @@ function AdministrationQuestionnairesEdit() {
           <Table.Tr>
             <Table.Th>{t.labelParticipant}</Table.Th>
             <Table.Td>{data.participant.id}</Table.Td>
-            <Table.Td>{data.participant.birthday && time(new Date(data.participant.birthday))}</Table.Td>
+            <Table.Td>{data.participant.birthday && time(new Date(data.participant.birthday), { timeZone: "UTC" })}</Table.Td>
           </Table.Tr>
         </Table.Tbody>
       </Table>

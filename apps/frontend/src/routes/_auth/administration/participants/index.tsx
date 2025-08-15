@@ -43,7 +43,7 @@ function AdministrationParticipantsIndex() {
         {participants.data?.map((p) => (
           <Table.Tr key={p.id}>
             <Table.Td>{p.id}</Table.Td>
-            <Table.Td>{p.birthday && time(new Date(p.birthday))}</Table.Td>
+            <Table.Td>{p.birthday && time(new Date(p.birthday), { timeZone: "UTC" })}</Table.Td>
             <Table.Td>
               <Button variant="default" renderRoot={(props) => <Link to={`/administration/participants/edit/${p.id}`} {...props} />}>
                 Edit
