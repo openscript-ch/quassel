@@ -58,7 +58,8 @@ function AdministrationQuestionnairesEdit() {
   };
 
   useEffect(() => {
-    f.initialize({ ...data, startedAt: toMantineUTCDate(data.startedAt), endedAt: toMantineUTCDate(data.endedAt) });
+    const { startedAt, endedAt, title, remark } = data;
+    f.initialize({ startedAt: toMantineUTCDate(startedAt), endedAt: toMantineUTCDate(endedAt), title, remark });
   }, [isSuccess, data]);
 
   return (
