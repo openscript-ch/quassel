@@ -57,7 +57,8 @@ function AdministrationQuestionnairesEdit() {
   };
 
   useEffect(() => {
-    f.initialize(data);
+    const { startedAt, endedAt, title, remark } = data;
+    f.initialize({ startedAt, endedAt, title, remark });
   }, [isSuccess, data]);
 
   return (
