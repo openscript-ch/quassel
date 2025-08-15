@@ -12,7 +12,7 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.6",
     "@fontsource-variable/onest": "^5.2.9",
-    "astro": "^5.12.9",
+    "astro": "^5.13.0",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {
