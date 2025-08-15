@@ -1,5 +1,18 @@
 # @quassel/frontend
 
+## 1.3.0
+
+### Minor Changes
+
+- 3ee1b1b: Release 1.3
+
+### Patch Changes
+
+- 0415be2: Upgrade dependencies
+- Updated dependencies [0415be2]
+  - @quassel/utils@1.0.1
+  - @quassel/ui@1.2.1
+
 ## 1.2.5
 
 ## 1.2.4

@@ -1,5 +1,19 @@
 # @quassel/backend
 
+## 1.3.0
+
+### Minor Changes
+
+- 3ee1b1b: Release 1.3
+
+### Patch Changes
+
+- 75f452a: Fix exporting by study
+- 4df12c2: Fix searching questionnaire by study title
+- 0415be2: Upgrade dependencies
+- Updated dependencies [0415be2]
+  - @quassel/utils@1.0.1
+
 ## 1.2.5
 
 ### Patch Changes
