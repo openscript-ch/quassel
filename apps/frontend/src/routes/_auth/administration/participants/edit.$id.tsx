@@ -3,6 +3,7 @@ import { $api } from "../../../../stores/api";
 import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Button, DateInput, Stack, TextInput, useForm } from "@quassel/ui";
 import { useEffect } from "react";
+import { toMantineUTCDate } from "@quassel/utils";
 
 type FormValues = {
   id: string;
@@ -39,7 +40,7 @@ function AdministrationParticipantsEdit() {
   useEffect(() => {
     const { birthday, id } = participant.data;
 
-    f.setValues({ birthday, id: id.toString() });
+    f.setValues({ birthday: birthday && toMantineUTCDate(birthday), id: id.toString() });
   }, [participant.isSuccess, participant.data]);
 
   return (

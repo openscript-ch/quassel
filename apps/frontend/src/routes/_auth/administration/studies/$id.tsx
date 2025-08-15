@@ -4,8 +4,10 @@ import { useQueryClient, useSuspenseQuery } from "@tanstack/react-query";
 import { Stack, Table, Title, Button } from "@quassel/ui";
 import { useStore } from "@nanostores/react";
 import { $session } from "../../../../stores/session";
+import { format } from "../../../../stores/i18n";
 
 function AdministrationStudiesEdit() {
+  const { time } = useStore(format);
   const sessionStore = useStore($session);
   const p = Route.useParams();
   const q = useQueryClient();
@@ -46,7 +48,7 @@ function AdministrationStudiesEdit() {
         {study.data?.participants.map((p) => (
           <Table.Tr key={p.id}>
             <Table.Td>{p.id}</Table.Td>
-            <Table.Td>{p.birthday}</Table.Td>
+            <Table.Td>{p.birthday && time(new Date(p.birthday), { timeZone: "UTC" })}</Table.Td>
             <Table.Td>
               {sessionStore.role === "ADMIN" && (
                 <Button

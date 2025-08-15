@@ -12,6 +12,7 @@ export function formatDate(date: Date, dayjsFormatTemplate: string) {
 }
 
 export const getTime = (date: Date) => formatDate(date, "HH:mm");
+export const toMantineUTCDate = (date: string) => dayjs(date).utc().format("YYYY-MM-DD");
 
 export const getNext = (unit: dayjs.ManipulateType, date: Date) => dayjs(date).utc().add(1, unit).startOf(unit).toDate();
 
