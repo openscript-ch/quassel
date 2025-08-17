@@ -1,5 +1,13 @@
 # @quassel/backend
 
+## 1.3.1
+
+### Patch Changes
+
+- fa4ae49: Override fastify version for type compatibility
+- Updated dependencies [293ee42]
+  - @quassel/utils@1.0.2
+
 ## 1.3.0
 
 ### Minor Changes
