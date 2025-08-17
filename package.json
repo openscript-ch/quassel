@@ -18,7 +18,7 @@
   "author": "openscript GmbH",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.29.5",
+    "@changesets/cli": "^2.29.6",
     "@eslint/js": "^9.33.0",
     "@nestjs/cli": "^11.0.10",
     "@nx-tools/container-metadata": "^6.8.2",
@@ -32,7 +32,7 @@
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
-    "nx": "^21.3.11",
+    "nx": "^21.4.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.2",
