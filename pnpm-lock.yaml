@@ -254,7 +254,7 @@ importers:
         version: 1.131.22(@tanstack/react-router@1.131.22(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(vite@7.1.2(@types/node@24.3.0)(terser@5.43.1)(tsx@4.20.4)(yaml@2.8.1))(webpack@5.100.2(esbuild@0.25.9))
       '@testing-library/jest-dom':
         specifier: ^6.7.0
-        version: 6.7.0
+        version: 6.8.0
       '@testing-library/react':
         specifier: ^16.3.0
         version: 16.3.0(@testing-library/dom@10.4.1)(@types/react-dom@19.1.7(@types/react@19.1.10))(@types/react@19.1.10)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -3030,8 +3030,8 @@ packages:
     resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
     engines: {node: '>=18'}
 
-  '@testing-library/jest-dom@6.7.0':
-    resolution: {integrity: sha512-RI2e97YZ7MRa+vxP4UUnMuMFL2buSsf0ollxUbTgrbPLKhMn8KVTx7raS6DYjC7v1NDVrioOvaShxsguLNISCA==}
+  '@testing-library/jest-dom@6.8.0':
+    resolution: {integrity: sha512-WgXcWzVM6idy5JaftTVC8Vs83NKRmGJz4Hqs4oyOuO2J4r/y79vvKZsb+CaGyCSEbUPI6OsewfPd0G1A0/TUZQ==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
 
   '@testing-library/react@16.3.0':
@@ -3923,6 +3923,11 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
+  browserslist@4.25.3:
+    resolution: {integrity: sha512-cDGv1kkDI4/0e5yON9yM5G/0A5u8sf5TnmdX5C9qHzI9PPu++sQ9zjm1k9NiOrf3riY4OkK0zSGqfvJyJsgCBQ==}
+    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
+    hasBin: true
+
   bs-logger@0.2.6:
     resolution: {integrity: sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==}
     engines: {node: '>= 6'}
@@ -4229,8 +4234,8 @@ packages:
   cookiejar@2.1.4:
     resolution: {integrity: sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==}
 
-  core-js-compat@3.45.0:
-    resolution: {integrity: sha512-gRoVMBawZg0OnxaVv3zpqLLxaHmsubEGyTnqdpI/CEBvX4JadI1dMSHxagThprYRtSVbuQxvi6iUatdPxohHpA==}
+  core-js-compat@3.45.1:
+    resolution: {integrity: sha512-tqTt5T4PzsMIZ430XGviK4vzYSoeNJ6CXODi6c/voxOT6IZqBht5/EKaSNnYiEjjRYxjVz7DQIsOsY0XNi8PIA==}
 
   core-js-pure@3.45.0:
     resolution: {integrity: sha512-OtwjqcDpY2X/eIIg1ol/n0y/X8A9foliaNt1dSK0gV3J2/zw+89FcNG3mPK+N8YWts4ZFUPxnrAzsxs/lf8yDA==}
@@ -4513,6 +4518,9 @@ packages:
 
   electron-to-chromium@1.5.203:
     resolution: {integrity: sha512-uz4i0vLhfm6dLZWbz/iH88KNDV+ivj5+2SA+utpgjKaj9Q0iDLuwk6Idhe9BTxciHudyx6IvTvijhkPvFGUQ0g==}
+
+  electron-to-chromium@1.5.207:
+    resolution: {integrity: sha512-mryFrrL/GXDTmAtIVMVf+eIXM09BBPlO5IQ7lUyKmK8d+A4VpRGG+M3ofoVef6qyF8s60rJei8ymlJxjUA8Faw==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -9350,7 +9358,7 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.3)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.3)
       babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.3)
-      core-js-compat: 3.45.0
+      core-js-compat: 3.45.1
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -11516,7 +11524,7 @@ snapshots:
       picocolors: 1.1.1
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@6.7.0':
+  '@testing-library/jest-dom@6.8.0':
     dependencies:
       '@adobe/css-tools': 4.4.4
       aria-query: 5.3.2
@@ -12551,7 +12559,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.3
       '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.3)
-      core-js-compat: 3.45.0
+      core-js-compat: 3.45.1
     transitivePeerDependencies:
       - supports-color
 
@@ -12699,6 +12707,13 @@ snapshots:
       electron-to-chromium: 1.5.203
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.2)
+
+  browserslist@4.25.3:
+    dependencies:
+      caniuse-lite: 1.0.30001735
+      electron-to-chromium: 1.5.207
+      node-releases: 2.0.19
+      update-browserslist-db: 1.1.3(browserslist@4.25.3)
 
   bs-logger@0.2.6:
     dependencies:
@@ -12973,9 +12988,9 @@ snapshots:
 
   cookiejar@2.1.4: {}
 
-  core-js-compat@3.45.0:
+  core-js-compat@3.45.1:
     dependencies:
-      browserslist: 4.25.2
+      browserslist: 4.25.3
 
   core-js-pure@3.45.0: {}
 
@@ -13227,6 +13242,8 @@ snapshots:
       jake: 10.9.4
 
   electron-to-chromium@1.5.203: {}
+
+  electron-to-chromium@1.5.207: {}
 
   emittery@0.13.1: {}
 
@@ -17330,6 +17347,12 @@ snapshots:
   update-browserslist-db@1.1.3(browserslist@4.25.2):
     dependencies:
       browserslist: 4.25.2
+      escalade: 3.2.0
+      picocolors: 1.1.1
+
+  update-browserslist-db@1.1.3(browserslist@4.25.3):
+    dependencies:
+      browserslist: 4.25.3
       escalade: 3.2.0
       picocolors: 1.1.1
 
