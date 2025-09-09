@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.2
+
+### Patch Changes
+
+- 6540178: Filter by study id in questionnaires
+
 ## 1.3.1
 
 ### Patch Changes
