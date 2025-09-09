@@ -1929,6 +1929,8 @@ export interface operations {
                 sortOrder?: components["schemas"]["SortOrder"];
                 /** @description Filter by participant ID */
                 participantId?: number;
+                /** @description Filter by study ID */
+                studyId?: number;
                 /** @description Filter by study title */
                 studyTitle?: string;
             };
@@ -2336,7 +2338,7 @@ export interface operations {
 type ReadonlyArray<T> = [
     Exclude<T, undefined>
 ] extends [
-    any[]
+    unknown[]
 ] ? Readonly<Exclude<T, undefined>> : Readonly<Exclude<T, undefined>[]>;
 export const userCreationDtoRoleValues: ReadonlyArray<components["schemas"]["UserCreationDto"]["role"]> = ["ASSISTANT", "ADMIN"];
 export const userResponseDtoRoleValues: ReadonlyArray<components["schemas"]["UserResponseDto"]["role"]> = ["ASSISTANT", "ADMIN"];
