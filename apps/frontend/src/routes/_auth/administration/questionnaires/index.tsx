@@ -10,6 +10,7 @@ import { paths } from "../../../../api.gen";
 type QuestionnaireFilter = {
   participantId?: string | number;
   studyTitle?: string;
+  studyId?: string | number;
 };
 
 function AdministrationQuestionnairesIndex() {
@@ -44,7 +45,8 @@ function AdministrationQuestionnairesIndex() {
       <form onSubmit={f.onSubmit(applyFilters)}>
         <Group align="flex-end">
           <NumberInput {...f.getInputProps("participantId")} label="Child ID" />
-          <TextInput {...f.getInputProps("studyTitle")} label="Study" />
+          <TextInput {...f.getInputProps("studyId")} label="Study ID" />
+          <TextInput {...f.getInputProps("studyTitle")} label="Study Name" />
           <Button type="submit" variant="default" rightSection={<IconFilter size={20} />}>
             Filter
           </Button>

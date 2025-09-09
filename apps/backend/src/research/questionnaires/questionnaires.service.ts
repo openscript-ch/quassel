@@ -59,17 +59,20 @@ export class QuestionnairesService {
     sortBy,
     sortOrder,
     participantId,
+    studyId,
     studyTitle,
   }: {
     sortBy?: keyof QueryOrderMap<Questionnaire>;
     sortOrder?: SortOrder;
     participantId?: number;
+    studyId?: number;
     studyTitle?: string;
   }) {
     return (
       await this.questionnaireRepository.findAll({
         where: {
           ...(participantId && { participant: participantId }),
+          ...(studyId && { participant: { studies: { $some: { id: studyId } } } }),
           ...(studyTitle && { participant: { studies: { $some: { title: { $fulltext: studyTitle } } } } }),
         },
         populate: ["participant"],
