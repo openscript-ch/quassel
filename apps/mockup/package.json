@@ -9,6 +9,6 @@
     "dev": "serve -l 3002 -n ./src/"
   },
   "devDependencies": {
-    "serve": "^14.2.4"
+    "serve": "^14.2.5"
   }
 }
