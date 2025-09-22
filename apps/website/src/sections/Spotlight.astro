@@ -98,27 +98,45 @@ import PlayButtonSymbol from "../assets/videos/play-button-symbol.svg";
   document.addEventListener("DOMContentLoaded", () => {
     const video = document.querySelector("video") as HTMLVideoElement;
     const playButton = document.querySelector(".play-button") as HTMLButtonElement;
-    let wasSeeking = false;
 
-    const togglePlayButton = () => {
-      if (!video.seeking && !wasSeeking) {
-        playButton.classList.toggle("hidden");
-        video.toggleAttribute("controls");
-      } else {
-        wasSeeking = !wasSeeking;
-      }
+    let ignoreNextClick = false;
+    let videoPlaying = false;
+    video.controls = false;
+
+    const updatePlayButtonVisibility = () => {
+      const showPlayButton = video.paused && !video.seeking;
+      playButton.classList.toggle("hidden", !showPlayButton);
     };
 
-    playButton.addEventListener("click", () => video.play());
-    video.addEventListener("play", togglePlayButton);
-    video.addEventListener("pause", togglePlayButton);
-    video.addEventListener("click", () => {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
-      }
+    playButton.addEventListener("click", (e) => {
+      e.stopPropagation();
+      ignoreNextClick = true;
+      video.controls = true;
+      videoPlaying = true;
+      video.play();
     });
+
+    if (videoPlaying) {
+      video.addEventListener("click", () => {
+        if (ignoreNextClick) {
+          ignoreNextClick = false;
+          return;
+        }
+
+        if (video.paused) {
+          video.controls = true;
+          video.play();
+        } else {
+          video.pause();
+        }
+      });
+    }
+
+    video.addEventListener("play", updatePlayButtonVisibility);
+    video.addEventListener("pause", updatePlayButtonVisibility);
+    video.addEventListener("seeking", updatePlayButtonVisibility);
+    video.addEventListener("seeked", updatePlayButtonVisibility);
+    updatePlayButtonVisibility();
   });
 </script>
 
