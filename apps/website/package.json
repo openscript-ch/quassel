@@ -10,17 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@fontsource-variable/montserrat": "^5.2.7",
-    "@fontsource-variable/onest": "^5.2.9",
-    "astro": "^5.13.6",
+    "@fontsource-variable/montserrat": "^5.2.8",
+    "@fontsource-variable/onest": "^5.2.11",
+    "astro": "^5.13.10",
     "reveal.js": "^5.2.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
-    "@iconify/json": "^2.2.382",
+    "@iconify/json": "^2.2.386",
     "@types/reveal.js": "^5.2.0",
-    "sharp": "^0.34.3",
+    "sharp": "^0.34.4",
     "typescript": "^5.9.2",
-    "unplugin-icons": "^22.2.0"
+    "unplugin-icons": "^22.3.0"
   }
 }

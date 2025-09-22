@@ -68,7 +68,7 @@ export class ExportService {
 
   private async executeCommand(command: string) {
     try {
-      const { stdout, stderr } = await execPromise(command);
+      const { stdout, stderr } = await execPromise(command, { maxBuffer: this.configService.get("executionMaxBuffer") });
       if (stderr) throw new Error(stderr);
 
       return stdout;

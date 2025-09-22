@@ -4,6 +4,8 @@ export const configuration = () => ({
   cors: {
     origin: process.env.CORS_ORIGIN || "http://localhost:3001",
   },
+  // Maximum execution buffer size (e. g. when dumping the database)
+  executionMaxBuffer: parseInt(process.env.EXECUTION_MAX_BUFFER || "") || 100 * 1024 * 1024, // 100 MB
   session: {
     // Time in seconds until a session expires
     expiry: parseInt(process.env.SESSION_EXPIRY || "") || 30 * 24 * 60 * 60,
