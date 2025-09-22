@@ -1,5 +1,14 @@
 # @quassel/frontend
 
+## 1.3.3
+
+### Patch Changes
+
+- b711ef0: Add max execution buffer size configuration
+- Updated dependencies [b711ef0]
+  - @quassel/utils@1.0.3
+  - @quassel/ui@1.2.2
+
 ## 1.3.2
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @quassel/utils
 
+## 1.0.3
+
+### Patch Changes
+
+- b711ef0: Add max execution buffer size configuration
+
 ## 1.0.2
 
 ### Patch Changes
