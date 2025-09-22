@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.1.2
+
+### Patch Changes
+
+- b711ef0: Add max execution buffer size configuration
+
 ## 0.1.1
 
 ### Patch Changes
