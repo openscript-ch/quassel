@@ -20,7 +20,7 @@ function AdministrationParticipantsNew() {
     },
   });
   const handleSubmit = (values: FormValues) => {
-    createParticipantMutation.mutate({ body: { ...values, birthday: values.birthday && `${values.birthday}T00:00:00Z` } });
+    createParticipantMutation.mutate({ body: values });
   };
 
   return (
