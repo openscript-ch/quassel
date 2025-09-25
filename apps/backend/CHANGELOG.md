@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.10
+
+### Patch Changes
+
+- f585c08: Enforce utc timezone
+
 ## 1.3.9
 
 ### Patch Changes
