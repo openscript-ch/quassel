@@ -41,7 +41,7 @@ services:
       - database
     environment:
       LANG: C.UTF-8
-      TZ: UTC
+      TZ: Etc/UTC
       DATABASE_URL: "postgresql://postgres:secret@database/quassel_production"
       CORS_ORIGIN: https://test.example.com
       SESSION_SECRET: secret
