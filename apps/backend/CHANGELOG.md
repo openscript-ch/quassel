@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.11
+
+### Patch Changes
+
+- de6d08c: Install tzdata in the backend image
+
 ## 1.3.10
 
 ### Patch Changes
