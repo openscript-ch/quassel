@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.6
+
+### Patch Changes
+
+- 96ce7d9: Link localtime in backend
+
 ## 1.3.5
 
 ### Patch Changes
