@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.8
+
+### Patch Changes
+
+- a3b1b4b: Enhance time zone handling
+
 ## 1.3.7
 
 ## 1.3.6
