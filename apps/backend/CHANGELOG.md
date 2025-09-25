@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.5
+
+### Patch Changes
+
+- d3d4687: Add timezone data to backend container
+
 ## 1.3.4
 
 ## 1.3.3
