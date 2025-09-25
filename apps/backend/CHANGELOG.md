@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.12
+
+### Patch Changes
+
+- 6343f93: Set timezone for mikroorm
+
 ## 1.3.11
 
 ### Patch Changes
