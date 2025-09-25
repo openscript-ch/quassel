@@ -8,9 +8,10 @@ RUN apt-get update && \
     apt-get install -y postgresql-client-17
 RUN apt-get install -y --no-install-recommends tzdata && rm -rf /var/lib/apt/lists/*
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+ENV TZ=Etc/UTC
 ENV NODE_ENV=production
 ENV PORT=3000
-ENV TZ=Etc/UTC
 WORKDIR /usr/src/app
 COPY dist/deploy/ .
 RUN chown -R node:node .
