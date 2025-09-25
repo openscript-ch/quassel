@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.13
+
+### Patch Changes
+
+- f96789c: Add timezone to birthday of participant
+
 ## 1.3.12
 
 ### Patch Changes
