@@ -8,6 +8,7 @@ import { HttpException, HttpStatus } from "@nestjs/common";
 const c = configuration();
 
 export default defineConfig({
+  forceUtcTimezone: true,
   entities: ["./**/*.entity.js"],
   entitiesTs: ["./**/*.entity.ts"],
   host: c.database.host,
