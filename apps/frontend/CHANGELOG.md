@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 1.3.7
+
+### Patch Changes
+
+- 75d0581: Enhance time zone handling
+
 ## 1.3.6
 
 ## 1.3.5
