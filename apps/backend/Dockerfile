@@ -8,10 +8,10 @@ RUN apt-get update && \
     apt-get install -y postgresql-client-17
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC \
-    apt-get install -y --no-install-recommends tzdata && \
-    ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
-    echo "Etc/UTC" > /etc/timezone
+    apt-get install -y --no-install-recommends tzdata
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN ln -sf /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
+    echo "Etc/UTC" > /etc/timezone
 ENV TZ=Etc/UTC
 ENV NODE_ENV=production
 ENV PORT=3000
