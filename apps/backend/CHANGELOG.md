@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.3.9
+
+### Patch Changes
+
+- 6ec2d59: Revert timezone adjustments
+
 ## 1.3.8
 
 ### Patch Changes
