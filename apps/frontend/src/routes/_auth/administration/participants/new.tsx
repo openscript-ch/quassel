@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Button, TextInput, useForm } from "@quassel/ui";
+import { Button, DateInput, TextInput, useForm } from "@quassel/ui";
 import { $api } from "../../../../stores/api";
 import { components } from "../../../../api.gen";
 
@@ -26,7 +26,7 @@ function AdministrationParticipantsNew() {
   return (
     <form autoComplete="off" onSubmit={f.onSubmit(handleSubmit)}>
       <TextInput label="Id" type="number" {...f.getInputProps("id")} defaultValue={undefined} required />
-      <TextInput label="Birthday" type="date" {...f.getInputProps("birthday")} required />
+      <DateInput label="Birthday" {...f.getInputProps("birthday")} required />
 
       <Button type="submit" fullWidth mt="xl" loading={createParticipantMutation.isPending}>
         Create
