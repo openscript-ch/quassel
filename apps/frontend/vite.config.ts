@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tanstackRouter from "@tanstack/router-plugin/vite";
-import unpluginFavicons from "@openscript/unplugin-favicons/vite";
+import unpluginFavicons from "@anolilab/unplugin-favicons/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,9 +18,9 @@ export default defineConfig({
     unpluginFavicons({
       logo: "./public/logo.svg",
       inject: true,
-      appName: "LEMON",
-      appShortName: "LEMON",
       favicons: {
+        appName: "LEMON",
+        appShortName: "LEMON",
         theme_color: "#FFC845",
         icons: {
           android: true,
