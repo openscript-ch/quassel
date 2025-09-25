@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 1.3.4
+
+### Patch Changes
+
+- 6bf1684: Use mantine date in create participant form
+
 ## 1.3.3
 
 ### Patch Changes
