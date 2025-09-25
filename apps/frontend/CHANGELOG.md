@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 1.3.14
+
+### Patch Changes
+
+- 7a5dd80: Revert time zone fix
+
 ## 1.3.13
 
 ### Patch Changes
