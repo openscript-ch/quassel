@@ -16,6 +16,7 @@ After running `pnpm dev` the following services should come up:
 - **Upgrade dependencies** with `pnpm upgrade -ri`. If you use `-L` aswell you can upgrade major package version, but make sure you don't upgrade to dependencies that require Node 22.
 - **Bump versions** by using `pnpm changeset`.
 - **Connect to the development database** with `psql -h db -U postgres` and the password `postgres`.
+- **Load a database dump** with `psql -h db -U postgres -d dump -f db_backup_2025-10-01.sql`. Create the database beforehand with `createdb -h db -U postgres dump`.
 - **Regenerate API types** of the frontend with `pnpm --filter @quassel/frontend run build:types`.
 - **Run db tasks** by using `pnpm --filter @quassel/backend run db`.
     **Create a new migration** with `pnpm --filter @quassel/backend run db migration:create`.
