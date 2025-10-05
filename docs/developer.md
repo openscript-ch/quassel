@@ -16,7 +16,6 @@ After running `pnpm dev` the following services should come up:
 - **Upgrade dependencies** with `pnpm upgrade -ri`. If you use `-L` aswell you can upgrade major package version, but make sure you don't upgrade to dependencies that require Node 22.
 - **Bump versions** by using `pnpm changeset`.
 - **Connect to the development database** with `psql -h db -U postgres` and the password `postgres`.
-- **Load a database dump** with `psql -h db -U postgres -d dump -f db_backup_2025-10-01.sql`. Create the database beforehand with `createdb -h db -U postgres dump`.
 - **Regenerate API types** of the frontend with `pnpm --filter @quassel/frontend run build:types`.
 - **Run db tasks** by using `pnpm --filter @quassel/backend run db`.
     **Create a new migration** with `pnpm --filter @quassel/backend run db migration:create`.
@@ -26,3 +25,11 @@ After running `pnpm dev` the following services should come up:
 - **Run nest tasks** by using `pnpm --filter @quassel/backend run nest`.
   - **Generate services** with e. g. `pnpm --filter @quassel/backend run nest g s participants research`.
   - **Generate controllers** with e. g. `pnpm --filter @quassel/backend run nest g co languages defaults`.
+
+### Work with a database dump
+
+1. Retrieve a database dump
+1. Create a separate database to import the dump with `createdb -h db -U postgres dump`
+1. Load the dump into the database with `psql -h db -U postgres -d dump -f db_backup_2025-10-05_22-00-01.sql`
+1. Start the application pointing to the `dump` database with `DATABASE_NAME=dump pnpm dev`
+1. Clean up the database with `dropdb -h db -U postgres dump`
