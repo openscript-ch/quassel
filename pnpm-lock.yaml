@@ -24,7 +24,7 @@ importers:
         version: 11.0.10(@types/node@24.6.2)
       '@nx-tools/container-metadata':
         specifier: ^6.8.2
-        version: 6.8.2(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
+        version: 6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
       '@nx-tools/nx-container':
         specifier: ^6.8.2
         version: 6.8.2(@nx/devkit@21.3.11(nx@21.6.3))(@nx/js@21.3.11(@babel/traverse@7.28.4)(nx@21.6.3))(dotenv@17.2.2)(nx@21.6.3)(tslib@2.8.1)
@@ -214,7 +214,7 @@ importers:
         version: 1.0.0(nanostores@1.0.1)(react@19.2.0)
       '@quassel/ui':
         specifier: workspace:*
-        version: link:../../libs/ui
+        version: file:libs/ui(@types/react@19.2.0)
       '@quassel/utils':
         specifier: workspace:*
         version: link:../../libs/utils
@@ -2183,6 +2183,14 @@ packages:
       react: ^18.x || ^19.x
       react-dom: ^18.x || ^19.x
 
+  '@mantine/modals@8.3.4':
+    resolution: {integrity: sha512-TxH+unsEa3+la2D8HMVC6oCExziSHFmR4hzV302saJ9LERGUf1zo+pyS9b9yRY0sBOsi+Zi1h+wyCybemCUmSA==}
+    peerDependencies:
+      '@mantine/core': 8.3.4
+      '@mantine/hooks': 8.3.4
+      react: ^18.x || ^19.x
+      react-dom: ^18.x || ^19.x
+
   '@mantine/notifications@8.3.2':
     resolution: {integrity: sha512-DLo3T8epAVPKT8KJePHix6xyY8NzWYC4u9W/UyUBtZlhooJrY1Fm77B9vMP+T0dJg//QnE8WDLHVtOb0QNb1Ow==}
     peerDependencies:
@@ -2486,16 +2494,33 @@ packages:
     peerDependencies:
       tslib: ^2.5.0
 
+  '@nx-tools/ci-context@6.9.0':
+    resolution: {integrity: sha512-zqh/RAaRdY6Zh4NoG4u3JC9M6WVPgLEKjIyNzgCOsVJGSVfmY51RY4xTVKHBSWggjAUT2YQUi7DegRwVPUC3lg==}
+    peerDependencies:
+      tslib: ^2.5.0
+
   '@nx-tools/container-metadata@6.8.2':
     resolution: {integrity: sha512-BcHTxNbo1WBdfm7iWcIUI5lpJJ8fER2ua3sVZgzEg0oxwDsVepSjLtlNA6G50MfgAS8bfe3uM7Q/2vzKgiJwRQ==}
     peerDependencies:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0
       tslib: ^2.5.0
 
+  '@nx-tools/container-metadata@6.9.0':
+    resolution: {integrity: sha512-b5+tAK3hAYP3rrjWeTURdodCv5YDgSZH+h8NIt67vBJoo3ley2Rc2abYw8yawZ0JAmH/kAq3h8DFoSZzEO/7/w==}
+    peerDependencies:
+      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
+      tslib: ^2.5.0
+
   '@nx-tools/core@6.8.2':
     resolution: {integrity: sha512-dM5UtHs4J+aRMGM7GsLSg/F6w7qezpRv6N4FOpRYmGMep4MX/2Bj/xnWrr87NQKQ8+Gm7WvX97tZGNevjeHyOQ==}
     peerDependencies:
       '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0
+      tslib: ^2.5.0
+
+  '@nx-tools/core@6.9.0':
+    resolution: {integrity: sha512-cFFl9a/PXlN8KVdQ6IzjfumxSekFsuSHA3kF2+IH2vsrtfi/ehKjFl9W3VluCXfzq/2XggAJIcUhGuSGCsqgrA==}
+    peerDependencies:
+      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
       tslib: ^2.5.0
 
   '@nx-tools/nx-container@6.8.2':
@@ -2687,6 +2712,9 @@ packages:
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@quassel/ui@file:libs/ui':
+    resolution: {directory: libs/ui, type: directory}
 
   '@redocly/ajv@8.11.3':
     resolution: {integrity: sha512-4P3iZse91TkBiY+Dx5DUgxQ9GXkVJf++cmI0MOyLDxV9b5MUBI4II6ES8zA5JCbO72nKAJxWrw4PUPW+YP3ZDQ==}
@@ -4299,11 +4327,11 @@ packages:
   cookiejar@2.1.4:
     resolution: {integrity: sha512-LDx6oHrK+PhzLKJU9j5S7/Y3jM/mUHvD/DeI1WQmJn652iPC5Y4TBzC9l+5OMOXlyTTA+SmVUPm0HQUwpD5Jqw==}
 
-  core-js-compat@3.45.1:
-    resolution: {integrity: sha512-tqTt5T4PzsMIZ430XGviK4vzYSoeNJ6CXODi6c/voxOT6IZqBht5/EKaSNnYiEjjRYxjVz7DQIsOsY0XNi8PIA==}
+  core-js-compat@3.46.0:
+    resolution: {integrity: sha512-p9hObIIEENxSV8xIu+V68JjSeARg6UVMG5mR+JEUguG3sI6MsiS1njz2jHmyJDvA+8jX/sytkBHup6kxhM9law==}
 
-  core-js-pure@3.45.1:
-    resolution: {integrity: sha512-OHnWFKgTUshEU8MK+lOs1H8kC8GkTi9Z1tvNkxrCcw9wl3MJIO7q2ld77wjWn4/xuGrVu2X+nME1iIIPBSdyEQ==}
+  core-js-pure@3.46.0:
+    resolution: {integrity: sha512-NMCW30bHNofuhwLhYPt66OLOKTMbOhgTTatKVbaQC3KRHpTCiRIBYvtshr+NBYSnBxwAFhjW/RfJ0XbIjS16rw==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -7137,6 +7165,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.3:
+    resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   serialize-javascript@6.0.2:
     resolution: {integrity: sha512-Saa1xPByTTq2gdeFZYLLo+RFE35NHZkAbqZeWNd3BpzppeVisAqpDjcp8dyf6uIvEqJRd46jemmyA4iFIeVk8g==}
 
@@ -9480,7 +9513,7 @@ snapshots:
       babel-plugin-polyfill-corejs2: 0.4.14(@babel/core@7.28.4)
       babel-plugin-polyfill-corejs3: 0.13.0(@babel/core@7.28.4)
       babel-plugin-polyfill-regenerator: 0.6.5(@babel/core@7.28.4)
-      core-js-compat: 3.45.1
+      core-js-compat: 3.46.0
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -9505,7 +9538,7 @@ snapshots:
 
   '@babel/runtime-corejs3@7.28.4':
     dependencies:
-      core-js-pure: 3.45.1
+      core-js-pure: 3.46.0
 
   '@babel/runtime@7.28.4': {}
 
@@ -10636,6 +10669,13 @@ snapshots:
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
 
+  '@mantine/modals@8.3.4(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.2(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
+    dependencies:
+      '@mantine/core': 8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/hooks': 8.3.2(react@19.2.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+
   '@mantine/notifications@8.3.2(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.2(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)':
     dependencies:
       '@mantine/core': 8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
@@ -10984,7 +11024,7 @@ snapshots:
 
   '@npmcli/fs@3.1.1':
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   '@nuxt/opencollective@0.4.1':
     dependencies:
@@ -10994,6 +11034,17 @@ snapshots:
     dependencies:
       '@actions/github': 6.0.1
       '@nx-tools/core': 6.8.2(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
+      '@octokit/openapi-types': 22.2.0
+      ci-info: 4.3.1
+      properties-file: 3.6.1
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@nx/devkit'
+
+  '@nx-tools/ci-context@6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)':
+    dependencies:
+      '@actions/github': 6.0.1
+      '@nx-tools/core': 6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
       '@octokit/openapi-types': 22.2.0
       ci-info: 4.3.1
       properties-file: 3.6.1
@@ -11013,7 +11064,29 @@ snapshots:
       semver: 7.7.2
       tslib: 2.8.1
 
+  '@nx-tools/container-metadata@6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)':
+    dependencies:
+      '@nx-tools/ci-context': 6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
+      '@nx-tools/core': 6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)
+      '@nx/devkit': 21.3.11(nx@21.6.3)
+      '@renovate/pep440': 1.0.0
+      csv-parse: 5.6.0
+      handlebars: 4.7.8
+      moment-timezone: 0.5.48
+      semver: 7.7.3
+      tslib: 2.8.1
+
   '@nx-tools/core@6.8.2(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)':
+    dependencies:
+      '@actions/exec': 1.1.1
+      '@actions/io': 1.1.3
+      '@nx/devkit': 21.3.11(nx@21.6.3)
+      chalk: 4.1.2
+      ci-info: 4.3.1
+      csv-parse: 5.6.0
+      tslib: 2.8.1
+
+  '@nx-tools/core@6.9.0(@nx/devkit@21.3.11(nx@21.6.3))(tslib@2.8.1)':
     dependencies:
       '@actions/exec': 1.1.1
       '@actions/io': 1.1.3
@@ -11044,7 +11117,7 @@ snapshots:
       ignore: 5.3.2
       minimatch: 9.0.3
       nx: 21.3.11
-      semver: 7.7.2
+      semver: 7.7.3
       tmp: 0.2.5
       tslib: 2.8.1
       yargs-parser: 21.1.1
@@ -11056,7 +11129,7 @@ snapshots:
       ignore: 5.3.2
       minimatch: 9.0.3
       nx: 21.6.3
-      semver: 7.7.2
+      semver: 7.7.3
       tmp: 0.2.5
       tslib: 2.8.1
       yargs-parser: 21.1.1
@@ -11088,7 +11161,7 @@ snapshots:
       ora: 5.3.0
       picocolors: 1.1.1
       picomatch: 4.0.2
-      semver: 7.7.2
+      semver: 7.7.3
       source-map-support: 0.5.19
       tinyglobby: 0.2.15
       tslib: 2.8.1
@@ -11245,6 +11318,22 @@ snapshots:
     optional: true
 
   '@pkgr/core@0.2.9': {}
+
+  '@quassel/ui@file:libs/ui(@types/react@19.2.0)':
+    dependencies:
+      '@mantine/core': 8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/dates': 8.3.2(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.2(react@19.2.0))(dayjs@1.11.18)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/form': 8.3.2(react@19.2.0)
+      '@mantine/hooks': 8.3.2(react@19.2.0)
+      '@mantine/modals': 8.3.4(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.2(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@mantine/notifications': 8.3.2(@mantine/core@8.3.2(@mantine/hooks@8.3.2(react@19.2.0))(@types/react@19.2.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(@mantine/hooks@8.3.2(react@19.2.0))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+      '@tabler/icons-react': 3.35.0(react@19.2.0)
+      dayjs: 1.11.18
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+      react-dsv-import: 0.4.10(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
+    transitivePeerDependencies:
+      - '@types/react'
 
   '@redocly/ajv@8.11.3':
     dependencies:
@@ -11964,7 +12053,7 @@ snapshots:
       fast-glob: 3.3.3
       is-glob: 4.0.3
       minimatch: 9.0.5
-      semver: 7.7.2
+      semver: 7.7.3
       ts-api-utils: 2.1.0(typescript@5.9.3)
       typescript: 5.9.3
     transitivePeerDependencies:
@@ -12540,7 +12629,7 @@ snapshots:
       espree: 10.4.0
       fast-glob: 3.3.3
       is-glob: 4.0.3
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -12744,7 +12833,7 @@ snapshots:
     dependencies:
       '@babel/core': 7.28.4
       '@babel/helper-define-polyfill-provider': 0.6.5(@babel/core@7.28.4)
-      core-js-compat: 3.45.1
+      core-js-compat: 3.46.0
     transitivePeerDependencies:
       - supports-color
 
@@ -13179,11 +13268,11 @@ snapshots:
 
   cookiejar@2.1.4: {}
 
-  core-js-compat@3.45.1:
+  core-js-compat@3.46.0:
     dependencies:
       browserslist: 4.26.3
 
-  core-js-pure@3.45.1: {}
+  core-js-pure@3.46.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -13623,7 +13712,7 @@ snapshots:
   eslint-compat-utils@0.6.5(eslint@9.37.0):
     dependencies:
       eslint: 9.37.0
-      semver: 7.7.2
+      semver: 7.7.3
 
   eslint-config-prettier@10.1.8(eslint@9.37.0):
     dependencies:
@@ -14583,7 +14672,7 @@ snapshots:
       '@babel/parser': 7.28.4
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.7.2
+      semver: 7.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -14922,7 +15011,7 @@ snapshots:
       jest-message-util: 30.2.0
       jest-util: 30.2.0
       pretty-format: 30.2.0
-      semver: 7.7.2
+      semver: 7.7.3
       synckit: 0.11.11
     transitivePeerDependencies:
       - supports-color
@@ -15205,7 +15294,7 @@ snapshots:
 
   make-dir@4.0.0:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   make-error@1.3.6: {}
 
@@ -15691,7 +15780,7 @@ snapshots:
   normalize-package-data@7.0.1:
     dependencies:
       hosted-git-info: 8.1.0
-      semver: 7.7.2
+      semver: 7.7.3
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -15700,7 +15789,7 @@ snapshots:
     dependencies:
       hosted-git-info: 7.0.2
       proc-log: 3.0.0
-      semver: 7.7.2
+      semver: 7.7.3
       validate-npm-package-name: 5.0.1
 
   npm-run-path@4.0.1:
@@ -15734,7 +15823,7 @@ snapshots:
       open: 8.4.2
       ora: 5.3.0
       resolve.exports: 2.0.3
-      semver: 7.7.2
+      semver: 7.7.3
       string-width: 4.2.3
       tar-stream: 2.2.0
       tmp: 0.2.5
@@ -16692,6 +16781,8 @@ snapshots:
 
   semver@7.7.2: {}
 
+  semver@7.7.3: {}
+
   serialize-javascript@6.0.2:
     dependencies:
       randombytes: 2.1.0
@@ -17389,7 +17480,7 @@ snapshots:
 
   typescript-auto-import-cache@0.3.6:
     dependencies:
-      semver: 7.7.2
+      semver: 7.7.3
 
   typescript-eslint@8.45.0(eslint@9.37.0)(typescript@5.9.3):
     dependencies:
@@ -17843,7 +17934,7 @@ snapshots:
   volar-service-typescript@0.0.62(@volar/language-service@2.4.23):
     dependencies:
       path-browserify: 1.0.1
-      semver: 7.7.2
+      semver: 7.7.3
       typescript-auto-import-cache: 0.3.6
       vscode-languageserver-textdocument: 1.0.12
       vscode-nls: 5.2.0
