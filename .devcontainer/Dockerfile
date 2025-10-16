@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node:3-22-bookworm
+FROM mcr.microsoft.com/devcontainers/typescript-node:4-22-bookworm
 
 RUN apt update
 RUN apt install -y postgresql-common
