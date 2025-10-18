@@ -29,12 +29,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "8.3.4",
-    "@mantine/dates": "8.3.4",
-    "@mantine/form": "8.3.4",
-    "@mantine/hooks": "8.3.4",
+    "@mantine/core": "8.3.5",
+    "@mantine/dates": "8.3.5",
+    "@mantine/form": "8.3.5",
+    "@mantine/hooks": "8.3.5",
     "@mantine/modals": "^8.3.4",
-    "@mantine/notifications": "8.3.4",
+    "@mantine/notifications": "8.3.5",
     "@tabler/icons-react": "^3.35.0",
     "dayjs": "^1.11.18",
     "react": "^19.2.0",
@@ -47,7 +47,7 @@
     "@types/react-dom": "^19.2.1",
     "@vitejs/plugin-react": "^5.0.4",
     "typescript": "^5.9.3",
-    "vite": "7.1.9",
+    "vite": "7.1.10",
     "vite-plugin-dts": "^4.5.4",
     "vite-plugin-svgr": "^4.5.0"
   }
