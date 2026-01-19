@@ -51,7 +51,7 @@
       "unrs-resolver"
     ],
     "overrides": {
-      "vite": "7.1.9",
+      "vite": "7.1.11",
       "fastify": "5.6.1"
     }
   }
