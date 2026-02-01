@@ -7,9 +7,16 @@
     {
       "automerge": false,
       "groupName": "likely non breaking dependencies",
-      "matchCurrentVersion": ">= 1.0.0",
+      "groupSlug": "all-minor-patch",
+      "matchPackagePatterns": [
+        "*"
+      ],
       "matchUpdateTypes": [
+        "minor",
         "patch"
+      ],
+      "labels": [
+        "dependencies"
       ]
     }
   ]
