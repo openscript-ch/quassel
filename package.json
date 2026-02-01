@@ -21,7 +21,7 @@
     "@changesets/cli": "^2.29.7",
     "@eslint/js": "^9.37.0",
     "@nestjs/cli": "^11.0.10",
-    "@nx-tools/container-metadata": "^6.9.0",
+    "@nx-tools/container-metadata": "^7.0.0",
     "@nx-tools/nx-container": "^7.0.0",
     "@typescript-eslint/parser": "^8.46.0",
     "eslint": "^9.37.0",
