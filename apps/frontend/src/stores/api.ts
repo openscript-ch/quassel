@@ -14,17 +14,21 @@ const fetchClient = createFetchClient<paths>({
 fetchClient.use({
   onResponse: ({ response }) => {
     if (!response.ok) {
-      response.json().then((r) => {
-        const { message, error } = r as components["schemas"]["ErrorResponseDto"];
+      // Clone the response before reading the body to avoid "body stream already read" error
+      response
+        .clone()
+        .json()
+        .then((r) => {
+          const { message, error } = r as components["schemas"]["ErrorResponseDto"];
 
-        const notificationData: NotificationData = { color: "uzhBerry", message, title: error };
+          const notificationData: NotificationData = { color: "uzhBerry", message, title: error };
 
-        if (response.status >= 500) {
-          notificationData.title = `Something went wrong (${response.status})`;
-        }
+          if (response.status >= 500) {
+            notificationData.title = `Something went wrong (${response.status})`;
+          }
 
-        notifications.show(notificationData);
-      });
+          notifications.show(notificationData);
+        });
     }
   },
 });
