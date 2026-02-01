@@ -23,8 +23,8 @@ importers:
         specifier: ^11.0.10
         version: 11.0.16(@types/node@25.1.0)
       '@nx-tools/container-metadata':
-        specifier: ^6.9.0
-        version: 6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
+        specifier: ^7.0.0
+        version: 7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
       '@nx-tools/nx-container':
         specifier: ^7.0.0
         version: 7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(@nx/js@21.3.11(@babel/traverse@7.29.0)(nx@21.6.10))(dotenv@17.2.3)(nx@21.6.10)(tslib@2.8.1)
@@ -419,9 +419,6 @@ packages:
 
   '@acemir/cssom@0.9.31':
     resolution: {integrity: sha512-ZnR3GSaH+/vJ0YlHau21FjfLYjMpYVIzTD8M8vIEQvIGxeOXyXdzCI140rrCY862p/C/BbzWsjc1dgnM9mkoTA==}
-
-  '@actions/exec@1.1.1':
-    resolution: {integrity: sha512-+sCcHHbVdk93a0XT19ECtO/gIXoxvdsgQLzb2fE2/5sIZmWQuluYyjPQtrtTHdU1YzTZ7bAPN4sITq2xi1679w==}
 
   '@actions/github@6.0.1':
     resolution: {integrity: sha512-xbZVcaqD4XnQAe35qSQqskb3SqIAfRyLBrHMd/8TuL7hJSz2QtbDwnNM8zWx4zO5l2fnGtseNE3MbEvD7BxVMw==}
@@ -1155,10 +1152,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime-corejs3@7.29.0':
-    resolution: {integrity: sha512-TgUkdp71C9pIbBcHudc+gXZnihEDOjUAmXO1VO4HHGES7QLZcShR0stfKIxLSNIYx2fqhmJChOjm/wkF8wv4gA==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.28.6':
     resolution: {integrity: sha512-05WQkdpL9COIMz4LjTxGpPNCdlpyimKppYNoJ5Di5EUObifl8t4tuLuUBBZEpoLYOmfvIWrsp9fCl0HoPRVTdA==}
@@ -2723,22 +2716,11 @@ packages:
     engines: {node: ^14.18.0 || >=16.10.0, npm: '>=5.10.0'}
     hasBin: true
 
-  '@nx-tools/ci-context@6.9.1':
-    resolution: {integrity: sha512-dsdrkzKJAVSk5g8f823M93J6sGEKOh4ThRsKtAoLsrDoI92W07OaDBzo9jMYEutrucQ3Lnj92+DCVHfgs4ZYLw==}
-    peerDependencies:
-      tslib: ^2.5.0
-
   '@nx-tools/ci-context@7.2.0':
     resolution: {integrity: sha512-Mqle5soVmPwlv3xZCwtkERHbG5M/RBOohFARLci7NHH5Cf7UU0fcU3wDDFup00nszHT4KcHoMZKsNxj+9X3E8g==}
     engines: {node: '>=20.19.0 <21 || >=22.12.0 <23 || >=24.0.0'}
     peerDependencies:
       tslib: ^2.6.0
-
-  '@nx-tools/container-metadata@6.9.1':
-    resolution: {integrity: sha512-5BS2g6FreV/gYtts1ct/yhXPTHCtOOfDwMgkvJrPbGYpvWKCAmmJLH8hxK/c706JhMXKMHbpyW1f2mRdqy215A==}
-    peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
-      tslib: ^2.5.0
 
   '@nx-tools/container-metadata@7.2.0':
     resolution: {integrity: sha512-p2AqIoiOUYEyHHJCqtnnroBYHDGiBxdf57pjH1MMUtfDNGzphi5pc24W20tT9VggoX69BGCF37tOlywLNio9Nw==}
@@ -2746,12 +2728,6 @@ packages:
     peerDependencies:
       '@nx/devkit': '>=18.0.0 <23.0.0'
       tslib: ^2.6.0
-
-  '@nx-tools/core@6.9.1':
-    resolution: {integrity: sha512-6bZA2bJ4pEhiR3SxIMUEuj1SEqAL1q1Uhj3k4i6LLKE/jAUE9RIyhOYGsw1DIcneb53NHS3JK9dJ8dscFFo5+Q==}
-    peerDependencies:
-      '@nx/devkit': ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0 || ^22.0.0
-      tslib: ^2.5.0
 
   '@nx-tools/core@7.2.0':
     resolution: {integrity: sha512-ZeOTQiIrvNrLP2AU9AsO8jn6Sa129bKXFdIXzFURFPGZWaoNCK3iRU2TFusXV292iiDdnm5Zj/8gCWir+0WIAQ==}
@@ -2971,10 +2947,6 @@ packages:
   '@redocly/openapi-core@1.34.6':
     resolution: {integrity: sha512-2+O+riuIUgVSuLl3Lyh5AplWZyVMNuG2F98/o6NrutKJfW4/GTZdPpZlIphS0HGgcOHgmWcCSHj+dWFlZaGSHw==}
     engines: {node: '>=18.17.0', npm: '>=9.5.0'}
-
-  '@renovate/pep440@1.0.0':
-    resolution: {integrity: sha512-k3pZVxGEGpU7rpH507/9vxfFjuxX7qx4MSj9Fk+6zBsf/uZmAy8x97dNtZacbge7gP9TazbW1d7SEb5vsOmKlw==}
-    deprecated: This package is deprecated. Please use @renovatebot/pep440 instead.
 
   '@renovatebot/pep440@4.1.0':
     resolution: {integrity: sha512-mo2RxnOSp78Njt1HmgMwjl6FapP4OyIS8HypJlymCvN7AIV2Xf5PmZfl/E3O1WWZ6IjKrfsEAaPWFMi8tnkq3g==}
@@ -4621,9 +4593,6 @@ packages:
 
   core-js-compat@3.48.0:
     resolution: {integrity: sha512-OM4cAF3D6VtH/WkLtWvyNC56EZVXsZdU3iqaMG2B4WvYrlqU831pc4UtG5yp0sE9z8Y02wVN7PjW5Zf9Gt0f1Q==}
-
-  core-js-pure@3.48.0:
-    resolution: {integrity: sha512-1slJgk89tWC51HQ1AEqG+s2VuwpTRr8ocu4n20QUcH1v9lAN0RXen0Q0AABa/DK1I7RrNWLucplOHMx8hfTGTw==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -8736,9 +8705,6 @@ packages:
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
-  xregexp@4.4.1:
-    resolution: {integrity: sha512-2u9HwfadaJaY9zHtRRnH6BY6CQVNQKkYm3oLtC9gJXXzfsbACg5X5e4EZZGVAH+YIfa+QA9lsFQTTe3HURF3ag==}
-
   xtend@4.0.2:
     resolution: {integrity: sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==}
     engines: {node: '>=0.4'}
@@ -8838,10 +8804,6 @@ packages:
 snapshots:
 
   '@acemir/cssom@0.9.31': {}
-
-  '@actions/exec@1.1.1':
-    dependencies:
-      '@actions/io': 1.1.3
 
   '@actions/github@6.0.1':
     dependencies:
@@ -9817,10 +9779,6 @@ snapshots:
       '@babel/plugin-transform-typescript': 7.28.6(@babel/core@7.29.0)
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/runtime-corejs3@7.29.0':
-    dependencies:
-      core-js-pure: 3.48.0
 
   '@babel/runtime@7.28.6': {}
 
@@ -11402,17 +11360,6 @@ snapshots:
     dependencies:
       consola: 3.4.2
 
-  '@nx-tools/ci-context@6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
-    dependencies:
-      '@actions/github': 6.0.1
-      '@nx-tools/core': 6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
-      '@octokit/openapi-types': 22.2.0
-      ci-info: 4.4.0
-      properties-file: 3.6.4
-      tslib: 2.8.1
-    transitivePeerDependencies:
-      - '@nx/devkit'
-
   '@nx-tools/ci-context@7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
     dependencies:
       '@actions/github': 6.0.1
@@ -11424,18 +11371,6 @@ snapshots:
     transitivePeerDependencies:
       - '@nx/devkit'
 
-  '@nx-tools/container-metadata@6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
-    dependencies:
-      '@nx-tools/ci-context': 6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
-      '@nx-tools/core': 6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
-      '@nx/devkit': 21.3.11(nx@21.6.10)
-      '@renovate/pep440': 1.0.0
-      csv-parse: 5.6.0
-      handlebars: 4.7.8
-      moment-timezone: 0.5.48
-      semver: 7.7.3
-      tslib: 2.8.1
-
   '@nx-tools/container-metadata@7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
     dependencies:
       '@nx-tools/ci-context': 7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)
@@ -11446,16 +11381,6 @@ snapshots:
       handlebars: 4.7.8
       moment-timezone: 0.5.48
       semver: 7.7.3
-      tslib: 2.8.1
-
-  '@nx-tools/core@6.9.1(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
-    dependencies:
-      '@actions/exec': 1.1.1
-      '@actions/io': 1.1.3
-      '@nx/devkit': 21.3.11(nx@21.6.10)
-      chalk: 4.1.2
-      ci-info: 4.4.0
-      csv-parse: 5.6.0
       tslib: 2.8.1
 
   '@nx-tools/core@7.2.0(@nx/devkit@21.3.11(nx@21.6.10))(tslib@2.8.1)':
@@ -11715,10 +11640,6 @@ snapshots:
       yaml-ast-parser: 0.0.43
     transitivePeerDependencies:
       - supports-color
-
-  '@renovate/pep440@1.0.0':
-    dependencies:
-      xregexp: 4.4.1
 
   '@renovatebot/pep440@4.1.0': {}
 
@@ -13597,8 +13518,6 @@ snapshots:
   core-js-compat@3.48.0:
     dependencies:
       browserslist: 4.28.1
-
-  core-js-pure@3.48.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -18563,10 +18482,6 @@ snapshots:
   xmlbuilder@11.0.1: {}
 
   xmlchars@2.2.0: {}
-
-  xregexp@4.4.1:
-    dependencies:
-      '@babel/runtime-corejs3': 7.29.0
 
   xtend@4.0.2: {}
 
