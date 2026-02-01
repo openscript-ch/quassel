@@ -1,5 +1,11 @@
 # @quassel/website
 
+## 0.1.3
+
+### Patch Changes
+
+- 5ccea84: Fix openscript contact link
+
 ## 0.1.2
 
 ### Patch Changes
