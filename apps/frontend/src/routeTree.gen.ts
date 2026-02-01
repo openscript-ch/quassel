@@ -303,10 +303,10 @@ const AuthAdministrationCarersEditIdRoute =
   } as any);
 
 export interface FileRoutesByFullPath {
+  "/": typeof AuthIndexRoute;
   "/session": typeof SessionRoute;
   "/administration": typeof AuthAdministrationRouteWithChildren;
   "/questionnaire": typeof AuthQuestionnaireQuestionnaireRouteWithChildren;
-  "/": typeof AuthIndexRoute;
   "/administration/carers": typeof AuthAdministrationCarersRouteWithChildren;
   "/administration/export": typeof AuthAdministrationExportRouteWithChildren;
   "/administration/languages": typeof AuthAdministrationLanguagesRouteWithChildren;
@@ -427,10 +427,10 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
+    | "/"
     | "/session"
     | "/administration"
     | "/questionnaire"
-    | "/"
     | "/administration/carers"
     | "/administration/export"
     | "/administration/languages"
@@ -565,7 +565,7 @@ declare module "@tanstack/react-router" {
     "/_auth": {
       id: "/_auth";
       path: "";
-      fullPath: "";
+      fullPath: "/";
       preLoaderRoute: typeof AuthRouteImport;
       parentRoute: typeof rootRouteImport;
     };
