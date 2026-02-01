@@ -10,7 +10,7 @@ import { C } from "./configuration.ts";
 const queryClient = new QueryClient();
 const router = createRouter({ routeTree, context: { queryClient }, defaultPreload: "intent", defaultPreloadStaleTime: 0 });
 const TanStackRouterDevtools =
-  process.env.NODE_ENV === "production"
+  import.meta.env.NODE_ENV === "production"
     ? () => null
     : React.lazy(() =>
         import("@tanstack/router-devtools").then((res) => ({
