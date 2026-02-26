@@ -1,4 +1,4 @@
-FROM docker.io/node:22-slim
+FROM docker.io/node:24-slim
 RUN apt-get update && \
     apt-get install -y dumb-init curl gnupg2 ca-certificates tzdata && \
     echo "deb http://apt.postgresql.org/pub/repos/apt $(. /etc/os-release && echo $VERSION_CODENAME)-pgdg main" > /etc/apt/sources.list.d/pgdg.list && \
