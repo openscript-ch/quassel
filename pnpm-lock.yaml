@@ -7,7 +7,7 @@ settings:
 
 overrides:
   vite: 7.3.1
-  fastify: 5.7.2
+  fastify: 5.7.4
 
 importers:
 
@@ -134,8 +134,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0
       fastify:
-        specifier: 5.7.2
-        version: 5.7.2
+        specifier: 5.7.4
+        version: 5.7.4
       hash-wasm:
         specifier: ^4.12.0
         version: 4.12.0
@@ -369,8 +369,8 @@ importers:
         version: 0.4.10(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@eslint/js':
-        specifier: ^10.0.1
-        version: 10.0.1(eslint@10.0.2)
+        specifier: ^9.39.2
+        version: 9.39.3
       '@types/react':
         specifier: ^19.2.14
         version: 19.2.14
@@ -400,8 +400,8 @@ importers:
         version: 1.11.19
     devDependencies:
       '@eslint/js':
-        specifier: ^10.0.1
-        version: 10.0.1(eslint@10.0.2)
+        specifier: ^9.39.2
+        version: 9.39.3
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -1664,6 +1664,10 @@ packages:
     peerDependenciesMeta:
       eslint:
         optional: true
+
+  '@eslint/js@9.39.3':
+    resolution: {integrity: sha512-1B1VkCq6FuUNlQvlBYb+1jDu/gV297TIs/OeiaSR9l1H27SVW55ONE1e1Vp16NqP683+xEGzxYtv4XCiDPaQiw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@3.0.2':
     resolution: {integrity: sha512-HOy56KJt48Bx8KmJ+XGQNSUMT/6dZee/M54XyUyuvTvPXJmsERRvBchsUVx1UMe1WwIH49XLAczNC7V2INsuUw==}
@@ -5243,8 +5247,8 @@ packages:
   fastify-plugin@5.1.0:
     resolution: {integrity: sha512-FAIDA8eovSt5qcDgcBvDuX/v0Cjz0ohGhENZ/wpc3y+oZCY2afZ9Baqql3g/lC+OHRnciQol4ww7tuthOb9idw==}
 
-  fastify@5.7.2:
-    resolution: {integrity: sha512-dBJolW+hm6N/yJVf6J5E1BxOBNkuXNl405nrfeR8SpvGWG3aCC2XDHyiFBdow8Win1kj7sjawQc257JlYY6M/A==}
+  fastify@5.7.4:
+    resolution: {integrity: sha512-e6l5NsRdaEP8rdD8VR0ErJASeyaRbzXYpmkrpr2SuvuMq6Si3lvsaVy5C+7gLanEkvjpMDzBXWE5HPeb/hgTxA==}
 
   fastq@1.20.1:
     resolution: {integrity: sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==}
@@ -10298,6 +10302,8 @@ snapshots:
     optionalDependencies:
       eslint: 10.0.2
 
+  '@eslint/js@9.39.3': {}
+
   '@eslint/object-schema@3.0.2': {}
 
   '@eslint/plugin-kit@0.6.0':
@@ -11357,7 +11363,7 @@ snapshots:
       '@nestjs/common': 11.1.14(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/core': 11.1.14(@nestjs/common@11.1.14(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       fast-querystring: 1.1.2
-      fastify: 5.7.2
+      fastify: 5.7.4
       fastify-plugin: 5.1.0
       find-my-way: 9.4.0
       light-my-request: 6.6.0
@@ -14359,7 +14365,7 @@ snapshots:
 
   fastify-plugin@5.1.0: {}
 
-  fastify@5.7.2:
+  fastify@5.7.4:
     dependencies:
       '@fastify/ajv-compiler': 4.0.5
       '@fastify/error': 4.2.0
