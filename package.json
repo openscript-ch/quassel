@@ -52,7 +52,7 @@
     ],
     "overrides": {
       "vite": "7.3.1",
-      "fastify": "5.7.2"
+      "fastify": "5.7.3"
     }
   }
 }
