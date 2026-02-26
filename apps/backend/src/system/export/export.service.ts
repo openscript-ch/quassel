@@ -73,7 +73,7 @@ export class ExportService {
 
       return stdout;
     } catch (error) {
-      throw new Error(`Database dump failed: ${error.message}`);
+      throw new Error(`Database dump failed: ${error.message}`, { cause: error });
     }
   }
 }

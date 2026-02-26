@@ -91,7 +91,7 @@ export function EntityForm({ onSave, onDelete, onAddCarer, onAddLanguage, entry,
     }
   }, [entry]);
 
-  const getTotalRatio = () => f.getValues().entryLanguages.reduce((acc, cur) => (acc += cur.ratio), 0);
+  const getTotalRatio = () => f.getValues().entryLanguages.reduce((acc, cur) => acc + cur.ratio, 0);
 
   const updateRatios = () => {
     const currentEntries = f.getValues().entryLanguages;

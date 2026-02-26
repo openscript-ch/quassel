@@ -9,7 +9,7 @@ import pluginAstro from "eslint-plugin-astro";
 
 export default tseslint.config(
   {
-    ignores: ["**/dist", "**/*.gen.ts", "apps/mockup/", "apps/backend/db/migrations"],
+    ignores: ["**/dist", "**/*.gen.ts", "apps/mockup/", "apps/backend/db/migrations", "apps/website/.astro"],
   },
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
