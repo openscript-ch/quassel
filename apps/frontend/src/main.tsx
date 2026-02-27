@@ -1,4 +1,5 @@
 import React, { StrictMode } from "react";
+import * as Sentry from "@sentry/react";
 import { createRoot } from "react-dom/client";
 import "@quassel/ui/style.css";
 import { ThemeProvider, defaultTheme, mergeThemeOverrides } from "@quassel/ui";
@@ -24,10 +25,27 @@ declare module "@tanstack/react-router" {
   }
 }
 
+const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
+
+Sentry.init({
+  dsn: sentryDsn,
+  enabled: Boolean(sentryDsn),
+  integrations: [Sentry.browserTracingIntegration()],
+  tracesSampleRate: 1.0,
+  sendDefaultPii: true,
+});
+
 const currentTheme = mergeThemeOverrides(defaultTheme, { primaryColor: C.env.themeColor });
+const container = document.getElementById("root")!;
 if (import.meta.env.DEV) document.title = C.env.title;
 
-createRoot(document.getElementById("root")!).render(
+createRoot(container, {
+  onUncaughtError: Sentry.reactErrorHandler((error, errorInfo) => {
+    console.warn("Uncaught error", error, errorInfo.componentStack);
+  }),
+  onCaughtError: Sentry.reactErrorHandler(),
+  onRecoverableError: Sentry.reactErrorHandler(),
+}).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={currentTheme}>

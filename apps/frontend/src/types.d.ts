@@ -28,6 +28,7 @@ declare global {
       themeColor?: string;
       title?: string;
       logos?: string;
+      sentryDsn?: string;
     };
   }
 }

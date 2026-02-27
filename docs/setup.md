@@ -89,8 +89,10 @@ The following steps describe how to set up the application system:
       - `SESSION_SECRET` to a 32byte random hex string with `openssl rand -hex 32`
       - `SESSION_SALT` to a 8byte random hex string with `openssl rand -hex 8`
       - `DATABASE_PASSWORD` set a more secure password for the database
+      - `SENTRY_DSN` with the DSN of the montitoring project
    - **frontend**:
       - `API_URL` point to the API endpoint (e.g. "<https://api.test.example.com>")
+      - `SENTRY_DSN` with the DSN of the montitoring project
 1. Run application system
 
    ```bash
