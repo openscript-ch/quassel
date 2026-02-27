@@ -8,5 +8,5 @@ Sentry.init({
   enabled: Boolean(sentryDsn),
   integrations: [nodeProfilingIntegration()],
   tracesSampleRate: 1.0,
-  profilesSampleRate: 1.0
+  profilesSampleRate: 1.0,
 });

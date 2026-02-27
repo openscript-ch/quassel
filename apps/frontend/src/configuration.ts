@@ -11,6 +11,7 @@ export const C = {
     themeColor: getEnv("themeColor") || import.meta.env.VITE_THEME_COLOR,
     title: getEnv("title") || import.meta.env.VITE_TITLE,
     logos: getEnv("logos") || import.meta.env.VITE_LOGOS,
+    sentryDsn: getEnv("sentryDsn") || import.meta.env.VITE_SENTRY_DSN,
   },
   ui: {
     maxDropdownHeight: 800,

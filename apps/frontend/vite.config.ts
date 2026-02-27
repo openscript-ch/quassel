@@ -7,6 +7,7 @@ import unpluginFavicons from "@anolilab/unplugin-favicons/vite";
 export default defineConfig({
   server: {
     port: 3001,
+    // cors: true,
   },
   build: {
     chunkSizeWarningLimit: 1000,
