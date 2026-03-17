@@ -28,4 +28,8 @@
     "markdown": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
+  "json.schemaDownload.trustedDomains": {
+    "https://docs.renovatebot.com": true,
+    "https://unpkg.com/@changesets": true
+  },
 }
