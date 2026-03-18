@@ -18,31 +18,32 @@
   "author": "openscript GmbH",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.29.8",
+    "@changesets/cli": "^2.30.0",
     "@eslint/js": "^10.0.1",
     "@nestjs/cli": "^11.0.16",
     "@nx-tools/container-metadata": "^7.2.1",
     "@nx-tools/nx-container": "^7.2.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^10.0.2",
+    "@typescript-eslint/parser": "^8.57.1",
+    "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.3.0",
-    "nx": "^22.5.2",
+    "globals": "^17.4.0",
+    "nx": "^22.5.4",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.57.1"
   },
-  "packageManager": "pnpm@10.30.3",
+  "packageManager": "pnpm@10.32.1",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@nestjs/core",
       "@scarf/scarf",
+      "@sentry-internal/node-cpu-profiler",
       "core-js-pure",
       "esbuild",
       "nx",
@@ -52,7 +53,7 @@
     ],
     "overrides": {
       "vite": "7.3.1",
-      "fastify": "5.7.4"
+      "fastify": "5.8.2"
     }
   }
 }
