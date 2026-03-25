@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 1.4.1
+
+### Patch Changes
+
+- effd87f: Register Sentry
+
 ## 1.4.0
 
 ### Minor Changes
