@@ -25,7 +25,7 @@ declare module "@tanstack/react-router" {
   }
 }
 
-const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
+const sentryDsn = C.env.sentryDsn;
 
 Sentry.init({
   dsn: sentryDsn,

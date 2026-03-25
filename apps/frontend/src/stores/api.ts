@@ -5,6 +5,7 @@ import { C } from "../configuration";
 import { useDownload } from "../hooks/useDownload";
 import { PathsWithMethod } from "openapi-typescript-helpers";
 import { NotificationData, notifications } from "@quassel/ui";
+import { captureException } from "@sentry/react";
 
 const fetchClient = createFetchClient<paths>({
   baseUrl: C.env.apiUrl,
@@ -28,6 +29,9 @@ fetchClient.use({
           }
 
           notifications.show(notificationData);
+
+          const httpError = new Error(`HTTP ${response.status}: ${error ?? message}`);
+          captureException(httpError, { extra: { status: response.status, url: response.url, message, error } });
         });
     }
   },
