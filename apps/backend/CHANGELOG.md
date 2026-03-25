@@ -1,5 +1,11 @@
 # @quassel/backend
 
+## 1.4.0
+
+### Minor Changes
+
+- 6a873e4: Add sentry libraries to capture errors from the front- and backend.
+
 ## 1.3.15
 
 ### Patch Changes
