@@ -25,11 +25,9 @@ declare module "@tanstack/react-router" {
   }
 }
 
-const sentryDsn = import.meta.env.VITE_SENTRY_DSN;
-
 Sentry.init({
-  dsn: sentryDsn,
-  enabled: Boolean(sentryDsn),
+  dsn: C.env.sentryDsn,
+  enabled: Boolean(C.env.sentryDsn),
   integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 1.0,
   sendDefaultPii: true,

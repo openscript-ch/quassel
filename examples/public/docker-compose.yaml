@@ -46,6 +46,7 @@ services:
       CORS_ORIGIN: https://test.example.com
       SESSION_SECRET: secret
       SESSION_SALT: salt
+      # SENTRY_DSN: https://xyz@example.com//999
       DATABASE_HOST: database
       DATABASE_PASSWORD: secret
     labels:
@@ -77,6 +78,8 @@ services:
       API_URL: https://api.test.example.com
       THEME_COLOR: uzhGold
       TITLE: LEMON
+      # SENTRY_DSN: https://xyz@example.com//999
+      DATABASE_HOST: database
       LOGOS: '[{"path": "/logos/uzh-logo.svg", "alt": "University of Zurich Logo", "url": "https://uzh.ch"}, {"path": "/logos/weltentdecker-logo.png", "alt": "Kleine Weltentdecker Logo", "url": "https://www.psychologie.uzh.ch/de/bereiche/dev/devpsy/Weltentdecker.html"}]'
     volumes:
       - ./logo.svg:/usr/share/nginx/html/logo.svg
