@@ -8,7 +8,7 @@ services:
     command: sleep infinity
 
   db:
-    image: postgres:17.7-alpine
+    image: postgres:17.9-alpine
     volumes:
       - db-data:/var/lib/postgresql/data
     environment:
