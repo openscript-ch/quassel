@@ -31,5 +31,6 @@
       "cache": true
     }
   },
-  "useDaemonProcess": false
+  "useDaemonProcess": false,
+  "analytics": false
 }

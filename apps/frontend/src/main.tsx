@@ -10,14 +10,13 @@ import { C } from "./configuration.ts";
 
 const queryClient = new QueryClient();
 const router = createRouter({ routeTree, context: { queryClient }, defaultPreload: "intent", defaultPreloadStaleTime: 0 });
-const TanStackRouterDevtools =
-  import.meta.env.NODE_ENV === "production"
-    ? () => null
-    : React.lazy(() =>
-        import("@tanstack/router-devtools").then((res) => ({
-          default: res.TanStackRouterDevtools,
-        }))
-      );
+const TanStackRouterDevtools = import.meta.env.DEV
+  ? React.lazy(() =>
+      import("@tanstack/react-router-devtools").then((res) => ({
+        default: res.TanStackRouterDevtools,
+      }))
+    )
+  : () => null;
 
 declare module "@tanstack/react-router" {
   interface Register {
