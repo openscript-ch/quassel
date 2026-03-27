@@ -1,5 +1,11 @@
 # @quassel/frontend
 
+## 1.4.2
+
+### Patch Changes
+
+- d786c18: Only show router dev tools in dev environment
+
 ## 1.4.1
 
 ### Patch Changes
