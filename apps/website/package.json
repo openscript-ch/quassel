@@ -19,7 +19,7 @@
     "@iconify/json": "^2.2.455",
     "@types/reveal.js": "^5.2.2",
     "sharp": "^0.34.5",
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.0",
     "unplugin-icons": "^23.0.1"
   }
 }
