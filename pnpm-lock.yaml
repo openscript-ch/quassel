@@ -396,8 +396,8 @@ importers:
         specifier: ^4.5.4
         version: 4.5.4(@types/node@25.5.0)(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
       vite-plugin-svgr:
-        specifier: ^4.5.0
-        version: 4.5.0(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
+        specifier: ^5.0.0
+        version: 5.2.0(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
 
   libs/utils:
     dependencies:
@@ -8798,8 +8798,8 @@ packages:
       vite:
         optional: true
 
-  vite-plugin-svgr@4.5.0:
-    resolution: {integrity: sha512-W+uoSpmVkSmNOGPSsDCWVW/DDAyv+9fap9AZXBvWiQqrboJ08j2vh0tFxTD/LjwqwAd3yYSVJgm54S/1GhbdnA==}
+  vite-plugin-svgr@5.2.0:
+    resolution: {integrity: sha512-qj2eAKF8C6PZWemVTvQA0xgQIcP1hHU6Buh7fl6BhvayWwnuxE+z417miKxeDvRWbDrupQ1oK99hfxElopJ3sQ==}
     peerDependencies:
       vite: 7.3.1
 
@@ -12339,7 +12339,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
-      picomatch: 4.0.3
+      picomatch: 4.0.4
     optionalDependencies:
       rollup: 4.57.1
 
@@ -18972,7 +18972,7 @@ snapshots:
       - rollup
       - supports-color
 
-  vite-plugin-svgr@4.5.0(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3)):
+  vite-plugin-svgr@5.2.0(rollup@4.57.1)(typescript@5.9.3)(vite@7.3.1(@types/node@25.5.0)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3)):
     dependencies:
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       '@svgr/core': 8.1.0(typescript@5.9.3)
