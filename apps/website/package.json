@@ -12,7 +12,7 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource-variable/onest": "^5.2.11",
-    "astro": "^6.1.1"
+    "astro": "^7.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",
