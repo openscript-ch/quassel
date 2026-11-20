@@ -33,7 +33,7 @@ jobs:
         run: pnpm install
 
       - name: Publish
-        uses: changesets/action@v1
+        uses: changesets/action@v2.1.2
         id: changesets
         with:
           version: pnpm version
